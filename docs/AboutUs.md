@@ -9,51 +9,45 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Angel Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/angelyxx.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/angelyxx)]
+[[portfolio](team/angelyxx.md)]
 
-### Jane Doe
+* Role : Developer
+* Responsibilities: Testing, Code Quality, Git Expert
 
-<img src="images/johndoe.png" width="200px">
+### Kuan Kwok Yong
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/imkwokyong.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/imkwokyong)]
+[[portfolio](team/imkwokyong.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities : Deliverables & Deadlines, Scheduling & Tracking
 
-### Jean Doe
+### Geoff Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geoffong11.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/geoffong11)] 
+[[portfolio](team/geoffong11.md)]
+
+* Role: Developer, Team Lead
+* Responsibilities: Documentation
+
+### Xavier Pok
+
+<img src="images/xavierpok.png" width="200px">
+
+[[github](http://github.com/xavierpok)]
+[[portfolio](team/xavierpok.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing, Code Quality, IDE Expert
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
