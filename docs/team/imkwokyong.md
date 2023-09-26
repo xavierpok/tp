@@ -14,5 +14,4 @@ Connexion is a desktop application for undergraduate students to manage their ne
 * **Documentation**:
   * User Guide: to be added soon
   * Developer Guide: to be added soon
-
 * **Community**: to be added soon
