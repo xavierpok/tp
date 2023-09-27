@@ -290,9 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Connexion shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Connexion deletes the person
 
     Use case ends.
 
@@ -304,11 +304,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
 
 *{More to be added}*
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to add a person in the list
+4.  Connexion adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Name, email, contact number, company affiliation not given
+
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User enters keywords
+4.  Connexion shows all persons whose name contains the keywords
+
+    Use case ends.
+
+**Use case: Update a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to update a person in the list
+4.  Connexion updates person's information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
