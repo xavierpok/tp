@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Connexion` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -307,8 +307,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 **Use case: Add a person**
 
@@ -362,6 +360,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
+
+* 3b. Connexion detects an error in the entered details
+
+    * 3b1. Connexion shows an error message.
+
+      Use case resumes at step 2.
       
 **Use case: Tag a person for organisation**
 
@@ -402,7 +406,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**:  contact detail that is not meant to be shared with others
+* **tag**: a fixed label that is meant for easier searching and organisation
+*  **index**: Number that references the position of person in the list
 
 --------------------------------------------------------------------------------------------------------------------
 
