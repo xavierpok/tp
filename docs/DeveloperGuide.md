@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to delete a specific person via index in the list
+3.  User requests to delete a specific person
 4.  Connexion deletes the person
 
     Use case ends.
@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to add a person and enter details
+3.  User requests to add a person
 4.  Connexion adds the person
 
     Use case ends.
