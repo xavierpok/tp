@@ -292,21 +292,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list persons
 2.  Connexion shows a list of persons
 3.  User requests to delete a specific person
-4.  Connexion deletes the person
+4.  Connexion requests for index of person
+5.  User specifies index of person
+6.  Connexion deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 5a. The given index is invalid.
 
-    * 3a1. Connexion shows an error message.
+    * 5a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
 
 **Use case: Add a person**
 
@@ -315,55 +317,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list persons
 2.  Connexion shows a list of persons
 3.  User requests to add a person
-4.  Connexion adds the person
+4.  Connexion requests for person details
+5.  User specifies person details
+6.  Connexion adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. Connexion detects an error in the entered details
+* 5a. Connexion detects an error in the entered details
 
-    * 3a1. Connexion shows an error message.
+    * 5a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
 
 **Use case: Find a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connexion shows a list of persons
-3.  User enters keywords
-4.  Connexion shows all persons whose name contains the keywords
+1.  User enters keywords
+2.  Connexion shows all persons whose name contains the keywords
 
     Use case ends.
 
-****Use case: Update a person****
+**Use case: Update a person**
 
 **MSS**
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to update a person in the list
-4.  Connexion updates person's information
+3.  User requests to update a person
+4.  Connexion request for index of person
+5.  User specifies index of person
+6.  Connexion request for new details of person
+7.  User specifies new details of person
+8.  Connexion updates person's information
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 5a. The given index is invalid.
 
-    * 3a1. Connexion shows an error message.
+    * 5a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
 
-* 3b. Connexion detects an error in the entered details
+* 7a. Connexion detects an error in the entered details
 
-    * 3b1. Connexion shows an error message.
+    * 7a1. Connexion shows an error message.
 
       Use case resumes at step 2.
       
@@ -373,25 +379,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to tag a person in the list
-4.  Connexion adds the tag to the person
+3.  User requests to add tag to a person
+4.  Connexion request for index of person
+5.  User specifies index of person
+6.  Connexion request for new tag of person
+7.  User specifies new tag of person
+8.  Connexion add person's tag
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 5a. The given index is invalid.
 
-    * 3a1. Connexion shows an error message.
+    * 5a1. Connexion shows an error message.
 
       Use case resumes at step 2.
+  
+* 7a. The given tag is invalid.
+    * 7a1. Connexion shows an error message.
+      
+      Use case resumes at step 6.
 
-* 3b. The given tag is already present.
-    * 3b1. Connexion tells the user the tag is already present.
+      Use case ends.
+* 7b. The given tag is already present.
+    * 7b1. Connexion tells the user the tag is already present.
     
       Use case ends.
 
