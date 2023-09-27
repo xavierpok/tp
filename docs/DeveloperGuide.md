@@ -372,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 7a1. Connexion shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: Tag a person for organisation**
 
 **MSS**
@@ -399,16 +399,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5a1. Connexion shows an error message.
 
       Use case resumes at step 2.
-  
+
 * 7a. The given tag is invalid.
     * 7a1. Connexion shows an error message.
-      
+
       Use case resumes at step 6.
 
       Use case ends.
 * 7b. The given tag is already present.
     * 7b1. Connexion tells the user the tag is already present.
-    
+
       Use case ends.
 
 ### Non-Functional Requirements

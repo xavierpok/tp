@@ -5,7 +5,7 @@ title: Kwok Yong's Project Portfolio Page
 
 ### Project: Connexion
 
-Connexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry. 
+Connexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 * **New Feature**: to be added soon
