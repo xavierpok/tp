@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/geoffong11.png" width="200px">
 
-[[github](http://github.com/geoffong11)] 
+[[github](http://github.com/geoffong11)]
 [[portfolio](team/geoffong11.md)]
 
 * Role: Developer, Team Lead
