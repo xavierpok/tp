@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. Name, email, contact number, company affiliation not given
+* 3a. Name, email, contact number, or company affiliation not given
 
     * 3a1. Connexion shows an error message.
 
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Update a person**
+**Use case: Tag a person for organisation**
 
 **MSS**
 
@@ -362,7 +362,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
+      **Use case: Update a person**
 
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to update a person in the list
+4.  Connexion updates person's information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
