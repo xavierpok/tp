@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Kwok Yong's Project Portfolio Page
+title: Geoff's Project Portfolio Page
 ---
 
 ### Project: Connexion
@@ -13,6 +13,6 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 * **Project management**: to be added soon
 * **Enhancement to existing features**: to be added soon
 * **Documentation**:
-  * User Guide: to be added soon
-  * Developer Guide: to be added soon
+    * User Guide: to be added soon
+    * Developer Guide: to be added soon
 * **Community**: to be added soon

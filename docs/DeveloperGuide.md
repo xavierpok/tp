@@ -283,16 +283,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Connexion` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  Connexion shows a list of persons
+3.  User requests to delete a specific person
+4.  Connexion deletes the person
 
     Use case ends.
 
@@ -304,11 +304,103 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to add a person
+4.  Connexion adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Connexion detects an error in the entered details
+
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User enters keywords
+2.  Connexion shows all persons whose name contains the keywords
+
+    Use case ends.
+
+**Use case: Filter for person via tags**
+
+**MSS**
+
+1.  User enters tag name
+2.  Connexion shows all persons contains that tag
+
+Use case ends.
+
+**Use case: Update a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to update a person
+4.  Connexion updates person's information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a.  The given index is invalid.
+
+    * 3a1.  Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Connexion detects an error in the entered details
+
+    * 3b1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Mark a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Connexion shows a list of persons
+3.  User requests to mark a person
+4.  Connexion marks the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The person is already marked.
+    * 3b1. Connexion tells the user the person is already marked.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -321,7 +413,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**:  A contact detail that is not meant to be shared with others
+* **Tag**: A fixed label that is meant for easier searching and organisation
+*  **Index**: A number that references the position of person in the list
 
 --------------------------------------------------------------------------------------------------------------------
 

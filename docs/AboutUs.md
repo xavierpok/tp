@@ -11,8 +11,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Angel Lee
 
-<img src="images/angelyxx.png" width="200px">
 
+<img src="images/angelyxx.png" width="200px">
 
 [[github](https://github.com/angelyxx)]
 [[portfolio](team/angelyxx.md)]
