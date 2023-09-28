@@ -298,13 +298,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The list is empty.
+* 2a. The list is empty.
 
   Use case ends.
 
-* 3b. The given index is invalid.
+* 3a. The given index is invalid.
 
-    * 3b1. Connexion shows an error message.
+    * 3a1. Connexion shows an error message.
 
       Use case resumes at step 2.
 
@@ -349,19 +349,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The list is empty.
+* 2a. The list is empty.
 
   Use case ends.
 
-* 3b.  The given index is invalid.
+* 3a.  The given index is invalid.
 
-    * 3b1.  Connexion shows an error message.
+    * 3a1.  Connexion shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. Connexion detects an error in the entered details
+* 3b. Connexion detects an error in the entered details
 
-    * 3c1. Connexion shows an error message.
+    * 3b1. Connexion shows an error message.
 
       Use case resumes at step 2.
 
@@ -378,24 +378,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The list is empty.
+* 2a. The list is empty.
 
   Use case ends.
 
-* 3b. The given index is invalid.
+* 3a. The given index is invalid.
 
+    * 3a1. Connexion shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given tag is invalid.
     * 3b1. Connexion shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The given tag is invalid.
-    * 3c1. Connexion shows an error message.
-
-      Use case resumes at step 2.
-
-      Use case ends.
-* 3d. The given tag is already present.
-    * 3d1. Connexion tells the user the tag is already present.
+* 3c. The given tag is already present.
+    * 3c1. Connexion tells the user the tag is already present.
 
       Use case ends.
 
