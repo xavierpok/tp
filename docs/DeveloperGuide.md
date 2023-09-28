@@ -336,6 +336,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Filter for person via tags**
+
+**MSS**
+
+1.  User enters tag name
+2.  Connexion shows all persons contains that tag
+
+Use case ends.
+
 **Use case: Update a person**
 
 **MSS**
@@ -365,14 +374,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Tag a person for organisation**
+**Use case: Mark a person**
 
 **MSS**
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to add tag to a person
-4.  Connexion add person's tag
+3.  User requests to mark a person
+4.  Connexion marks the person
 
     Use case ends.
 
@@ -388,13 +397,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given tag is invalid.
-    * 3b1. Connexion shows an error message.
-
-      Use case resumes at step 2.
-
-* 3c. The given tag is already present.
-    * 3c1. Connexion tells the user the tag is already present.
+* 3b. The person is already marked.
+    * 3b1. Connexion tells the user the person is already marked.
 
       Use case ends.
 
@@ -409,9 +413,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**:  contact detail that is not meant to be shared with others
-* **tag**: a fixed label that is meant for easier searching and organisation
-*  **index**: Number that references the position of person in the list
+* **Private contact detail**:  A contact detail that is not meant to be shared with others
+* **Tag**: A fixed label that is meant for easier searching and organisation
+*  **Index**: A number that references the position of person in the list
 
 --------------------------------------------------------------------------------------------------------------------
 
