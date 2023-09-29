@@ -3,10 +3,26 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**C**onnexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 
-* Table of Contents
-{:toc}
+<!-- TOC -->
+  * [Quick start](#quick-start)
+  * [Features](#features)
+    * [Viewing help: `help`](#viewing-help--help)
+    * [Adding a new contact: `add`](#adding-a-new-contact--add)
+    * [Listing all contacts: `list`](#listing-all-contacts--list)
+    * [Editing existing contact details: `edit`](#editing-existing-contact-details--edit)
+    * [Locating persons by name: `find`](#locating-persons-by-name--find)
+    * [Marking contacts of interest: `mark`](#marking-contacts-of-interest--mark)
+    * [Unmark contacts of interest: `unmark`](#unmark-contacts-of-interest--unmark)
+    * [Filtering a contact by tags: `filter`](#filtering-a-contact-by-tags--filter)
+    * [Deleting a contact: `delete`](#deleting-a-contact--delete)
+    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
+  * [Known issues](#known-issues)
+  * [Command summary](#command-summary)
+  * [Command FIELD Summary](#command-field-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,28 +30,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` and run as shown from [here](https://docs.oracle.com/javase/tutorial/deployment/jar/run.html).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+3. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,7 +60,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaning how to access the help page.
 
@@ -71,34 +68,33 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a new contact: `add`
 
-### Adding a person: `add`
+Creates a new contact and adds it to the app.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`
+* `add n/Aiken Duit p/88888888 e/aikenduit@hotmail.com c/Meta j/Data Engineer`
 
-### Listing all persons : `list`
+### Listing all contacts: `list`
 
-Shows a list of all persons in the address book.
+Gives the list of all contacts in alphabetical order (by  name).
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing existing contact details: `edit`
 
-Edits an existing person in the address book.
+Edits an existing person's contact details via index.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/TAG]...​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -106,12 +102,24 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 n/John Sick p/87654321 t/` edits the 1st person’s name, phone number and clears the tags in the current displayed list.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+Expected output:
+
+`edit 1 n/John Sick p/87654321 t/` would display:
+```
+Contact edited: John Sick, a Software Engineer from Google 
+Changes : 
+Name : John Wick >>> John Sick
+Phone Number : 12345678 >>>  87654321
+Tags : #NUS Alumni #Met in Google Hackathon >>> 
+```
+
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons via keywords in name of contact.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -123,22 +131,71 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` returns John and john tan, but not Joh tan.
+* `find alex Young` returns Alex Walker, Alex Young, Young Walker
 
-### Deleting a person : `delete`
+Expected output:
 
-Deletes the specified person from the address book.
+It will shorten the list to only include relevant contacts. 
+For example, if the list contains John Wick and John Tan, when `find John` is entered, the UI will print :
+```2 persons listed!```
+
+### Marking contacts of interest: `mark`
+
+Marks a contact of interest
+
+Format: `mark INDEX`
+
+* Marks the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** starting from 1.
+* When a new contact is created, the contact is unmarked by default.
+
+Examples:
+* `list` followed by `mark 2` marks the 2nd person in the address book as contact of interest.
+
+### Unmark contacts of interest: `unmark`
+
+Un-marks a contact of interest
+
+Format: `unmark INDEX`
+
+* Marks the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** starting from 1.
+* When a new contact is created, the contact is unmarked by default.
+
+Examples:
+* `unmark 1` un-marks the 1st person in the current displayed list.
+
+### Filtering a contact by tags: `filter`
+
+Displays all entries filtered by a specified tag.
+
+Format: `filter [FIELD][KEYWORD] [MORE_KEYWORDS]`
+
+* FIELD: represents the tag to filter by
+  * Example: if filter by company, then FIELD = “c/”
+* Keywords are case-insensitive
+* Only returns results with FULL matching keywords to the field
+
+Examples:
+* `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”
+* `filter t/friends` returns all entries with the tag “friends”
+
+
+### Deleting a contact: `delete`
+
+Deletes a person's contact via index.
 
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** starting from 1.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
@@ -153,34 +210,11 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the preferences.json file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -188,10 +222,27 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g., `delete 2`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`
+**Filter** | `filter [FIELD][KEYWORD] [MORE_KEYWORDS]` <br> e.g., `filter c/Google`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`
 **List** | `list`
 **Help** | `help`
+**Mark** | `mark INDEX` <br> e.g., `mark 2`
+**Unmark** | `unmark INDEX` <br> e.g., `unmark 1`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command FIELD Summary
+
+| Tag | Description  | Notes                                                |
+|-----|--------------|------------------------------------------------------|
+| c/  | COMPANY      | -                                                    |
+| e/  | EMAIL        | -                                                    |
+| j/  | JOB          | -                                                    |
+| n/  | NAME         | -                                                    |
+| p/  | PHONE_NUMBER | -                                                    |
+| t/  | TAG          | Multiple instances of this argument can be accepted. |
+
