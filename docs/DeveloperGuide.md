@@ -262,22 +262,30 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* Undergraduate student interested in work connections in Tech
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Lightweight, fast interface for experienced users that want to gain access to work connections in the Tech industry quickly.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a(n) …​     | I want to …​                                         | So that I can…​                                            |
+|----------|----------------|------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | user           | get text feedback for each line                      | know when the command is received                          |
+| `* * *`  | user           | get error feedback on a wrong command                | know what went wrong                                       |
+| `* * *`  | user           | delete a contact                                     | remove entries that I no longer need                       |
+| `* * *`  | user           | enter a new contact & their info                     |                                                            |
+| `* * *`  | user           | tag contacts                                         | organise contacts better                                   |
+| `* * *`  | user           | view contacts                                        |                                                            |
+| `* *`    | user           | be able to setup the app quickly                     |                                                            |
+| `* *`    | impatient user | have desired information viewable right on my screen | avoid having to search for what I'm looking for            |
+| `* *`    | user           | mark companies/contacts I've applied to              | avoid applying to the same company/contact twice           |
+| `* *`    | impatient user | filter/search for contacts                           | narrow down to just contacts I want to look at immediately |
+| `* *`    | impatient user | easily view the user guide                           | reference how to use the app                               |
+| `*`      | TBA            | TBA                                                  | TBA                                                        |
+| `*`      | TBA            | TBA                                                  | TBA                                                        |
 
 *{More to be added}*
 
@@ -405,8 +413,8 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Setup should be possible without configuration (should just be running binaries)
+3.  Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
 
 *{More to be added}*
 
