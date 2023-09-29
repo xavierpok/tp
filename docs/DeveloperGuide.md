@@ -262,8 +262,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* Undergraduate student interested in work connections in Tech
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Lightweight, fast interface for experienced users that want to gain access to work connections in the Tech industry quickly.
 
 
 ### User stories
