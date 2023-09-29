@@ -6,8 +6,8 @@ title: User Guide
 **C**onnexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 
 <!-- TOC -->
-* [Quick start](#quick-start)
-* [Features](#features)
+  * [Quick start](#quick-start)
+  * [Features](#features)
     * [Viewing help: `help`](#viewing-help--help)
     * [Adding a new contact: `add`](#adding-a-new-contact--add)
     * [Listing all contacts: `list`](#listing-all-contacts--list)
@@ -19,9 +19,9 @@ title: User Guide
     * [Deleting a contact: `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
-* [Known issues](#known-issues)
-* [Command summary](#command-summary)
-* [Command FIELD Summary](#command-field-summary)
+  * [Known issues](#known-issues)
+  * [Command summary](#command-summary)
+  * [Command FIELD Summary](#command-field-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ title: User Guide
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -97,7 +97,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/T
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -123,7 +123,7 @@ Finds persons via keywords in name of contact.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -220,18 +220,18 @@ Format: `exit`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`
-**Filter** | `filter [FIELD][KEYWORD] [MORE_KEYWORDS]` <br> e.g., `filter c/Google`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`
-**List** | `list`
-**Help** | `help`
-**Mark** | `mark INDEX` <br> e.g., `mark 2`
-**Unmark** | `unmark INDEX` <br> e.g., `unmark 1`
+| Action     | Format, Examples                                                                                                                                                                               |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon` |
+| **Clear**  | `clear`                                                                                                                                                                                        |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                            |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                             |
+| **Filter** | `filter [FIELD][KEYWORD] [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                     |
+| **List**   | `list`                                                                                                                                                                                         |
+| **Help**   | `help`                                                                                                                                                                                         |
+| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                               |
+| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
