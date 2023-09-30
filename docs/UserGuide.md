@@ -60,7 +60,7 @@ title: User Guide
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help: `help`
+### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -68,7 +68,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a new contact: `add`
+### Adding a new contact : `add`
 
 Creates a new contact and adds it to the app.
 
@@ -82,13 +82,13 @@ Examples:
 * `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`
 * `add n/Aiken Duit p/88888888 e/aikenduit@hotmail.com c/Meta j/Data Engineer`
 
-### Listing all contacts: `list`
+### Listing all contacts : `list`
 
 Gives the list of all contacts in alphabetical order (by name).
 
 Format: `list`
 
-### Editing existing contact details: `edit`
+### Editing existing contact details : `edit`
 
 Edits an existing person's contact details via index.
 
@@ -118,7 +118,7 @@ Tags : #NUS Alumni #Met in Google Hackathon >>>
 Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty. 
 I.e., the empty end-result of Tags is expected.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons via keywords in name of contact.
 
@@ -141,7 +141,7 @@ It will shorten the list to only include relevant contacts.
 For example, if the list contains John Wick and John Tan, when `find John` is entered, the UI will print :
 ```2 persons listed!```
 
-### Marking contacts of interest: `mark`
+### Marking contacts of interest : `mark`
 
 Marks a contact of interest.
 
@@ -155,7 +155,7 @@ Format: `mark INDEX`
 Examples:
 * `list` followed by `mark 2` marks the 2nd person in the address book as contact of interest.
 
-### Un-marking contacts of interest: `unmark`
+### Un-marking contacts of interest : `unmark`
 
 Un-marks a contact of interest.
 
@@ -169,7 +169,7 @@ Format: `unmark INDEX`
 Examples:
 * `unmark 1` un-marks the 1st person in the current displayed list.
 
-### Filtering a contact by tags: `filter`
+### Filtering a contact by tags : `filter`
 
 Displays all entries filtered by a specified tag.
 
@@ -185,7 +185,7 @@ Examples:
 * `filter t/friends` returns all entries with the tag “friends”.
 
 
-### Deleting a contact: `delete`
+### Deleting a contact : `delete`
 
 Deletes a person's contact via index.
 
