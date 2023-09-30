@@ -15,6 +15,8 @@ If you:
 
 ### Documentation
 * **[Connexion Product Website](https://ay2324s1-cs2103-f13-1.github.io/tp/)**
+* **[User Guide](https://ay2324s1-cs2103-f13-1.github.io/tp/UserGuide.html)**
+* **[Developer Guide](https://ay2324s1-cs2103-f13-1.github.io/tp/DeveloperGuide.html)**
 
 ### Acknowledgement
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
