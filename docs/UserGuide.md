@@ -14,7 +14,7 @@ title: User Guide
     * [Editing existing contact details: `edit`](#editing-existing-contact-details--edit)
     * [Locating persons by name: `find`](#locating-persons-by-name--find)
     * [Marking contacts of interest: `mark`](#marking-contacts-of-interest--mark)
-    * [Unmark contacts of interest: `unmark`](#unmark-contacts-of-interest--unmark)
+    * [Un-marking contacts of interest: `unmark`](#unmark-contacts-of-interest--unmark)
     * [Filtering a contact by tags: `filter`](#filtering-a-contact-by-tags--filter)
     * [Deleting a contact: `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
