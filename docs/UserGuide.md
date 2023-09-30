@@ -8,7 +8,6 @@ title: User Guide
 <!-- TOC -->
   * [Quick start](#quick-start)
   * [Features](#features)
-
     * [Viewing help : `help`](#viewing-help--help)
     * [Adding a new contact : `add`](#adding-a-new-contact--add)
     * [Listing all contacts : `list`](#listing-all-contacts--list)
