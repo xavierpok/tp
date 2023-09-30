@@ -8,15 +8,15 @@ title: User Guide
 <!-- TOC -->
   * [Quick start](#quick-start)
   * [Features](#features)
-    * [Viewing help: `help`](#viewing-help--help)
-    * [Adding a new contact: `add`](#adding-a-new-contact--add)
-    * [Listing all contacts: `list`](#listing-all-contacts--list)
-    * [Editing existing contact details: `edit`](#editing-existing-contact-details--edit)
-    * [Locating persons by name: `find`](#locating-persons-by-name--find)
-    * [Marking contacts of interest: `mark`](#marking-contacts-of-interest--mark)
-    * [Un-marking contacts of interest: `unmark`](#unmark-contacts-of-interest--unmark)
-    * [Filtering a contact by tags: `filter`](#filtering-a-contact-by-tags--filter)
-    * [Deleting a contact: `delete`](#deleting-a-contact--delete)
+    * [Viewing help : `help`](#viewing-help--help)
+    * [Adding a new contact : `add`](#adding-a-new-contact--add)
+    * [Listing all contacts : `list`](#listing-all-contacts--list)
+    * [Editing existing contact details : `edit`](#editing-existing-contact-details--edit)
+    * [Locating persons by name : `find`](#locating-persons-by-name--find)
+    * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
+    * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
+    * [Filtering a contact by tags : `filter`](#filtering-a-contact-by-tags--filter)
+    * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
   * [Known issues](#known-issues)
@@ -62,7 +62,7 @@ title: User Guide
 
 ### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
