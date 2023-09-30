@@ -262,9 +262,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* Undergraduate student interested in work connections in Tech
+* undergraduate student interested in managing networking connections in Tech
 
-**Value proposition**: Lightweight, fast interface for experienced users that want to gain access to work connections in the Tech industry quickly.
+**Value proposition**: Lightweight, fast interface for experienced users that want to manage their networking connections in the Tech industry quickly.
 
 
 ### User stories
