@@ -293,49 +293,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Connexion` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - List persons**
 
 **MSS**
 
 1.  User requests to list persons
 2.  Connexion shows a list of persons
-3.  User requests to delete a specific person
-4.  Connexion deletes the person
+
+    Use case ends.
+
+**Use case: UC02 - Delete a person**
+
+**MSS**
+
+1.  User lists the person (UC01)
+2.  User requests to delete a specific person
+3.  Connexion deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. Connexion shows an error message.
+    * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-**Use case: Add a person**
+**Use case: UC03 - Add a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connexion shows a list of persons
-3.  User requests to add a person
-4.  Connexion adds the person
+1.  User lists the person (UC01)
+2.  User requests to add a person
+3.  Connexion adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. Connexion detects an error in the entered details
+* 2a. Connexion detects an error in the entered details
 
-    * 3a1. Connexion shows an error message.
+    * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-**Use case: Find a person**
+**Use case: UC04 - Find a person**
 
 **MSS**
 
@@ -344,69 +351,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Filter for person via tags**
+**Use case: UC05 - Filter for person via tags**
 
 **MSS**
 
 1.  User enters tag name
 2.  Connexion shows all persons contains that tag
 
-Use case ends.
+    Use case ends.
 
-**Use case: Update a person**
+**Use case: UC06 - Update a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connexion shows a list of persons
-3.  User requests to update a person
-4.  Connexion updates person's information
+1.  User lists the person (UC01)
+2.  User requests to update a person
+3.  Connexion updates person's information
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a.  The given index is invalid.
+* 2a.  The given index is invalid.
 
-    * 3a1.  Connexion shows an error message.
+    * 2a1.  Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-* 3b. Connexion detects an error in the entered details
+* 2b. Connexion detects an error in the entered details
 
-    * 3b1. Connexion shows an error message.
+    * 2b1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-**Use case: Mark a person**
+**Use case: UC07 - Mark a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connexion shows a list of persons
-3.  User requests to mark a person
-4.  Connexion marks the person
+1.  User lists the person (UC01)
+2.  User requests to mark a person
+3.  Connexion marks the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. Connexion shows an error message.
+    * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-* 3b. The person is already marked.
-    * 3b1. Connexion tells the user the person is already marked.
+* 2b. The person is already marked.
+    * 2b1. Connexion tells the user the person is already marked.
 
       Use case ends.
 
