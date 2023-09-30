@@ -154,7 +154,7 @@ Format: `mark INDEX`
 Examples:
 * `list` followed by `mark 2` marks the 2nd person in the address book as contact of interest.
 
-### Unmark contacts of interest: `unmark`
+### Un-marking contacts of interest: `unmark`
 
 Un-marks a contact of interest
 
