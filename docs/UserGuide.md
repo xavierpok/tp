@@ -115,7 +115,8 @@ Name : John Wick >>> John Sick
 Phone Number : 12345678 >>>  87654321
 Tags : #NUS Alumni #Met in Google Hackathon >>> 
 ```
-
+Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty. 
+I.e., the empty end-result of Tags is expected.
 
 ### Locating persons by name: `find`
 
