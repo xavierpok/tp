@@ -90,7 +90,7 @@ Examples:
 
 ### Listing all contacts: `list`
 
-Gives the list of all contacts in alphabetical order (by  name).
+Gives the list of all contacts in alphabetical order (by name).
 
 Format: `list`
 
@@ -100,7 +100,7 @@ Edits an existing person's contact details via index.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/TAG]...​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
@@ -130,16 +130,16 @@ Finds persons via keywords in name of contact.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `find John` returns John and john tan, but not Joh tan.
-* `find alex Young` returns Alex Walker, Alex Young, Young Walker
+* `find alex Young` returns Alex Walker, Alex Young, Young Walker.
 
 Expected output:
 
@@ -149,7 +149,7 @@ For example, if the list contains John Wick and John Tan, when `find John` is en
 
 ### Marking contacts of interest: `mark`
 
-Marks a contact of interest
+Marks a contact of interest.
 
 Format: `mark INDEX`
 
@@ -163,7 +163,7 @@ Examples:
 
 ### Un-marking contacts of interest: `unmark`
 
-Un-marks a contact of interest
+Un-marks a contact of interest.
 
 Format: `unmark INDEX`
 
@@ -179,16 +179,16 @@ Examples:
 
 Displays all entries filtered by a specified tag.
 
-Format: `filter [FIELD][KEYWORD] [MORE_KEYWORDS]`
+Format: `filter FIELD KEYWORD [MORE_KEYWORDS]`
 
-* FIELD: represents the tag to filter by
-    * Example: if filter by company, then FIELD = “c/”
-* Keywords are case-insensitive
-* Only returns results with FULL matching keywords to the field
+* FIELD: represents the tag to filter by.
+    * Example: if filter by company, then FIELD = “c/”.
+* Keywords are case-insensitive.
+* Only returns results with FULL matching keywords to the field.
 
 Examples:
-* `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”
-* `filter t/friends` returns all entries with the tag “friends”
+* `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
+* `filter t/friends` returns all entries with the tag “friends”.
 
 
 ### Deleting a contact: `delete`
@@ -227,18 +227,18 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                               |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon` |
-| **Clear**  | `clear`                                                                                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                             |
-| **Filter** | `filter [FIELD][KEYWORD] [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                     |
-| **List**   | `list`                                                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                                         |
-| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                               |
-| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                           |
+| **Clear**  | `clear`                                                                                                                                                                                      |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                          |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                           |
+| **Filter** | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                                                                       |
+| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                             |
+| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
