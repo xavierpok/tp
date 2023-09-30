@@ -262,9 +262,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* Undergraduate student interested in work connections in Tech
+* undergraduate student interested in managing networking connections in Tech
 
-**Value proposition**: Lightweight, fast interface for experienced users that want to gain access to work connections in the Tech industry quickly.
+**Value proposition**: Lightweight, fast interface for experienced users that want to manage their networking connections in the Tech industry quickly.
 
 
 ### User stories
@@ -417,9 +417,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Setup should be possible without configuration (should just be running binaries)
-3.  Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Setup should be possible without configuration (should just be running binaries)
+3. Should respond to all inputs within approx. 2 seconds maximum
+4. Final size of application should be under 50MB
+5. Should retain all core functionality without access to internet
+6. Should NOT crash under recoverable circumstances, excepting irrecoverable errors like a `OutOfMemoryError`, application being killed, etc.
+7. Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
 
 *{More to be added}*
 
