@@ -7,7 +7,7 @@ title: Angel's Project Portfolio Page
 Connexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
-Given below are my contributions to the project
+Given below are my contributions to the project:
 
 * **New Feature**: to be added soon
 * **Code contributed**: to be added soon
