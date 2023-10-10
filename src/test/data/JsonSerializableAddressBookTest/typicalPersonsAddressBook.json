@@ -4,43 +4,50 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "company": "Google",
+    "job": "AI Analyst",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "company": "Mandai Wildlife Group",
+    "job": "Software Engineer",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
+    "company": "Grab",
+    "job": "AI Engineer",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
+    "company": "Uber",
+    "job": "Data Analyst",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "company": "Central Provident Board",
+    "job": "Machine Learning Analyst",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "company": "Citadel",
+    "job": "AI Engineer",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "address" : "4th street",
+    "company": "Morgan Stanley",
+    "job": "Risk Analyst",
     "tags" : [ ]
   } ]
 }
