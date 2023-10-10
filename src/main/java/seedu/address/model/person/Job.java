@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's job in the job book.
+ * Represents a Person's job in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidJob(String)}
  */
 public class Job {
@@ -20,7 +20,7 @@ public class Job {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Job}.
      *
      * @param job A valid job.
      */
@@ -31,7 +31,7 @@ public class Job {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid job.
      */
     public static boolean isValidJob(String test) {
         return test.matches(VALIDATION_REGEX);
