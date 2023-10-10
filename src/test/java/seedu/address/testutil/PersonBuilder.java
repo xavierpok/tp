@@ -21,7 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
-    public static final  String DEFAULT_JOB = "Machine Learning Analyst";
+    public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
     private Name name;
     private Phone phone;
