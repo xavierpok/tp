@@ -9,8 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Job;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -66,18 +67,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String company} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String job} into an {@code Job}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code job} is invalid.
+     */
+    public static Job parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+        if (!Job.isValidJob(trimmedJob)) {
+            throw new ParseException(Job.MESSAGE_CONSTRAINTS);
+        }
+        return new Job(trimmedJob);
     }
 
     /**
