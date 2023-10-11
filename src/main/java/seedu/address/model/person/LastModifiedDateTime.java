@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -38,6 +39,10 @@ public class LastModifiedDateTime {
         return lastModified.equals(otherLMDT.lastModified);
     }
 
-    //TODO : Hashing. Hashing is not recommended for LocalDateTime instances.
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastModified);
+        // Java docs clarify that __identity__ hash code should be avoided
+        // Regular hashing is A-ok
+    }
 }
