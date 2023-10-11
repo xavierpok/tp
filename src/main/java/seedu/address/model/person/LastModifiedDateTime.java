@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
@@ -23,7 +25,9 @@ public class LastModifiedDateTime {
 
     @Override
     public String toString() {
-        return lastModified.toString();
+        return DateTimeFormatter
+                .ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .format(this.lastModified);
     }
 
     @Override
