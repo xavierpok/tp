@@ -105,8 +105,9 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        LastModifiedDateTime lastModifiedDateTime = null; //TODO : replace with semantically meaningful
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJob, updatedTags);
+        LastModifiedDateTime updatedLastModifiedDateTime = null; //TODO : replace with semantically meaningful
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJob, updatedTags,
+                updatedLastModifiedDateTime);
     }
 
     @Override
