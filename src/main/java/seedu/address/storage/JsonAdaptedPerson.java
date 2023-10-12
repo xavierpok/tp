@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,6 +33,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String lastModifiedDateTime;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,7 +42,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("lastModifiedDateTime") String lastModifiedDateTime ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +51,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+
+        this.lastModifiedDateTime = lastModifiedDateTime;
+
     }
 
     /**
@@ -57,6 +67,8 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        lastModifiedDateTime = source.getLastModifiedDateTime().toString();
+        // this has to be toString because it's a non-string
     }
 
     /**
@@ -103,7 +115,28 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (lastModifiedDateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LastModifiedDateTime.class.getSimpleName()));
+        }
+        DateTimeFormatter correctFormatter = DateTimeFormatter.
+                ofLocalizedDateTime(FormatStyle.MEDIUM);
+        //java API does not expose ways to check beyond try-catch
+
+        LocalDateTime lastModified = null;
+        // Not a fan of doing this but the try-catch is needed.
+        try {
+            lastModified = LocalDateTime.parse(
+                    lastModifiedDateTime,correctFormatter);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        final LastModifiedDateTime modelLastModifiedDateTime =
+                new LastModifiedDateTime(lastModified);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLastModifiedDateTime);
     }
 
 }

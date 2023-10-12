@@ -49,4 +49,8 @@ public class LastModifiedDateTime {
         // Java docs clarify that __identity__ hash code should be avoided
         // Regular hashing is A-ok
     }
+
+    public LocalDateTime getValue() {
+        return lastModified;
+    }
 }
