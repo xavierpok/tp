@@ -22,7 +22,8 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Company company;
+    private final Job job;
 
     private final LastModifiedDateTime lastModifiedDateTime;
     private final Set<Tag> tags = new HashSet<>();
@@ -30,13 +31,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, company, job, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.company = company;
+        this.job = job;
         this.tags.addAll(tags);
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
@@ -53,8 +55,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Company getCompany() {
+        return company;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     public LastModifiedDateTime getLastModifiedDateTime() {return lastModifiedDateTime;}
@@ -99,7 +105,8 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && company.equals(otherPerson.company)
+                && job.equals(otherPerson.job)
                 && tags.equals(otherPerson.tags)
                 && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
     }
@@ -107,7 +114,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags,lastModifiedDateTime);
+        return Objects.hash(name, phone, email, company, job, tags, lastModifiedDateTime);
     }
 
     @Override
@@ -116,7 +123,8 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
+                .add("company", company)
+                .add("job", job)
                 .add("tags", tags)
                 .add("lastmodified", lastModifiedDateTime)
                 .toString();
