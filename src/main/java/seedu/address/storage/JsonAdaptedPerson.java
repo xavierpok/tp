@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,6 +33,8 @@ class JsonAdaptedPerson {
     private final String job;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
+    private final String lastModifiedDateTime;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -48,6 +51,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     /**
@@ -62,6 +66,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
 
     /**
@@ -115,8 +120,19 @@ class JsonAdaptedPerson {
         }
         final Job modelJob = new Job(job);
 
+        if (lastModifiedDateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LastModifiedDateTime.class.getSimpleName()));
+        }
+        if (!LastModifiedDateTime.isValidLastModifiedDateTime(lastModifiedDateTime)) {
+            throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        final LastModifiedDateTime lastModified
+                = LastModifiedDateTime.fromString(lastModifiedDateTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
     }
 
 }

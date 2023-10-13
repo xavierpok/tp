@@ -15,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -139,5 +140,22 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL, VALID_COMPANY, VALID_JOB, invalidTags, VALID_LASTMODIFIEDDATETIME);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
+
+    @Test
+    public void toModelType_nullLastModifiedDateTime_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_COMPANY, VALID_JOB, VALID_TAGS, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LastModifiedDateTime.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidLastModifiedDateTime_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE,
+                        VALID_EMAIL, VALID_COMPANY, VALID_JOB, VALID_TAGS, INVALID_LASTMODIFIEDDATETIME);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
 
 }
