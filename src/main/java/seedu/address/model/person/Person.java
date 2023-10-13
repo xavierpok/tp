@@ -122,8 +122,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && company.equals(otherPerson.company)
                 && job.equals(otherPerson.job)
-                && tags.equals(otherPerson.tags)
-                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
+                && tags.equals(otherPerson.tags);
     }
 
     @Override
