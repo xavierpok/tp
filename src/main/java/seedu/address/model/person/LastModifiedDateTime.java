@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.DateFormat;
 import java.text.ParsePosition;
@@ -11,6 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 import java.time.format.ResolverStyle;
 import java.time.temporal.TemporalAccessor;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 
@@ -21,7 +23,9 @@ import java.util.regex.Pattern;
 public class LastModifiedDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Last modified should consist of a DateTime Object, and creation not exposed to user.";
+            "Last modified should consist of a DateTime Object or the date as a string that is correct" +
+                    " (for de-serialization)" +
+                    ", and creation should not be exposed to user.";
 
     /**
      * Default LastModifiedDateTime when a more meaningful one cannot be found.
@@ -30,13 +34,15 @@ public class LastModifiedDateTime {
             10, 10, 10, 10, 10);
 
     public static final DateTimeFormatter LASTMODIFIED_FORMATTER =
-            DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+                    .withResolverStyle(ResolverStyle.STRICT)
+                    .withLocale(Locale.ENGLISH);
     private LocalDateTime lastModified;
 
 
 
     /**
-     * Constructs a @code LastModifiedDateTime
+     * Constructs a @code LastModifiedDateTime from a @code LocalDateTime object
      * @param lastModified the @code LocalDateTime represented by this class
      */
     public LastModifiedDateTime(LocalDateTime lastModified) {
@@ -49,15 +55,38 @@ public class LastModifiedDateTime {
     }
 
     /**
+     * Constructs a @code LastModifiedDateTime from a @code String formatted as an accepted format,
+     * The accepted formatter may be found as @code LastModifiedDateTime.LASTMODIFIED_FORMATTER.
+     * @param lastModified a valid & correctly formatted string representation of a date & time
+     * @return the corresponding @code LastModifiedDateTime object
+     */
+    public static LastModifiedDateTime fromString(String lastModified) {
+        requireNonNull(lastModified);
+        checkArgument(isValidLastModifiedDateTime(lastModified), MESSAGE_CONSTRAINTS);
+        return new LastModifiedDateTime(LocalDateTime.parse(lastModified,LASTMODIFIED_FORMATTER));
+    }
+
+
+    /**
      * Returns if a string representation of a date & time is valid (matching the format of this class)
      */
     public static boolean isValidLastModifiedDateTime(String lastModified) {
 
-        ParsePosition parsePosition = new ParsePosition(0);
-        TemporalAccessor result = LASTMODIFIED_FORMATTER.parseUnresolved(lastModified,parsePosition);
-        return (isNull(result));
-        // parseUnresolved returns null if some error is occurred in parsing
-        // If some error is run into, then this implies that it's not a valid LastModifiedDateTime.
+        // Try-catch is used for control flow here, bad but needed due to limitations of
+        // java API
+        try {
+            LocalDateTime.parse(lastModified,LASTMODIFIED_FORMATTER);
+            return true;
+        } catch (DateTimeParseException e){
+            return false;
+        }
+        // While normally not recommended, there is no method exposed in the java.time API
+        // to validate parsing without resorting to a try-catch block.
+        // So we have to do this.
+        // The closest is DateTimeFormatter#parse(CharSequence text, ParsePosition position)
+        // But no good way to validate that all expected fields are there
+        // Except to go even deeper into time API
+        // Which will probably obfuscate code even more
     }
 
     @Override
