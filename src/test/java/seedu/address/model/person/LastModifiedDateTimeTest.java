@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -73,6 +75,16 @@ class LastModifiedDateTimeTest {
 
         // different values -> returns false
         assertFalse(lastModifiedDateTime.equals(new Job("Other Valid Job")));
+    }
+
+    @Test
+    public void toStringMethod() {
+        assertEquals(new LastModifiedDateTime(LastModifiedDateTime.DEFAULT_LAST_MODIFIED).toString(),
+                LastModifiedDateTime.DEFAULT_LAST_MODIFIED.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MAX).toString(),
+                LocalDateTime.MAX.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).toString(),
+                LocalDateTime.MIN.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
     }
 
 

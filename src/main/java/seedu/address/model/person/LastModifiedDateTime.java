@@ -96,7 +96,7 @@ public class LastModifiedDateTime {
 
     @Override
     public String toString() {
-        return lastModified.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM));
+        return lastModified.format(LASTMODIFIED_FORMATTER);
     }
 
     @Override
