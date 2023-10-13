@@ -14,6 +14,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -26,7 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = LocalDateTime.of(
-            10,10,10,10,10,10);
+            10, 10, 10, 10, 10, 10);
 
     private Name name;
     private Phone phone;
@@ -111,6 +113,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LastModifiedDateTime} of the {@code Person} that we are building.
+     */
     public PersonBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = new LastModifiedDateTime(lastModifiedDateTime);
         return this;

@@ -38,7 +38,7 @@ public class Person {
         this.company = company;
         this.job = job;
         this.tags.addAll(tags);
-        this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
+        this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LASTMODIFIED;
     }
 
     /**

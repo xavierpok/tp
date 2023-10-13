@@ -1,18 +1,32 @@
 package seedu.address.model.person;
 
-import java.time.LocalDateTime;
-
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+
+
+
+/**
+ * Represents when a Person was last modified in the address book.
+ * Guarantees: immutable; is valid as declared in LocalDateTime java API
+ */
 public class LastModifiedDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Last modified should consist of a DateTime Object, and creation not exposed to user.";
 
+    /**
+     * Default LastModifiedDateTime when a more meaningful one cannot be found.
+     */
+    public static final LastModifiedDateTime DEFAULT_LASTMODIFIED =
+            new LastModifiedDateTime(LocalDateTime.of(
+            10, 10, 10, 10, 10));
     private LocalDateTime lastModified;
 
-    public static LastModifiedDateTime DEFAULT_LAST_MODIFIED = new LastModifiedDateTime(LocalDateTime.of(
-            10,10,10,10,10));
+    /**
+     * Constructs a @code LastModifiedDateTime
+     * @param lastModified the @code LocalDateTime represented by this class
+     */
     public LastModifiedDateTime(LocalDateTime lastModified) {
         requireNonNull(lastModified);
         this.lastModified = lastModified;
@@ -36,8 +50,8 @@ public class LastModifiedDateTime {
             return false;
         }
         // safe as we did type validation above
-        LastModifiedDateTime otherLMDT = (LastModifiedDateTime) other;
-        return lastModified.equals(otherLMDT.lastModified);
+        LastModifiedDateTime otherLastModifiedDateTime = (LastModifiedDateTime) other;
+        return lastModified.equals(otherLastModifiedDateTime.lastModified);
     }
 
     //TODO : Hashing. Hashing is not recommended for LocalDateTime instances.
