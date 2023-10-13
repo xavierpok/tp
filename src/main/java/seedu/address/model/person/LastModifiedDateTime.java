@@ -53,6 +53,8 @@ public class LastModifiedDateTime {
         return lastModified.equals(otherLastModifiedDateTime.lastModified);
     }
 
-    //TODO : Hashing. Hashing is not recommended for LocalDateTime instances.
-
+    @Override
+    public int hashCode() {
+        return lastModified.hashCode();
+    }
 }
