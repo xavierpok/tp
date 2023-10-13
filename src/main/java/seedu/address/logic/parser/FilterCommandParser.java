@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_FILTER_TAG_NOT_IMPLEMENTED;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -20,6 +19,7 @@ import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.JobContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FilterCommand object.
@@ -60,9 +60,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (prefix.equals(PREFIX_JOB.getPrefix())) {
             return new FilterCommand(new JobContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
-        // Filtering for tags not implemented yet
         if (prefix.equals(PREFIX_TAG.getPrefix())) {
-            throw new ParseException(MESSAGE_FILTER_TAG_NOT_IMPLEMENTED);
+            return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
         // No valid prefix exists, invalid command format
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));

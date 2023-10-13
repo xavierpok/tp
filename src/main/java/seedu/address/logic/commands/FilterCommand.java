@@ -16,7 +16,7 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Filters for all persons whose specified field (except tags) "
+            + ": Filters for all persons whose specified field "
             + "contains any of the specified keywords"
             + "(case-insensitive) and displays them as a list with index numbers. \n"
             + "Parameters: FIELD/KEYWORD [MORE_KEYWORDS]\n"
