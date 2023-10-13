@@ -27,8 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
-    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LocalDateTime.of(
-            10, 10, 10, 10, 10, 10);
+    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
 
     private Name name;
     private Phone phone;

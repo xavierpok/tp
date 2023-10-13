@@ -38,7 +38,7 @@ public class Person {
         this.company = company;
         this.job = job;
         this.tags.addAll(tags);
-        this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LASTMODIFIED;
+        this.lastModifiedDateTime = new LastModifiedDateTime(LastModifiedDateTime.DEFAULT_LAST_MODIFIED);
     }
 
     /**
@@ -122,7 +122,8 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && company.equals(otherPerson.company)
                 && job.equals(otherPerson.job)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
     }
 
     @Override

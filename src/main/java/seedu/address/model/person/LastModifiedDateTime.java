@@ -18,9 +18,8 @@ public class LastModifiedDateTime {
     /**
      * Default LastModifiedDateTime when a more meaningful one cannot be found.
      */
-    public static final LastModifiedDateTime DEFAULT_LASTMODIFIED =
-            new LastModifiedDateTime(LocalDateTime.of(
-            10, 10, 10, 10, 10));
+    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LocalDateTime.of(
+            10, 10, 10, 10, 10);
     private LocalDateTime lastModified;
 
     /**
