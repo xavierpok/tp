@@ -11,6 +11,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Filters and lists all persons in contact list whose specified field contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";

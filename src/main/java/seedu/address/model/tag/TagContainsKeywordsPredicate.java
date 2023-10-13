@@ -22,8 +22,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         person.getTags().stream()
-                                .reduce("", (str, tag) -> str + " " + tag.tagName,
-                                        (str1, str2) -> str1 + " " + str2), keyword));
+                                .reduce("", (str, tag) -> str + " " + tag.tagName, (str1, str2) -> str1 + " " + str2),
+                        keyword));
     }
 
     @Override
