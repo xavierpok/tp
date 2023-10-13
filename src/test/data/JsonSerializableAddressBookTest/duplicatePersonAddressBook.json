@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "company": "Directions Group",
     "job": "AI Engineer",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "last_modified" : "10 Oct 2000, 10:10:00"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "company": "Changi Airport Group",
-    "job": "AI Engineer"
+    "job": "AI Engineer",
+    "last_modified" : "10 Oct 2000, 10:10:00"
   } ]
 }
