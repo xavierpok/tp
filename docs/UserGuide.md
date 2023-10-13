@@ -173,12 +173,15 @@ Examples:
 
 Displays all entries filtered by a specified tag.
 
-Format: `filter FIELD KEYWORD [MORE_KEYWORDS]`
+Format: `filter FIELD/KEYWORD [MORE_KEYWORDS]`
 
 * FIELD: represents the tag to filter by.
-    * Example: if filter by company, then FIELD = “c/”.
-* Keywords are case-insensitive.
+    * Example: if filter by company, then FIELD = “c”.
+* The search is case-insensitive. e.g. `google` will match `Google`.
+* The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
 * Only returns results with FULL matching keywords to the field.
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
