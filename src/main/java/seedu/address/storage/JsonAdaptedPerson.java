@@ -128,8 +128,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
         }
 
-        final LastModifiedDateTime lastModified
-                = LastModifiedDateTime.fromString(lastModifiedDateTime);
+        final LastModifiedDateTime lastModified =
+                LastModifiedDateTime.fromString(lastModifiedDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);

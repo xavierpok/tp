@@ -1,19 +1,14 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.isNull;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.text.DateFormat;
-import java.text.ParsePosition;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
-import java.time.format.ResolverStyle;
-import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 
 /**
@@ -23,9 +18,9 @@ import java.util.regex.Pattern;
 public class LastModifiedDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Last modified should consist of a DateTime Object or the date as a string that is correct" +
-                    " (for de-serialization)" +
-                    ", and creation should not be exposed to user.";
+            "Last modified should consist of a DateTime Object or the date as a string that is correct"
+                    + " (for de-serialization)"
+                    + ", and creation should not be exposed to user.";
 
     /**
      * Default LastModifiedDateTime when a more meaningful one cannot be found.
@@ -68,7 +63,7 @@ public class LastModifiedDateTime {
     public static LastModifiedDateTime fromString(String lastModified) {
         requireNonNull(lastModified);
         checkArgument(isValidLastModifiedDateTime(lastModified), MESSAGE_CONSTRAINTS);
-        return new LastModifiedDateTime(LocalDateTime.parse(lastModified,LASTMODIFIED_FORMATTER));
+        return new LastModifiedDateTime(LocalDateTime.parse(lastModified, LASTMODIFIED_FORMATTER));
     }
 
 
@@ -80,9 +75,9 @@ public class LastModifiedDateTime {
         // Try-catch is used for control flow here, bad but needed due to limitations of
         // java API
         try {
-            LocalDateTime.parse(lastModified,LASTMODIFIED_FORMATTER);
+            LocalDateTime.parse(lastModified, LASTMODIFIED_FORMATTER);
             return true;
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return false;
         }
         // While normally not recommended, there is no method exposed in the java.time API
