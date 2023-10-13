@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,44 @@ class LastModifiedDateTimeTest {
         assertThrows(NullPointerException.class, () -> new LastModifiedDateTime(null));
     }
 
+    @Test
+    public void factory_invalid_throwsIllegalArgumentException() {
+        String invalidLastModifiedDateTime = "";
+        assertThrows(IllegalArgumentException.class, () -> LastModifiedDateTime.fromString(""));
+    }
+
+    @Test
+    public void factory_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> LastModifiedDateTime.fromString(null));
+    }
 
 
+
+    @Test
+    public void isValidLastModifiedDateTime() {
+        // null job
+        assertThrows(NullPointerException.class, () ->
+                LastModifiedDateTime.isValidLastModifiedDateTime(null));
+
+        // invalid LastModifiedDateTimes
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("")); // empty string
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 abc 1999, 10:09:00"));
+        // nonsensical field
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("40 Jan 1999, 10:09:00"));
+        // invalid field
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan 1999, 24:09:00"));
+        // another invalid field
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime(
+                LastModifiedDateTime.DEFAULT_LAST_MODIFIED.format(
+                        DateTimeFormatter.ISO_LOCAL_DATE_TIME)));
+        // Valid input, but in wrong format
+
+        // valid LastModifiedDateTimes
+        assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan 1999, 10:09:00"));
+        assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime(
+                LastModifiedDateTime.DEFAULT_LAST_MODIFIED.format(
+                        LastModifiedDateTime.LASTMODIFIED_FORMATTER)));
+    }
 
     @Test
     public void equals() {
