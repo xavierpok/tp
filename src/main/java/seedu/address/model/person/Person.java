@@ -28,7 +28,7 @@ public class Person {
 
     private final LastModifiedDateTime lastModifiedDateTime;
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, company, job, tags);
@@ -41,6 +41,9 @@ public class Person {
         this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
     }
 
+    /**
+     * Constructor that allows setting of lastModifiedDateTime field.
+     */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime) {
         requireAllNonNull(name, phone, email, company, job, tags);
