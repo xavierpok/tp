@@ -31,12 +31,17 @@ public class LastModifiedDateTime {
      * Default LastModifiedDateTime when a more meaningful one cannot be found.
      */
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = LocalDateTime.of(
-            10, 10, 10, 10, 10);
+            2000, 10, 10, 10, 10);
 
+    /**
+     * The DateTimeFormatter used by  the string representation of this class.
+     * Would return 10th October 2000, 10:10:00 AM as : 10 Oct 2000, 10:10:00"
+     *
+     */
     public static final DateTimeFormatter LASTMODIFIED_FORMATTER =
             DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-                    .withResolverStyle(ResolverStyle.STRICT)
-                    .withLocale(Locale.ENGLISH);
+                    .withLocale(Locale.UK);
+
     private LocalDateTime lastModified;
 
 
