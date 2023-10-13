@@ -14,9 +14,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
 
 
 
@@ -96,6 +99,10 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different last modified -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLastModifiedDateTime(LocalDateTime.MIN).build();
         assertFalse(ALICE.equals(editedAlice));
 
 
