@@ -26,6 +26,18 @@ public class FilterCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArg_throwsParseException() {
+        // No valid field prefix
+        assertParseFailure(parser, "c", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+
+        // No keywords
+        assertParseFailure(parser, "c/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+
+        // Invalid field prefix
+        assertParseFailure(parser, "a/Amy", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces for name
         FilterCommand expectedFilterCommand =
