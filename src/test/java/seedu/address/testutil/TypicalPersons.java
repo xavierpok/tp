@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,45 +32,59 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
+            .withLastModifiedDateTime(LocalDateTime.MAX)
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withCompany("Mandai Wildlife Group").withJob("Software Engineer")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withLastModifiedDateTime(LocalDateTime.MIN)
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
             .withCompany("Grab").withJob("AI Engineer")
+            .withLastModifiedDateTime(LocalDateTime.of(
+                    1984,1,9,8,4,0))
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withCompany("Uber").withJob("Data Analyst")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withLastModifiedDateTime(LocalDateTime.of(2103,2,1,0,3,1))
+            .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com")
             .withCompany("Central Provident Board").withJob("Machine Learning Analyst")
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0))
             .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withCompany("Citadel")
-            .withJob("AI Engineer").build();
+            .withJob("AI Engineer")
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0)).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withCompany("Morgan Stanley")
-            .withJob("Risk Analyst").build();
+            .withJob("Risk Analyst")
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0)).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withCompany("Google")
-            .withJob("Software Developer").build();
+            .withJob("Software Developer")
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0)).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withCompany("Google")
-            .withJob("Software Developer").build();
+            .withJob("Software Developer")
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0)).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
-            .withJob(VALID_JOB_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withJob(VALID_JOB_AMY).withTags(VALID_TAG_FRIEND)
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0)).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
             .withJob(VALID_JOB_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withLastModifiedDateTime(LocalDateTime.of(2000,1,1,1,0,0))
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
