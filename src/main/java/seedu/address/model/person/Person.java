@@ -26,6 +26,7 @@ public class Person {
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final LastModifiedDateTime lastModifiedDateTime;
     /**
      * Every field must be present and not null.
      */
@@ -37,6 +38,7 @@ public class Person {
         this.company = company;
         this.job = job;
         this.tags.addAll(tags);
+        this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
     }
 
     public Name getName() {
@@ -57,6 +59,10 @@ public class Person {
 
     public Job getJob() {
         return job;
+    }
+
+    public LastModifiedDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
     }
 
     /**

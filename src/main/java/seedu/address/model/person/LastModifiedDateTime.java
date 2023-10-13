@@ -11,6 +11,8 @@ public class LastModifiedDateTime {
 
     private LocalDateTime lastModified;
 
+    public static LastModifiedDateTime DEFAULT_LAST_MODIFIED = new LastModifiedDateTime(LocalDateTime.of(
+            10,10,10,10,10));
     public LastModifiedDateTime(LocalDateTime lastModified) {
         requireNonNull(lastModified);
         this.lastModified = lastModified;
