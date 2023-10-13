@@ -41,6 +41,18 @@ public class Person {
         this.lastModifiedDateTime = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
     }
 
+    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
+                  LastModifiedDateTime lastModifiedDateTime) {
+        requireAllNonNull(name, phone, email, company, job, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.company = company;
+        this.job = job;
+        this.tags.addAll(tags);
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
     public Name getName() {
         return name;
     }
@@ -125,6 +137,7 @@ public class Person {
                 .add("company", company)
                 .add("job", job)
                 .add("tags", tags)
+                .add("last-modified", lastModifiedDateTime)
                 .toString();
     }
 
