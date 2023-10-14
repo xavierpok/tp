@@ -14,6 +14,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import static seedu.address.testutil.ClockUtil.DEFAULT_TEST_TIME;
 
 
 /**
@@ -27,7 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
-    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
+    public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
 
     private Name name;
     private Phone phone;

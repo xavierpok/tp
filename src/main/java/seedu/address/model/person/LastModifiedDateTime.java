@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
 
@@ -47,7 +48,7 @@ public class LastModifiedDateTime {
      */
     public LastModifiedDateTime(LocalDateTime lastModified) {
         requireNonNull(lastModified);
-        this.lastModified = lastModified;
+        this.lastModified = lastModified.truncatedTo(ChronoUnit.SECONDS);
         // no other sanity checking should be required, as the
         // LocalDateTime object encapsulates already.
         // No sanity checking on the SEMANTICS of the provided LocalDateTime is provided.
