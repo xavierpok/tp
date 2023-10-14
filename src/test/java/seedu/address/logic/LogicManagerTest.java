@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
+import static seedu.address.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
@@ -42,7 +44,12 @@ public class LogicManagerTest {
     public Path temporaryFolder;
 
     private Model model = new ModelManager();
+    {
+        model.setClock(DEFAULT_TEST_CLOCK);
+    }
+
     private Logic logic;
+
 
     @BeforeEach
     public void setUp() {
@@ -50,7 +57,9 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
+        logic.setClock(DEFAULT_TEST_CLOCK);
     }
 
     @Test
@@ -164,12 +173,14 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
-
+        logic.setClock(DEFAULT_TEST_CLOCK);
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withTags().withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.setClock(DEFAULT_TEST_CLOCK);
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

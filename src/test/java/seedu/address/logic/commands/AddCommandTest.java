@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -105,6 +106,16 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClock(Clock clock) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Clock getClock() {
             throw new AssertionError("This method should not be called.");
         }
 

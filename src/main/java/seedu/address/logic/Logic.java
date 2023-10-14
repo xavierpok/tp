@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.Clock;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -47,4 +48,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the clock the app is to run on
+     */
+    void setClock(Clock clock);
+
+    /**
+     * Get the clock the app is running on
+     */
+    Clock getClock();
 }

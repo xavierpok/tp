@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,7 +27,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditCommandParser implements ClockDependantParser<EditCommand> {
+
+    private Clock clock = Clock.systemDefaultZone();
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -68,7 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         // always set this, as this is set by the system and NOT the user
-        editPersonDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now()));
+        editPersonDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -92,4 +96,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * To specify usage of a specific clock.
+     *
+     * @param clock The clock to use
+     * @return an edited parser using the specified clock
+     */
+    @Override
+    public EditCommandParser withClock(Clock clock) {
+        EditCommandParser toReturn = new EditCommandParser();
+        toReturn.clock = clock;
+        return toReturn;
+    }
 }

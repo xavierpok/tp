@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -26,7 +27,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser implements ClockDependantParser<AddCommand> {
+
+    private Clock clock = Clock.systemDefaultZone();
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -50,11 +53,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Job job = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = new Person(name, phone, email, company, job, tagList);
+        LastModifiedDateTime lastModifiedDateTime = new LastModifiedDateTime(LocalDateTime.now(clock));
+        Person person = new Person(name, phone, email, company, job, tagList,lastModifiedDateTime);
 
         return new AddCommand(person);
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -64,4 +69,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * To specify usage of a specific clock.
+     * @param clock The clock to use
+     * @return an edited parser using the specified clock
+     */
+    @Override
+    public AddCommandParser withClock(Clock clock) {
+       AddCommandParser toReturn = new AddCommandParser();
+       toReturn.clock = clock;
+       return toReturn;
+    }
 }

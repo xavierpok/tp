@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,21 +24,26 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private Clock clock;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+        this(addressBook, userPrefs, Clock.systemDefaultZone());
+    }
 
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs());
+    }
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Clock clock) {
+        requireAllNonNull(addressBook,userPrefs,clock);
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-    }
+        this.clock = Clock.systemDefaultZone();
 
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -62,6 +68,17 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+
+    @Override
+    public void setClock(Clock clock) {
+        this.clock = clock;
+    }
+
+    @Override
+    public Clock getClock() {
+        return this.clock;
     }
 
     @Override
