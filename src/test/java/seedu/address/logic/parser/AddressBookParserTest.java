@@ -19,12 +19,18 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CompanyContainsKeywordsPredicate;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.JobContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -74,6 +80,47 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+
+        List<String> nameArgs = Arrays.asList("n/", "foo", "bar", "baz");
+        FilterCommand nameCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + nameArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new NameContainsKeywordsPredicate(keywords)), nameCommand);
+
+        List<String> phoneArgs = Arrays.asList("p/", "foo", "bar", "baz");
+        FilterCommand phoneCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + phoneArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new PhoneContainsKeywordsPredicate(keywords)), phoneCommand);
+
+        List<String> emailArgs = Arrays.asList("e/", "foo", "bar", "baz");
+        FilterCommand emailCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + emailArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new EmailContainsKeywordsPredicate(keywords)), emailCommand);
+
+        List<String> companyArgs = Arrays.asList("c/", "foo", "bar", "baz");
+        FilterCommand companyCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + companyArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new CompanyContainsKeywordsPredicate(keywords)), companyCommand);
+
+        List<String> jobArgs = Arrays.asList("j/", "foo", "bar", "baz");
+        FilterCommand jobCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + jobArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new JobContainsKeywordsPredicate(keywords)), jobCommand);
+
+        List<String> tagArgs = Arrays.asList("t/", "foo", "bar", "baz");
+        FilterCommand tagCommand = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " "
+                        + tagArgs.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new TagContainsKeywordsPredicate(keywords)), tagCommand);
     }
 
     @Test
