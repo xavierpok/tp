@@ -26,8 +26,9 @@ public class Person {
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final LastModifiedDateTime lastModifiedDateTime;
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, company, job, tags);
@@ -37,6 +38,22 @@ public class Person {
         this.company = company;
         this.job = job;
         this.tags.addAll(tags);
+        this.lastModifiedDateTime = new LastModifiedDateTime(LastModifiedDateTime.DEFAULT_LAST_MODIFIED);
+    }
+
+    /**
+     * Constructor that allows setting of lastModifiedDateTime field.
+     */
+    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
+                  LastModifiedDateTime lastModifiedDateTime) {
+        requireAllNonNull(name, phone, email, company, job, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.company = company;
+        this.job = job;
+        this.tags.addAll(tags);
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     public Name getName() {
@@ -57,6 +74,10 @@ public class Person {
 
     public Job getJob() {
         return job;
+    }
+
+    public LastModifiedDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
     }
 
     /**
@@ -101,7 +122,8 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && company.equals(otherPerson.company)
                 && job.equals(otherPerson.job)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
     }
 
     @Override
@@ -119,6 +141,7 @@ public class Person {
                 .add("company", company)
                 .add("job", job)
                 .add("tags", tags)
+                .add("last-modified", lastModifiedDateTime)
                 .toString();
     }
 

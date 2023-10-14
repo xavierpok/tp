@@ -1,16 +1,20 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
+
 
 /**
  * A utility class to help with building Person objects.
@@ -23,12 +27,16 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
+    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
+
     private Name name;
     private Phone phone;
     private Email email;
     private Company company;
     private Job job;
     private Set<Tag> tags;
+
+    private LastModifiedDateTime lastModifiedDateTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +48,7 @@ public class PersonBuilder {
         company = new Company(DEFAULT_COMPANY);
         job = new Job(DEFAULT_JOB);
         tags = new HashSet<>();
+        lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
     }
 
     /**
@@ -52,6 +61,7 @@ public class PersonBuilder {
         company = personToCopy.getCompany();
         job = personToCopy.getJob();
         tags = new HashSet<>(personToCopy.getTags());
+        lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
     }
 
     /**
@@ -102,8 +112,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code LastModifiedDateTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        this.lastModifiedDateTime = new LastModifiedDateTime(lastModifiedDateTime);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, company, job, tags);
+        return new Person(name, phone, email, company, job, tags, lastModifiedDateTime);
     }
 
 }
