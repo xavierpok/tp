@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -104,8 +105,16 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJob, updatedTags);
+        LastModifiedDateTime updatedLastModifiedDateTime =
+                editPersonDescriptor.getLastModifiedDateTime()
+                        .orElse(personToEdit.getLastModifiedDateTime());
+        // While semantically, it would make sense that this would always be changed,
+        // We do it like this for consistency with other fields
+        // And to move responsibility for updating this field to the parser,
+        // Like the other fields.
+        return new Person(updatedName, updatedPhone,
+                updatedEmail, updatedCompany, updatedJob,
+                updatedTags, updatedLastModifiedDateTime);
     }
 
     @Override
@@ -144,6 +153,8 @@ public class EditCommand extends Command {
         private Job job;
         private Set<Tag> tags;
 
+        private LastModifiedDateTime lastModifiedDateTime;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -157,6 +168,7 @@ public class EditCommand extends Command {
             setCompany(toCopy.company);
             setJob(toCopy.job);
             setTags(toCopy.tags);
+            setLastModifiedDateTime(toCopy.lastModifiedDateTime);
         }
 
         /**
@@ -223,6 +235,22 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Setter for the last modified date & time as a @code LastModifiedDateTime object
+         */
+
+        public void setLastModifiedDateTime(LastModifiedDateTime lastModifiedDateTime) {
+            this.lastModifiedDateTime = lastModifiedDateTime;
+        }
+
+        /**
+         * Getter for last modified date & time as a @code LastModifiedDateTime object,
+         * wrapped in an instance of @code Optional.
+         */
+        public Optional<LastModifiedDateTime> getLastModifiedDateTime() {
+            return Optional.ofNullable(lastModifiedDateTime);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -241,6 +269,8 @@ public class EditCommand extends Command {
                     && Objects.equals(company, otherEditPersonDescriptor.company)
                     && Objects.equals(job, otherEditPersonDescriptor.job)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(lastModifiedDateTime, otherEditPersonDescriptor.lastModifiedDateTime);
         }
 
         @Override
@@ -252,6 +282,7 @@ public class EditCommand extends Command {
                     .add("company", company)
                     .add("job", job)
                     .add("tags", tags)
+                    .add("last_modified", lastModifiedDateTime)
                     .toString();
         }
     }
