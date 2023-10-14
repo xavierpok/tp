@@ -26,7 +26,7 @@ public class ModelManager implements Model {
 
     private Clock clock;
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs, using the system default clock.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         this(addressBook, userPrefs, Clock.systemDefaultZone());
@@ -35,8 +35,12 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
+
+    /**
+     * Initialises a ModelManager with the given addressBook, userPrefs & Clock
+     */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Clock clock) {
-        requireAllNonNull(addressBook,userPrefs,clock);
+        requireAllNonNull(addressBook, userPrefs, clock);
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);

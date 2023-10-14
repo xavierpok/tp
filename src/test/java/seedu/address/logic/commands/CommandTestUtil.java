@@ -79,7 +79,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
                 .withJob(VALID_JOB_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
         DESC_AMYDIFFTIME = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
                 .withJob(VALID_JOB_AMY)

@@ -80,12 +80,12 @@ class LastModifiedDateTimeTest {
     @Test
     public void equals_extraPrecision_true() {
         // Test for equality on extra precision, which we should drop. Precision is to seconds only.
-        LastModifiedDateTime lastModifiedDateTime= new LastModifiedDateTime(DEFAULT_TEST_TIME);
+        LastModifiedDateTime lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_TEST_TIME);
         LastModifiedDateTime testDateTime = new LastModifiedDateTime(DEFAULT_TEST_TIME.minusNanos(1));
-        assertEquals(lastModifiedDateTime,testDateTime);
+        assertEquals(lastModifiedDateTime, testDateTime);
 
         // But the raw LocalDateTimes should be non-equal
-        assertNotEquals(DEFAULT_TEST_TIME,DEFAULT_TEST_TIME.minusNanos(1));
+        assertNotEquals(DEFAULT_TEST_TIME, DEFAULT_TEST_TIME.minusNanos(1));
     }
 
     @Test

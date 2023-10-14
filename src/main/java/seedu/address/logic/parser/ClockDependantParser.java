@@ -1,9 +1,8 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.Command;
-
 import java.time.Clock;
 
+import seedu.address.logic.commands.Command;
 /**
  * Parsers that are somehow dependent on a specific clock for date & time.
  * @param <T> the type of command

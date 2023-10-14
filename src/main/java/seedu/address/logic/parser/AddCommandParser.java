@@ -54,7 +54,7 @@ public class AddCommandParser implements ClockDependantParser<AddCommand> {
         Job job = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         LastModifiedDateTime lastModifiedDateTime = new LastModifiedDateTime(LocalDateTime.now(clock));
-        Person person = new Person(name, phone, email, company, job, tagList,lastModifiedDateTime);
+        Person person = new Person(name, phone, email, company, job, tagList, lastModifiedDateTime);
 
         return new AddCommand(person);
     }
@@ -76,8 +76,8 @@ public class AddCommandParser implements ClockDependantParser<AddCommand> {
      */
     @Override
     public AddCommandParser withClock(Clock clock) {
-       AddCommandParser toReturn = new AddCommandParser();
-       toReturn.clock = clock;
-       return toReturn;
+        AddCommandParser toReturn = new AddCommandParser();
+        toReturn.clock = clock;
+        return toReturn;
     }
 }
