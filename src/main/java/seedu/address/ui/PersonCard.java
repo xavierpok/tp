@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label lastModifiedDateTime;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,8 +60,12 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().value);
         job.setText(person.getJob().value);
         email.setText(person.getEmail().value);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        lastModifiedDateTime.setText(
+                String.format("Last modified : %s",person.getLastModifiedDateTime().toString()));
+
     }
 }
