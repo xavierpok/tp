@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -33,6 +34,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the clock the Model is running on
+     */
+    void setClock(Clock clock);
+
+    /**
+     * Get the clock the Model is running on
+     */
+    Clock getClock();
 
     /**
      * Returns the user prefs' address book file path.

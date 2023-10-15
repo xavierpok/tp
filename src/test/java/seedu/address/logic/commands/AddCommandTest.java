@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.ClockUtil.DEFAULT_TEST_TIME;
+import static seedu.address.testutil.ClockUtil.OTHER_TEST_TIME;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -55,10 +58,12 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
+        Person alice = new PersonBuilder().withName("Alice").withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
         Person bob = new PersonBuilder().withName("Bob").build();
+        Person aliceDiffTime = new PersonBuilder().withName("Alice").withLastModifiedDateTime(OTHER_TEST_TIME).build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addDiffTimeCommand = new AddCommand(aliceDiffTime);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -75,6 +80,9 @@ public class AddCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
+
+        //different time -> returns false
+        assertFalse(addAliceCommand.equals(addDiffTimeCommand));
     }
 
     @Test
@@ -105,6 +113,16 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClock(Clock clock) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Clock getClock() {
             throw new AssertionError("This method should not be called.");
         }
 

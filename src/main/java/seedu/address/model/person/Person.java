@@ -27,22 +27,9 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private final LastModifiedDateTime lastModifiedDateTime;
-    /**
-     * Every field must be present and not null
-     */
-    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, company, job, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.company = company;
-        this.job = job;
-        this.tags.addAll(tags);
-        this.lastModifiedDateTime = new LastModifiedDateTime(LastModifiedDateTime.DEFAULT_LAST_MODIFIED);
-    }
 
     /**
-     * Constructor that allows setting of lastModifiedDateTime field.
+     * Every field must be present and not null
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime) {

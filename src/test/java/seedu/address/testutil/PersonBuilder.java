@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.ClockUtil.DEFAULT_TEST_TIME;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,7 @@ import seedu.address.model.util.SampleDataUtil;
 
 
 
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -27,7 +30,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
 
-    public static final LocalDateTime DEFAULT_LAST_MODIFIED = LastModifiedDateTime.DEFAULT_LAST_MODIFIED;
+    public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
 
     private Name name;
     private Phone phone;
