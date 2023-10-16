@@ -15,7 +15,7 @@ title: User Guide
     * [Locating persons by name : `find`](#locating-persons-by-name--find)
     * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
-    * [Filtering a contact by tags : `filter`](#filtering-a-contact-by-tags--filter)
+    * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -172,14 +172,16 @@ Format: `unmark INDEX`
 Examples:
 * `unmark 1` un-marks the 1st person in the current displayed list.
 
-### Filtering a contact by tags : `filter`
+### Filtering a contact via a specified field : `filter`
 
-Displays all entries filtered by a specified tag.
+Displays all entries filtered via a specified field.
 
-Format: `filter FIELD/KEYWORD [MORE_KEYWORDS]`
+Format: `filter FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
 
-* FIELD: represents the tag to filter by.
-    * Example: if filter by company, then FIELD = “c”.
+* FIELD_PREFIX: represents the field to filter by.
+    * Example: if filter by company, FIELD_PREFIX = “c/”.
+* Only supports filtering via ONE field.
+    * Everything after FIELD_PREFIX will be recognized as keywords, including field prefixes!
 * The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
 * Only returns results with FULL matching keywords to the field.
@@ -227,29 +229,29 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon` |
-| **Clear**  | `clear`                                                                                                                                                                                      |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                          |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                           |
-| **Filter** | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                          |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                   |
-| **List**   | `list`                                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                                       |
-| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                             |
-| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                         |
+| Action     | Format, Examples                                                                                                                                                                                |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`  |
+| **Clear**  | `clear`                                                                                                                                                                                         |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                             |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                              |
+| **Filter** | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                             |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                      |
+| **List**   | `list`                                                                                                                                                                                          |
+| **Help**   | `help`                                                                                                                                                                                          |
+| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                                |
+| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command FIELD Summary
 
-| Tag | Description  | Notes                                                |
-|-----|--------------|------------------------------------------------------|
-| c/  | COMPANY      | -                                                    |
-| e/  | EMAIL        | -                                                    |
-| j/  | JOB          | -                                                    |
-| n/  | NAME         | -                                                    |
-| p/  | PHONE_NUMBER | -                                                    |
-| t/  | TAG          | Multiple instances of this argument can be accepted. |
+| Prefix | Description  | Notes                                                |
+|--------|--------------|------------------------------------------------------|
+| c/     | COMPANY      | -                                                    |
+| e/     | EMAIL        | -                                                    |
+| j/     | JOB          | -                                                    |
+| n/     | NAME         | -                                                    |
+| p/     | PHONE_NUMBER | -                                                    |
+| t/     | TAG          | Multiple instances of this argument can be accepted. |
 
