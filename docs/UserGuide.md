@@ -56,6 +56,7 @@ title: User Guide
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Commands that modify or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
@@ -70,7 +71,8 @@ Format: `help`
 
 ### Adding a new contact : `add`
 
-Creates a new contact and adds it to the app.
+Creates a new contact and adds it to the app, and sets the last modified field in that contact to when this command 
+was run.
 
 Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...```
 
@@ -100,6 +102,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/T
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* Updates the last modified field to reflect when this command was executed (according to your system time).
 
 Examples:
 *  `edit 1 n/John Sick p/87654321 t/` edits the 1st person’s name, phone number and clears the tags in the current displayed list.
