@@ -271,21 +271,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a(n) …​     | I want to …​                                         | So that I can…​                                            |
-|----------|----------------|------------------------------------------------------|------------------------------------------------------------|
-| `* * *`  | user           | get text feedback for each line                      | know when the command is received                          |
-| `* * *`  | user           | get error feedback on a wrong command                | know what went wrong                                       |
-| `* * *`  | user           | delete a contact                                     | remove entries that I no longer need                       |
-| `* * *`  | user           | enter a new contact & their info                     |                                                            |
-| `* * *`  | user           | tag contacts                                         | organise contacts better                                   |
-| `* * *`  | user           | view contacts                                        |                                                            |
-| `* *`    | user           | be able to setup the app quickly                     |                                                            |
-| `* *`    | impatient user | have desired information viewable right on my screen | avoid having to search for what I'm looking for            |
-| `* *`    | user           | mark companies/contacts I've applied to              | avoid applying to the same company/contact twice           |
-| `* *`    | impatient user | filter/search for contacts                           | narrow down to just contacts I want to look at immediately |
-| `* *`    | impatient user | easily view the user guide                           | reference how to use the app                               |
-| `*`      | TBA            | TBA                                                  | TBA                                                        |
-| `*`      | TBA            | TBA                                                  | TBA                                                        |
+| Priority | As a(n) …​      | I want to …​                                            | So that I can…​                                            |
+|----------|-----------------|---------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | user            | get text feedback for each line                         | know when the command is received                          |
+| `* * *`  | user            | get error feedback on a wrong command                   | know what went wrong                                       |
+| `* * *`  | user            | delete a contact                                        | remove entries that I no longer need                       |
+| `* * *`  | user            | enter a new contact & their info                        |                                                            |
+| `* * *`  | user            | tag contacts                                            | organise contacts better                                   |
+| `* * *`  | user            | view contacts                                           |                                                            |
+| `* *`    | user            | be able to setup the app quickly                        |                                                            |
+| `* *`    | impatient user  | have desired information viewable right on my screen    | avoid having to search for what I'm looking for            |
+| `* *`    | user            | mark companies/contacts I've applied to                 | avoid applying to the same company/contact twice           |
+| `* *`    | impatient user  | filter/search for contacts                              | narrow down to just contacts I want to look at immediately |
+| `* *`    | impatient user  | easily view the user guide                              | reference how to use the app                               |
+| `*`      | user            | view the date/time of when a contact was added/modified | know when I added/edited the contact to the list           |
+| `*`      | TBA             | TBA                                                     | TBA                                                        |
 
 *{More to be added}*
 
