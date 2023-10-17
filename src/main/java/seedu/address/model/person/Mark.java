@@ -47,9 +47,9 @@ public class Mark {
     @Override
     public String toString() {
         if (markStatus == true) {
-            return "\u2605";
+            return "\u2605"; //★
         } else {
-            return "\u2606";
+            return "\u2606"; //☆
         }
     }
 
