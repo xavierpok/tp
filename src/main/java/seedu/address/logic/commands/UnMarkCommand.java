@@ -39,9 +39,9 @@ public class UnMarkCommand extends Command{
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToMark = lastShownList.get(targetIndex.getZeroBased());
-        model.unMarkPerson(personToMark);
-        return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToMark)));
+        Person personToUnMark = lastShownList.get(targetIndex.getZeroBased());
+        model.unMarkPerson(personToUnMark);
+        return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToUnMark)));
     }
 
     public boolean equals(Object other) {
