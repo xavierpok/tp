@@ -89,8 +89,18 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    /**
+     * Marks a person's markStatus as true.
+     */
     public void mark() {
         markStatus.mark();
+    }
+
+    /**
+     * Marks a person's markStatus as false.
+     */
+    public void unMark() {
+        markStatus.unMark();
     }
 
     /**

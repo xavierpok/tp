@@ -103,6 +103,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         key.mark();
     }
 
+    /**
+     * unMarks {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void unMarkPerson(Person key) {
+        requireNonNull(key);
+        key.unMark();
+    }
+
     //// util methods
 
     @Override
@@ -136,4 +145,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

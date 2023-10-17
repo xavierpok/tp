@@ -123,6 +123,8 @@ class JsonAdaptedPerson {
         }
         final Job modelJob = new Job(job);
 
+
+
         if (lastModifiedDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LastModifiedDateTime.class.getSimpleName()));
@@ -135,7 +137,12 @@ class JsonAdaptedPerson {
                 LastModifiedDateTime.fromString(lastModifiedDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+        if (mark.equals("\u2605")) {
+            newPerson.mark();
+        }
+        return newPerson;
     }
 
 }

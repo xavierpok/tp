@@ -74,7 +74,6 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-
     @Override
     public void setClock(Clock clock) {
         this.clock = clock;
@@ -124,6 +123,10 @@ public class ModelManager implements Model {
         addressBook.markPerson(person);
     }
 
+    @Override
+    public void unMarkPerson(Person person) {
+        addressBook.unMarkPerson(person);
+    }
 
     @Override
     public void addPerson(Person person) {

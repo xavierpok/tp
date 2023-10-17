@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -12,20 +13,20 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Marks a person identified using it's displayed index from the address book.
+ * UnMarks a person identified using it's displayed index from the address book.
  */
-public class MarkCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
+public class UnMarkCommand extends Command{
+    public static final String COMMAND_WORD = "unmark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the person identified by the index number used in the displayed person list.\n"
+            + ": Un-marks the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_SUCCESS = "Marked Person: %1$s";
+    public static final String MESSAGE_UNMARK_SUCCESS = "Un-marked Person: %1$s";
 
     private final Index targetIndex;
 
-    public MarkCommand(Index targetIndex) {
+    public UnMarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,23 +40,22 @@ public class MarkCommand extends Command {
         }
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
-        model.markPerson(personToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_SUCCESS, Messages.format(personToMark)));
+        model.unMarkPerson(personToMark);
+        return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToMark)));
     }
 
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkCommand)) {
+        if (!(other instanceof UnMarkCommand)) {
             return false;
         }
 
-        MarkCommand otherMarkCommand = (MarkCommand) other;
-        return targetIndex.equals(otherMarkCommand.targetIndex);
+        UnMarkCommand otherUnMarkCommand = (UnMarkCommand) other;
+        return targetIndex.equals(otherUnMarkCommand.targetIndex);
     }
 
     @Override
@@ -65,4 +65,3 @@ public class MarkCommand extends Command {
                 .toString();
     }
 }
-

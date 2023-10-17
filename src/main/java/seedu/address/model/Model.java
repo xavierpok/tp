@@ -101,4 +101,10 @@ public interface Model {
      * The person must exist in the address book.
      */
     void markPerson(Person target);
+
+    /**
+     * Un-Marks the given person.
+     * The person must exist in the address book.
+     */
+    void unMarkPerson(Person target);
 }
