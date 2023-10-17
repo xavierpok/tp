@@ -121,11 +121,15 @@ public class ModelManager implements Model {
     @Override
     public void markPerson(Person person) {
         addressBook.markPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void unMarkPerson(Person person) {
         addressBook.unMarkPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -137,9 +141,9 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
