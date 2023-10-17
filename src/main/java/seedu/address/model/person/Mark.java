@@ -1,21 +1,19 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.commands.DeleteCommand;
-
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Recipe's favourite status in the recipe book.
+ * Represents the mark status in the address book.
  * Guarantees: mutable.
  */
 public class Mark {
     public static final String MESSAGE_CONSTRAINTS =
-            "Favourites can only be true or false!";
+            "Mark Status can only be true or false!";
 
     private boolean markStatus;
 
     /**
-     * Constructs a Fav Object.
+     * Constructs Mark Object.
      * @param status true or false.
      */
     public Mark(boolean status) {
@@ -30,11 +28,6 @@ public class Mark {
     public void unMark() {
         this.markStatus = false;
     }
-
-    public boolean getMarkStatus() {
-        return markStatus;
-    }
-
 
     @Override
     public boolean equals(Object other) {

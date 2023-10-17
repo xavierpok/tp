@@ -65,7 +65,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
 
-        if (target.getMarkStatus().toString().equals("\u2665") == true) {
+        if (target.getMarkStatus().toString().equals("\u2605")) {
             editedPerson.mark();
         }
 

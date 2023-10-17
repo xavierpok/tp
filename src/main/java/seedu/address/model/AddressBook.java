@@ -82,7 +82,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        if (target.getMarkStatus().toString().equals("\u2605")) {
+            editedPerson.mark();
+        }
         persons.setPerson(target, editedPerson);
     }
 
