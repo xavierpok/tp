@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -8,14 +11,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 /**
  * UnMarks a person identified using it's displayed index from the address book.
  */
-public class UnMarkCommand extends Command{
+public class UnMarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Un-marks the person identified by the index number used in the displayed person list.\n"
@@ -44,6 +43,7 @@ public class UnMarkCommand extends Command{
         return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToUnMark)));
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
