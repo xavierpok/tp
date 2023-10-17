@@ -32,6 +32,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="company" styleClass="cell_small_label" text="\$company" />
       <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
+      <Label fx:id="markStatus" styleClass="cell_small_label" text="\$mark" />
       <Label fx:id="lastModifiedDateTime" styleClass="cell_small_label"
              style="-fx-font-style : italic " text="\$lastModifiedDateTime" />
     </VBox>

@@ -65,6 +65,10 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
 
+        if (target.getMarkStatus().toString().equals("\u2665") == true) {
+            editedPerson.mark();
+        }
+
         internalList.set(index, editedPerson);
     }
 

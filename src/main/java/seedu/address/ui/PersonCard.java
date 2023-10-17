@@ -59,7 +59,7 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().value);
         job.setText(person.getJob().value);
         email.setText(person.getEmail().value);
-        //markStatus.setText(person.getMarkStatus().toString());
+        markStatus.setText(person.getMarkStatus().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

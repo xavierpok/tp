@@ -25,7 +25,6 @@ public class Person {
     private final Company company;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
-
     private final Mark markStatus = new Mark(false);
     private final LastModifiedDateTime lastModifiedDateTime;
 
