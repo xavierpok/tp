@@ -95,4 +95,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Marks the given person.
+     * The person must exist in the address book.
+     */
+    void markPerson(Person target);
 }

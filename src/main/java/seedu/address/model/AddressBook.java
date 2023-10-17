@@ -94,6 +94,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * marks {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void markPerson(Person key) {
+        requireNonNull(key);
+        key.mark();
+    }
+
     //// util methods
 
     @Override
