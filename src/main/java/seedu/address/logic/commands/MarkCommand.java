@@ -8,7 +8,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 
 /**

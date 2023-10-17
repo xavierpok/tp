@@ -62,7 +62,7 @@ public class Person {
     public Job getJob() {
         return job;
     }
-    public Mark getMarkStatus() {return markStatus;}
+    public Mark getMarkStatus() { return markStatus; }
 
     public LastModifiedDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
