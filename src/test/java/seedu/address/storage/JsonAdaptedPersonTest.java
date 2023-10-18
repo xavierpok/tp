@@ -172,6 +172,15 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_nullMark_throwsIllegalValueException() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE,
+                        VALID_EMAIL, VALID_COMPANY, VALID_JOB, VALID_TAGS, null,
+                        VALID_LAST_MODIFIED_DATE_TIME);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
     public void toModelType_markedStatus_returnsmarkedPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_COMPANY, VALID_JOB, VALID_TAGS, "\u2605", VALID_LAST_MODIFIED_DATE_TIME);
