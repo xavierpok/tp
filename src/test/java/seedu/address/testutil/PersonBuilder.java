@@ -10,6 +10,7 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
 import seedu.address.model.person.LastModifiedDateTime;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,7 +39,7 @@ public class PersonBuilder {
     private Company company;
     private Job job;
     private Set<Tag> tags;
-
+    private Mark markStatus;
     private LastModifiedDateTime lastModifiedDateTime;
 
     /**
@@ -127,4 +128,11 @@ public class PersonBuilder {
         return new Person(name, phone, email, company, job, tags, lastModifiedDateTime);
     }
 
+    /**
+     * Sets the {@code markStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMarkStatus(boolean b) {
+        this.markStatus = new Mark(b);
+        return this;
+    }
 }

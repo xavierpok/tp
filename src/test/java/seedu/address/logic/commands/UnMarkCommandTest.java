@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -38,5 +42,36 @@ public class UnMarkCommandTest {
         UnMarkCommand unMarkCommand = new UnMarkCommand(outOfBoundIndex);
         assertCommandFailure(unMarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void equals() {
+        UnMarkCommand unMarkFirstCommand = new UnMarkCommand(INDEX_FIRST_PERSON);
+        UnMarkCommand unMarkSecondCommand = new UnMarkCommand(INDEX_SECOND_PERSON);
+
+        // same object -> returns true
+        assertTrue(unMarkFirstCommand.equals(unMarkFirstCommand));
+
+        // same values -> returns true
+        UnMarkCommand unMarkFirstCommandCopy = new UnMarkCommand(INDEX_FIRST_PERSON);
+        assertTrue(unMarkFirstCommand.equals(unMarkFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(unMarkFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(unMarkFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(unMarkFirstCommand.equals(unMarkSecondCommand));
+    }
+
+    @Test
+    public void toStringMethod() {
+        Index targetIndex = Index.fromOneBased(1);
+        UnMarkCommand unMarkCommand = new UnMarkCommand(targetIndex);
+        String expected = UnMarkCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        assertEquals(expected, unMarkCommand.toString());
+    }
+
 
 }

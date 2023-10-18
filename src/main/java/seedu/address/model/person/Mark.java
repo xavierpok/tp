@@ -16,7 +16,7 @@ public class Mark {
      * Constructs Mark Object.
      * @param status true or false.
      */
-    public Mark(boolean status) {
+    public Mark(Boolean status) {
         requireNonNull(status);
         this.markStatus = status;
     }

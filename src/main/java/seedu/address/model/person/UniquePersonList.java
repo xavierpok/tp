@@ -64,11 +64,6 @@ public class UniquePersonList implements Iterable<Person> {
         if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
-
-        if (target.getMarkStatus().toString().equals("\u2605")) {
-            editedPerson.mark();
-        }
-
         internalList.set(index, editedPerson);
     }
 

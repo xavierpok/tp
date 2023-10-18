@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -17,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
 import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -169,4 +171,20 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_markedStatus_returnsmarkedPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_COMPANY, VALID_JOB, VALID_TAGS, "\u2605", VALID_LAST_MODIFIED_DATE_TIME);
+        Person modelPerson = person.toModelType();
+        assertFalse(modelPerson.getMarkStatus().equals(true));
+    }
+    @Test
+    public void toModelType_unmarkedStatus_returnsUnmarkedPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_COMPANY, VALID_JOB, VALID_TAGS, "\u2606", VALID_LAST_MODIFIED_DATE_TIME);
+        Person modelPerson = person.toModelType();
+        assertFalse(modelPerson.getMarkStatus().equals(false));
+    }
+
 }
+
