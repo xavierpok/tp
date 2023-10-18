@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "company": "Google",
     "job": "AI Analyst",
+    "mark": "\u2606",
     "tags" : [ "friends" ],
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "company": "Mandai Wildlife Group",
     "job": "Software Engineer",
+    "mark": "\u2606",
     "tags" : [ "owesMoney", "friends" ],
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -23,6 +25,7 @@
     "company": "Grab",
     "job": "AI Engineer",
     "tags" : [ ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "company": "Uber",
     "job": "Data Analyst",
     "tags" : [ "friends" ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "company": "Central Provident Board",
     "job": "Machine Learning Analyst",
     "tags" : [ ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "company": "Citadel",
     "job": "AI Engineer",
     "tags" : [ ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "company": "Morgan Stanley",
     "job": "Risk Analyst",
     "tags" : [ ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:10"
   } ]
 }

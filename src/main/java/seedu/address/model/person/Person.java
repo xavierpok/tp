@@ -25,7 +25,7 @@ public class Person {
     private final Company company;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
-
+    private final Mark markStatus = new Mark(false);
     private final LastModifiedDateTime lastModifiedDateTime;
 
     /**
@@ -62,6 +62,9 @@ public class Person {
     public Job getJob() {
         return job;
     }
+    public Mark getMarkStatus() {
+        return markStatus;
+    }
 
     public LastModifiedDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
@@ -89,6 +92,20 @@ public class Person {
     }
 
     /**
+     * Marks a person's markStatus as true.
+     */
+    public void mark() {
+        markStatus.mark();
+    }
+
+    /**
+     * Marks a person's markStatus as false.
+     */
+    public void unMark() {
+        markStatus.unMark();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -110,6 +127,7 @@ public class Person {
                 && company.equals(otherPerson.company)
                 && job.equals(otherPerson.job)
                 && tags.equals(otherPerson.tags)
+                && markStatus.equals(otherPerson.markStatus)
                 && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
     }
 

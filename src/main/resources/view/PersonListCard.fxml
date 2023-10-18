@@ -35,5 +35,10 @@
       <Label fx:id="lastModifiedDateTime" styleClass="cell_small_label"
              style="-fx-font-style : italic " text="\$lastModifiedDateTime" />
     </VBox>
+    <VBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="200.0">
+      <children>
+        <Label fx:id="markStatus" styleClass="cell_icon_label" text="\$markStatus" />
+      </children>
+    </VBox>
   </GridPane>
 </HBox>

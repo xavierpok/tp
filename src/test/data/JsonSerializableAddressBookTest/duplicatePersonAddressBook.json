@@ -6,6 +6,7 @@
     "company": "Directions Group",
     "job": "AI Engineer",
     "tags": [ "friends" ],
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:00"
   }, {
     "name": "Alice Pauline",
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "company": "Changi Airport Group",
     "job": "AI Engineer",
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:00"
   } ]
 }

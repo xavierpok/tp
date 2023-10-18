@@ -5,6 +5,7 @@
     "email": "invalid@email!3e",
     "company": "SingStats",
     "job": "AI Engineer",
+    "mark": "\u2606",
     "last_modified" : "10 Oct 2000, 10:10:00"
   }, {
     "name" : "Fiona Kunz",
@@ -13,6 +14,7 @@
     "company": "Citadel",
     "job": "AI Engineer",
     "tags" : [ ],
+    "mark": "\u2606",
     "last_modified" : "40 Oct 2000, 10:10:00"
   } ]
 }

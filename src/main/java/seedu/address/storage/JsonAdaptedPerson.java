@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String company;
     private final String job;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-
+    private final String mark;
     private final String lastModifiedDateTime;
 
     /**
@@ -42,6 +42,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("company") String company,
             @JsonProperty("job") String job, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("mark") String mark,
             @JsonProperty("last_modified") String lastModifiedDateTime) {
         this.name = name;
         this.phone = phone;
@@ -51,6 +52,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
@@ -66,6 +68,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        mark = source.getMarkStatus().toString();
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
 
@@ -132,7 +135,15 @@ class JsonAdaptedPerson {
                 LastModifiedDateTime.fromString(lastModifiedDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+
+        Person newPerson = new Person(
+                modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+
+        if (mark.equals("\u2605")) {
+            newPerson.mark();
+        }
+
+        return newPerson;
     }
 
 }
