@@ -14,6 +14,7 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
 import seedu.address.model.person.LastModifiedDateTime;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -138,6 +139,11 @@ class JsonAdaptedPerson {
 
         Person newPerson = new Person(
                 modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+
+        if (mark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Mark.class.getSimpleName()));
+        }
 
         if (mark.equals("\u2605")) {
             newPerson.mark();
