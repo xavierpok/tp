@@ -5,11 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import connexion.commons.exceptions.DataLoadingException;
-import connexion.model.AddressBook;
 import connexion.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link AddressBook}.
+ * Represents a storage for {@link connexion.model.AddressBook}.
  */
 public interface AddressBookStorage {
 

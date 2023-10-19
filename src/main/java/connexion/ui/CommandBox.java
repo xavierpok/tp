@@ -1,6 +1,5 @@
 package connexion.ui;
 
-import connexion.logic.Logic;
 import connexion.logic.commands.CommandResult;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.logic.parser.exceptions.ParseException;
@@ -78,7 +77,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see Logic#execute(String)
+         * @see connexion.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

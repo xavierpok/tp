@@ -7,7 +7,6 @@ import connexion.commons.core.GuiSettings;
 import connexion.logic.commands.CommandResult;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.logic.parser.exceptions.ParseException;
-import connexion.model.Model;
 import connexion.model.ReadOnlyAddressBook;
 import connexion.model.person.Person;
 import javafx.collections.ObservableList;
@@ -28,7 +27,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see connexion.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
