@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Job;
+import seedu.address.model.person.LastModifiedDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -39,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setCompany(person.getCompany());
         descriptor.setJob(person.getJob());
         descriptor.setTags(person.getTags());
+        descriptor.setLastModifiedDateTime(person.getLastModifiedDateTime());
     }
 
     /**
@@ -88,6 +91,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code LastModifiedDateTime} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        descriptor.setLastModifiedDateTime(new LastModifiedDateTime(lastModifiedDateTime));
         return this;
     }
 

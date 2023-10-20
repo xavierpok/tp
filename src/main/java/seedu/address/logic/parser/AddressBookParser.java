@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.time.Clock;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,21 +15,26 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnMarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class AddressBookParser implements ClockDependantParser<Command> {
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+
+    private Clock clock = Clock.systemDefaultZone();
 
     /**
      * Parses user input into command for execution.
@@ -54,10 +60,10 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddCommandParser().withClock(clock).parse(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCommandParser().withClock(clock).parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -65,11 +71,20 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnMarkCommand.COMMAND_WORD:
+            return new UnMarkCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -83,4 +98,29 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * To specify usage of a specific clock.
+     *
+     * @param clock The clock to use
+     * @return an edited parser using the specified clock
+     */
+    @Override
+    public AddressBookParser withClock(Clock clock) {
+        AddressBookParser toReturn = new AddressBookParser();
+        toReturn.clock = clock;
+        return toReturn;
+    }
+
+
+    /**
+     * Parses {@code userInput} into a command and returns it. Same as parseCommand.
+     *
+     * @param userInput
+     * @throws ParseException if {@code userInput} does not conform the expected format
+     */
+    @Override
+    public Command parse(String userInput) throws ParseException {
+        // Suggest : Refactor parseCommand to parse.
+        return parseCommand(userInput);
+    }
 }

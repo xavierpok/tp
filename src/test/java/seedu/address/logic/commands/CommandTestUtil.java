@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final LocalDateTime VALID_LAST_MODIFIED_AMY = LocalDateTime.MIN;
+    public static final LocalDateTime VALID_LAST_MODIFIED_BOB = LocalDateTime.MAX;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -65,16 +69,22 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPersonDescriptor DESC_AMYDIFFTIME;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
                 .withJob(VALID_JOB_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withLastModifiedDateTime(VALID_LAST_MODIFIED_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
                 .withJob(VALID_JOB_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
+        DESC_AMYDIFFTIME = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
+                .withJob(VALID_JOB_AMY)
+                .withTags(VALID_TAG_FRIEND).withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
     }
 
     /**

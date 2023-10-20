@@ -4,6 +4,17 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "company": "SingStats",
-    "job": "AI Engineer"
+    "job": "AI Engineer",
+    "mark": "\u2606",
+    "last_modified" : "10 Oct 2000, 10:10:00"
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "company": "Citadel",
+    "job": "AI Engineer",
+    "tags" : [ ],
+    "mark": "\u2606",
+    "last_modified" : "40 Oct 2000, 10:10:00"
   } ]
 }

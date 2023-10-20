@@ -25,11 +25,14 @@ public class Person {
     private final Company company;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
+    private final Mark markStatus = new Mark(false);
+    private final LastModifiedDateTime lastModifiedDateTime;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null
      */
-    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
+                  LastModifiedDateTime lastModifiedDateTime) {
         requireAllNonNull(name, phone, email, company, job, tags);
         this.name = name;
         this.phone = phone;
@@ -37,6 +40,7 @@ public class Person {
         this.company = company;
         this.job = job;
         this.tags.addAll(tags);
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     public Name getName() {
@@ -57,6 +61,13 @@ public class Person {
 
     public Job getJob() {
         return job;
+    }
+    public Mark getMarkStatus() {
+        return markStatus;
+    }
+
+    public LastModifiedDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
     }
 
     /**
@@ -81,6 +92,20 @@ public class Person {
     }
 
     /**
+     * Marks a person's markStatus as true.
+     */
+    public void mark() {
+        markStatus.mark();
+    }
+
+    /**
+     * Marks a person's markStatus as false.
+     */
+    public void unMark() {
+        markStatus.unMark();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -101,7 +126,9 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && company.equals(otherPerson.company)
                 && job.equals(otherPerson.job)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && markStatus.equals(otherPerson.markStatus)
+                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
     }
 
     @Override
@@ -119,6 +146,7 @@ public class Person {
                 .add("company", company)
                 .add("job", job)
                 .add("tags", tags)
+                .add("last-modified", lastModifiedDateTime)
                 .toString();
     }
 

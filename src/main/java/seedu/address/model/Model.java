@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_NO_PERSONS = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -33,6 +35,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the clock the Model is running on
+     */
+    void setClock(Clock clock);
+
+    /**
+     * Get the clock the Model is running on
+     */
+    Clock getClock();
 
     /**
      * Returns the user prefs' address book file path.
@@ -84,4 +96,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Marks the given person.
+     * The person must exist in the address book.
+     */
+    void markPerson(Person target);
+
+    /**
+     * Un-Marks the given person.
+     * The person must exist in the address book.
+     */
+    void unMarkPerson(Person target);
 }

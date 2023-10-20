@@ -82,7 +82,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -92,6 +91,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * marks {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void markPerson(Person key) {
+        requireNonNull(key);
+        key.mark();
+    }
+
+    /**
+     * unMarks {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void unMarkPerson(Person key) {
+        requireNonNull(key);
+        key.unMark();
     }
 
     //// util methods
@@ -127,4 +144,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

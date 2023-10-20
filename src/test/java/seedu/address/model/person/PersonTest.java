@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_MODIFIED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -13,9 +14,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
+
+
 
 public class PersonTest {
 
@@ -36,7 +42,7 @@ public class PersonTest {
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withCompany(VALID_COMPANY_BOB).withJob(VALID_JOB_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -94,13 +100,19 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different last modified -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLastModifiedDateTime(LocalDateTime.MIN).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", company=" + ALICE.getCompany() + ", job=" + ALICE.getJob()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", tags=" + ALICE.getTags() + ", last-modified=" + ALICE.getLastModifiedDateTime() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

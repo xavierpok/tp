@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMYDIFFTIME;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -146,6 +147,7 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
+
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
@@ -169,6 +171,9 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+
+        //different time -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_AMYDIFFTIME)));
     }
 
     @Test
