@@ -3,6 +3,7 @@ package connexion.ui;
 import java.util.Comparator;
 
 import connexion.model.person.Person;
+import connexion.model.tag.Tag;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -54,15 +55,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        company.setText(person.getCompany().value);
-        job.setText(person.getJob().value);
-        email.setText(person.getEmail().value);
+        name.setText(person.getName().getListString());
+        phone.setText(person.getPhone().toString());
+        company.setText(person.getCompany().getListString());
+        job.setText(person.getJob().getListString());
+        email.setText(person.getEmail().toString());
         markStatus.setText(person.getMarkStatus().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(Tag::getValue))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
         lastModifiedDateTime.setText(
                 String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
 
