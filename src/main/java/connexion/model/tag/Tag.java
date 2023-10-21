@@ -1,9 +1,9 @@
 package connexion.model.tag;
 
-import connexion.model.person.PersonListDetailField;
-
 import static connexion.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
+
+import connexion.model.person.PersonListDetailField;
 
 /**
  * Represents a Tag in the address book.

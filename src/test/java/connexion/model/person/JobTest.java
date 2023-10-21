@@ -59,21 +59,21 @@ public class JobTest {
     @Test
     void getDetailString_equals_input() {
         Job job = new Job("Valid Job");
-        assertEquals(job.getDetailString(),"Valid Job");
+        assertEquals(job.getDetailString(), "Valid Job");
         assertNotEquals(job.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getValue_equals_input() {
         Job job = new Job("Valid Job");
-        assertEquals(job.getValue(),"Valid Job");
+        assertEquals(job.getValue(), "Valid Job");
         assertNotEquals(job.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getListString_equals_input() {
         Job job = new Job("Valid Job");
-        assertEquals(job.getListString(),"Valid Job");
+        assertEquals(job.getListString(), "Valid Job");
         assertNotEquals(job.getListString(), "Nonsense"); //to show it's actually matching the string
     }
 }

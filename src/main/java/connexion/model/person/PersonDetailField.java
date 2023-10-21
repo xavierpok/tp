@@ -8,7 +8,7 @@ package connexion.model.person;
  * in a more verbose context.
  * @param <T> the datatype this field wraps around
  */
-public interface PersonDetailField<T> extends PersonField<T>{
+public interface PersonDetailField<T> extends PersonField<T> {
 
     /**
      * Returns the user-facing string representation of this field in a detail view.

@@ -63,21 +63,21 @@ public class NameTest {
     @Test
     void getDetailString_equals_input() {
         Name name = new Name("Valid Name");
-        assertEquals(name.getDetailString(),"Valid Name");
+        assertEquals(name.getDetailString(), "Valid Name");
         assertNotEquals(name.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getValue_equals_input() {
         Name name = new Name("Valid Name");
-        assertEquals(name.getValue(),"Valid Name");
+        assertEquals(name.getValue(), "Valid Name");
         assertNotEquals(name.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getListString_equals_input() {
         Name name = new Name("Valid Name");
-        assertEquals(name.getListString(),"Valid Name");
+        assertEquals(name.getListString(), "Valid Name");
         assertNotEquals(name.getListString(), "Nonsense"); //to show it's actually matching the string
     }
 }

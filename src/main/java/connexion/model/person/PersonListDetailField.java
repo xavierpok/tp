@@ -6,5 +6,5 @@ package connexion.model.person;
  * representation for view in both an at-a-glance and a more verbose context.
  * @param <T> the datatype this field wraps around
  */
-public interface PersonListDetailField<T> extends PersonDetailField<T>, PersonListField<T>{
+public interface PersonListDetailField<T> extends PersonDetailField<T>, PersonListField<T> {
 }

@@ -16,7 +16,7 @@ import java.util.Locale;
  * Represents when a Person was last modified in the address book.
  * Guarantees: immutable; is valid as declared in LocalDateTime java API
  */
-public class LastModifiedDateTime implements PersonDetailField<LocalDateTime>{
+public class LastModifiedDateTime implements PersonDetailField<LocalDateTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Last modified should consist of a DateTime Object or the date as a string that is correct"

@@ -5,7 +5,7 @@ package connexion.model.person;
  * representation for view in an at-a-glance context.
  * @param <T> the datatype this field wraps around
  */
-public interface PersonListField<T> extends PersonField<T>{
+public interface PersonListField<T> extends PersonField<T> {
 
     /**
      * Returns the user-facing string representation of this field in an at-a-glance view.

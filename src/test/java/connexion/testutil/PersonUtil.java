@@ -38,7 +38,7 @@ public class PersonUtil {
         sb.append(PREFIX_JOB + person.getJob().getValue() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.getValue() + " ")
-                // here, s is the tag. This code appends each tag w/ prefixes in to toString
+        // here, s is the tag. This code appends each tag w/ prefixes in to toString
         );
         return sb.toString();
     }

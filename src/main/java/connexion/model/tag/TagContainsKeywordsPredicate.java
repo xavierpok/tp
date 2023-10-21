@@ -21,9 +21,13 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        person.getTags().stream()
-                                .reduce("", (str, tag) -> str + " " + tag.getValue(), (str1, str2) -> str1 + " " + str2),
+                        person.getTags()
+                                .stream().reduce(
+                                        "", (// I'm so sorry for this but checkstyle insists on this
+                                                str, tag) -> str + " " + tag.getValue(), (
+                                                        str1, str2) -> str1 + " " + str2),
                         keyword));
+        //Above line concatenates all tags together with a space in between each one
     }
 
     @Override

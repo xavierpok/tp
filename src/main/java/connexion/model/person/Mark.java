@@ -6,15 +6,16 @@ import static java.util.Objects.requireNonNull;
  * Represents the mark status in the address book.
  * Guarantees: mutable.
  */
-public class Mark implements PersonListDetailField<Boolean>{
+public class Mark implements PersonListDetailField<Boolean> {
     public static final String MESSAGE_CONSTRAINTS =
             "Mark Status can only be true or false!";
 
-    private boolean markStatus;
-
+    private static final String UNMARKED_STAR = "☆";
     private static final String MARKED_STAR = "★";
 
-    private static final String UNMARKED_STAR = "☆";
+    private boolean markStatus;
+
+
 
     /**
      * Constructs Mark Object.

@@ -91,13 +91,13 @@ public class EmailTest {
     @Test
     void getValue_equals_input() {
         Email email = new Email("valid@email");
-        assertEquals(email.getValue(),"valid@email");
+        assertEquals(email.getValue(), "valid@email");
         assertNotEquals(email.getValue(), "nonsense@nonsense"); //to show it's actually matching the string
     }
     @Test
     void getDetailString_equals_input() {
         Email email = new Email("valid@email");
-        assertEquals(email.getDetailString(),"valid@email");
+        assertEquals(email.getDetailString(), "valid@email");
         assertNotEquals(email.getDetailString(), "nonsense@nonsense"); //to show it's actually matching the string
     }
 }

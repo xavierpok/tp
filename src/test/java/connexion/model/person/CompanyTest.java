@@ -20,8 +20,6 @@ public class CompanyTest {
         String invalidCompany = "";
         assertThrows(IllegalArgumentException.class, () -> new Company(invalidCompany));
     }
-    
-
 
     @Test
     public void isValidCompany() {
@@ -61,21 +59,21 @@ public class CompanyTest {
     @Test
     void getDetailString_equals_input() {
         Company company = new Company("Valid Company");
-        assertEquals(company.getDetailString(),"Valid Company");
+        assertEquals(company.getDetailString(), "Valid Company");
         assertNotEquals(company.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getValue_equals_input() {
         Company company = new Company("Valid Company");
-        assertEquals(company.getValue(),"Valid Company");
+        assertEquals(company.getValue(), "Valid Company");
         assertNotEquals(company.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getListString_equals_input() {
         Company company = new Company("Valid Company");
-        assertEquals(company.getValue(),"Valid Company");
+        assertEquals(company.getValue(), "Valid Company");
         assertNotEquals(company.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 }

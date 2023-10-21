@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's email in Connexion.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email implements PersonDetailField<String>{
+public class Email implements PersonDetailField<String> {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "

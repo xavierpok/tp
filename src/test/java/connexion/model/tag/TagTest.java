@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import connexion.model.person.Company;
-import connexion.model.person.Name;
 import org.junit.jupiter.api.Test;
 
 public class TagTest {
@@ -32,21 +30,21 @@ public class TagTest {
     @Test
     void getDetailString_equals_input() {
         Tag tag = new Tag("valid");
-        assertEquals(tag.getDetailString(),"valid");
+        assertEquals(tag.getDetailString(), "valid");
         assertNotEquals(tag.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getValue_equals_input() {
         Tag tag = new Tag("valid");
-        assertEquals(tag.getValue(),"valid");
+        assertEquals(tag.getValue(), "valid");
         assertNotEquals(tag.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 
     @Test
     void getListString_equals_input() {
         Tag tag = new Tag("valid");
-        assertEquals(tag.getListString(),"valid");
+        assertEquals(tag.getListString(), "valid");
         assertNotEquals(tag.getListString(), "Nonsense"); //to show it's actually matching the string
     }
 
