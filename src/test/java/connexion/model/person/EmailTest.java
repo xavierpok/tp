@@ -1,7 +1,9 @@
 package connexion.model.person;
 
 import static connexion.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -84,5 +86,18 @@ public class EmailTest {
 
         // different values -> returns false
         assertFalse(email.equals(new Email("other.valid@email")));
+    }
+
+    @Test
+    void getValue_equals_input() {
+        Email email = new Email("valid@email");
+        assertEquals(email.getValue(),"valid@email");
+        assertNotEquals(email.getValue(), "nonsense@nonsense"); //to show it's actually matching the string
+    }
+    @Test
+    void getDetailString_equals_input() {
+        Email email = new Email("valid@email");
+        assertEquals(email.getDetailString(),"valid@email");
+        assertNotEquals(email.getDetailString(), "nonsense@nonsense"); //to show it's actually matching the string
     }
 }

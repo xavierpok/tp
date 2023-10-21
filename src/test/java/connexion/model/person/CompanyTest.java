@@ -1,7 +1,9 @@
 package connexion.model.person;
 
 import static connexion.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,8 @@ public class CompanyTest {
         String invalidCompany = "";
         assertThrows(IllegalArgumentException.class, () -> new Company(invalidCompany));
     }
+    
+
 
     @Test
     public void isValidCompany() {
@@ -52,5 +56,26 @@ public class CompanyTest {
 
         // different values -> returns false
         assertFalse(company.equals(new Company("Other Valid Company")));
+    }
+
+    @Test
+    void getDetailString_equals_input() {
+        Company company = new Company("Valid Company");
+        assertEquals(company.getDetailString(),"Valid Company");
+        assertNotEquals(company.getDetailString(), "Nonsense"); //to show it's actually matching the string
+    }
+
+    @Test
+    void getValue_equals_input() {
+        Company company = new Company("Valid Company");
+        assertEquals(company.getValue(),"Valid Company");
+        assertNotEquals(company.getValue(), "Nonsense"); //to show it's actually matching the string
+    }
+
+    @Test
+    void getListString_equals_input() {
+        Company company = new Company("Valid Company");
+        assertEquals(company.getValue(),"Valid Company");
+        assertNotEquals(company.getValue(), "Nonsense"); //to show it's actually matching the string
     }
 }

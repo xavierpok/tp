@@ -45,4 +45,37 @@ public class MarkTest {
         assertEquals("\u2606", unmarkedMark.toString());
     }
 
+    @Test
+    void getDetailString_markedStatus() {
+        Mark markedMark = new Mark(true);
+        assertEquals("\u2605", markedMark.getDetailString());
+    }
+    @Test
+    void getDetailString_unmarkedStatus() {
+        Mark unmarkedMark = new Mark(false);
+        assertEquals("\u2606", unmarkedMark.getDetailString());
+    }
+
+    @Test
+    void getValue_markedStatus() {
+        Mark markedMark = new Mark(true);
+        assertEquals(true, markedMark.getValue());
+    }
+    @Test
+    void getValue_unmarkedStatus() {
+        Mark unmarkedMark = new Mark(false);
+        assertEquals(false, unmarkedMark.getValue());
+    }
+
+
+    @Test
+    void getListString_markedStatus() {
+        Mark markedMark = new Mark(true);
+        assertEquals("\u2605", markedMark.getListString());
+    }
+    @Test
+    void getListString_unmarkedStatus() {
+        Mark unmarkedMark = new Mark(false);
+        assertEquals("\u2606", unmarkedMark.getListString());
+    }
 }

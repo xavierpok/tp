@@ -1,7 +1,9 @@
 package connexion.model.person;
 
 import static connexion.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -52,5 +54,26 @@ public class JobTest {
 
         // different values -> returns false
         assertFalse(job.equals(new Job("Other Valid Job")));
+    }
+
+    @Test
+    void getDetailString_equals_input() {
+        Job job = new Job("Valid Job");
+        assertEquals(job.getDetailString(),"Valid Job");
+        assertNotEquals(job.getDetailString(), "Nonsense"); //to show it's actually matching the string
+    }
+
+    @Test
+    void getValue_equals_input() {
+        Job job = new Job("Valid Job");
+        assertEquals(job.getValue(),"Valid Job");
+        assertNotEquals(job.getValue(), "Nonsense"); //to show it's actually matching the string
+    }
+
+    @Test
+    void getListString_equals_input() {
+        Job job = new Job("Valid Job");
+        assertEquals(job.getListString(),"Valid Job");
+        assertNotEquals(job.getListString(), "Nonsense"); //to show it's actually matching the string
     }
 }
