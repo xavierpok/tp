@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's job in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidJob(String)}
  */
-public class Job {
+public class Job implements PersonListDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS = "Job can take any values, and it should not be blank";
 
@@ -17,7 +17,7 @@ public class Job {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Job}.
@@ -62,4 +62,18 @@ public class Job {
         return value.hashCode();
     }
 
+    @Override
+    public String getDetailString() {
+        return value;
+    }
+
+    @Override
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String getListString() {
+        return value;
+    }
 }

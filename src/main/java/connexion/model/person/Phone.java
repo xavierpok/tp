@@ -7,13 +7,13 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone implements PersonDetailField<String>{
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -58,4 +58,13 @@ public class Phone {
         return value.hashCode();
     }
 
+    @Override
+    public String getDetailString() {
+        return value;
+    }
+
+    @Override
+    public String getValue() {
+        return value;
+    }
 }

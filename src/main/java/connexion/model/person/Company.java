@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's company in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
-public class Company {
+public class Company implements PersonListDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS = "Company can take any values, and it should not be blank";
 
@@ -17,7 +17,7 @@ public class Company {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code company}.
@@ -62,4 +62,18 @@ public class Company {
         return value.hashCode();
     }
 
+    @Override
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String getListString() {
+        return value;
+    }
+
+    @Override
+    public String getDetailString() {
+        return value;
+    }
 }

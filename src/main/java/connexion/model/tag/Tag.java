@@ -1,5 +1,7 @@
 package connexion.model.tag;
 
+import connexion.model.person.PersonListDetailField;
+
 import static connexion.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
@@ -7,12 +9,12 @@ import static java.util.Objects.requireNonNull;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag implements PersonListDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    private final String tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -59,4 +61,18 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    @Override
+    public String getDetailString() {
+        return tagName;
+    }
+
+    @Override
+    public String getValue() {
+        return tagName;
+    }
+
+    @Override
+    public String getListString() {
+        return tagName;
+    }
 }
