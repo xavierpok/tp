@@ -73,7 +73,7 @@ public class CompanyTest {
     @Test
     void getListString_equals_input() {
         Company company = new Company("Valid Company");
-        assertEquals(company.getValue(), "Valid Company");
-        assertNotEquals(company.getValue(), "Nonsense"); //to show it's actually matching the string
+        assertEquals(company.getListString(), "Valid Company");
+        assertNotEquals(company.getListString(), "Nonsense"); //to show it's actually matching the string
     }
 }
