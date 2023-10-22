@@ -1,12 +1,13 @@
 package connexion.model.person;
 
-import jdk.jshell.spi.ExecutionControl;
 
 import java.time.LocalDateTime;
 
-import static jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
-public abstract class Schedule implements PersonListDetailField<LocalDateTime>{
+/**
+ * Class representing a schedule in Person. TO BE IMPLEMENTED
+ */
+public abstract class Schedule implements PersonListDetailField<LocalDateTime> {
 
     /**
      * Returns the user-facing string representation of this field in a detail view.
