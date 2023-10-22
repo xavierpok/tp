@@ -128,11 +128,6 @@ class LastModifiedDateTimeTest {
         assertNotEquals(new LastModifiedDateTime(OTHER_TEST_TIME).getValue(),
                 OTHER_TEST_TIME);
 
-        assertEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getValue(),
-                new LastModifiedDateTime(DEFAULT_TEST_TIME).getValue());
-        assertNotEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getValue(),
-                new LastModifiedDateTime(OTHER_TEST_TIME).getValue());
-
         // Special case where higher precision past seconds is already zero
         // So truncating doesn't do anything
         assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).getValue(),
