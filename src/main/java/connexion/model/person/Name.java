@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements PersonListDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -64,4 +64,18 @@ public class Name {
         return fullName.hashCode();
     }
 
+    @Override
+    public String getDetailString() {
+        return fullName;
+    }
+
+    @Override
+    public String getValue() {
+        return fullName;
+    }
+
+    @Override
+    public String getListString() {
+        return fullName;
+    }
 }

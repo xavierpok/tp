@@ -2,6 +2,7 @@ package connexion.model.person;
 
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
+import static connexion.testutil.ClockUtil.OTHER_TEST_TIME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
 
@@ -99,4 +101,39 @@ class LastModifiedDateTimeTest {
     }
 
 
+    @Test
+    void getDetailString() {
+        assertEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getDetailString(),
+                DEFAULT_TEST_TIME.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MAX).getDetailString(),
+                LocalDateTime.MAX.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).getDetailString(),
+                LocalDateTime.MIN.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+    }
+
+    @Test
+    void getValue() {
+        assertEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getValue(),
+                DEFAULT_TEST_TIME.truncatedTo(ChronoUnit.SECONDS));
+        assertNotEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getValue(),
+                DEFAULT_TEST_TIME);
+        // Note that LastModifiedDateTime truncates to seconds, so higher precision should generally not be equal
+        // Doesn't apply to cases where is zero already, naturally!
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MAX).getValue(),
+                LocalDateTime.MAX.truncatedTo(ChronoUnit.SECONDS));
+        assertNotEquals(new LastModifiedDateTime(LocalDateTime.MAX).getValue(),
+                LocalDateTime.MAX);
+        assertEquals(new LastModifiedDateTime(OTHER_TEST_TIME).getValue(),
+               OTHER_TEST_TIME.truncatedTo(ChronoUnit.SECONDS));
+        assertNotEquals(new LastModifiedDateTime(OTHER_TEST_TIME).getValue(),
+                OTHER_TEST_TIME);
+
+        // Special case where higher precision past seconds is already zero
+        // So truncating doesn't do anything
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).getValue(),
+                LocalDateTime.MIN.truncatedTo(ChronoUnit.SECONDS));
+        assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).getValue(),
+                LocalDateTime.MIN);
+
+    }
 }
