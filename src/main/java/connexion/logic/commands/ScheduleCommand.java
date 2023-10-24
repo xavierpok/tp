@@ -38,10 +38,10 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a schedule to the person identified by the index number used in the displayed person list\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_SCHEDULE + "MEETING DATE (must be in the form YYYY-MM-DD-HH-MM)"
+            + PREFIX_SCHEDULE + "MEETING DATE (must be in the form YYYY-MM-DD-HH-MM) "
             + "[" + PREFIX_SCHEDULE_NAME + "SCHEDULE NAME" + "] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SCHEDULE + "2023-12-27-07-00"
+            + PREFIX_SCHEDULE + "2023-12-27-07-00 "
             + PREFIX_SCHEDULE_NAME + "Exam result release";
 
     public static final String SCHEDULE_ADD_SUCCESS = "Schedule added: %1$s";

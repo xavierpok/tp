@@ -9,6 +9,8 @@ import java.time.Clock;
 import java.util.Optional;
 
 import connexion.commons.core.index.Index;
+import connexion.logic.commands.AddCommand;
+import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.ScheduleCommand;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.Schedule;
@@ -41,8 +43,9 @@ public class ScheduleCommandParser implements ClockDependantParser<ScheduleComma
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCHEDULE, PREFIX_SCHEDULE_NAME);
-
-        // always set this, as this is set by the system and NOT the user
+        if (argMultimap.getValue(PREFIX_SCHEDULE).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
+        }
         Schedule schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
         ScheduleName scheduleName = ParserUtil
                 .parseScheduleName(argMultimap.getValue(PREFIX_SCHEDULE_NAME)

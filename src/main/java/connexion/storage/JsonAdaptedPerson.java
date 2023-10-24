@@ -34,8 +34,8 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String mark;
     private final String lastModifiedDateTime;
-    private final Optional<String> schedule;
-    private final Optional<String> scheduleName;
+    private final String schedule;
+    private final String scheduleName;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -55,8 +55,8 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.scheduleName = Optional.ofNullable(scheduleName);
-        this.schedule = Optional.ofNullable(schedule);
+        this.scheduleName = scheduleName;
+        this.schedule = schedule;
         this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
@@ -73,8 +73,8 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        schedule = source.getSchedule().map(Objects::toString);
-        scheduleName = source.getScheduleName().map(Objects::toString);
+        schedule = source.getSchedule().map(Objects::toString).orElse("");
+        scheduleName = source.getScheduleName().map(Objects::toString).orElse("");
         mark = source.getMarkStatus().toString();
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
@@ -89,8 +89,6 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
-
-
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -140,19 +138,23 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
         }
 
-        // Checks the string if it is a valid schedule time. If optional is empty, do not throw error
-        if (!schedule.map(Schedule::isValidScheduleTime).orElse(Boolean.FALSE)) {
+        // Checks the string if it is a valid schedule time. If string is empty, do not throw error
+        if (!Schedule.isValidScheduleTime(schedule) && !schedule.isEmpty()) {
             throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
         }
 
-        final Optional<Schedule> modelSchedule = schedule.map(Schedule::new);
+        final Optional<Schedule> modelSchedule = Optional.ofNullable(schedule)
+                .filter(sch -> !sch.isEmpty())
+                .map(Schedule::new);
 
-        // Checks the string if it is a valid schedule name. If optional is empty, do not throw error
-        if (!scheduleName.map(ScheduleName::isValidScheduleName).orElse(Boolean.FALSE)) {
+        // Checks the string if it is a valid schedule name. If string is empty, do not throw error
+        if (!ScheduleName.isValidScheduleName(scheduleName) && !scheduleName.isEmpty()) {
             throw new IllegalValueException(ScheduleName.MESSAGE_CONSTRAINTS);
         }
 
-        final Optional<ScheduleName> modelScheduleName = scheduleName.map(ScheduleName::new);
+        final Optional<ScheduleName> modelScheduleName = Optional.ofNullable(scheduleName)
+                .filter(sch -> !sch.isEmpty())
+                .map(ScheduleName::new);
 
         final LastModifiedDateTime lastModified =
                 LastModifiedDateTime.fromString(lastModifiedDateTime);
