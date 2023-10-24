@@ -16,7 +16,7 @@ public class ScheduleStub extends Schedule {
 
     private static final DateTimeFormatter DETAIL_FORMATTER = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
     public ScheduleStub() {
-        // does nothing
+        super(DEFAULT_SCHEDULE_TIME.toString());
     }
 
 

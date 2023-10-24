@@ -1,9 +1,6 @@
 package connexion.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -18,6 +15,8 @@ import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 
 /**
@@ -35,6 +34,8 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String mark;
     private final String lastModifiedDateTime;
+    private final Optional<String> schedule;
+    private final Optional<String> scheduleName;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +44,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("company") String company,
             @JsonProperty("job") String job, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("mark") String mark,
+            @JsonProperty("mark") String mark, @JsonProperty("schedule") String schedule,
+            @JsonProperty("scheduleName") String scheduleName,
             @JsonProperty("last_modified") String lastModifiedDateTime) {
         this.name = name;
         this.phone = phone;
@@ -53,6 +55,8 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.scheduleName = Optional.ofNullable(scheduleName);
+        this.schedule = Optional.ofNullable(schedule);
         this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
@@ -69,6 +73,8 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        schedule = source.getSchedule().map(Objects::toString);
+        scheduleName = source.getScheduleName().map(Objects::toString);
         mark = source.getMarkStatus().toString();
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
@@ -83,6 +89,8 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
+
+
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -132,13 +140,28 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
         }
 
+        // Checks the string if it is a valid schedule time. If optional is empty, do not throw error
+        if (!schedule.map(Schedule::isValidScheduleTime).orElse(Boolean.FALSE)) {
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+
+        final Optional<Schedule> modelSchedule = schedule.map(Schedule::new);
+
+        // Checks the string if it is a valid schedule name. If optional is empty, do not throw error
+        if (!scheduleName.map(ScheduleName::isValidScheduleName).orElse(Boolean.FALSE)) {
+            throw new IllegalValueException(ScheduleName.MESSAGE_CONSTRAINTS);
+        }
+
+        final Optional<ScheduleName> modelScheduleName = scheduleName.map(ScheduleName::new);
+
         final LastModifiedDateTime lastModified =
                 LastModifiedDateTime.fromString(lastModifiedDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         Person newPerson = new Person(
-                modelName, modelPhone, modelEmail, modelCompany, modelJob, modelTags, lastModified);
+                modelName, modelPhone, modelEmail, modelCompany,
+                modelJob, modelTags, modelSchedule, modelScheduleName, lastModified);
 
         if (mark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

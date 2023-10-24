@@ -9,11 +9,7 @@ import java.util.Set;
 import connexion.commons.core.index.Index;
 import connexion.commons.util.StringUtil;
 import connexion.logic.parser.exceptions.ParseException;
-import connexion.model.person.Company;
-import connexion.model.person.Email;
-import connexion.model.person.Job;
-import connexion.model.person.Name;
-import connexion.model.person.Phone;
+import connexion.model.person.*;
 import connexion.model.tag.Tag;
 
 /**
@@ -109,6 +105,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String schedule} into an {@code Schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schedule} is invalid.
+     */
+    public static Schedule parseSchedule(String schedule) throws ParseException {
+        requireNonNull(schedule);
+        String trimmedSchedule = schedule.trim();
+        if (!Schedule.isValidScheduleTime(trimmedSchedule)) {
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedSchedule);
+    }
+
+    /**
+     * Parses a {@code String scheduleName} into an {@code ScheduleName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code scheduleName} is invalid.
+     */
+    public static ScheduleName parseScheduleName(String scheduleName) throws ParseException {
+        requireNonNull(scheduleName);
+        String trimmedScheduleName = scheduleName.trim();
+        if (!ScheduleName.isValidScheduleName(trimmedScheduleName)) {
+            throw new ParseException(ScheduleName.MESSAGE_CONSTRAINTS);
+        }
+        return new ScheduleName(trimmedScheduleName);
     }
 
     /**
