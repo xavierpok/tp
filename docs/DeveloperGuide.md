@@ -342,25 +342,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Find a person**
+**Use case: UC04 - Filter for person via a specified field**
 
 **MSS**
 
-1.  User enters keywords
-2.  Connexion shows all persons whose name contains the keywords
+1.  User enters field name and keywords
+2.  Connexion shows all persons whose field containing the keywords
 
     Use case ends.
 
-**Use case: UC05 - Filter for person via tags**
-
-**MSS**
-
-1.  User enters tag name
-2.  Connexion shows all persons contains that tag
-
-    Use case ends.
-
-**Use case: UC06 - Update a person**
+**Use case: UC05 - Update a person**
 
 **MSS**
 
@@ -388,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC07 - Mark a person**
+**Use case: UC06 - Mark a person**
 
 **MSS**
 
