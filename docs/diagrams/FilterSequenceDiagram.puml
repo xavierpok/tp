@@ -35,7 +35,7 @@ create CompanyContainsKeywordsPredicate
 FilterCommandParser -> CompanyContainsKeywordsPredicate : Google
 activate CompanyContainsKeywordsPredicate
 
-CompanyContainsKeywordsPredicate -> FilterCommandParser : p
+CompanyContainsKeywordsPredicate --> FilterCommandParser : p
 deactivate CompanyContainsKeywordsPredicate
 
 create FilterCommand
