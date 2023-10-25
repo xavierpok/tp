@@ -138,6 +138,7 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #ffffff;
+    -fx-padding: 5 0 0 0
 }
 
 .cell_icon_label {

@@ -27,9 +27,9 @@
             <Label fx:id="email" styleClass="cell_small_label"/>
             <Label fx:id="company" styleClass="cell_small_label"/>
             <Label fx:id="job" styleClass="cell_small_label"/>
+            <Label fx:id="schedule" styleClass="cell_schedule_label"/>
             <Label fx:id="noteHeader" styleClass="cell_heading_label" text="Notes:" />
-            <Label fx:id="note" styleClass="cell_note" text="-" wrapText="true"/>
-            <Label fx:id="schedule" styleClass="cell_small_label"/>
+            <Label fx:id="note" styleClass="cell_note" wrapText="true"/>
         </VBox>
     </GridPane>
     <VBox>
