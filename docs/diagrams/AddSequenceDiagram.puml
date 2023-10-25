@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "withClock:AddressBookParser" as withClock LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+
+participant "person:Person" as Person LOGIC_COLOR
+participant ":LastModifiedDateTime" as LastModifiedDateTime LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+
+
+[-> LogicManager : execute("add {ARGS}")
+activate LogicManager
+
+
+LogicManager -> LogicManager : getClock
+activate LogicManager
+LogicManager -> Model : getClock
+activate Model
+Model --> LogicManager
+deactivate Model
+deactivate LogicManager
+
+LogicManager -> AddressBookParser : withClock(clock)
+activate AddressBookParser
+
+create withClock
+AddressBookParser -> withClock
+activate withClock
+withClock --> AddressBookParser
+deactivate withClock
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+
+LogicManager -> withClock : parseCommand("add {ARGS}")
+activate withClock
+
+create AddCommandParser
+withClock -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> withClock
+deactivate AddCommandParser
+
+withClock -> AddCommandParser : parse("{ARGS}")
+activate AddCommandParser
+
+create LastModifiedDateTime
+AddCommandParser -> LastModifiedDateTime : clock.now()
+activate LastModifiedDateTime
+LastModifiedDateTime --> AddCommandParser
+deactivate LastModifiedDateTime
+
+create Person
+AddCommandParser -> Person : ARGSAsFields, LastModifiedDateTime
+activate Person
+Person --> AddCommandParser
+deactivate Person
+
+create AddCommand
+AddCommandParser -> AddCommand : Person
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> withClock : a
+deactivate AddCommandParser
+
+withClock --> LogicManager : a
+deactivate withClock
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addPerson(person)
+activate Model
+Model -> AddressBook : addPerson(person)
+
+activate AddressBook
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> LogicManager
+deactivate Model
+
+
+@enduml
