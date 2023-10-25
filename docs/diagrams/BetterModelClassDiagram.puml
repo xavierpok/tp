@@ -19,4 +19,5 @@ Person *--> Phone
 Person *--> Email
 Person *--> Company
 Person *--> Job
+Person *--> LastModifiedDateTime
 @enduml

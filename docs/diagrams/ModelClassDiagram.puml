@@ -20,6 +20,7 @@ Class Phone
 Class Company
 Class Job
 Class Tag
+Class LastModifiedDateTime
 
 Class I #FFFFFF
 }
@@ -44,6 +45,7 @@ Person *--> Email
 Person *--> Company
 Person *--> Job
 Person *--> "*" Tag
+Person *--> LastModifiedDateTime
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
