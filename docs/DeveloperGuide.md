@@ -210,6 +210,24 @@ Of note, this means that :
 * It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependantParsers` (including `AddressBookParser`)
 * `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
 
+### Schedule feature (implemented by Geoff)
+The user can schedule meetings with contacts.
+
+Through `ScheduleCommandParser`, the index of the person in the list and the field prefixes `i/` and `a/` (if there is) are read. Keywords are then parsed and read into a `ScheduleDescripter`
+object, where it is used construct a `ScheduleCommand` object.
+
+Through `ScheduleCommand#execute()`, the `scheduleDescriptor` is then used to create a `Person` object with the added or edited schedule and schedule name.
+Through `model#setPerson()`, the `Person` object created then replaces the original `Person` object in the list.
+
+The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("schedule 1 i/2023-12-27-07-00 a/Seminar")`
+![Interactions Between Logic and Model Components for the `schedule 1 i/2023-12-27-07-00 a/Seminar` Command](images/ScheduleSequenceDiagram.png)
+
+The reason behind implementing this feature this way is partly inspired by the prior implementation of edit feature in AB3.
+By using ScheduleDescriptor object, we are able to keep the same level of abstraction.
+
+An alternative is to create a ClearSchedule feature that clears the schedule and scheduleName, as the schedule feature can only
+write and override, but not remove.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
