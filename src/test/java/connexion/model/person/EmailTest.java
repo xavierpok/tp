@@ -97,7 +97,7 @@ public class EmailTest {
     @Test
     void getDetailString_equals_input() {
         Email email = new Email("valid@email");
-        assertEquals(email.getDetailString(), "valid@email");
+        assertEquals(email.getDetailString(), "Email: valid@email");
         assertNotEquals(email.getDetailString(), "nonsense@nonsense"); //to show it's actually matching the string
     }
 }

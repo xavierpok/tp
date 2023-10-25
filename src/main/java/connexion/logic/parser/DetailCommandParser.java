@@ -1,11 +1,14 @@
 package connexion.logic.parser;
 
+import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import connexion.commons.core.index.Index;
 import connexion.logic.commands.DetailCommand;
 import connexion.logic.parser.exceptions.ParseException;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * Parses input arguments and creates a new DetailCommand object
+ */
 public class DetailCommandParser implements Parser<DetailCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand

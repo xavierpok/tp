@@ -1,5 +1,9 @@
 package connexion.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import connexion.commons.core.index.Index;
 import connexion.commons.util.ToStringBuilder;
 import connexion.logic.Messages;
@@ -8,10 +12,9 @@ import connexion.model.Model;
 import connexion.model.person.Person;
 import connexion.ui.UiManager;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Details a person identified using it's displayed index from the address book.
+ */
 public class DetailCommand extends Command {
     public static final String COMMAND_WORD = "detail";
     public static final String MESSAGE_USAGE = COMMAND_WORD

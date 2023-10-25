@@ -24,8 +24,9 @@ public class UiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
-    private Logic logic;
     private static MainWindow mainWindow;
+
+    private Logic logic;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -56,14 +57,6 @@ public class UiManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
-    }
-
-    /**
-     *
-     * @return the person being displayed.
-     */
-    public static Person getDisplayedPerson() {
-        return personToDisplay;
     }
 
     /**

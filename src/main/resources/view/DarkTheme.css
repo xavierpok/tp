@@ -230,10 +230,11 @@
 
 .menu-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
+    /* -fx-background-color: linear-gradient(to right, #545AA7, #5A4FCF); */
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -341,6 +342,12 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.scroll-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 1px;
 }
 
 #cardPane {

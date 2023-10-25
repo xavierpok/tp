@@ -104,11 +104,11 @@ class LastModifiedDateTimeTest {
     @Test
     void getDetailString() {
         assertEquals(new LastModifiedDateTime(DEFAULT_TEST_TIME).getDetailString(),
-                DEFAULT_TEST_TIME.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+                "lastModified: " + DEFAULT_TEST_TIME.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
         assertEquals(new LastModifiedDateTime(LocalDateTime.MAX).getDetailString(),
-                LocalDateTime.MAX.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+                "lastModified: " + LocalDateTime.MAX.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
         assertEquals(new LastModifiedDateTime(LocalDateTime.MIN).getDetailString(),
-                LocalDateTime.MIN.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
+                "lastModified: " + LocalDateTime.MIN.format(LastModifiedDateTime.LASTMODIFIED_FORMATTER));
     }
 
     @Test

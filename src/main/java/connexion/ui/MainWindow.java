@@ -142,6 +142,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills in information for the UI
      */
     public void fillInfo() {
+
         this.personViewPanelPlaceholder.getChildren().clear(); //clear current object in panel
         this.personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
 
