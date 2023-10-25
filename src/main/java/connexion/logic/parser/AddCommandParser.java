@@ -27,7 +27,7 @@ import connexion.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements ClockDependantParser<AddCommand> {
+public class AddCommandParser implements ClockDependentParser<AddCommand> {
 
     private Clock clock = Clock.systemDefaultZone();
 

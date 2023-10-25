@@ -120,23 +120,52 @@
     -fx-text-fill: white;
 }
 
+.list-cell .icon {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #ffaa00;
+    -fx-font-size: 25px;
+    -fx-padding: 0 20 0 0
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
 }
 
 .cell_icon_label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #ffaa00;
     -fx-font-size: 25px;
-    -fx-padding: 0 20 0 0
+    -fx-padding: 40 20 0 0
+}
+
+.cell_heading_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 40 0 0 0
+}
+
+.cell_note {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 5 0 0 0
+}
+
+.cell_schedule_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 40 0 0 0
 }
 
 .stack-pane {

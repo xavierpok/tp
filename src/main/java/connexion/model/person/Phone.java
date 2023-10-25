@@ -60,7 +60,7 @@ public class Phone implements PersonDetailField<String> {
 
     @Override
     public String getDetailString() {
-        return value;
+        return "Phone: " + value;
     }
 
     @Override
