@@ -181,11 +181,11 @@ The sequence diagram below shows the interaction between Logic and Model compone
 
 ![Interactions Inside the Logic and Model Components for the `filter c/Google` Command](images/FilterSequenceDiagram.png)
 
-The reason behind implementing the feature this way is that this feature is partly inspired 
+The reason behind implementing the feature this way is that this feature is partly inspired
 by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
-An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
+An ongoing discussion is to merge the separate predicates into one but it takes low precedence.
 
 ### LastModified (implemented by Xavier)
 Each `Person` has a last modified detailing when it was last modified.
@@ -205,10 +205,28 @@ Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to e
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
 Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
 
-Of note, this means that : 
+Of note, this means that :
 * `LastModifiedDateTime` will have its notion of "current" time set to some time during parsing
 * It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependantParsers` (including `AddressBookParser`)
 * `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
+
+### Schedule feature (implemented by Geoff)
+The user can schedule meetings with contacts.
+
+Through `ScheduleCommandParser`, the index of the person in the list and the field prefixes `i/` and `a/` (if there is) are read. Keywords are then parsed and read into a `ScheduleDescripter`
+object, where it is used construct a `ScheduleCommand` object.
+
+Through `ScheduleCommand#execute()`, the `scheduleDescriptor` is then used to create a `Person` object with the added or edited schedule and schedule name.
+Through `model#setPerson()`, the `Person` object created then replaces the original `Person` object in the list.
+
+The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("schedule 1 i/2023-12-27-07-00 a/Seminar")`
+![Interactions Between Logic and Model Components for the `schedule 1 i/2023-12-27-07-00 a/Seminar` Command](images/ScheduleSequenceDiagram.png)
+
+The reason behind implementing this feature this way is partly inspired by the prior implementation of edit feature in AB3.
+By using ScheduleDescriptor object, we are able to keep the same level of abstraction.
+
+An alternative is to create a ClearSchedule feature that clears the schedule and scheduleName, as the schedule feature can only
+write and override, but not remove.
 
 ### \[Proposed\] Undo/redo feature
 

@@ -8,7 +8,7 @@ title: Connexion
 
 ![Ui](images/Ui.png)
 
-**Connexion** is a desktop application for undergraduate students to manage their networking connections in the Tech industry. 
+**Connexion** is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using Connexion, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
