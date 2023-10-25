@@ -132,6 +132,13 @@
     -fx-text-fill: #010504;
 }
 
+.cell_icon_label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #ffaa00;
+    -fx-font-size: 25px;
+    -fx-padding: 0 20 0 0
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

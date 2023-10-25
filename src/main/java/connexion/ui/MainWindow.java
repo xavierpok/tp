@@ -8,6 +8,7 @@ import connexion.logic.Logic;
 import connexion.logic.commands.CommandResult;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.logic.parser.exceptions.ParseException;
+import connexion.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private PersonViewPanel personViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+    @FXML
+    private StackPane personViewPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,6 +114,37 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        //empty contact list
+        if (logic.getFilteredPersonList().size() == 0) {
+            personViewPanel = new PersonViewPanel();
+            fillInfo();
+        } else {
+            //default view - the first person
+            Person defaultPerson = logic.getFilteredPersonList().get(0);
+            fillContactInfo(defaultPerson);
+        }
+    }
+
+    /**
+     * Fills up information for the personViewPanel
+     */
+    public void fillContactInfo(Person p) {
+        if (logic.getFilteredPersonList().size() == 0) {
+            personViewPanel = new PersonViewPanel();
+        } else {
+            personViewPanel = new PersonViewPanel(p);
+
+        }
+        fillInfo();
+    }
+
+    /**
+     * Fills in information for the UI
+     */
+    public void fillInfo() {
+        this.personViewPanelPlaceholder.getChildren().clear(); //clear current object in panel
+        this.personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
