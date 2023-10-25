@@ -154,6 +154,25 @@ Classes used by multiple components are in the `connexion.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter feature (implemented by Kwok Yong)
+The user can filter contacts based on a specified field and keywords.
+
+Each field has its own predicate, `{Field}ContainsKeywordsPredicate`. For example, `JobContainsKeywordsPredicate` represents the predicate for Job.
+Through `FilterCommandParser`, a field prefix is detected to recognize the field to filter for. Keywords are then parsed
+as a list to construct the corresponding predicate, which in turn is used to construct a `FilterCommand`.
+
+Through `FilterCommand#execute()`, the predicate is then passed as an argument to `Model#updateFilteredPersonList()`, causing the UI to only show contacts who satisfy the predicate.
+
+The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("filter c/Google")`
+
+![Interactions Inside the Logic and Model Components for the `filter c/Google` Command](images/FilterSequenceDiagram.png)
+
+The reason behind implementing the feature this way is that this feature is partly inspired 
+by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
+user is more likely to find filtering contacts via a specified field, especially company and job, useful.
+
+An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -342,25 +361,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Find a person**
+**Use case: UC04 - Filter for person via a specified field**
 
 **MSS**
 
-1.  User enters keywords
-2.  Connexion shows all persons whose name contains the keywords
+1.  User enters field name and keywords
+2.  Connexion shows all persons whose field containing the keywords
 
     Use case ends.
 
-**Use case: UC05 - Filter for person via tags**
-
-**MSS**
-
-1.  User enters tag name
-2.  Connexion shows all persons contains that tag
-
-    Use case ends.
-
-**Use case: UC06 - Update a person**
+**Use case: UC05 - Update a person**
 
 **MSS**
 
@@ -388,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC07 - Mark a person**
+**Use case: UC06 - Mark a person**
 
 **MSS**
 

@@ -12,7 +12,6 @@ title: User Guide
     * [Adding a new contact : `add`](#adding-a-new-contact--add)
     * [Listing all contacts : `list`](#listing-all-contacts--list)
     * [Editing existing contact details : `edit`](#editing-existing-contact-details--edit)
-    * [Locating persons by name : `find`](#locating-persons-by-name--find)
     * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
     * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
@@ -118,29 +117,6 @@ Tags : #NUS Alumni #Met in Google Hackathon >>>
 ```
 Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty. 
 I.e., the empty end-result of Tags is expected.
-
-### Locating persons by name : `find`
-
-Finds persons via keywords in name of contact.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
-
-Examples:
-* `find John` returns John and john tan, but not Joh tan.
-* `find alex Young` returns Alex Walker, Alex Young, Young Walker.
-
-Expected output:
-
-It will shorten the list to only include relevant contacts.
-For example, if the list contains John Wick and John Tan, when `find John` is entered, the UI will print :
-```2 persons listed!```
 
 ### Marking contacts of interest : `mark`
 

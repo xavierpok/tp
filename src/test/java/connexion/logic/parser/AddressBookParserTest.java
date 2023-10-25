@@ -22,7 +22,6 @@ import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.EditCommand.EditPersonDescriptor;
 import connexion.logic.commands.ExitCommand;
 import connexion.logic.commands.FilterCommand;
-import connexion.logic.commands.FindCommand;
 import connexion.logic.commands.HelpCommand;
 import connexion.logic.commands.ListCommand;
 import connexion.logic.commands.MarkCommand;
@@ -76,14 +75,6 @@ public class AddressBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
