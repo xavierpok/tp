@@ -91,16 +91,28 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+As another example that is sensitive to a `Clock` object (as per the Java API) for timekeeping, a second sequence diagram for `add {ARGS}`
+, where `{ARGS}` is some valid set of arguments, is also below.
+
+
+
+![Interactions Inside the Logic Component for the `add {ARGS}` Command](images/AddSequenceDiagram.png)
+
+**For the sake of brevity, where the `Clock` object is irrelevant, the call to `AddressBookParser#withClock` will be omitted in subsequent diagrams.**
+
+As an example of when the `Clock` object is irrelevant, the sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -112,6 +124,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes that further need to be aware of the current time (i.e. `AddCommandParser` & `EditCommandParser`) further inherit from the `ClockDependantParser` interface.
+* Any command that needs to be aware of the current time takes the current time during parsing. (I.e. `add` & `edit`)
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -172,6 +186,29 @@ by the prior implementation of the find feature in AB3. This is just an enhancem
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
 An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
+
+### LastModified (implemented by Xavier)
+Each `Person` has a last modified detailing when it was last modified.
+
+The information below has also been briefly integrated into the detailing of [parsing & logic](#logic-component), but with less-relevant details excluded above.
+
+The `Model` has a `Clock` object (as described in the [Java time API](https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html)), which is set to
+the current system time on instantiation. The methods `setClock` and `getClock` are exposed to modify the clock used, for testing or for extension.
+
+The `Logic` object reads the `Model`'s clock to reference what clock operations should use, and instantiates a version of `AddressBookParser` that uses that clock via chained method `withClock`.
+The new `AddressBookParser` then further passes the clock via method chaining to any `ClockDependantParser`s, or ignores the clock for commands that do not need to care about the clock.
+
+Currently, the only `ClockDependantParser`s are `AddCommandParser` and `EditCommandParser`.
+
+Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to extract the correct `LocalDateTime` object as needed.
+
+This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
+Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
+
+Of note, this means that : 
+* `LastModifiedDateTime` will have its notion of "current" time set to some time during parsing
+* It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependantParsers` (including `AddressBookParser`)
+* `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
 
 ### \[Proposed\] Undo/redo feature
 
