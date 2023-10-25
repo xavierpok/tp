@@ -1,6 +1,11 @@
 package connexion.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -138,6 +143,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
         }
 
+        if (schedule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Schedule.class.getSimpleName()));
+        }
+
         // Checks the string if it is a valid schedule time. If string is empty, do not throw error
         if (!Schedule.isValidScheduleTime(schedule) && !schedule.isEmpty()) {
             throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
@@ -146,6 +156,11 @@ class JsonAdaptedPerson {
         final Optional<Schedule> modelSchedule = Optional.ofNullable(schedule)
                 .filter(sch -> !sch.isEmpty())
                 .map(Schedule::new);
+
+        if (scheduleName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ScheduleName.class.getSimpleName()));
+        }
 
         // Checks the string if it is a valid schedule name. If string is empty, do not throw error
         if (!ScheduleName.isValidScheduleName(scheduleName) && !scheduleName.isEmpty()) {

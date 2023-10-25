@@ -181,6 +181,7 @@ public class Person {
                 .add("tags", tags)
                 .add("last-modified", lastModifiedDateTime)
                 .add("schedule", schedule)
+                .add("scheduleName", scheduleName)
                 .toString();
     }
 

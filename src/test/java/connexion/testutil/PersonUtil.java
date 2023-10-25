@@ -5,6 +5,8 @@ import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -36,6 +38,12 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().getValue() + " ");
         sb.append(PREFIX_COMPANY + person.getCompany().getDetailString() + " ");
         sb.append(PREFIX_JOB + person.getJob().getValue() + " ");
+        if (person.getSchedule().isPresent()) {
+            sb.append(PREFIX_SCHEDULE + person.getSchedule().get().toString() + " ");
+        }
+        if (person.getScheduleName().isPresent()) {
+            sb.append(PREFIX_SCHEDULE_NAME + person.getScheduleName().get().toString() + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.getValue() + " ")
         // here, s is the tag. This code appends each tag w/ prefixes in to toString

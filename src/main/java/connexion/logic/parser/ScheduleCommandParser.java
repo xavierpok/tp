@@ -2,17 +2,18 @@ package connexion.logic.parser;
 
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static connexion.logic.parser.CliSyntax.*;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
 import static java.util.Objects.requireNonNull;
 
 import java.time.Clock;
-import java.util.Optional;
+import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
-import connexion.logic.commands.AddCommand;
-import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.ScheduleCommand;
+import connexion.logic.commands.ScheduleCommand.ScheduleDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
+import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Schedule;
 import connexion.model.person.ScheduleName;
 
@@ -50,8 +51,11 @@ public class ScheduleCommandParser implements ClockDependantParser<ScheduleComma
         ScheduleName scheduleName = ParserUtil
                 .parseScheduleName(argMultimap.getValue(PREFIX_SCHEDULE_NAME)
                 .orElse("Meeting"));
+        LastModifiedDateTime editScheduleTime = new LastModifiedDateTime(LocalDateTime.now(clock));
+        ScheduleDescriptor scheduleDescriptor = new ScheduleDescriptor(schedule, scheduleName, editScheduleTime);
 
-        return new ScheduleCommand(index, schedule, scheduleName);
+
+        return new ScheduleCommand(index, scheduleDescriptor);
     }
 
     /**

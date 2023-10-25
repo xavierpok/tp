@@ -9,7 +9,13 @@ import java.util.Set;
 import connexion.commons.core.index.Index;
 import connexion.commons.util.StringUtil;
 import connexion.logic.parser.exceptions.ParseException;
-import connexion.model.person.*;
+import connexion.model.person.Company;
+import connexion.model.person.Email;
+import connexion.model.person.Job;
+import connexion.model.person.Name;
+import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 
 /**

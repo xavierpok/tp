@@ -1,15 +1,13 @@
 package connexion.logic.commands;
 
+import static connexion.commons.util.CollectionUtil.requireAllNonNull;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
-
-import static connexion.commons.util.CollectionUtil.requireAllNonNull;
 import static connexion.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -41,27 +39,24 @@ public class ScheduleCommand extends Command {
             + PREFIX_SCHEDULE + "MEETING DATE (must be in the form YYYY-MM-DD-HH-MM) "
             + "[" + PREFIX_SCHEDULE_NAME + "SCHEDULE NAME" + "] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SCHEDULE + "2023-12-27-07-00 "
+            + PREFIX_SCHEDULE + "2023-12-27-08-00 "
             + PREFIX_SCHEDULE_NAME + "Exam result release";
 
     public static final String SCHEDULE_ADD_SUCCESS = "Schedule added: %1$s";
     public static final String SCHEDULE_NOT_ADDED = "date must be provided.";
 
     private final Index index;
-    private final Schedule schedule;
-    private final ScheduleName scheduleName;
+    private final ScheduleDescriptor scheduleDescriptor;
 
     /**
      * @param index of the person in the filtered person list to add or edit schedule
-     * @param schedule the time of the meeting
-     * @param scheduleName the name of the meeting
+     * @param scheduleDescriptor details of schedules
      */
-    public ScheduleCommand(Index index, Schedule schedule, ScheduleName scheduleName) {
-        requireAllNonNull(index, schedule, scheduleName);
+    public ScheduleCommand(Index index, ScheduleDescriptor scheduleDescriptor) {
+        requireAllNonNull(index, scheduleDescriptor);
 
         this.index = index;
-        this.schedule = schedule;
-        this.scheduleName = scheduleName;
+        this.scheduleDescriptor = scheduleDescriptor;
     }
 
     @Override
@@ -74,7 +69,7 @@ public class ScheduleCommand extends Command {
         }
 
         Person personToEditSchedule = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createScheduledPerson(personToEditSchedule, schedule, scheduleName);
+        Person editedPerson = createScheduledPerson(personToEditSchedule, scheduleDescriptor);
 
         model.setPerson(personToEditSchedule, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -85,8 +80,7 @@ public class ScheduleCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEditSchedule}
      * edited with {@code schedulePersonDescriptor}.
      */
-    private static Person createScheduledPerson(Person personToEditSchedule
-            ,Schedule schedule, ScheduleName scheduleName) {
+    private static Person createScheduledPerson(Person personToEditSchedule, ScheduleDescriptor scheduleDescriptor) {
         assert personToEditSchedule != null;
 
         Name name = personToEditSchedule.getName();
@@ -95,16 +89,16 @@ public class ScheduleCommand extends Command {
         Company company = personToEditSchedule.getCompany();
         Job job = personToEditSchedule.getJob();
         Set<Tag> tags = personToEditSchedule.getTags();
-        LastModifiedDateTime updatedLastModifiedDateTime = new LastModifiedDateTime(LocalDateTime
-                .now(Clock.systemDefaultZone()));
-        Optional<Schedule> updatedSchedule = Optional.ofNullable(schedule);
-        Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleName);
+        LastModifiedDateTime updatedLastModifiedDateTime =
+                scheduleDescriptor.getLastModifiedDateTime();
         // While semantically, it would make sense that this would always be changed,
         // We do it like this for consistency with other fields
         // And to move responsibility for updating this field to the parser,
         // Like the other fields.
-        return new Person(name, phone, email, company, job, tags
-                , updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+        Optional<Schedule> updatedSchedule = Optional.ofNullable(scheduleDescriptor.getSchedule());
+        Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
+        return new Person(name, phone, email, company, job, tags,
+                updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
     }
 
     @Override
@@ -120,17 +114,96 @@ public class ScheduleCommand extends Command {
 
         ScheduleCommand otherScheduleCommand = (ScheduleCommand) other;
         return index.equals(otherScheduleCommand.index)
-                && schedule.equals(otherScheduleCommand.schedule)
-                && scheduleName.equals(otherScheduleCommand.scheduleName);
+                && scheduleDescriptor.equals(otherScheduleCommand.scheduleDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("Schedule", schedule)
-                .add("Schedule Name", scheduleName)
+                .add("scheduleDescriptor", scheduleDescriptor)
                 .toString();
+    }
+
+    /**
+     * Stores the details of a scheduled meeting with the person.
+     */
+    public static class ScheduleDescriptor {
+        private Schedule schedule;
+        private ScheduleName scheduleName;
+        private LastModifiedDateTime lastModifiedDateTime;
+
+        /**
+         * Stores the schedule details and schedule names.
+         * @param schedule the meeting timing
+         * @param scheduleName the meeting name or agenda
+         * @param lastModifiedDateTime the current time of modification
+         */
+        public ScheduleDescriptor(Schedule schedule,
+                                  ScheduleName scheduleName, LastModifiedDateTime lastModifiedDateTime) {
+            this.schedule = schedule;
+            this.scheduleName = scheduleName;
+            this.lastModifiedDateTime = lastModifiedDateTime;
+        }
+
+        /**
+         * Copy constructor.
+         */
+        public ScheduleDescriptor(ScheduleDescriptor toCopy) {
+            setSchedule(toCopy.schedule);
+            setScheduleName(toCopy.scheduleName);
+            setLastModifiedDateTime(toCopy.lastModifiedDateTime);
+        }
+
+        public Schedule getSchedule() {
+            return this.schedule;
+        }
+
+        public void setSchedule(Schedule schedule) {
+            this.schedule = schedule;
+        }
+
+        public void setScheduleName(ScheduleName scheduleName) {
+            this.scheduleName = scheduleName;
+        }
+
+        public ScheduleName getScheduleName() {
+            return this.scheduleName;
+        }
+
+        public LastModifiedDateTime getLastModifiedDateTime() {
+            return this.lastModifiedDateTime;
+        }
+
+        public void setLastModifiedDateTime(LastModifiedDateTime lastModifiedDateTime) {
+            this.lastModifiedDateTime = lastModifiedDateTime;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof ScheduleDescriptor)) {
+                return false;
+            }
+
+            ScheduleDescriptor otherScheduleDescriptor = (ScheduleDescriptor) other;
+            return Objects.equals(schedule, otherScheduleDescriptor.schedule)
+                    && Objects.equals(scheduleName, otherScheduleDescriptor.scheduleName)
+                    && Objects.equals(lastModifiedDateTime, otherScheduleDescriptor.lastModifiedDateTime);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .add("schedule", schedule)
+                    .add("scheduleName", scheduleName)
+                    .add("last_modified", lastModifiedDateTime)
+                    .toString();
+        }
     }
 
 }

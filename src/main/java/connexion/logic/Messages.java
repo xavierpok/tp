@@ -45,6 +45,10 @@ public class Messages {
                 .append(person.getCompany())
                 .append("; Job: ")
                 .append(person.getJob())
+                .append(person.getSchedule().isPresent() ? "; Schedule: "
+                        + person.getSchedule().get().getListString() : "")
+                .append(person.getScheduleName().isPresent() ? "; Schedule Name: "
+                        + person.getScheduleName().get() : "")
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

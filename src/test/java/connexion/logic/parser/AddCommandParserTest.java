@@ -37,8 +37,7 @@ import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
-import static connexion.testutil.TypicalPersons.AMY;
-import static connexion.testutil.TypicalPersons.BOB;
+import static connexion.testutil.TypicalPersons.ANDY;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,21 +57,21 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+        Person expectedPerson = new PersonBuilder(ANDY).withTags(VALID_TAG_FRIEND)
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + COMPANY_DESC_BOB + JOB_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + COMPANY_DESC_AMY + JOB_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(ANDY).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB
-                        + JOB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + COMPANY_DESC_AMY
+                        + JOB_DESC_AMY + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -152,7 +151,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
+        Person expectedPerson = new PersonBuilder(ANDY).withTags().withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + COMPANY_DESC_AMY + JOB_DESC_AMY,
                         new AddCommand(expectedPerson));

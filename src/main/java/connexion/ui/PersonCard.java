@@ -3,6 +3,7 @@ package connexion.ui;
 import java.util.Comparator;
 
 import connexion.model.person.Person;
+import connexion.model.person.Schedule;
 import connexion.model.tag.Tag;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -66,9 +67,9 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().toString());
         markStatus.setText(person.getMarkStatus().toString());
         schedule.setText(person.getSchedule()
-                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
+                .map(Schedule::getListString).orElse(""));
         scheduleName.setText(person.getScheduleName()
-                .map(Object::toString).orElse(""));
+                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
