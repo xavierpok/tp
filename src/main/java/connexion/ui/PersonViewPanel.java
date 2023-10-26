@@ -66,7 +66,8 @@ public class PersonViewPanel extends UiPart<Region> {
         email.setText(person.getEmail().getDetailString());
         markStatus.setText(person.getMarkStatus().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(Tag::getValue));
+                .sorted(Comparator.comparing(Tag::getValue))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
         //schedule.setText(person.getSchedule().getDetailString());
         schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
         //note.setText(person.getNote.getDetailString());
