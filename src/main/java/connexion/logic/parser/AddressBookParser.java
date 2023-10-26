@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import connexion.commons.core.LogsCenter;
 import connexion.logic.commands.AddCommand;
 import connexion.logic.commands.ClearCommand;
+import connexion.logic.commands.ClearScheduleCommand;
 import connexion.logic.commands.Command;
 import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.EditCommand;
@@ -92,6 +93,9 @@ public class AddressBookParser implements ClockDependantParser<Command> {
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
 
+        case ClearScheduleCommand.COMMAND_WORD:
+            return new ClearScheduleCommandParser().withClock(clock).parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -115,7 +119,6 @@ public class AddressBookParser implements ClockDependantParser<Command> {
     /**
      * Parses {@code userInput} into a command and returns it. Same as parseCommand.
      *
-     * @param userInput
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override
