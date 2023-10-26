@@ -6,6 +6,7 @@ import static connexion.logic.commands.CommandTestUtil.SCHEDULE_BOB;
 import static connexion.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connexion.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connexion.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static connexion.testutil.PersonBuilder.DEFAULT_LAST_MODIFIED;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE_NAME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -40,16 +41,19 @@ public class ScheduleCommandTest {
         Person scheduledPerson = new PersonBuilder(model.getFilteredPersonList().get(0))
                 .withSchedule(DEFAULT_SCHEDULE)
                 .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
                 .build();
         ScheduleDescriptor descriptor = new ScheduleDescriptorBuilder()
                 .withSchedule(DEFAULT_SCHEDULE)
                 .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
                 .build();
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(ScheduleCommand.SCHEDULE_ADD_SUCCESS, Messages.format(scheduledPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        //expectedModel.setClock(model.getClock());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), scheduledPerson);
 
         assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
@@ -62,11 +66,13 @@ public class ScheduleCommandTest {
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person scheduledPerson = new PersonBuilder(personInFilteredList)
                 .withSchedule(DEFAULT_SCHEDULE)
-                .withScheduleName(DEFAULT_SCHEDULE_NAME).build();
+                .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED).build();
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON,
                 new ScheduleDescriptorBuilder()
                         .withSchedule(DEFAULT_SCHEDULE)
                         .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                        .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
                         .build());
 
         String expectedMessage = String.format(ScheduleCommand.SCHEDULE_ADD_SUCCESS, Messages.format(scheduledPerson));
