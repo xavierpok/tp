@@ -55,5 +55,6 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
 Email -[hidden]right-> Company
 
+ModelManager -[hidden]-> "~* filtered" Person
 ModelManager --> "~* filtered" Person
 @enduml
