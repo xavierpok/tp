@@ -67,6 +67,9 @@ public class UiManager implements Ui {
         mainWindow.fillContactInfo(p);
         personToDisplay = p;
     }
+    public static void updatePersonView() {
+        mainWindow.fillInnerParts();
+    }
 
     void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);

@@ -48,9 +48,6 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label note;
 
     @FXML
-    private Label scheduleHeader;
-
-    @FXML
     private Label schedule;
 
     /**
@@ -68,6 +65,8 @@ public class PersonViewPanel extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
+        lastModifiedDateTime.setText(
+                String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
         //schedule.setText(person.getSchedule().getDetailString());
         schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
         //note.setText(person.getNote.getDetailString());
