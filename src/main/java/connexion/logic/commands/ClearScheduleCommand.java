@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import connexion.commons.core.index.Index;
+import connexion.commons.util.ToStringBuilder;
 import connexion.logic.Messages;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.model.Model;
@@ -97,6 +98,29 @@ public class ClearScheduleCommand extends Command {
 
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ClearScheduleCommand)) {
+            return false;
+        }
+
+        ClearScheduleCommand otherCommand = (ClearScheduleCommand) other;
+        return index.equals(otherCommand.index) &&
+                clearedScheduleDescriptor.equals(otherCommand.clearedScheduleDescriptor);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("clearedScheduleDescriptor", clearedScheduleDescriptor)
+                .toString();
+    }
 
     /**
      * Creates a person from the clearedScheduleDescriptor that is a copy of personToClearSchedule,
@@ -136,5 +160,26 @@ public class ClearScheduleCommand extends Command {
         public LastModifiedDateTime getLastModifiedDateTime() {
             return lastModifiedDateTime;
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof ClearScheduleCommand.ClearedScheduleDescriptor)) {
+                return false;
+            }
+
+            ClearedScheduleDescriptor otherDescriptor = (ClearedScheduleDescriptor) other;
+            return this.lastModifiedDateTime.equals(otherDescriptor.lastModifiedDateTime);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this).add("lastmodified", lastModifiedDateTime).toString();
+        }
     }
+
 }
