@@ -40,7 +40,7 @@ public class ScheduleCommand extends Command {
             + "[" + PREFIX_SCHEDULE_NAME + "SCHEDULE NAME" + "] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SCHEDULE + "2023-12-27-08-00 "
-            + PREFIX_SCHEDULE_NAME + "Exam result release";
+            + PREFIX_SCHEDULE_NAME + "Morning Interview";
 
     public static final String SCHEDULE_ADD_SUCCESS = "Schedule added: %1$s";
     public static final String SCHEDULE_NOT_ADDED = "date must be provided.";
