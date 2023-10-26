@@ -36,8 +36,8 @@ class ClearScheduleCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
 
-        Person personToclear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person clearedPerson = new PersonBuilder(personToclear)
+        Person personToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person clearedPerson = new PersonBuilder(personToClear)
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
@@ -46,13 +46,69 @@ class ClearScheduleCommandTest {
                 DEFAULT_DESCRIPTOR);
 
         String expectedMessage = String.format(ClearScheduleCommand.MESSAGE_CLEAR_SCHEDULE_SUCCESS,
-                Messages.format(personToclear));
+                Messages.format(clearedPerson));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personToclear, clearedPerson);
+        expectedModel.setPerson(personToClear, clearedPerson);
 
 
         assertCommandSuccess(clearScheduleCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListOnlyName_success() {
+
+
+        Person personToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person onlyNameSchedulePerson = new PersonBuilder(personToClear)
+                .withSchedule("") //empty schedule
+                .withScheduleName("test")
+                .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .build();
+
+        Person clearedPerson = new PersonBuilder(personToClear)
+                .withSchedule("") //empty schedule
+                .withScheduleName("")
+                .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .build();
+        ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
+                DEFAULT_DESCRIPTOR);
+
+        String expectedMessage = String.format(ClearScheduleCommand.MESSAGE_CLEAR_NAME_WITHOUT_SCHEDULE_SUCCESS,
+                Messages.format(clearedPerson));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToClear, clearedPerson);
+
+        Model onlyNameModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        onlyNameModel.setPerson(personToClear, onlyNameSchedulePerson);
+
+
+        assertCommandSuccess(clearScheduleCommand, onlyNameModel, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_emptySchedule_failure() {
+
+
+        Person personToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person noSchedulePerson = new PersonBuilder(personToClear)
+                .withSchedule("") //empty schedule
+                .withScheduleName("")
+                .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .build();
+
+        ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
+                DEFAULT_DESCRIPTOR);
+
+        String expectedMessage = ClearScheduleCommand.MESSAGE_NO_SCHEDULE;
+
+
+        Model noScheduleModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        noScheduleModel.setPerson(personToClear, noSchedulePerson);
+
+
+        assertCommandFailure(clearScheduleCommand, noScheduleModel, expectedMessage);
     }
 
     @Test
@@ -68,8 +124,8 @@ class ClearScheduleCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
 
-        Person personToclear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person clearedPerson = new PersonBuilder(personToclear)
+        Person personToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person clearedPerson = new PersonBuilder(personToClear)
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
@@ -78,10 +134,10 @@ class ClearScheduleCommandTest {
                 DEFAULT_DESCRIPTOR);
 
         String expectedMessage = String.format(ClearScheduleCommand.MESSAGE_CLEAR_SCHEDULE_SUCCESS,
-                Messages.format(personToclear));
+                Messages.format(clearedPerson));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(personToclear, clearedPerson);
+        expectedModel.setPerson(personToClear, clearedPerson);
 
         assertCommandSuccess(clearScheduleCommand, model, expectedMessage, expectedModel);
     }

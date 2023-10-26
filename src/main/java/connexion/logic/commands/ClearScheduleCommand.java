@@ -35,9 +35,9 @@ public class ClearScheduleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) ";
     public static final String MESSAGE_CLEAR_SCHEDULE_SUCCESS = "Cleared : %1$s";
 
-    private static final String MESSAGE_NO_SCHEDULE = "No schedule was found for this person.";
+    public static final String MESSAGE_NO_SCHEDULE = "No schedule was found for this person.";
 
-    private static final String MESSAGE_CLEAR_NAME_WITHOUT_SCHEDULE_SUCCESS =
+    public static final String MESSAGE_CLEAR_NAME_WITHOUT_SCHEDULE_SUCCESS =
             "There was a name for a schedule for this person, but no schedule. The name alone has been cleared : %1$s";
 
 
@@ -91,9 +91,9 @@ public class ClearScheduleCommand extends Command {
             // A clause just-in-case for corner cases where there's no schedule but a name (for some reason).
             // Should not happen in normal operation.
             return new CommandResult(String.format(MESSAGE_CLEAR_NAME_WITHOUT_SCHEDULE_SUCCESS,
-                    Messages.format(personToClear)));
+                    Messages.format(clearedSchedulePerson)));
         } else {
-            return new CommandResult(String.format(MESSAGE_CLEAR_SCHEDULE_SUCCESS, Messages.format(personToClear)));
+            return new CommandResult(String.format(MESSAGE_CLEAR_SCHEDULE_SUCCESS, Messages.format(clearedSchedulePerson)));
         }
 
     }
