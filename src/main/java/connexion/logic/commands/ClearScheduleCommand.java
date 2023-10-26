@@ -110,8 +110,8 @@ public class ClearScheduleCommand extends Command {
         }
 
         ClearScheduleCommand otherCommand = (ClearScheduleCommand) other;
-        return index.equals(otherCommand.index) &&
-                clearedScheduleDescriptor.equals(otherCommand.clearedScheduleDescriptor);
+        return index.equals(otherCommand.index)
+                && clearedScheduleDescriptor.equals(otherCommand.clearedScheduleDescriptor);
     }
 
     @Override

@@ -1,29 +1,16 @@
 package connexion.logic.parser;
 
-import connexion.commons.core.index.Index;
-import connexion.logic.commands.ClearScheduleCommand;
-import connexion.logic.commands.DeleteCommand;
-import connexion.logic.commands.EditCommand;
-import connexion.logic.commands.EditCommand.EditPersonDescriptor;
-import connexion.logic.parser.exceptions.ParseException;
-import connexion.model.person.LastModifiedDateTime;
-import connexion.model.tag.Tag;
+
+import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
-import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
-import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
-import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
-import static java.util.Objects.requireNonNull;
+import connexion.commons.core.index.Index;
+import connexion.logic.commands.ClearScheduleCommand;
+import connexion.logic.parser.exceptions.ParseException;
+import connexion.model.person.LastModifiedDateTime;
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
