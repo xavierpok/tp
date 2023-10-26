@@ -2,13 +2,7 @@ package connexion.logic.commands;
 
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_AMY;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_LAST_MODIFIED_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,15 +41,11 @@ public class ScheduleDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        ScheduleDescriptor editPersonDescriptor = new ScheduleDescriptor();
-        String expected = ScheduleDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", phone="
-                + editPersonDescriptor.getPhone().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", company="
-                + editPersonDescriptor.getCompany().orElse(null) + ", job="
-                + editPersonDescriptor.getJob().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + ", last_modified="
-                + editPersonDescriptor.getLastModifiedDateTime().orElse(null) + "}";
-        assertEquals(expected, editPersonDescriptor.toString());
+        ScheduleDescriptor scheduleDescriptor = new ScheduleDescriptor(SCHEDULE_BOB);
+        String expected = ScheduleDescriptor.class.getCanonicalName() + "{schedule="
+                + scheduleDescriptor.getSchedule() + ", scheduleName="
+                + scheduleDescriptor.getScheduleName() + ", last_modified="
+                + scheduleDescriptor.getLastModifiedDateTime() + "}";
+        assertEquals(expected, scheduleDescriptor.toString());
     }
 }
