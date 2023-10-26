@@ -1,10 +1,7 @@
 package connexion.logic.parser;
 
-import connexion.logic.Messages;
-import connexion.logic.commands.ClearScheduleCommand;
-import connexion.logic.commands.DeleteCommand;
-import connexion.model.person.LastModifiedDateTime;
-import org.junit.jupiter.api.Test;
+
+
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -12,7 +9,12 @@ import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import connexion.logic.commands.ClearScheduleCommand;
+import connexion.model.person.LastModifiedDateTime;
+
 
 class ClearScheduleCommandParserTest {
 

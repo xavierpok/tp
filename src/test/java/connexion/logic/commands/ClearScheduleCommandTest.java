@@ -1,24 +1,10 @@
 package connexion.logic.commands;
 
-import connexion.commons.core.index.Index;
-import connexion.logic.Messages;
-import connexion.model.Model;
-import connexion.model.ModelManager;
-import connexion.model.UserPrefs;
-import connexion.model.person.LastModifiedDateTime;
-import connexion.model.person.Person;
-
-import connexion.testutil.PersonBuilder;
-import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
-
 import static connexion.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connexion.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connexion.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static connexion.testutil.ClockUtil.OTHER_TEST_TIME;
-import static connexion.testutil.PersonBuilder.DEFAULT_LAST_MODIFIED;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connexion.testutil.TypicalPersons.getTypicalAddressBook;
@@ -26,14 +12,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+import connexion.commons.core.index.Index;
+import connexion.logic.Messages;
+import connexion.model.Model;
+import connexion.model.ModelManager;
+import connexion.model.UserPrefs;
+import connexion.model.person.LastModifiedDateTime;
+import connexion.model.person.Person;
+import connexion.testutil.PersonBuilder;
+
+
+
 class ClearScheduleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    private ClearScheduleCommand.ClearedScheduleDescriptor DEFAULT_DESCRIPTOR =
+    private static final ClearScheduleCommand.ClearedScheduleDescriptor DEFAULT_DESCRIPTOR =
             new ClearScheduleCommand.ClearedScheduleDescriptor(new LastModifiedDateTime(DEFAULT_TEST_TIME));
-    private ClearScheduleCommand.ClearedScheduleDescriptor OTHER_DESCRIPTOR =
+    private static final ClearScheduleCommand.ClearedScheduleDescriptor OTHER_DESCRIPTOR =
             new ClearScheduleCommand.ClearedScheduleDescriptor(new LastModifiedDateTime(OTHER_TEST_TIME));
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void execute_validIndexUnfilteredList_success() {
 
@@ -128,10 +127,10 @@ class ClearScheduleCommandTest {
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        ClearScheduleCommand ClearScheduleCommand = new ClearScheduleCommand(index,DEFAULT_DESCRIPTOR);
-        String expected = ClearScheduleCommand.class.getCanonicalName() + "{index=" + index + ", " +
-                "clearedScheduleDescriptor=" + DEFAULT_DESCRIPTOR + "}";
-        assertEquals(expected, ClearScheduleCommand.toString());
+        ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(index, DEFAULT_DESCRIPTOR);
+        String expected = ClearScheduleCommand.class.getCanonicalName() + "{index=" + index + ", "
+                + "clearedScheduleDescriptor=" + DEFAULT_DESCRIPTOR + "}";
+        assertEquals(expected, clearScheduleCommand.toString());
     }
 
     /**
