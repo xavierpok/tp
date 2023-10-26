@@ -109,13 +109,13 @@ Expected output:
 
 `edit 1 n/John Sick p/87654321 t/` would display:
 ```
-Contact edited: John Sick, a Software Engineer from Google
-Changes :
+Contact edited: John Sick, a Software Engineer from Google 
+Changes : 
 Name : John Wick >>> John Sick
 Phone Number : 12345678 >>>  87654321
-Tags : #NUS Alumni #Met in Google Hackathon >>>
+Tags : #NUS Alumni #Met in Google Hackathon >>> 
 ```
-Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty.
+Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty. 
 I.e., the empty end-result of Tags is expected.
 
 ### Marking contacts of interest : `mark`

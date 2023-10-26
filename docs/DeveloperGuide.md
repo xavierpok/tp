@@ -181,11 +181,11 @@ The sequence diagram below shows the interaction between Logic and Model compone
 
 ![Interactions Inside the Logic and Model Components for the `filter c/Google` Command](images/FilterSequenceDiagram.png)
 
-The reason behind implementing the feature this way is that this feature is partly inspired
+The reason behind implementing the feature this way is that this feature is partly inspired 
 by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
-An ongoing discussion is to merge the separate predicates into one but it takes low precedence.
+An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
 
 ### LastModified (implemented by Xavier)
 Each `Person` has a last modified detailing when it was last modified.
@@ -205,7 +205,7 @@ Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to e
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
 Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
 
-Of note, this means that :
+Of note, this means that : 
 * `LastModifiedDateTime` will have its notion of "current" time set to some time during parsing
 * It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependantParsers` (including `AddressBookParser`)
 * `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
@@ -227,6 +227,32 @@ By using ScheduleDescriptor object, we are able to keep the same level of abstra
 
 An alternative is to create a ClearSchedule feature that clears the schedule and scheduleName, as the schedule feature can only
 write and override, but not remove.
+
+### Mark Feature (implemented by Angel)
+The user can mark contacts of interest through the Mark Command respectively.
+
+The `Mark` attribute has been added to the `Person` Model, and the boolean value of `markStatus` in the `Mark` Class is set to true via the method `mark()`.
+
+When the `MarkCommand` is executed, `markPerson()` is called to the model object with the person chosen by index from the displayed person list.
+
+When a new `person` is created via the `AddCommand`, the markStatus is set to false by default.
+
+If a contact has been marked, the UI will display "★" as the string representation for the `Mark` attribute, otherwise, it represents the attribute as "☆".
+
+The following sequence diagram shows how the mark operation works:
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+### Unmark Feature (implemented by Angel)
+The user can un-mark contacts of interest through the UnMark Command.
+
+The `Mark` attribute has been added to the `Person` Model, and the boolean value of `markStatus` in the `Mark` Class is set to false via the method `unmark()`.
+
+When a new `person` is created via the `AddCommand`, the markStatus is set to false by default.
+
+If a contact has been un-marked, the UI will display "☆" as the string representation for the `Mark` attribute.
+
+The following sequence diagram shows how the un-mark operation works:
+![UnMarkSequenceDiagram](images/UnMarkSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
