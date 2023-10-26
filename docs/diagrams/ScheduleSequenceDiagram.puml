@@ -39,7 +39,7 @@ activate ScheduleCommandParser
 
 
 create Person
-ScheduleCommandParser -> Person : scheduleAsField, scheduleNameAsField, LastModifiedDateTimeAsField
+ScheduleCommandParser -> Person : ScheduleAsField, ScheduleNameAsField, LastModifiedDateTimeAsField
 activate Person
 Person --> ScheduleCommandParser
 deactivate Person
