@@ -181,11 +181,11 @@ The sequence diagram below shows the interaction between Logic and Model compone
 
 ![Interactions Inside the Logic and Model Components for the `filter c/Google` Command](images/FilterSequenceDiagram.png)
 
-The reason behind implementing the feature this way is that this feature is partly inspired 
+The reason behind implementing the feature this way is that this feature is partly inspired
 by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
-An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
+An ongoing discussion is to merge the separate predicates into one but it takes low precedence.
 
 ### LastModified (implemented by Xavier)
 Each `Person` has a last modified detailing when it was last modified.
@@ -205,7 +205,7 @@ Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to e
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
 Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
 
-Of note, this means that : 
+Of note, this means that :
 * `LastModifiedDateTime` will have its notion of "current" time set to some time during parsing
 * It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependentParsers` (including `AddressBookParser`)
 * `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
