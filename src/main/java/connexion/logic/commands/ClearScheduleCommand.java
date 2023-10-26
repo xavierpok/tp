@@ -93,7 +93,8 @@ public class ClearScheduleCommand extends Command {
             return new CommandResult(String.format(MESSAGE_CLEAR_NAME_WITHOUT_SCHEDULE_SUCCESS,
                     Messages.format(clearedSchedulePerson)));
         } else {
-            return new CommandResult(String.format(MESSAGE_CLEAR_SCHEDULE_SUCCESS, Messages.format(clearedSchedulePerson)));
+            return new CommandResult(String.format(MESSAGE_CLEAR_SCHEDULE_SUCCESS,
+                    Messages.format(clearedSchedulePerson)));
         }
 
     }
