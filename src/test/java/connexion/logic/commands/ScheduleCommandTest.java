@@ -38,7 +38,7 @@ public class ScheduleCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_markedPerson_success() {
+    public void execute_allFieldsSpecifiedUnfilteredListMarkedPerson_success() {
         Person scheduledPerson = new PersonBuilder(model.getFilteredPersonList().get(6))
                 .withSchedule(DEFAULT_SCHEDULE)
                 .withScheduleName(DEFAULT_SCHEDULE_NAME)
