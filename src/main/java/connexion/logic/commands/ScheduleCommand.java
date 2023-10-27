@@ -99,7 +99,7 @@ public class ScheduleCommand extends Command {
         Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
         Person toReturn =  new Person(name, phone, email, company, job, tags,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
-        if (personToEditSchedule.getValue().getMarkStatus()) { // if the person was marked
+        if (personToEditSchedule.getMarkStatus().getValue()) { // if the person was marked
             toReturn.mark();
         } else { // if the person was unmarked
             toReturn.unMark();

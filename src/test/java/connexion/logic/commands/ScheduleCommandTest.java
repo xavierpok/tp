@@ -10,6 +10,7 @@ import static connexion.testutil.PersonBuilder.DEFAULT_LAST_MODIFIED;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE_NAME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static connexion.testutil.TypicalIndexes.INDEX_MARKED_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connexion.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,6 +36,30 @@ import connexion.testutil.ScheduleDescriptorBuilder;
 public class ScheduleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_markedPerson_success() {
+        Person scheduledPerson = new PersonBuilder(model.getFilteredPersonList().get(6))
+                .withSchedule(DEFAULT_SCHEDULE)
+                .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
+                .withMarkStatus(true)
+                .build();
+        ScheduleDescriptor descriptor = new ScheduleDescriptorBuilder()
+                .withSchedule(DEFAULT_SCHEDULE)
+                .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
+                .build();
+        ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_MARKED_PERSON, descriptor);
+
+        String expectedMessage = String.format(ScheduleCommand.SCHEDULE_ADD_SUCCESS, Messages.format(scheduledPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        //expectedModel.setClock(model.getClock());
+        expectedModel.setPerson(model.getFilteredPersonList().get(6), scheduledPerson);
+
+        assertCommandSuccess(scheduleCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

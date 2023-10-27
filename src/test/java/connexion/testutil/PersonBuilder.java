@@ -58,6 +58,7 @@ public class PersonBuilder {
         scheduleName = Optional.empty();
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
+        markStatus = new Mark(false);
     }
 
     /**
@@ -72,6 +73,7 @@ public class PersonBuilder {
         schedule = personToCopy.getSchedule();
         scheduleName = personToCopy.getScheduleName();
         tags = new HashSet<>(personToCopy.getTags());
+        markStatus = personToCopy.getMarkStatus();
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
     }
 
@@ -158,8 +160,13 @@ public class PersonBuilder {
      * @return a Person object with the relevant information.
      */
     public Person build() {
-        return new Person(name, phone, email, company, job,
+        Person newPerson = new Person(name, phone, email, company, job,
                 tags, schedule, scheduleName, lastModifiedDateTime);
+        if (markStatus.getValue()) {
+            newPerson.mark();
+        }
+        return newPerson;
+
     }
 
     /**
