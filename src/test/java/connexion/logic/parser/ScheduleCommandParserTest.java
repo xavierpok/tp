@@ -2,6 +2,7 @@ package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.commands.CommandTestUtil.AUTO_GIVEN_SCHEDULE_NAME;
+import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DATE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DESC;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_NAME_DESC;
 import static connexion.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -76,6 +77,8 @@ public class ScheduleCommandParserTest {
         // valid schedule name but invalid schedule
         assertParseFailure(parser, "1" + INVALID_SCHEDULE_DESC + SCHEDULE_NAME_DESC_AMY,
                 Schedule.MESSAGE_CONSTRAINTS); // invalid schedule
+        assertParseFailure(parser, "1" + INVALID_SCHEDULE_DATE + SCHEDULE_NAME_DESC_AMY,
+                Schedule.MESSAGE_CONSTRAINTS);
     }
 
     @Test
