@@ -41,6 +41,7 @@ class ClearScheduleCommandTest {
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
                 DEFAULT_DESCRIPTOR);
@@ -56,6 +57,31 @@ class ClearScheduleCommandTest {
     }
 
     @Test
+    public void execute_validIndexUnfilteredListSecondPerson_success() {
+        // execute with a different set of values to ensure values are copied over right
+
+        Person personToClear = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person clearedPerson = new PersonBuilder(personToClear)
+                .withSchedule("") //empty schedule
+                .withScheduleName("")
+                .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
+                .build();
+        ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_SECOND_PERSON,
+                DEFAULT_DESCRIPTOR);
+
+        String expectedMessage = String.format(ClearScheduleCommand.MESSAGE_CLEAR_SCHEDULE_SUCCESS,
+                Messages.format(clearedPerson));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToClear, clearedPerson);
+
+
+        assertCommandSuccess(clearScheduleCommand, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
     public void execute_validIndexUnfilteredListOnlyName_success() {
 
 
@@ -64,12 +90,14 @@ class ClearScheduleCommandTest {
                 .withSchedule("") //empty schedule
                 .withScheduleName("test")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
 
         Person clearedPerson = new PersonBuilder(personToClear)
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
                 DEFAULT_DESCRIPTOR);
@@ -101,6 +129,7 @@ class ClearScheduleCommandTest {
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
                 DEFAULT_DESCRIPTOR);
@@ -127,6 +156,7 @@ class ClearScheduleCommandTest {
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
 
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
@@ -152,7 +182,7 @@ class ClearScheduleCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
 
         Person personToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -160,6 +190,7 @@ class ClearScheduleCommandTest {
                 .withSchedule("") //empty schedule
                 .withScheduleName("")
                 .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .withMarkStatus(personToClear.getMarkStatus().getValue())
                 .build();
         ClearScheduleCommand clearScheduleCommand = new ClearScheduleCommand(INDEX_FIRST_PERSON,
                 DEFAULT_DESCRIPTOR);

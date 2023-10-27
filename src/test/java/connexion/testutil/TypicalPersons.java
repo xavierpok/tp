@@ -39,6 +39,7 @@ public class TypicalPersons {
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withSchedule(DEFAULT_SCHEDULE)
             .withScheduleName(DEFAULT_SCHEDULE_NAME)
+            .withMarkStatus(true)
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withCompany("Mandai Wildlife Group").withJob("Software Engineer")
@@ -47,6 +48,7 @@ public class TypicalPersons {
             .withSchedule("2024-01-27-07-00")
             .withScheduleName("Teams Interview")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
+            .withMarkStatus(false)
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
