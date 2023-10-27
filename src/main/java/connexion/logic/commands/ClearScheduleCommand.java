@@ -145,8 +145,14 @@ public class ClearScheduleCommand extends Command {
         // Like the other fields.
         Optional<Schedule> updatedSchedule = Optional.empty();
         Optional<ScheduleName> updatedScheduleName = Optional.empty();
-        return new Person(name, phone, email, company, job, tags,
+        Person toReturn = new Person(name, phone, email, company, job, tags,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+        if (personToClearSchedule.getMarkStatus().getValue()) {
+            toReturn.mark();
+        } else {
+            toReturn.unMark();
+        }
+        return toReturn;
     }
 
     /**
