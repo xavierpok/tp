@@ -8,6 +8,7 @@ import static connexion.testutil.TypicalPersons.CARL;
 import static connexion.testutil.TypicalPersons.DANIEL;
 import static connexion.testutil.TypicalPersons.ELLE;
 import static connexion.testutil.TypicalPersons.FIONA;
+import static connexion.testutil.TypicalPersons.GEORGE;
 import static connexion.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,8 +24,10 @@ import connexion.model.ModelManager;
 import connexion.model.UserPrefs;
 import connexion.model.person.CompanyContainsKeywordsPredicate;
 import connexion.model.person.EmailContainsKeywordsPredicate;
+import connexion.model.person.IsMarkedPredicate;
 import connexion.model.person.JobContainsKeywordsPredicate;
 import connexion.model.person.NameContainsKeywordsPredicate;
+import connexion.model.person.NotMarkedPredicate;
 import connexion.model.person.PhoneContainsKeywordsPredicate;
 import connexion.model.tag.TagContainsKeywordsPredicate;
 
@@ -163,6 +166,26 @@ public class FilterCommandTest {
     }
 
     @Test
+    public void execute_markedUnmarked_personsFound() {
+        // Inside expectedModel, 2 persons are marked, 5 persons are not marked
+        // BENSON, CARL are marked, others are not marked
+        String expectedMessageMarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessageUnmarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+
+        IsMarkedPredicate markedPredicate = new IsMarkedPredicate();
+        FilterCommand command = new FilterCommand(markedPredicate);
+        expectedModel.updateFilteredPersonList(markedPredicate);
+        assertCommandSuccess(command, model, expectedMessageMarked, expectedModel);
+        assertEquals(Arrays.asList(BENSON, CARL), model.getFilteredPersonList());
+
+        NotMarkedPredicate notMarkedPredicate = new NotMarkedPredicate();
+        command = new FilterCommand(notMarkedPredicate);
+        expectedModel.updateFilteredPersonList(notMarkedPredicate);
+        assertCommandSuccess(command, model, expectedMessageUnmarked, expectedModel);
+        assertEquals(Arrays.asList(ALICE, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
     public void toStringMethod() {
         NameContainsKeywordsPredicate namePredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
@@ -176,6 +199,10 @@ public class FilterCommandTest {
                 new JobContainsKeywordsPredicate(Arrays.asList("keyword"));
         TagContainsKeywordsPredicate tagPredicate =
                 new TagContainsKeywordsPredicate(Arrays.asList("keyword"));
+        IsMarkedPredicate markedPredicate =
+                new IsMarkedPredicate();
+        NotMarkedPredicate notMarkedPredicate =
+                new NotMarkedPredicate();
 
         // Check for name
         FilterCommand filterCommand = new FilterCommand(namePredicate);
@@ -205,6 +232,16 @@ public class FilterCommandTest {
         // Check for tag
         filterCommand = new FilterCommand(tagPredicate);
         expected = FilterCommand.class.getCanonicalName() + "{predicate=" + tagPredicate + "}";
+        assertEquals(expected, filterCommand.toString());
+
+        // Check for mark
+        filterCommand = new FilterCommand(markedPredicate);
+        expected = FilterCommand.class.getCanonicalName() + "{predicate=" + markedPredicate + "}";
+        assertEquals(expected, filterCommand.toString());
+
+        // Check for unmark
+        filterCommand = new FilterCommand(notMarkedPredicate);
+        expected = FilterCommand.class.getCanonicalName() + "{predicate=" + notMarkedPredicate + "}";
         assertEquals(expected, filterCommand.toString());
     }
 
@@ -248,5 +285,19 @@ public class FilterCommandTest {
      */
     private TagContainsKeywordsPredicate prepareTagPredicate(String userInput) {
         return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Creates a {@code IsMarkedPredicate}.
+     */
+    private IsMarkedPredicate prepareMarkPredicate() {
+        return new IsMarkedPredicate();
+    }
+
+    /**
+     * Creates a {@code NotMarkedPredicate}.
+     */
+    private NotMarkedPredicate prepareUnMarkPredicate() {
+        return new NotMarkedPredicate();
     }
 }
