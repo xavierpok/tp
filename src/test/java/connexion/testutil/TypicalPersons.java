@@ -38,12 +38,12 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
-            .build();
+            .buildMarked();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
             .withCompany("Grab").withJob("AI Engineer")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
-            .build();
+            .buildMarked();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withCompany("Uber").withJob("Data Analyst")
