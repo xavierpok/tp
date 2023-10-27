@@ -10,4 +10,16 @@ public class NotMarkedPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return !person.getMarkStatus().getValue();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof NotMarkedPredicate)) {
+            return false;
+        }
+        return true;
+    }
 }
