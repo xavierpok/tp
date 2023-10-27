@@ -33,6 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_SCHEDULE = "2023-12-10-10-08";
     public static final String DEFAULT_SCHEDULE_NAME = "Seminar";
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
+    public static final boolean DEFAULT_MARK_STATUS = false;
 
     private Name name;
     private Phone phone;
@@ -58,7 +59,7 @@ public class PersonBuilder {
         scheduleName = Optional.empty();
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
-        markStatus = new Mark(false);
+        markStatus = new Mark(DEFAULT_MARK_STATUS);
     }
 
     /**
