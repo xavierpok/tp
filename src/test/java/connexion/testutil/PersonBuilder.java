@@ -30,7 +30,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
-
+    public static final boolean DEFAULT_MARK_STATUS = false;
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
 
     private Name name;
@@ -53,6 +53,7 @@ public class PersonBuilder {
         job = new Job(DEFAULT_JOB);
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
+        markStatus = new Mark(DEFAULT_MARK_STATUS);
     }
 
     /**
@@ -66,6 +67,7 @@ public class PersonBuilder {
         job = personToCopy.getJob();
         tags = new HashSet<>(personToCopy.getTags());
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
+        markStatus = personToCopy.getMarkStatus();
     }
 
     /**
@@ -129,10 +131,12 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code markStatus} of the {@code Person} that we are building.
+     * Builds the {@code Person} then mark it.
+     * @return Person.
      */
-    public PersonBuilder withMarkStatus(boolean b) {
-        this.markStatus = new Mark(b);
-        return this;
+    public Person buildMarked() {
+        Person person = new Person(name, phone, email, company, job, tags, lastModifiedDateTime);
+        person.mark();
+        return person;
     }
 }
