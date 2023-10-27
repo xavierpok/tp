@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_JOB = new Prefix("j/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_MARK = new Prefix("m/");
+    public static final Prefix PREFIX_UNMARK = new Prefix("u/");
 }
