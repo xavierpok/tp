@@ -79,6 +79,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SCHEDULE
             + "2023/07/10/06/59"; // '/' not allowed for schedule
+    public static final String INVALID_SCHEDULE_DATE = " " + PREFIX_SCHEDULE
+            + "2023-40-10-06-59"; // correct format but wrong date (month field is wrong)
     public static final String INVALID_SCHEDULE_NAME_DESC = " "
             + PREFIX_SCHEDULE_NAME + "Meeting*"; // '*' not allowed in schedule names
 

@@ -34,9 +34,20 @@ public class ScheduleTest {
         assertFalse(Schedule.isValidScheduleTime(" ")); // spaces only
         assertFalse(Schedule.isValidScheduleTime("^")); // only non-alphanumeric characters
         assertFalse(Schedule.isValidScheduleTime("peter*")); // contains non-alphanumeric characters
+        assertFalse(Schedule.isValidScheduleTime("2023-40-10-10-10")); // 40 for month field
+        assertFalse(Schedule.isValidScheduleTime("2023-10-40-10-10")); // 40 for day field
+        assertFalse(Schedule.isValidScheduleTime("2023-10-10-100-10")); // 100 for hour field
+        assertFalse(Schedule.isValidScheduleTime("2023-10-10-10-100")); // 100 for minute field
+        assertFalse(Schedule.isValidScheduleTime("2023-10-10-10-10-10")); // excess fields
+        assertFalse(Schedule.isValidScheduleTime("2023-09-31-10-10-10")); // September 2023 had only 30 days
+        assertFalse(Schedule.isValidScheduleTime("2023-02-29-10-10-10")); // Feb 2023 had 28 days
+        assertFalse(Schedule.isValidScheduleTime("2020-02-30-10-10-10")); // Feb 2020 was a leap year -- 29 days
 
         // valid schedule
         assertTrue(Schedule.isValidScheduleTime("2023-05-06-12-45")); // YYYY-MM-DD-HH-MM format only
+        assertFalse(Schedule.isValidScheduleTime("2023-02-28-10-10-10")); // Feb 2023 had 28 days
+        assertFalse(Schedule.isValidScheduleTime("2020-02-29-10-10-10")); // Feb 2020 was a leap year -- 29 days
+
     }
 
     @Test
