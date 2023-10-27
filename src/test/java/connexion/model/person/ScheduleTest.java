@@ -41,10 +41,13 @@ public class ScheduleTest {
         assertFalse(Schedule.isValidScheduleTime("2023-10-10-10-10-10")); // excess fields
         assertFalse(Schedule.isValidScheduleTime("2023-09-31-10-10-10")); // September 2023 had only 30 days
         assertFalse(Schedule.isValidScheduleTime("2023-02-29-10-10-10")); // Feb 2023 had 28 days
+        assertFalse(Schedule.isValidScheduleTime("2020-02-30-10-10-10")); // Feb 2020 was a leap year -- 29 days
 
         // valid schedule
         assertTrue(Schedule.isValidScheduleTime("2023-05-06-12-45")); // YYYY-MM-DD-HH-MM format only
         assertFalse(Schedule.isValidScheduleTime("2023-02-28-10-10-10")); // Feb 2023 had 28 days
+        assertFalse(Schedule.isValidScheduleTime("2020-02-29-10-10-10")); // Feb 2020 was a leap year -- 29 days
+
     }
 
     @Test
