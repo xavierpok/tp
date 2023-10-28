@@ -74,6 +74,6 @@ public class Company implements PersonListDetailField<String> {
 
     @Override
     public String getDetailString() {
-        return value;
+        return "Company: " + value;
     }
 }

@@ -30,12 +30,12 @@ public class NotMarkedPredicateTest {
     @Test
     public void test_personNotMarked_returnsTrue() {
         NotMarkedPredicate predicate = new NotMarkedPredicate();
-        assertTrue(predicate.test(new PersonBuilder().build()));
+        assertTrue(predicate.test(new PersonBuilder().withMark(false).build()));
     }
 
     @Test
     public void test_personIsMarked_returnsFalse() {
         NotMarkedPredicate predicate = new NotMarkedPredicate();
-        assertFalse(predicate.test(new PersonBuilder().buildMarked()));
+        assertFalse(predicate.test(new PersonBuilder().withMark(true).build()));
     }
 }

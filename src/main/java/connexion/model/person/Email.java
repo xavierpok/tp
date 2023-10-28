@@ -78,7 +78,7 @@ public class Email implements PersonDetailField<String> {
 
     @Override
     public String getDetailString() {
-        return value;
+        return "Email: " + value;
     }
 
     @Override

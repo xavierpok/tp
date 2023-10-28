@@ -26,6 +26,7 @@ import connexion.model.person.Company;
 import connexion.model.person.Email;
 import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
+import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
@@ -89,6 +90,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //UiManager.updatePersonView(editedPerson); //displays edit person onto the default view
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -104,6 +106,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
+        Mark updatedMark = editPersonDescriptor.getMarkStatus().orElse(personToEdit.getMarkStatus());;
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         LastModifiedDateTime updatedLastModifiedDateTime =
                 editPersonDescriptor.getLastModifiedDateTime()
@@ -113,7 +116,7 @@ public class EditCommand extends Command {
         // And to move responsibility for updating this field to the parser,
         // Like the other fields.
         return new Person(updatedName, updatedPhone,
-                updatedEmail, updatedCompany, updatedJob,
+                updatedEmail, updatedCompany, updatedJob, updatedMark,
                 updatedTags, updatedLastModifiedDateTime);
     }
 
@@ -151,6 +154,7 @@ public class EditCommand extends Command {
         private Email email;
         private Company company;
         private Job job;
+        private Mark markStatus;
         private Set<Tag> tags;
 
         private LastModifiedDateTime lastModifiedDateTime;
@@ -167,6 +171,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setCompany(toCopy.company);
             setJob(toCopy.job);
+            setMarkStatus(toCopy.markStatus);
             setTags(toCopy.tags);
             setLastModifiedDateTime(toCopy.lastModifiedDateTime);
         }
@@ -216,6 +221,14 @@ public class EditCommand extends Command {
 
         public Optional<Job> getJob() {
             return Optional.ofNullable(job);
+        }
+
+        public void setMarkStatus(Mark markStatus) {
+            this.markStatus = markStatus;
+        }
+
+        public Optional<Mark> getMarkStatus() {
+            return Optional.ofNullable(markStatus);
         }
 
         /**
@@ -268,6 +281,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(company, otherEditPersonDescriptor.company)
                     && Objects.equals(job, otherEditPersonDescriptor.job)
+                    && Objects.equals(markStatus, otherEditPersonDescriptor.markStatus)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(lastModifiedDateTime, otherEditPersonDescriptor.lastModifiedDateTime);
         }
@@ -280,6 +294,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("company", company)
                     .add("job", job)
+                    .add("mark", markStatus)
                     .add("tags", tags)
                     .add("last_modified", lastModifiedDateTime)
                     .toString();

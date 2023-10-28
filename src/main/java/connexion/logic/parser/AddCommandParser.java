@@ -19,6 +19,7 @@ import connexion.model.person.Company;
 import connexion.model.person.Email;
 import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
+import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
@@ -27,7 +28,7 @@ import connexion.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements ClockDependantParser<AddCommand> {
+public class AddCommandParser implements ClockDependentParser<AddCommand> {
 
     private Clock clock = Clock.systemDefaultZone();
 
@@ -52,9 +53,10 @@ public class AddCommandParser implements ClockDependantParser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Job job = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get());
+        Mark markStatus = new Mark(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         LastModifiedDateTime lastModifiedDateTime = new LastModifiedDateTime(LocalDateTime.now(clock));
-        Person person = new Person(name, phone, email, company, job, tagList, lastModifiedDateTime);
+        Person person = new Person(name, phone, email, company, job, markStatus, tagList, lastModifiedDateTime);
 
         return new AddCommand(person);
     }

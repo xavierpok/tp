@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import connexion.logic.commands.AddCommand;
 import connexion.logic.commands.ClearCommand;
 import connexion.logic.commands.DeleteCommand;
+import connexion.logic.commands.DetailCommand;
 import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.EditCommand.EditPersonDescriptor;
 import connexion.logic.commands.ExitCommand;
@@ -53,6 +54,13 @@ public class AddressBookParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_detail() throws Exception {
+        DetailCommand command = (DetailCommand) parser.parseCommand(
+                DetailCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DetailCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

@@ -29,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
+    public static final boolean DEFAULT_MARK = false;
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
     public static final boolean DEFAULT_MARK_STATUS = false;
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
@@ -51,6 +52,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         company = new Company(DEFAULT_COMPANY);
         job = new Job(DEFAULT_JOB);
+        markStatus = new Mark(DEFAULT_MARK);
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
         markStatus = new Mark(DEFAULT_MARK_STATUS);
@@ -65,6 +67,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         company = personToCopy.getCompany();
         job = personToCopy.getJob();
+        markStatus = personToCopy.getMarkStatus();
         tags = new HashSet<>(personToCopy.getTags());
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
         markStatus = personToCopy.getMarkStatus();
@@ -119,6 +122,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code markStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMark(boolean b) {
+        this.markStatus = new Mark(b);
+        return this;
+    }
+
+    /**
      * Sets the {@code LastModifiedDateTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
@@ -127,16 +138,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, company, job, tags, lastModifiedDateTime);
-    }
-
-    /**
-     * Builds the {@code Person} then mark it.
-     * @return Person.
-     */
-    public Person buildMarked() {
-        Person person = new Person(name, phone, email, company, job, tags, lastModifiedDateTime);
-        person.mark();
-        return person;
+        return new Person(name, phone, email, company, job, markStatus, tags, lastModifiedDateTime);
     }
 }

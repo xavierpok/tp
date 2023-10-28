@@ -169,20 +169,20 @@ public class FilterCommandTest {
     public void execute_markedUnmarked_personsFound() {
         // Inside expectedModel, 2 persons are marked, 5 persons are not marked
         // BENSON, CARL are marked, others are not marked
-        String expectedMessageMarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        String expectedMessageUnmarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+        String expectedMessageMarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessageUnmarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
 
         IsMarkedPredicate markedPredicate = new IsMarkedPredicate();
         FilterCommand command = new FilterCommand(markedPredicate);
         expectedModel.updateFilteredPersonList(markedPredicate);
         assertCommandSuccess(command, model, expectedMessageMarked, expectedModel);
-        assertEquals(Arrays.asList(BENSON, CARL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON, CARL, GEORGE), model.getFilteredPersonList());
 
         NotMarkedPredicate notMarkedPredicate = new NotMarkedPredicate();
         command = new FilterCommand(notMarkedPredicate);
         expectedModel.updateFilteredPersonList(notMarkedPredicate);
         assertCommandSuccess(command, model, expectedMessageUnmarked, expectedModel);
-        assertEquals(Arrays.asList(ALICE, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, DANIEL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
