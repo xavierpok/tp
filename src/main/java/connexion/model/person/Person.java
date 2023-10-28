@@ -27,13 +27,14 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Mark markStatus;
     private final LastModifiedDateTime lastModifiedDateTime;
+    private final Note note;
 
     /**
      * Every field must be present and not null
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Mark markStatus, Set<Tag> tags,
-                  LastModifiedDateTime lastModifiedDateTime) {
-        requireAllNonNull(name, phone, email, company, job, tags);
+                  LastModifiedDateTime lastModifiedDateTime, Note note) {
+        requireAllNonNull(name, phone, email, company, job, tags, markStatus, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +43,7 @@ public class Person {
         this.markStatus = markStatus;
         this.tags.addAll(tags);
         this.lastModifiedDateTime = lastModifiedDateTime;
+        this.note = note;
     }
 
     public Name getName() {
@@ -69,6 +71,10 @@ public class Person {
 
     public LastModifiedDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -129,13 +135,14 @@ public class Person {
                 && job.equals(otherPerson.job)
                 && tags.equals(otherPerson.tags)
                 && markStatus.equals(otherPerson.markStatus)
-                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
+                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime)
+                && note.equals(otherPerson.note);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, company, job, tags);
+        return Objects.hash(name, phone, email, company, job, markStatus, tags, note);
     }
 
     @Override
@@ -147,7 +154,9 @@ public class Person {
                 .add("company", company)
                 .add("job", job)
                 .add("tags", tags)
+                .add("markStatus", markStatus)
                 .add("last-modified", lastModifiedDateTime)
+                .add("note", note)
                 .toString();
     }
 
