@@ -167,8 +167,8 @@ public class FilterCommandTest {
 
     @Test
     public void execute_markedUnmarked_personsFound() {
-        // Inside expectedModel, 2 persons are marked, 5 persons are not marked
-        // BENSON, CARL are marked, others are not marked
+        // Inside expectedModel, 3 persons are marked, 4 persons are not marked
+        // BENSON, CARL, GEORGE are marked, others are not marked
         String expectedMessageMarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         String expectedMessageUnmarked = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
 
