@@ -63,7 +63,7 @@ public class PhoneTest {
     @Test
     void getDetailString_equals_input() {
         Phone phone = new Phone("999");
-        assertEquals(phone.getDetailString(), "999");
+        assertEquals(phone.getDetailString(), "Phone: 999");
         assertNotEquals(phone.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 

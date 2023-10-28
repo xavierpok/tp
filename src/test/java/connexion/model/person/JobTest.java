@@ -59,7 +59,7 @@ public class JobTest {
     @Test
     void getDetailString_equals_input() {
         Job job = new Job("Valid Job");
-        assertEquals(job.getDetailString(), "Valid Job");
+        assertEquals(job.getDetailString(), "Job: Valid Job");
         assertNotEquals(job.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 

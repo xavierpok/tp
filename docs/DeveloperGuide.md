@@ -124,7 +124,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-* All `XYZCommandParser` classes that further need to be aware of the current time (i.e. `AddCommandParser` & `EditCommandParser`) further inherit from the `ClockDependantParser` interface.
+* All `XYZCommandParser` classes that further need to be aware of the current time (i.e. `AddCommandParser` & `EditCommandParser`) further inherit from the `ClockDependentParser` interface.
 * Any command that needs to be aware of the current time takes the current time during parsing. (I.e. `add` & `edit`)
 
 ### Model component
@@ -181,11 +181,11 @@ The sequence diagram below shows the interaction between Logic and Model compone
 
 ![Interactions Inside the Logic and Model Components for the `filter c/Google` Command](images/FilterSequenceDiagram.png)
 
-The reason behind implementing the feature this way is that this feature is partly inspired 
+The reason behind implementing the feature this way is that this feature is partly inspired
 by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
-An ongoing discussion is to merge the separate predicates into one but it takes low precedence. 
+An ongoing discussion is to merge the separate predicates into one but it takes low precedence.
 
 ### LastModified (implemented by Xavier)
 Each `Person` has a last modified detailing when it was last modified.
@@ -196,18 +196,18 @@ The `Model` has a `Clock` object (as described in the [Java time API](https://do
 the current system time on instantiation. The methods `setClock` and `getClock` are exposed to modify the clock used, for testing or for extension.
 
 The `Logic` object reads the `Model`'s clock to reference what clock operations should use, and instantiates a version of `AddressBookParser` that uses that clock via chained method `withClock`.
-The new `AddressBookParser` then further passes the clock via method chaining to any `ClockDependantParser`s, or ignores the clock for commands that do not need to care about the clock.
+The new `AddressBookParser` then further passes the clock via method chaining to any `ClockDependentParser`s, or ignores the clock for commands that do not need to care about the clock.
 
-Currently, the only `ClockDependantParser`s are `AddCommandParser` and `EditCommandParser`.
+Currently, the only `ClockDependentParser`s are `AddCommandParser` and `EditCommandParser`.
 
 Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to extract the correct `LocalDateTime` object as needed.
 
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
 Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
 
-Of note, this means that : 
+Of note, this means that :
 * `LastModifiedDateTime` will have its notion of "current" time set to some time during parsing
-* It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependantParsers` (including `AddressBookParser`)
+* It is possible to inject `Clock` objects for testing/extension into the following objects : `Logic`, `Model`, all `ClockDependentParsers` (including `AddressBookParser`)
 * `LastModifiedDateTime`s that vary by milliseconds will evaluate to be the same object
 
 ### Schedule feature (implemented by Geoff)

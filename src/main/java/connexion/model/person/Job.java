@@ -64,7 +64,7 @@ public class Job implements PersonListDetailField<String> {
 
     @Override
     public String getDetailString() {
-        return value;
+        return "Job: " + value;
     }
 
     @Override

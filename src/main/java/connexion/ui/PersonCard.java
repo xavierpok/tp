@@ -46,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label schedule;
+    @FXML
     private Label lastModifiedDateTime;
 
     /**
@@ -56,16 +58,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().getListString());
-        phone.setText(person.getPhone().toString());
         company.setText(person.getCompany().getListString());
         job.setText(person.getJob().getListString());
-        email.setText(person.getEmail().toString());
         markStatus.setText(person.getMarkStatus().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
-        lastModifiedDateTime.setText(
-                String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
+        //schedule.setText(person.getSchedule.getDetailString());
+        schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
 
     }
 }
