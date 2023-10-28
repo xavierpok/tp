@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
-        Mark updatedMark = editPersonDescriptor.getMarkStatus().orElse(personToEdit.getMarkStatus());;
+        Mark updatedMark = editPersonDescriptor.getMarkStatus().orElse(personToEdit.getMarkStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         LastModifiedDateTime updatedLastModifiedDateTime =
                 editPersonDescriptor.getLastModifiedDateTime()
