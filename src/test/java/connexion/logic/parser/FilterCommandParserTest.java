@@ -94,7 +94,7 @@ public class FilterCommandParserTest {
                 new FilterCommand(new IsMarkedPredicate());
         assertParseSuccess(parser, "m/", expectedFilterCommand);
 
-        // multiple keywords, whitespaces for mark
+        // multiple keywords, whitespaces for mark, keywords will be discarded
         assertParseSuccess(parser, "m/ AB \n\t CD", expectedFilterCommand);
 
         // no keywords for unmark
@@ -102,7 +102,7 @@ public class FilterCommandParserTest {
                 new FilterCommand(new NotMarkedPredicate());
         assertParseSuccess(parser, "u/", expectedFilterCommand);
 
-        // multiple keywords, whitespaces for unmark
+        // multiple keywords, whitespaces for unmark, keywords will be discarded
         assertParseSuccess(parser, "u/ AB \n\t CD", expectedFilterCommand);
     }
 
