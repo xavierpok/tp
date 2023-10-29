@@ -172,6 +172,7 @@ public class PersonBuilder {
      * @return a Person object with the relevant information.
      */
     public Person build() {
-        return new Person(name, phone, email, company, job, markStatus, tags, lastModifiedDateTime);
+        return new Person(name, phone, email, company, job, markStatus,
+                tags, schedule, scheduleName, lastModifiedDateTime);
     }
 }

@@ -43,7 +43,7 @@ public class ScheduleCommandTest {
                 .withSchedule(DEFAULT_SCHEDULE)
                 .withScheduleName(DEFAULT_SCHEDULE_NAME)
                 .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED)
-                .withMarkStatus(true)
+                .withMark(true)
                 .build();
         ScheduleDescriptor descriptor = new ScheduleDescriptorBuilder()
                 .withSchedule(DEFAULT_SCHEDULE)
