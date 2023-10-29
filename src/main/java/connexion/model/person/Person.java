@@ -190,7 +190,6 @@ public class Person {
                 .add("company", company)
                 .add("job", job)
                 .add("tags", tags)
-                .add("markStatus", markStatus)
                 .add("last-modified", lastModifiedDateTime)
                 .add("schedule", schedule)
                 .add("scheduleName", scheduleName)
