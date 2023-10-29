@@ -120,8 +120,8 @@ public class EditCommand extends Command {
         Optional<Schedule> schedule = personToEdit.getSchedule();
         Optional<ScheduleName> scheduleName = personToEdit.getScheduleName();
         return new Person(updatedName, updatedPhone,
-                updatedEmail, updatedCompany, updatedJob, updatedMark,
-                updatedTags, schedule, scheduleName, updatedLastModifiedDateTime);
+                updatedEmail, updatedCompany, updatedJob, updatedTags,
+                updatedMark, schedule, scheduleName, updatedLastModifiedDateTime);
     }
 
     @Override

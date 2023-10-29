@@ -189,7 +189,7 @@ class JsonAdaptedPerson {
 
         Person newPerson = new Person(
                 modelName, modelPhone, modelEmail, modelCompany,
-                modelJob, markStatus, modelTags, modelSchedule, modelScheduleName, lastModified);
+                modelJob, modelTags, markStatus, modelSchedule, modelScheduleName, lastModified);
 
         return newPerson;
     }

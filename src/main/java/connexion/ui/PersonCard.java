@@ -48,8 +48,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label schedule;
-    @FXML
-    private Label schedule;
+
     @FXML
     private Label scheduleName;
     @FXML

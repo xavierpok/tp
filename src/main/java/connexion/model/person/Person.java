@@ -52,7 +52,7 @@ public class Person {
      * Constructor to add or edit schedule and scheduleName.
      */
     public Person(Name name, Phone phone, Email email, Company company,
-                  Job job, Set<Tag> tags, Optional<Schedule> schedule, Optional<ScheduleName> scheduleName,
+                  Job job, Set<Tag> tags, Mark mark,  Optional<Schedule> schedule, Optional<ScheduleName> scheduleName,
                   LastModifiedDateTime lastModifiedDateTime) {
         requireAllNonNull(name, phone, email, company, job, schedule, scheduleName, tags);
         this.name = name;
@@ -62,6 +62,7 @@ public class Person {
         this.job = job;
         this.schedule = schedule;
         this.scheduleName = scheduleName;
+        this.markStatus = mark;
         this.tags.addAll(tags);
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
