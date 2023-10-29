@@ -3,6 +3,8 @@ package connexion.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,8 @@ import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 
 /**
@@ -35,6 +39,8 @@ class JsonAdaptedPerson {
     private final String mark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String lastModifiedDateTime;
+    private final String schedule;
+    private final String scheduleName;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +49,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("company") String company,
             @JsonProperty("job") String job, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("mark") String mark,
+            @JsonProperty("mark") String mark, @JsonProperty("schedule") String schedule,
+            @JsonProperty("scheduleName") String scheduleName,
             @JsonProperty("last_modified") String lastModifiedDateTime) {
         this.name = name;
         this.phone = phone;
@@ -53,6 +60,8 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.scheduleName = scheduleName;
+        this.schedule = schedule;
         this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
@@ -70,6 +79,8 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        schedule = source.getSchedule().map(Objects::toString).orElse("");
+        scheduleName = source.getScheduleName().map(Objects::toString).orElse("");
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
 
@@ -143,13 +154,42 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(LastModifiedDateTime.MESSAGE_CONSTRAINTS);
         }
 
+        if (schedule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Schedule.class.getSimpleName()));
+        }
+
+        // Checks the string if it is a valid schedule time. If string is empty, do not throw error
+        if (!Schedule.isValidScheduleTime(schedule) && !schedule.isEmpty()) {
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+
+        final Optional<Schedule> modelSchedule = Optional.ofNullable(schedule)
+                .filter(sch -> !sch.isEmpty())
+                .map(Schedule::new);
+
+        if (scheduleName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ScheduleName.class.getSimpleName()));
+        }
+
+        // Checks the string if it is a valid schedule name. If string is empty, do not throw error
+        if (!ScheduleName.isValidScheduleName(scheduleName) && !scheduleName.isEmpty()) {
+            throw new IllegalValueException(ScheduleName.MESSAGE_CONSTRAINTS);
+        }
+
+        final Optional<ScheduleName> modelScheduleName = Optional.ofNullable(scheduleName)
+                .filter(sch -> !sch.isEmpty())
+                .map(ScheduleName::new);
+
         final LastModifiedDateTime lastModified =
                 LastModifiedDateTime.fromString(lastModifiedDateTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         Person newPerson = new Person(
-                modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus, modelTags, lastModified);
+                modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus,
+                modelTags, modelSchedule, modelScheduleName, lastModified);
 
         return newPerson;
     }

@@ -5,6 +5,8 @@ import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
 import static connexion.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,6 +24,7 @@ import connexion.model.Model;
 import connexion.model.person.NameContainsKeywordsPredicate;
 import connexion.model.person.Person;
 import connexion.testutil.EditPersonDescriptorBuilder;
+import connexion.testutil.ScheduleDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -43,6 +46,12 @@ public class CommandTestUtil {
 
     public static final LocalDateTime VALID_LAST_MODIFIED_AMY = LocalDateTime.MIN;
     public static final LocalDateTime VALID_LAST_MODIFIED_BOB = LocalDateTime.MAX;
+    public static final String VALID_SCHEDULE_AMY = "2023-12-13-09-00";
+    public static final String VALID_SCHEDULE_BOB = "2023-12-25-13-00";
+    public static final String VALID_SCHEDULE_NAME_AMY = "Morning Meeting";
+    public static final String VALID_SCHEDULE_NAME_BOB = "Interview";
+    // When schedule is given but not the schedule name
+    public static final String AUTO_GIVEN_SCHEDULE_NAME = "Meeting";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,6 +63,11 @@ public class CommandTestUtil {
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String JOB_DESC_AMY = " " + PREFIX_JOB + VALID_JOB_AMY;
     public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
+
+    public static final String SCHEDULE_DESC_AMY = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_AMY;
+    public static final String SCHEDULE_DESC_BOB = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_BOB;
+    public static final String SCHEDULE_NAME_DESC_AMY = " " + PREFIX_SCHEDULE_NAME + VALID_SCHEDULE_NAME_AMY;
+    public static final String SCHEDULE_NAME_DESC_BOB = " " + PREFIX_SCHEDULE_NAME + VALID_SCHEDULE_NAME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -63,6 +77,12 @@ public class CommandTestUtil {
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY; // empty string not allowed for companies
     public static final String INVALID_JOB_DESC = " " + PREFIX_JOB; // empty string not allowed for jobs
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SCHEDULE
+            + "2023/07/10/06/59"; // '/' not allowed for schedule
+    public static final String INVALID_SCHEDULE_DATE = " " + PREFIX_SCHEDULE
+            + "2023-40-10-06-59"; // correct format but wrong date (month field is wrong)
+    public static final String INVALID_SCHEDULE_NAME_DESC = " "
+            + PREFIX_SCHEDULE_NAME + "Meeting*"; // '*' not allowed in schedule names
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -70,6 +90,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCommand.EditPersonDescriptor DESC_AMYDIFFTIME;
+
+    public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_AMY;
+    public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_BOB;
+    public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_AMYDIFFTIME;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -85,6 +109,18 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
                 .withJob(VALID_JOB_AMY)
                 .withTags(VALID_TAG_FRIEND).withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB).build();
+        SCHEDULE_AMY = new ScheduleDescriptorBuilder().withSchedule(VALID_SCHEDULE_AMY)
+                .withScheduleName(VALID_SCHEDULE_NAME_AMY)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_AMY)
+                .build();
+        SCHEDULE_BOB = new ScheduleDescriptorBuilder().withSchedule(VALID_SCHEDULE_BOB)
+                .withScheduleName(VALID_SCHEDULE_NAME_BOB)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB)
+                .build();
+        SCHEDULE_AMYDIFFTIME = new ScheduleDescriptorBuilder().withSchedule(VALID_SCHEDULE_AMY)
+                .withScheduleName(VALID_SCHEDULE_NAME_AMY)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB)
+                .build();
     }
 
     /**

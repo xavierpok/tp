@@ -4,12 +4,16 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "company": "Directions Group",
+    "schedule": "",
+    "scheduleName": "",
     "job": "AI Engineer"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "company": "Directions Group",
+    "schedule": "",
+    "scheduleName": "",
     "job": "AI Engineer"
   } ]
 }

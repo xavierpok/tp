@@ -5,6 +5,7 @@ import static connexion.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import connexion.commons.util.ToStringBuilder;
@@ -27,7 +28,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Mark markStatus;
     private final LastModifiedDateTime lastModifiedDateTime;
-
+    private final Optional<Schedule> schedule;
+    private final Optional<ScheduleName> scheduleName;
     /**
      * Every field must be present and not null
      */
@@ -39,6 +41,28 @@ public class Person {
         this.email = email;
         this.company = company;
         this.job = job;
+        this.markStatus = markStatus;
+        this.schedule = Optional.empty();
+        this.scheduleName = Optional.empty();
+        this.tags.addAll(tags);
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    /**
+     * Constructor to add or edit schedule and scheduleName.
+     */
+    public Person(Name name, Phone phone, Email email, Company company,
+                  Job job, Mark markStatus, Set<Tag> tags, Optional<Schedule> schedule,
+                  Optional<ScheduleName> scheduleName,
+                  LastModifiedDateTime lastModifiedDateTime) {
+        requireAllNonNull(name, phone, email, company, job, schedule, scheduleName, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.company = company;
+        this.job = job;
+        this.schedule = schedule;
+        this.scheduleName = scheduleName;
         this.markStatus = markStatus;
         this.tags.addAll(tags);
         this.lastModifiedDateTime = lastModifiedDateTime;
@@ -63,6 +87,15 @@ public class Person {
     public Job getJob() {
         return job;
     }
+
+    public Optional<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public Optional<ScheduleName> getScheduleName() {
+        return scheduleName;
+    }
+
     public Mark getMarkStatus() {
         return markStatus;
     }
@@ -129,7 +162,9 @@ public class Person {
                 && job.equals(otherPerson.job)
                 && tags.equals(otherPerson.tags)
                 && markStatus.equals(otherPerson.markStatus)
-                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime);
+                && lastModifiedDateTime.equals(otherPerson.lastModifiedDateTime)
+                && schedule.equals(otherPerson.schedule)
+                && scheduleName.equals(otherPerson.scheduleName);
     }
 
     @Override
@@ -148,6 +183,8 @@ public class Person {
                 .add("job", job)
                 .add("tags", tags)
                 .add("last-modified", lastModifiedDateTime)
+                .add("schedule", schedule)
+                .add("scheduleName", scheduleName)
                 .toString();
     }
 

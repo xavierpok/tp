@@ -10,7 +10,7 @@ import static connexion.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
-import static connexion.testutil.TypicalPersons.AMY;
+import static connexion.testutil.TypicalPersons.ANDY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -178,7 +178,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY)
+        Person expectedPerson = new PersonBuilder(ANDY)
                 .withTags().withLastModifiedDateTime(DEFAULT_TEST_TIME).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.setClock(DEFAULT_TEST_CLOCK);

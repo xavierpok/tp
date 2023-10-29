@@ -20,6 +20,7 @@ import connexion.logic.commands.FilterCommand;
 import connexion.logic.commands.HelpCommand;
 import connexion.logic.commands.ListCommand;
 import connexion.logic.commands.MarkCommand;
+import connexion.logic.commands.ScheduleCommand;
 import connexion.logic.commands.UnMarkCommand;
 import connexion.logic.parser.exceptions.ParseException;
 
@@ -91,6 +92,9 @@ public class AddressBookParser implements ClockDependentParser<Command> {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ScheduleCommand.COMMAND_WORD:
+            return new ScheduleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

@@ -4,6 +4,7 @@ import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import connexion.model.person.Company;
@@ -14,11 +15,10 @@ import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 import connexion.model.util.SampleDataUtil;
-
-
-
 
 /**
  * A utility class to help with building Person objects.
@@ -31,8 +31,10 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final boolean DEFAULT_MARK = false;
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
-    public static final boolean DEFAULT_MARK_STATUS = false;
+    public static final String DEFAULT_SCHEDULE = "2023-12-10-10-08";
+    public static final String DEFAULT_SCHEDULE_NAME = "Seminar";
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
+    public static final boolean DEFAULT_MARK_STATUS = false;
 
     private Name name;
     private Phone phone;
@@ -40,6 +42,8 @@ public class PersonBuilder {
     private Company company;
     private Job job;
     private Set<Tag> tags;
+    private Optional<Schedule> schedule;
+    private Optional<ScheduleName> scheduleName;
     private Mark markStatus;
     private LastModifiedDateTime lastModifiedDateTime;
 
@@ -52,6 +56,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         company = new Company(DEFAULT_COMPANY);
         job = new Job(DEFAULT_JOB);
+        schedule = Optional.empty();
+        scheduleName = Optional.empty();
         markStatus = new Mark(DEFAULT_MARK);
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
@@ -67,8 +73,11 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         company = personToCopy.getCompany();
         job = personToCopy.getJob();
+        schedule = personToCopy.getSchedule();
+        scheduleName = personToCopy.getScheduleName();
         markStatus = personToCopy.getMarkStatus();
         tags = new HashSet<>(personToCopy.getTags());
+        markStatus = personToCopy.getMarkStatus();
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
         markStatus = personToCopy.getMarkStatus();
     }
@@ -106,6 +115,28 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Schedule} of the {@code Person} that we are building.
+     * if schedule string is empty, then that means there isn't a schedule.
+     */
+    public PersonBuilder withSchedule(String schedule) {
+        this.schedule = Optional.of(schedule)
+                .filter(sch -> !sch.isEmpty())
+                .map(Schedule::new);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ScheduleName} of the {@code Person} that we are building.
+     * if scheduleName string is empty, then that means there isn't a schedule name.
+     */
+    public PersonBuilder withScheduleName(String scheduleName) {
+        this.scheduleName = Optional.of(scheduleName)
+                .filter(schName -> !schName.isEmpty())
+                .map(ScheduleName::new);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -137,7 +168,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the person with all the information given.
+     * @return a Person object with the relevant information.
+     */
     public Person build() {
-        return new Person(name, phone, email, company, job, markStatus, tags, lastModifiedDateTime);
+        return new Person(name, phone, email, company, job, markStatus,
+                tags, schedule, scheduleName, lastModifiedDateTime);
     }
 }
