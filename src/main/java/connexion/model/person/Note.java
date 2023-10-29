@@ -10,10 +10,9 @@ import static java.util.Objects.requireNonNull;
 public class Note implements PersonDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Notes should only contain alphanumeric characters and spaces, can be blank";
+            "Notes should only contain alphanumeric characters, punctuation and spaces, can be blank";
 
-    // regex to be changed
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\p{Punct} ]*";
 
     private final String note;
 
