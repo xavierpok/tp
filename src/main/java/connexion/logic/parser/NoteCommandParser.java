@@ -8,7 +8,6 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
-import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.NoteCommand;
 import connexion.logic.commands.NoteCommand.PersonToNoteDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
@@ -38,12 +37,25 @@ public class NoteCommandParser implements ClockDependentParser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }
 
+        if (!isNotePrefixPresent(argMultimap)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+        }
+
         PersonToNoteDescriptor personToNoteDescriptor = new PersonToNoteDescriptor();
         personToNoteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
 
+        // Clock needs to be modified
         personToNoteDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
 
         return new NoteCommand(index, personToNoteDescriptor);
+    }
+
+    /**
+     * Returns true if the prefix does not contain empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isNotePrefixPresent(ArgumentMultimap argumentMultimap) {
+        return argumentMultimap.getValue(PREFIX_NOTE).isPresent();
     }
 
     /**
