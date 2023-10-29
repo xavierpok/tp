@@ -105,7 +105,7 @@ public class Schedule implements PersonListDetailField<LocalDateTime> {
      */
     @Override
     public String getListString() {
-        return this.scheduleTime
+        return "Scheduled meeting: " + this.scheduleTime
                 .truncatedTo(ChronoUnit.MINUTES)
                 .format(SCHEDULE_OUTPUT_FORMATTER);
     }

@@ -67,6 +67,19 @@ public class MarkTest {
         assertEquals(false, unmarkedMark.getValue());
     }
 
+    @Test
+    public void isValidMark() {
+        assertThrows(NullPointerException.class, () ->
+                Mark.isValidMark(null));
+
+        // invalid Mark
+        assertFalse(Mark.isValidMark("")); // empty string
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("a star!"));
+
+        // valid Mark
+        assertTrue(Mark.isValidMark("★"));
+        assertTrue(Mark.isValidMark("☆"));
+    }
 
     @Test
     void getListString_markedStatus() {

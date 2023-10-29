@@ -85,7 +85,7 @@ public class TypicalPersons {
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withSchedule("2023-11-13-20-00")
             .withScheduleName("Evening seminar")
-            .withMarkStatus(true)
+            .withMark(true)
             .build();
 
     // Manually added

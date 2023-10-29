@@ -36,8 +36,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String company;
     private final String job;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String mark;
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String lastModifiedDateTime;
     private final String schedule;
     private final String scheduleName;
@@ -75,12 +75,12 @@ class JsonAdaptedPerson {
         email = source.getEmail().getValue();
         company = source.getCompany().getValue();
         job = source.getJob().getValue();
+        mark = source.getMarkStatus().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         schedule = source.getSchedule().map(Objects::toString).orElse("");
         scheduleName = source.getScheduleName().map(Objects::toString).orElse("");
-        mark = source.getMarkStatus().toString();
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
     }
 
@@ -135,6 +135,17 @@ class JsonAdaptedPerson {
         }
         final Job modelJob = new Job(job);
 
+        if (mark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Mark.class.getSimpleName()));
+        }
+
+        if (!Mark.isValidMark(mark)) {
+            throw new IllegalValueException(Mark.MESSAGE_CONSTRAINTS);
+        }
+
+        final Mark markStatus = Mark.fromString(mark);
+
         if (lastModifiedDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LastModifiedDateTime.class.getSimpleName()));
@@ -177,17 +188,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         Person newPerson = new Person(
-                modelName, modelPhone, modelEmail, modelCompany,
-                modelJob, modelTags, modelSchedule, modelScheduleName, lastModified);
-
-        if (mark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Mark.class.getSimpleName()));
-        }
-
-        if (mark.equals("\u2605")) {
-            newPerson.mark();
-        }
+                modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus, modelTags, lastModified);
 
         return newPerson;
     }

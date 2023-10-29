@@ -13,6 +13,7 @@ import connexion.logic.commands.AddCommand;
 import connexion.logic.commands.ClearCommand;
 import connexion.logic.commands.Command;
 import connexion.logic.commands.DeleteCommand;
+import connexion.logic.commands.DetailCommand;
 import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.ExitCommand;
 import connexion.logic.commands.FilterCommand;
@@ -26,7 +27,7 @@ import connexion.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser implements ClockDependantParser<Command> {
+public class AddressBookParser implements ClockDependentParser<Command> {
 
     /**
      * Used for initial separation of command word and args.
@@ -70,6 +71,9 @@ public class AddressBookParser implements ClockDependantParser<Command> {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case DetailCommand.COMMAND_WORD:
+            return new DetailCommandParser().parse(arguments);
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);

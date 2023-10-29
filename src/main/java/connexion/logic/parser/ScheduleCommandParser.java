@@ -20,7 +20,7 @@ import connexion.model.person.ScheduleName;
 /**
  * Parses input arguments and creates a new ScheduleCommand object
  */
-public class ScheduleCommandParser implements ClockDependantParser<ScheduleCommand> {
+public class ScheduleCommandParser implements ClockDependentParser<ScheduleCommand> {
 
     private Clock clock = Clock.systemDefaultZone();
 

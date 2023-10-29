@@ -120,16 +120,53 @@
     -fx-text-fill: white;
 }
 
+.list-cell .icon {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #ffaa00;
+    -fx-font-size: 25px;
+    -fx-padding: 0 20 0 0
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 5 0 0 0
+}
+
+.cell_icon_label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #ffaa00;
+    -fx-font-size: 25px;
+    -fx-padding: 40 20 0 0
+}
+
+.cell_heading_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 40 0 0 0
+}
+
+.cell_note {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 5 0 0 0
+}
+
+.cell_schedule_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 40 0 0 0
 }
 
 .stack-pane {
@@ -194,10 +231,11 @@
 
 .menu-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
+    /* -fx-background-color: linear-gradient(to right, #545AA7, #5A4FCF); */
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -305,6 +343,12 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.scroll-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 1px;
 }
 
 #cardPane {

@@ -26,7 +26,7 @@ import connexion.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements ClockDependantParser<EditCommand> {
+public class EditCommandParser implements ClockDependentParser<EditCommand> {
 
     private Clock clock = Clock.systemDefaultZone();
 

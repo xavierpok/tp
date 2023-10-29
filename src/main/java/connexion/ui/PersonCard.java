@@ -61,20 +61,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().getListString());
-        phone.setText(person.getPhone().toString());
         company.setText(person.getCompany().getListString());
         job.setText(person.getJob().getListString());
-        email.setText(person.getEmail().toString());
         markStatus.setText(person.getMarkStatus().toString());
         schedule.setText(person.getSchedule()
                 .map(Schedule::getListString).orElse(""));
-        scheduleName.setText(person.getScheduleName()
-                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
-        lastModifiedDateTime.setText(
-                String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
 
     }
 }

@@ -59,7 +59,7 @@ public class CompanyTest {
     @Test
     void getDetailString_equals_input() {
         Company company = new Company("Valid Company");
-        assertEquals(company.getDetailString(), "Valid Company");
+        assertEquals(company.getDetailString(), "Company: Valid Company");
         assertNotEquals(company.getDetailString(), "Nonsense"); //to show it's actually matching the string
     }
 

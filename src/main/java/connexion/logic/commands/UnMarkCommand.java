@@ -40,6 +40,7 @@ public class UnMarkCommand extends Command {
 
         Person personToUnMark = lastShownList.get(targetIndex.getZeroBased());
         model.unMarkPerson(personToUnMark);
+        //UiManager.updatePersonView(personToUnMark);
         return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToUnMark)));
     }
 

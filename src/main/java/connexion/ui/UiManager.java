@@ -6,6 +6,7 @@ import connexion.MainApp;
 import connexion.commons.core.LogsCenter;
 import connexion.commons.util.StringUtil;
 import connexion.logic.Logic;
+import connexion.model.person.Person;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,12 +19,14 @@ import javafx.stage.Stage;
 public class UiManager implements Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
+    private static Person personToDisplay = null;
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
+    private static MainWindow mainWindow;
+
     private Logic logic;
-    private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -42,8 +45,10 @@ public class UiManager implements Ui {
         try {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
+            if (logic.getFilteredPersonList().size() > 0) {
+                personToDisplay = logic.getFilteredPersonList().get(0);
+            }
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -52,6 +57,18 @@ public class UiManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
+    }
+
+    /**
+     * changes the displayed person
+     * @param p the new person to be displayed.
+     */
+    public static void updatePersonView(Person p) {
+        mainWindow.fillContactInfo(p);
+        personToDisplay = p;
+    }
+    public static void updatePersonView() {
+        mainWindow.fillInnerParts();
     }
 
     void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {
