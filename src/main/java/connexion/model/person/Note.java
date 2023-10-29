@@ -61,7 +61,7 @@ public class Note implements PersonDetailField<String> {
 
     @Override
     public String getDetailString() {
-        return "Note: " + note;
+        return note;
     }
 
     @Override

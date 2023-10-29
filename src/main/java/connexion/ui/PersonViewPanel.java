@@ -69,8 +69,7 @@ public class PersonViewPanel extends UiPart<Region> {
                 String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
         //schedule.setText(person.getSchedule().getDetailString());
         schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
-        //note.setText(person.getNote.getDetailString());
-        note.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat, quam ac vehicula.");
+        note.setText(person.getNote().getDetailString());
     }
 
     /**
