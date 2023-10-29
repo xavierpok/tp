@@ -29,11 +29,11 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
-    public static final boolean DEFAULT_MARK = false;
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
     public static final String DEFAULT_SCHEDULE = "2023-12-10-10-08";
     public static final String DEFAULT_SCHEDULE_NAME = "Seminar";
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
+    public static final boolean DEFAULT_MARK_STATUS = false;
 
     private Name name;
     private Phone phone;
@@ -55,11 +55,11 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         company = new Company(DEFAULT_COMPANY);
         job = new Job(DEFAULT_JOB);
-        markStatus = new Mark(DEFAULT_MARK);
         schedule = Optional.empty();
         scheduleName = Optional.empty();
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
+        markStatus = new Mark(DEFAULT_MARK_STATUS);
     }
 
     /**
@@ -71,10 +71,10 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         company = personToCopy.getCompany();
         job = personToCopy.getJob();
-        markStatus = personToCopy.getMarkStatus();
         schedule = personToCopy.getSchedule();
         scheduleName = personToCopy.getScheduleName();
         tags = new HashSet<>(personToCopy.getTags());
+        markStatus = personToCopy.getMarkStatus();
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
     }
 
@@ -149,14 +149,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code markStatus} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withMark(boolean b) {
-        this.markStatus = new Mark(b);
-        return this;
-    }
-
-    /**
      * Sets the {@code LastModifiedDateTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
@@ -169,8 +161,20 @@ public class PersonBuilder {
      * @return a Person object with the relevant information.
      */
     public Person build() {
-        return new Person(name, phone, email, company, job,
-               markStatus, tags, schedule, scheduleName, lastModifiedDateTime);
+        Person newPerson = new Person(name, phone, email, company, job,
+                tags, schedule, scheduleName, lastModifiedDateTime);
+        if (markStatus.getValue()) {
+            newPerson.mark();
+        }
+        return newPerson;
+
     }
 
+    /**
+     * Sets the {@code markStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMarkStatus(boolean b) {
+        this.markStatus = new Mark(b);
+        return this;
+    }
 }

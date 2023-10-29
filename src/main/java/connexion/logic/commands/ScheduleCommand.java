@@ -97,8 +97,14 @@ public class ScheduleCommand extends Command {
         // Like the other fields.
         Optional<Schedule> updatedSchedule = Optional.ofNullable(scheduleDescriptor.getSchedule());
         Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
-        return new Person(name, phone, email, company, job, tags,
+        Person toReturn = new Person(name, phone, email, company, job, tags,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+        if (personToEditSchedule.getMarkStatus().getValue()) { // if the person was marked
+            toReturn.mark();
+        } else { // if the person was unmarked
+            toReturn.unMark();
+        }
+        return toReturn;
     }
 
     @Override

@@ -79,12 +79,15 @@ public class TypicalPersons {
             .withSchedule("2023-12-19-05-00")
             .withScheduleName("Morning meeting")
             .build();
+
+    // marked Person for testing mark functionalities and dependencies
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withCompany("Morgan Stanley")
             .withJob("Risk Analyst")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withSchedule("2023-11-13-20-00")
             .withScheduleName("Evening seminar")
+            .withMarkStatus(true)
             .build();
 
     // Manually added
