@@ -9,6 +9,7 @@ Class XYZCommand
 
 package "Parser classes"{
 Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nClockDependentParser" as ClockDependentParser
 Class AddressBookParser
 Class XYZCommandParser
 Class CliSyntax
@@ -25,7 +26,9 @@ AddressBookParser .down.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 AddressBookParser ..> Command : returns >
+ClockDependentParser .left.|> Parser
 XYZCommandParser .up.|> Parser
+XYZCommandParser .up.|> ClockDependentParser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap

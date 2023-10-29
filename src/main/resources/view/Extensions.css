@@ -18,10 +18,3 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
-
-.cell_icon_label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #ffaa00;
-    -fx-font-size: 25px;
-    -fx-padding: 0 20 0 0
-}

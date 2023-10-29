@@ -36,7 +36,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().getValue() + " ");
         sb.append(PREFIX_PHONE + person.getPhone().getValue() + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().getValue() + " ");
-        sb.append(PREFIX_COMPANY + person.getCompany().getDetailString() + " ");
+        sb.append(PREFIX_COMPANY + person.getCompany().getValue() + " ");
         sb.append(PREFIX_JOB + person.getJob().getValue() + " ");
         if (person.getSchedule().isPresent()) {
             sb.append(PREFIX_SCHEDULE + person.getSchedule().get().toString() + " ");

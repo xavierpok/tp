@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -28,18 +28,15 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="company" styleClass="cell_small_label" text="\$company" />
-      <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
+      <Label fx:id="company" styleClass="cell_small_label"/>
+      <Label fx:id="job" styleClass="cell_small_label" />
       <Label fx:id="schedule" styleClass="cell_small_label" text="\$schedule" />
       <Label fx:id="scheduleName" styleClass="cell_small_label" text="\$scheduleName" />
-      <Label fx:id="lastModifiedDateTime" styleClass="cell_small_label"
-             style="-fx-font-style : italic " text="\$lastModifiedDateTime" />
+      <Label fx:id="schedule" styleClass="cell_small_label"/>
     </VBox>
     <VBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="200.0">
       <children>
-        <Label fx:id="markStatus" styleClass="cell_icon_label" text="\$markStatus" />
+        <Label fx:id="markStatus" styleClass="icon" text="\$markStatus" />
       </children>
     </VBox>
   </GridPane>

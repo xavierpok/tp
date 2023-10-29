@@ -115,7 +115,8 @@ public class LastModifiedDateTime implements PersonDetailField<LocalDateTime> {
 
     @Override
     public String getDetailString() {
-        return lastModified.format(LASTMODIFIED_FORMATTER);
+
+        return "lastModified: " + lastModified.format(LASTMODIFIED_FORMATTER);
     }
 
     @Override

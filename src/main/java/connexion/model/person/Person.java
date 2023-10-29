@@ -26,14 +26,14 @@ public class Person {
     private final Company company;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
-    private final Mark markStatus = new Mark(false);
+    private final Mark markStatus;
     private final LastModifiedDateTime lastModifiedDateTime;
     private final Optional<Schedule> schedule;
     private final Optional<ScheduleName> scheduleName;
     /**
      * Every field must be present and not null
      */
-    public Person(Name name, Phone phone, Email email, Company company, Job job, Set<Tag> tags,
+    public Person(Name name, Phone phone, Email email, Company company, Job job, Mark markStatus, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime) {
         requireAllNonNull(name, phone, email, company, job, tags);
         this.name = name;
@@ -41,6 +41,7 @@ public class Person {
         this.email = email;
         this.company = company;
         this.job = job;
+        this.markStatus = markStatus;
         this.schedule = Optional.empty();
         this.scheduleName = Optional.empty();
         this.tags.addAll(tags);
