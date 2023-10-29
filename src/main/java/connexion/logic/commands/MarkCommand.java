@@ -26,6 +26,9 @@ public class MarkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex of person in the filtered person list to mark
+     */
     public MarkCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
