@@ -82,7 +82,7 @@ public class AddressBookParser implements ClockDependentParser<Command> {
             return new ListCommand();
 
         case NoteCommand.COMMAND_WORD:
-            return new NoteCommandParser().parse(arguments);
+            return new NoteCommandParser().withClock(clock).parse(arguments);
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);

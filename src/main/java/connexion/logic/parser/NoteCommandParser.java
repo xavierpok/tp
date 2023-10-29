@@ -5,10 +5,14 @@ import static connexion.logic.parser.CliSyntax.PREFIX_NOTE;
 import static java.util.Objects.requireNonNull;
 
 import java.time.Clock;
+import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
+import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.NoteCommand;
+import connexion.logic.commands.NoteCommand.PersonToNoteDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
+import connexion.model.person.LastModifiedDateTime;
 
 /**
  * Parses input arguments and creates a new NoteCommand object
@@ -34,7 +38,24 @@ public class NoteCommandParser implements ClockDependentParser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
+        PersonToNoteDescriptor personToNoteDescriptor = new PersonToNoteDescriptor();
+        personToNoteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
 
+        personToNoteDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
+
+        return new NoteCommand(index, personToNoteDescriptor);
+    }
+
+    /**
+     * To specify usage of a specific clock.
+     *
+     * @param clock The clock to use
+     * @return an edited parser using the specified clock
+     */
+    @Override
+    public NoteCommandParser withClock(Clock clock) {
+        NoteCommandParser toReturn = new NoteCommandParser();
+        toReturn.clock = clock;
+        return toReturn;
     }
 }
