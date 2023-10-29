@@ -11,8 +11,10 @@ import org.junit.jupiter.api.Test;
 import connexion.logic.commands.FilterCommand;
 import connexion.model.person.CompanyContainsKeywordsPredicate;
 import connexion.model.person.EmailContainsKeywordsPredicate;
+import connexion.model.person.IsMarkedPredicate;
 import connexion.model.person.JobContainsKeywordsPredicate;
 import connexion.model.person.NameContainsKeywordsPredicate;
+import connexion.model.person.NotMarkedPredicate;
 import connexion.model.person.PhoneContainsKeywordsPredicate;
 import connexion.model.tag.TagContainsKeywordsPredicate;
 
@@ -30,7 +32,7 @@ public class FilterCommandParserTest {
         // No valid field prefix
         assertParseFailure(parser, "c", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
 
-        // No keywords
+        // No keywords for mode 1
         assertParseFailure(parser, "c/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
 
         // Invalid field prefix
@@ -86,6 +88,22 @@ public class FilterCommandParserTest {
 
         // multiple whitespaces between keywords for tags
         assertParseSuccess(parser, "t/ \t\n friend  \t", expectedFilterCommand);
+
+        // no keywords for mark
+        expectedFilterCommand =
+                new FilterCommand(new IsMarkedPredicate());
+        assertParseSuccess(parser, "m/", expectedFilterCommand);
+
+        // multiple keywords, whitespaces for mark, keywords will be discarded
+        assertParseSuccess(parser, "m/ AB \n\t CD", expectedFilterCommand);
+
+        // no keywords for unmark
+        expectedFilterCommand =
+                new FilterCommand(new NotMarkedPredicate());
+        assertParseSuccess(parser, "u/", expectedFilterCommand);
+
+        // multiple keywords, whitespaces for unmark, keywords will be discarded
+        assertParseSuccess(parser, "u/ AB \n\t CD", expectedFilterCommand);
     }
 
 }

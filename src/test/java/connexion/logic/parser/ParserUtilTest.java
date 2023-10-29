@@ -135,7 +135,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseJob_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseJob(INVALID_COMPANY));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJob(INVALID_JOB));
     }
 
     @Test

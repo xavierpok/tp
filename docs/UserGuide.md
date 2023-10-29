@@ -150,12 +150,18 @@ Examples:
 
 Displays all entries filtered via a specified field.
 
-Format: `filter FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
-
+Supports 2 formats:
+1. Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]`
+2. Format 2: `filter FIELD_PREFIX_2`
+<br>
 * FIELD_PREFIX: represents the field to filter by.
     * Example: if filter by company, FIELD_PREFIX = “c/”.
+    * FIELD_PREFIX_1: one of "n/", "p/", "e/", "c/", "j/", "t/"
+    * FIELD_PREFIX_2: one of "m/", "u/"
+    * Refer to [Command FIELD Summary](#command-field-summary) for more information about the prefixes.
 * Only supports filtering via ONE field.
-    * Everything after FIELD_PREFIX will be recognized as keywords, including field prefixes!
+    * Everything after FIELD_PREFIX_1 will be recognized as keywords, including field prefixes!
+    * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid.
 * The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
 * Only returns results with FULL matching keywords to the field.
@@ -228,4 +234,6 @@ Format: `exit`
 | n/     | NAME         | -                                                    |
 | p/     | PHONE_NUMBER | -                                                    |
 | t/     | TAG          | Multiple instances of this argument can be accepted. |
+| m/     | MARKED       | Marked contacts, only usable in `filter`             |
+| u/     | UNMARKED     | Un-marked contacts, only usable in `filter`          |
 

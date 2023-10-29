@@ -17,7 +17,7 @@
     "email" : "johnd@example.com",
     "company": "Mandai Wildlife Group",
     "job": "Software Engineer",
-    "mark": "\u2606",
+    "mark": "\u2605",
     "tags" : [ "owesMoney", "friends" ],
     "schedule": "2024-01-27-07-00",
     "scheduleName": "Teams Interview",
@@ -29,7 +29,7 @@
     "company": "Grab",
     "job": "AI Engineer",
     "tags" : [ ],
-    "mark": "\u2606",
+    "mark": "\u2605",
     "schedule": "",
     "scheduleName": "",
     "last_modified" : "10 Oct 2000, 10:10:10"
@@ -73,9 +73,9 @@
     "company": "Morgan Stanley",
     "job": "Risk Analyst",
     "tags" : [ ],
-    "mark": "★",
     "schedule": "2023-11-13-20-00",
     "scheduleName": "Evening seminar",
+    "mark": "\u2605",
     "last_modified" : "10 Oct 2000, 10:10:10"
   } ]
 }

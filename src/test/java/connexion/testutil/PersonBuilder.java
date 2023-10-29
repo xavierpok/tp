@@ -79,6 +79,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         markStatus = personToCopy.getMarkStatus();
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
+        markStatus = personToCopy.getMarkStatus();
     }
 
     /**
