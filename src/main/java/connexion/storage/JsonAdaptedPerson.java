@@ -16,6 +16,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.tag.Tag;
@@ -36,6 +37,8 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String lastModifiedDateTime;
 
+    private final String note;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -44,7 +47,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("company") String company,
             @JsonProperty("job") String job, @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("mark") String mark,
-            @JsonProperty("last_modified") String lastModifiedDateTime) {
+            @JsonProperty("last_modified") String lastModifiedDateTime, @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,6 +58,7 @@ class JsonAdaptedPerson {
         }
         this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
+        this.note = note;
     }
 
     /**
@@ -71,6 +75,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
+        note = source.getNote().getValue();
     }
 
     /**
@@ -148,8 +153,19 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Note.class.getSimpleName()));
+        }
+
+        if (!Note.isValidNote(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        final Note modelNote = new Note(note);
+
         Person newPerson = new Person(
-                modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus, modelTags, lastModified);
+                modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus, modelTags,
+                lastModified, modelNote);
 
         return newPerson;
     }
