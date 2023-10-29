@@ -114,7 +114,7 @@ public class NoteCommand extends Command {
         private Note note;
         private LastModifiedDateTime lastModifiedDateTime;
 
-        public NoteDescriptor() {}
+        public NoteDescriptor(Note note, LastModifiedDateTime lastModifiedDateTime) {}
 
         /**
          * Copy constructor.

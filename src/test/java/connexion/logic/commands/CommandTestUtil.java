@@ -4,6 +4,7 @@ import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
+import static connexion.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
@@ -24,6 +25,7 @@ import connexion.model.Model;
 import connexion.model.person.NameContainsKeywordsPredicate;
 import connexion.model.person.Person;
 import connexion.testutil.EditPersonDescriptorBuilder;
+import connexion.testutil.NoteDescriptorBuilder;
 import connexion.testutil.ScheduleDescriptorBuilder;
 
 /**
@@ -53,6 +55,11 @@ public class CommandTestUtil {
     // When schedule is given but not the schedule name
     public static final String AUTO_GIVEN_SCHEDULE_NAME = "Meeting";
 
+    public static final String VALID_NOTE_AMY = "Promoted to Manager!";
+
+    // Empty String is valid too
+    public static final String VALID_NOTE_BOB = "";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -68,6 +75,8 @@ public class CommandTestUtil {
     public static final String SCHEDULE_DESC_BOB = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_BOB;
     public static final String SCHEDULE_NAME_DESC_AMY = " " + PREFIX_SCHEDULE_NAME + VALID_SCHEDULE_NAME_AMY;
     public static final String SCHEDULE_NAME_DESC_BOB = " " + PREFIX_SCHEDULE_NAME + VALID_SCHEDULE_NAME_BOB;
+    public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + VALID_NOTE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -84,6 +93,9 @@ public class CommandTestUtil {
     public static final String INVALID_SCHEDULE_NAME_DESC = " "
             + PREFIX_SCHEDULE_NAME + "Meeting*"; // '*' not allowed in schedule names
 
+    public static final String INVALID_NOTE = " " + PREFIX_NOTE
+            + "\u2063"; // invisible characters not allowed for note
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -94,6 +106,10 @@ public class CommandTestUtil {
     public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_AMY;
     public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_BOB;
     public static final ScheduleCommand.ScheduleDescriptor SCHEDULE_AMYDIFFTIME;
+
+    public static final NoteCommand.NoteDescriptor NOTE_AMY;
+    public static final NoteCommand.NoteDescriptor NOTE_BOB;
+    public static final NoteCommand.NoteDescriptor NOTE_AMYDIFFTIME;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -119,6 +135,15 @@ public class CommandTestUtil {
                 .build();
         SCHEDULE_AMYDIFFTIME = new ScheduleDescriptorBuilder().withSchedule(VALID_SCHEDULE_AMY)
                 .withScheduleName(VALID_SCHEDULE_NAME_AMY)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB)
+                .build();
+        NOTE_AMY = new NoteDescriptorBuilder().withNote(VALID_NOTE_AMY)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_AMY)
+                .build();
+        NOTE_BOB = new NoteDescriptorBuilder().withNote(VALID_NOTE_BOB)
+                .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB)
+                .build();
+        NOTE_AMYDIFFTIME = new NoteDescriptorBuilder().withNote(VALID_NOTE_AMY)
                 .withLastModifiedDateTime(VALID_LAST_MODIFIED_BOB)
                 .build();
     }
