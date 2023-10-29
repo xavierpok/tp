@@ -171,9 +171,11 @@ This section describes some noteworthy details on how certain features are imple
 ### Filter feature (implemented by Kwok Yong)
 The user can filter contacts based on a specified field and keywords.
 
-Each field has its own predicate, `{Field}ContainsKeywordsPredicate`. For example, `JobContainsKeywordsPredicate` represents the predicate for Job.
-Through `FilterCommandParser`, a field prefix is detected to recognize the field to filter for. Keywords are then parsed
-as a list to construct the corresponding predicate, which in turn is used to construct a `FilterCommand`.
+Each field has its own predicate, `{Field}ContainsKeywordsPredicate` or `{Is/Not}MarkedPredicate`. 
+For example, `JobContainsKeywordsPredicate` represents the predicate for Job. 
+Through `FilterCommandParser`, a field prefix is detected to recognize the field to filter for. Then, depending
+on the field, the parser will determine whether to parse keywords as a list. Then, the parser will construct the corresponding predicate, 
+which in turn is used to construct a `FilterCommand`.
 
 Through `FilterCommand#execute()`, the predicate is then passed as an argument to `Model#updateFilteredPersonList()`, causing the UI to only show contacts who satisfy the predicate.
 
