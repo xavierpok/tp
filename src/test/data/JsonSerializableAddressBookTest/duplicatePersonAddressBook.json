@@ -7,6 +7,8 @@
     "job": "AI Engineer",
     "tags": [ "friends" ],
     "mark": "\u2606",
+    "schedule": "",
+    "scheduleName": "",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:00"
   }, {
@@ -16,6 +18,8 @@
     "company": "Changi Airport Group",
     "job": "AI Engineer",
     "mark": "\u2606",
+    "schedule": "",
+    "scheduleName": "",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:00"
   } ]

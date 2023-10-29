@@ -31,6 +31,8 @@ import connexion.model.person.Name;
 import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 
 /**
@@ -117,9 +119,11 @@ public class EditCommand extends Command {
         // We do it like this for consistency with other fields
         // And to move responsibility for updating this field to the parser,
         // Like the other fields.
+        Optional<Schedule> schedule = personToEdit.getSchedule();
+        Optional<ScheduleName> scheduleName = personToEdit.getScheduleName();
         return new Person(updatedName, updatedPhone,
                 updatedEmail, updatedCompany, updatedJob, updatedMark,
-                updatedTags, updatedLastModifiedDateTime, updatedNote);
+                updatedTags, schedule, scheduleName, updatedLastModifiedDateTime, updatedNote);
     }
 
     @Override
@@ -298,7 +302,6 @@ public class EditCommand extends Command {
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(lastModifiedDateTime, otherEditPersonDescriptor.lastModifiedDateTime);
         }
-
         @Override
         public String toString() {
             return new ToStringBuilder(this)

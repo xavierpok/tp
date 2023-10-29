@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import connexion.commons.core.LogsCenter;
 import connexion.model.person.Person;
+import connexion.model.person.Schedule;
 import connexion.model.tag.Tag;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -49,6 +50,8 @@ public class PersonViewPanel extends UiPart<Region> {
 
     @FXML
     private Label schedule;
+    @FXML
+    private Label scheduleName;
 
     /**
      * Creates a {@code PersonViewPanel} with the given {@code Person} and index to display.
@@ -67,8 +70,10 @@ public class PersonViewPanel extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
         lastModifiedDateTime.setText(
                 String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
-        //schedule.setText(person.getSchedule().getDetailString());
-        schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
+        schedule.setText(person.getSchedule()
+                .map(Schedule::getDetailString).orElse(""));
+        scheduleName.setText(person.getScheduleName()
+                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
         note.setText(person.getNote().getDetailString());
     }
 

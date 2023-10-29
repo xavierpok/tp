@@ -9,6 +9,8 @@ import static connexion.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static connexion.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connexion.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connexion.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE;
+import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE_NAME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connexion.testutil.TypicalPersons.getTypicalAddressBook;
@@ -38,7 +40,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        // create a person object with a default schedule and default schedule name
+        Person editedPerson = new PersonBuilder()
+                .withSchedule(DEFAULT_SCHEDULE)
+                .withScheduleName(DEFAULT_SCHEDULE_NAME).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -52,8 +57,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Person lastPerson = model.getFilteredPersonList().get(1);
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -61,7 +65,7 @@ public class EditCommandTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 

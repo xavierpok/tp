@@ -8,6 +8,8 @@
     "job": "AI Analyst",
     "mark": "\u2606",
     "tags" : [ "friends" ],
+    "schedule": "2023-12-10-10-08",
+    "scheduleName": "Seminar",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -18,6 +20,8 @@
     "job": "Software Engineer",
     "mark": "\u2605",
     "tags" : [ "owesMoney", "friends" ],
+    "schedule": "2024-01-27-07-00",
+    "scheduleName": "Teams Interview",
     "note" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -28,6 +32,8 @@
     "job": "AI Engineer",
     "tags" : [ ],
     "mark": "\u2605",
+    "schedule": "",
+    "scheduleName": "",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -38,6 +44,8 @@
     "job": "Data Analyst",
     "tags" : [ "friends" ],
     "mark": "\u2606",
+    "schedule": "2023-12-08-05-00",
+    "scheduleName": "Morning meeting",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -48,6 +56,8 @@
     "job": "Machine Learning Analyst",
     "tags" : [ ],
     "mark": "\u2606",
+    "schedule": "2023-12-13-08-00",
+    "scheduleName": "Morning interview",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -58,6 +68,8 @@
     "job": "AI Engineer",
     "tags" : [ ],
     "mark": "\u2606",
+    "schedule": "2023-12-19-05-00",
+    "scheduleName": "Morning meeting",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -68,6 +80,8 @@
     "job": "Risk Analyst",
     "tags" : [ ],
     "mark": "\u2605",
+    "schedule": "2023-11-13-20-00",
+    "scheduleName": "Evening seminar",
     "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   } ]

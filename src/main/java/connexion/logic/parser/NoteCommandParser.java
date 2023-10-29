@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
 import connexion.logic.commands.NoteCommand;
-import connexion.logic.commands.NoteCommand.PersonToNoteDescriptor;
+import connexion.logic.commands.NoteCommand.NoteDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.LastModifiedDateTime;
 
@@ -41,13 +41,13 @@ public class NoteCommandParser implements ClockDependentParser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
         }
 
-        PersonToNoteDescriptor personToNoteDescriptor = new PersonToNoteDescriptor();
-        personToNoteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
+        NoteDescriptor noteDescriptor = new NoteDescriptor();
+        noteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
 
-        // Clock needs to be modified
-        personToNoteDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
+        // Need to set LastModifiedDateTime
+        noteDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
 
-        return new NoteCommand(index, personToNoteDescriptor);
+        return new NoteCommand(index, noteDescriptor);
     }
 
     /**
