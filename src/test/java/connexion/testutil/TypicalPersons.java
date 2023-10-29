@@ -39,6 +39,8 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withMark(true)
+            .withNote("Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+                    + "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")

@@ -8,6 +8,7 @@
     "job": "AI Analyst",
     "mark": "\u2606",
     "tags" : [ "friends" ],
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Benson Meier",
@@ -17,6 +18,7 @@
     "job": "Software Engineer",
     "mark": "\u2605",
     "tags" : [ "owesMoney", "friends" ],
+    "note" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +28,7 @@
     "job": "AI Engineer",
     "tags" : [ ],
     "mark": "\u2605",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +38,7 @@
     "job": "Data Analyst",
     "tags" : [ "friends" ],
     "mark": "\u2606",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +48,7 @@
     "job": "Machine Learning Analyst",
     "tags" : [ ],
     "mark": "\u2606",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Fiona Kunz",
@@ -53,6 +58,7 @@
     "job": "AI Engineer",
     "tags" : [ ],
     "mark": "\u2606",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "George Best",
@@ -62,6 +68,7 @@
     "job": "Risk Analyst",
     "tags" : [ ],
     "mark": "\u2605",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:10"
   } ]
 }
