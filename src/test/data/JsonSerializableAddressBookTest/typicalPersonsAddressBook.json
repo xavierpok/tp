@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "company": "Mandai Wildlife Group",
     "job": "Software Engineer",
-    "mark": "\u2606",
+    "mark": "\u2605",
     "tags" : [ "owesMoney", "friends" ],
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
@@ -25,7 +25,7 @@
     "company": "Grab",
     "job": "AI Engineer",
     "tags" : [ ],
-    "mark": "\u2606",
+    "mark": "\u2605",
     "last_modified" : "10 Oct 2000, 10:10:10"
   }, {
     "name" : "Daniel Meier",
@@ -61,7 +61,7 @@
     "company": "Morgan Stanley",
     "job": "Risk Analyst",
     "tags" : [ ],
-    "mark": "\u2606",
+    "mark": "\u2605",
     "last_modified" : "10 Oct 2000, 10:10:10"
   } ]
 }

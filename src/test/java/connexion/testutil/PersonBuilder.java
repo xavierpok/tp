@@ -31,7 +31,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final boolean DEFAULT_MARK = false;
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
-
+    public static final boolean DEFAULT_MARK_STATUS = false;
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
 
     private Name name;
@@ -55,6 +55,7 @@ public class PersonBuilder {
         markStatus = new Mark(DEFAULT_MARK);
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
+        markStatus = new Mark(DEFAULT_MARK_STATUS);
     }
 
     /**
@@ -69,6 +70,7 @@ public class PersonBuilder {
         markStatus = personToCopy.getMarkStatus();
         tags = new HashSet<>(personToCopy.getTags());
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
+        markStatus = personToCopy.getMarkStatus();
     }
 
     /**
@@ -138,5 +140,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, company, job, markStatus, tags, lastModifiedDateTime);
     }
-
 }
