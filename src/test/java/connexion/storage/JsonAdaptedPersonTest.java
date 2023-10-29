@@ -48,7 +48,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    public static final String VALID_NOTE = BENSON.getNote().toString();
+    private static final String VALID_NOTE = BENSON.getNote().toString();
 
     private static final String VALID_LAST_MODIFIED_DATE_TIME = BENSON.getLastModifiedDateTime().toString();
 

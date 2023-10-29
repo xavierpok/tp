@@ -40,7 +40,7 @@ public class NoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Will be promoted to Senior Developer next month.";
 
-    public static final String MESSAGE_SUCCESS = "Person: %1$s; Note: %2$s";
+    public static final String MESSAGE_SUCCESS = "Index: %1$s; Note: %2$s";
 
     private final Index index;
     private final NoteDescriptor noteDescriptor;
@@ -70,7 +70,7 @@ public class NoteCommand extends Command {
         Person notedPerson = createPersonToNote(personToNote, noteDescriptor);
 
         model.setPerson(personToNote, notedPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToNote),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(),
                 noteDescriptor.getNote()));
     }
 
