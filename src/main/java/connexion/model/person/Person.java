@@ -30,7 +30,7 @@ public class Person {
     private final Note note;
 
     /**
-     * Every field must be present and not null
+     * Every field must be present and not null, except Note.
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Mark markStatus, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime, Note note) {

@@ -71,7 +71,7 @@ public class NoteCommand extends Command {
 
         model.setPerson(personToNote, notedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToNote),
-                personToNoteDescriptor.getNote()));
+                personToNoteDescriptor.getNote().get()));
     }
 
     /**
@@ -267,8 +267,6 @@ public class NoteCommand extends Command {
                     .toString();
         }
     }
-
-
 
     @Override
     public boolean equals(Object other) {
