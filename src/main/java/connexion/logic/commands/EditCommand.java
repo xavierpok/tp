@@ -28,6 +28,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.tag.Tag;
@@ -111,13 +112,14 @@ public class EditCommand extends Command {
         LastModifiedDateTime updatedLastModifiedDateTime =
                 editPersonDescriptor.getLastModifiedDateTime()
                         .orElse(personToEdit.getLastModifiedDateTime());
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         // While semantically, it would make sense that this would always be changed,
         // We do it like this for consistency with other fields
         // And to move responsibility for updating this field to the parser,
         // Like the other fields.
         return new Person(updatedName, updatedPhone,
                 updatedEmail, updatedCompany, updatedJob, updatedMark,
-                updatedTags, updatedLastModifiedDateTime);
+                updatedTags, updatedLastModifiedDateTime, updatedNote);
     }
 
     @Override
@@ -159,6 +161,8 @@ public class EditCommand extends Command {
 
         private LastModifiedDateTime lastModifiedDateTime;
 
+        private Note note;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -174,6 +178,7 @@ public class EditCommand extends Command {
             setMarkStatus(toCopy.markStatus);
             setTags(toCopy.tags);
             setLastModifiedDateTime(toCopy.lastModifiedDateTime);
+            setNote(toCopy.note);
         }
 
         /**
@@ -229,6 +234,14 @@ public class EditCommand extends Command {
 
         public Optional<Mark> getMarkStatus() {
             return Optional.ofNullable(markStatus);
+        }
+
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         /**

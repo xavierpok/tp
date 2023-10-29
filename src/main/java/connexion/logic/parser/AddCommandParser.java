@@ -21,6 +21,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.tag.Tag;
@@ -56,7 +57,8 @@ public class AddCommandParser implements ClockDependentParser<AddCommand> {
         Mark markStatus = new Mark(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         LastModifiedDateTime lastModifiedDateTime = new LastModifiedDateTime(LocalDateTime.now(clock));
-        Person person = new Person(name, phone, email, company, job, markStatus, tagList, lastModifiedDateTime);
+        Note note = new Note("");
+        Person person = new Person(name, phone, email, company, job, markStatus, tagList, lastModifiedDateTime, note);
 
         return new AddCommand(person);
     }
