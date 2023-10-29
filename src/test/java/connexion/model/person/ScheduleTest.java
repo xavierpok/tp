@@ -90,7 +90,7 @@ public class ScheduleTest {
     @Test
     void getListString_equals_input() {
         Schedule schedule = new Schedule("2023-12-12-12-12");
-        assertEquals(schedule.getListString(), "Scheduled meeting: 12 Dec 2023, 12:12:00");
+        assertEquals(schedule.getListString(), "12 Dec 2023, 12:12:00");
         assertNotEquals(schedule.getListString(), "2023-12-12-12-12"); //to show it's actually matching the string
     }
 }

@@ -49,8 +49,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label schedule;
     @FXML
-    private Label scheduleName;
-    @FXML
     private Label lastModifiedDateTime;
 
     /**
@@ -64,7 +62,8 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().getListString());
         job.setText(person.getJob().getListString());
         markStatus.setText(person.getMarkStatus().toString());
-        schedule.setText(person.getSchedule()
+        schedule.setText(person.getScheduleName()
+                .map(sch -> sch.getListString() + ": ").orElse("") + person.getSchedule()
                 .map(Schedule::getListString).orElse(""));
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
