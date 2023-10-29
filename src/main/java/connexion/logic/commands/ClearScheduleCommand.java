@@ -16,6 +16,7 @@ import connexion.model.person.Company;
 import connexion.model.person.Email;
 import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
+import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
@@ -136,6 +137,7 @@ public class ClearScheduleCommand extends Command {
         Email email = personToClearSchedule.getEmail();
         Company company = personToClearSchedule.getCompany();
         Job job = personToClearSchedule.getJob();
+        Mark markStatus = personToClearSchedule.getMarkStatus();
         Set<Tag> tags = personToClearSchedule.getTags();
         LastModifiedDateTime updatedLastModifiedDateTime =
                 clearedScheduleDescriptor.getLastModifiedDateTime();
@@ -145,14 +147,9 @@ public class ClearScheduleCommand extends Command {
         // Like the other fields.
         Optional<Schedule> updatedSchedule = Optional.empty();
         Optional<ScheduleName> updatedScheduleName = Optional.empty();
-        Person toReturn = new Person(name, phone, email, company, job, tags,
+
+        return new Person(name, phone, email, company, job, tags, markStatus,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
-        if (personToClearSchedule.getMarkStatus().getValue()) {
-            toReturn.mark();
-        } else {
-            toReturn.unMark();
-        }
-        return toReturn;
     }
 
     /**

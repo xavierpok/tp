@@ -20,6 +20,7 @@ import connexion.model.person.Company;
 import connexion.model.person.Email;
 import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
+import connexion.model.person.Mark;
 import connexion.model.person.Name;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
@@ -89,6 +90,7 @@ public class ScheduleCommand extends Command {
         Company company = personToEditSchedule.getCompany();
         Job job = personToEditSchedule.getJob();
         Set<Tag> tags = personToEditSchedule.getTags();
+        Mark markStatus = personToEditSchedule.getMarkStatus();
         LastModifiedDateTime updatedLastModifiedDateTime =
                 scheduleDescriptor.getLastModifiedDateTime();
         // While semantically, it would make sense that this would always be changed,
@@ -97,14 +99,8 @@ public class ScheduleCommand extends Command {
         // Like the other fields.
         Optional<Schedule> updatedSchedule = Optional.ofNullable(scheduleDescriptor.getSchedule());
         Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
-        Person toReturn = new Person(name, phone, email, company, job, tags,
+        return new Person(name, phone, email, company, job, tags,markStatus,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
-        if (personToEditSchedule.getMarkStatus().getValue()) { // if the person was marked
-            toReturn.mark();
-        } else { // if the person was unmarked
-            toReturn.unMark();
-        }
-        return toReturn;
     }
 
     @Override

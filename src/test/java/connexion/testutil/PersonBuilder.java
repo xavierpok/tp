@@ -162,10 +162,7 @@ public class PersonBuilder {
      */
     public Person build() {
         Person newPerson = new Person(name, phone, email, company, job,
-                tags, schedule, scheduleName, lastModifiedDateTime);
-        if (markStatus.getValue()) {
-            newPerson.mark();
-        }
+                tags, markStatus, schedule, scheduleName, lastModifiedDateTime);
         return newPerson;
 
     }

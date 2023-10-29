@@ -15,7 +15,7 @@ import connexion.model.person.LastModifiedDateTime;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class ClearScheduleCommandParser implements ClockDependantParser<ClearScheduleCommand> {
+public class ClearScheduleCommandParser implements ClockDependentParser<ClearScheduleCommand> {
 
     private Clock clock = Clock.systemDefaultZone();
 
