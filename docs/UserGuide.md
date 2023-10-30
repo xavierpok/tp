@@ -150,12 +150,18 @@ Examples:
 
 Displays all entries filtered via a specified field.
 
-Format: `filter FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
-
+Supports 2 formats:
+1. Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]`
+2. Format 2: `filter FIELD_PREFIX_2`
+<br>
 * FIELD_PREFIX: represents the field to filter by.
     * Example: if filter by company, FIELD_PREFIX = “c/”.
+    * FIELD_PREFIX_1: one of "n/", "p/", "e/", "c/", "j/", "t/"
+    * FIELD_PREFIX_2: one of "m/", "u/"
+    * Refer to [Command FIELD Summary](#command-field-summary) for more information about the prefixes.
 * Only supports filtering via ONE field.
-    * Everything after FIELD_PREFIX will be recognized as keywords, including field prefixes!
+    * Everything after FIELD_PREFIX_1 will be recognized as keywords, including field prefixes!
+    * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid.
 * The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
 * Only returns results with FULL matching keywords to the field.
@@ -166,6 +172,20 @@ Examples:
 * `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
 * `filter t/friends` returns all entries with the tag “friends”.
 
+### Schedule a meeting with a specific person: `schedule`
+
+Schedules a meeting with an existing person contact via index
+
+Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
+
+* Adds a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
+* Schedule name is an optional field. If no schedule name is given, the default is `Meeting`.
+* Input schedule time must be in the format `YYYY-DD-MM-HH-MM`.
+* If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
+
+Examples:
+*  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
+*  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
 ### Deleting a contact : `delete`
 
@@ -228,4 +248,6 @@ Format: `exit`
 | n/     | NAME         | -                                                    |
 | p/     | PHONE_NUMBER | -                                                    |
 | t/     | TAG          | Multiple instances of this argument can be accepted. |
+| m/     | MARKED       | Marked contacts, only usable in `filter`             |
+| u/     | UNMARKED     | Un-marked contacts, only usable in `filter`          |
 

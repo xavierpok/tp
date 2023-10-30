@@ -5,9 +5,11 @@ import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
+import static connexion.logic.parser.CliSyntax.PREFIX_MARK;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
+import static connexion.logic.parser.CliSyntax.PREFIX_UNMARK;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
@@ -16,8 +18,10 @@ import connexion.logic.commands.FilterCommand;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.CompanyContainsKeywordsPredicate;
 import connexion.model.person.EmailContainsKeywordsPredicate;
+import connexion.model.person.IsMarkedPredicate;
 import connexion.model.person.JobContainsKeywordsPredicate;
 import connexion.model.person.NameContainsKeywordsPredicate;
+import connexion.model.person.NotMarkedPredicate;
 import connexion.model.person.PhoneContainsKeywordsPredicate;
 import connexion.model.tag.TagContainsKeywordsPredicate;
 
@@ -37,13 +41,19 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         String prefix;
         String[] keywords;
 
-        if (trimmedArgs.length() <= 2) {
+        prefix = trimmedArgs.substring(0, trimmedArgs.indexOf("/") + 1);
+        if (prefix.equals(PREFIX_MARK.getPrefix())) {
+            return new FilterCommand(new IsMarkedPredicate());
+        }
+        if (prefix.equals(PREFIX_UNMARK.getPrefix())) {
+            return new FilterCommand(new NotMarkedPredicate());
+        }
+
+        keywords = trimmedArgs.substring(trimmedArgs.indexOf("/") + 1).trim().split("\\s+");
+        if (Arrays.equals(keywords, new String[]{""})) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-
-        prefix = trimmedArgs.substring(0, 2);
-        keywords = trimmedArgs.substring(2).trim().split("\\s+");
 
         if (prefix.equals(PREFIX_NAME.getPrefix())) {
             return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));

@@ -48,9 +48,6 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label schedule;
-
-    @FXML
-    private Label scheduleName;
     @FXML
     private Label lastModifiedDateTime;
 
@@ -65,15 +62,12 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().getListString());
         job.setText(person.getJob().getListString());
         markStatus.setText(person.getMarkStatus().toString());
-        schedule.setText(person.getSchedule()
+        schedule.setText(person.getScheduleName()
+                .map(sch -> sch.getListString() + ": ").orElse("") + person.getSchedule()
                 .map(Schedule::getListString).orElse(""));
-        scheduleName.setText(person.getScheduleName()
-                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getValue))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
-        //schedule.setText(person.getSchedule.getDetailString());
-        schedule.setText("Upcoming Meeting: 10 Oct (in 1 year)");
 
     }
 }

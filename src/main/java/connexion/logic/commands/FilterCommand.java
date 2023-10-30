@@ -1,6 +1,12 @@
 package connexion.logic.commands;
 
 import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
+import static connexion.logic.parser.CliSyntax.PREFIX_MARK;
+import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
+import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
+import static connexion.logic.parser.CliSyntax.PREFIX_UNMARK;
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
@@ -19,13 +25,22 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
+    public static final String FIELD_PREFIX_MODE_1 = String.format("[%s, %s, %s, %s, %s, %s]",
+            PREFIX_NAME, PREFIX_PHONE, PREFIX_COMPANY, PREFIX_COMPANY, PREFIX_JOB, PREFIX_TAG);
+
+    public static final String FIELD_PREFIX_MODE_2 = String.format("[%s, %s]",
+            PREFIX_MARK, PREFIX_UNMARK);
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters for all persons whose specified field "
             + "contains any of the specified keywords"
             + "(case-insensitive) and displays them as a list with index numbers. \n"
-            + "Parameters: FIELD/KEYWORD [MORE_KEYWORDS]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_COMPANY + "Google";
+            + "Parameters (Mode 1): FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS] "
+            + "(FIELD_PREFIX_1 is one of " + FIELD_PREFIX_MODE_1 + ")\n"
+            + "Parameters (Mode 2): FIELD_PREFIX_2 "
+            + "(FIELD_PREFIX_2 is one of " + FIELD_PREFIX_MODE_2 + ")\n"
+            + "Example 1: " + COMMAND_WORD + " " + PREFIX_COMPANY + "Google\n"
+            + "Example 2: " + COMMAND_WORD + " " + PREFIX_MARK;
 
     private final Predicate<Person> predicate;
 

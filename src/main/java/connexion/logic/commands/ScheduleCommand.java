@@ -89,8 +89,8 @@ public class ScheduleCommand extends Command {
         Email email = personToEditSchedule.getEmail();
         Company company = personToEditSchedule.getCompany();
         Job job = personToEditSchedule.getJob();
-        Set<Tag> tags = personToEditSchedule.getTags();
         Mark markStatus = personToEditSchedule.getMarkStatus();
+        Set<Tag> tags = personToEditSchedule.getTags();
         LastModifiedDateTime updatedLastModifiedDateTime =
                 scheduleDescriptor.getLastModifiedDateTime();
         // While semantically, it would make sense that this would always be changed,
@@ -99,8 +99,14 @@ public class ScheduleCommand extends Command {
         // Like the other fields.
         Optional<Schedule> updatedSchedule = Optional.ofNullable(scheduleDescriptor.getSchedule());
         Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
-        return new Person(name, phone, email, company, job, tags,markStatus,
+        Person toReturn = new Person(name, phone, email, company, job, markStatus, tags,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+        if (personToEditSchedule.getMarkStatus().getValue()) { // if the person was marked
+            toReturn.mark();
+        } else { // if the person was unmarked
+            toReturn.unMark();
+        }
+        return toReturn;
     }
 
     @Override

@@ -39,7 +39,6 @@ public class TypicalPersons {
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withSchedule(DEFAULT_SCHEDULE)
             .withScheduleName(DEFAULT_SCHEDULE_NAME)
-            .withMarkStatus(true)
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withCompany("Mandai Wildlife Group").withJob("Software Engineer")
@@ -48,7 +47,7 @@ public class TypicalPersons {
             .withSchedule("2024-01-27-07-00")
             .withScheduleName("Teams Interview")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
-            .withMarkStatus(false)
+            .withMark(true)
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
@@ -56,6 +55,7 @@ public class TypicalPersons {
             .withSchedule("")
             .withScheduleName("")
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
+            .withMark(true)
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
@@ -87,7 +87,7 @@ public class TypicalPersons {
             .withLastModifiedDateTime(PersonBuilder.DEFAULT_LAST_MODIFIED)
             .withSchedule("2023-11-13-20-00")
             .withScheduleName("Evening seminar")
-            .withMarkStatus(true)
+            .withMark(true)
             .build();
 
     // Manually added
