@@ -2,6 +2,7 @@ package connexion.logic.commands;
 
 import static connexion.commons.util.CollectionUtil.requireAllNonNull;
 import static connexion.logic.parser.CliSyntax.PREFIX_NOTE;
+import static connexion.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class NoteCommand extends Command {
         Person notedPerson = createPersonToNote(personToNote, noteDescriptor);
 
         model.setPerson(personToNote, notedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(),
                 noteDescriptor.getNote()));
     }
@@ -189,7 +191,7 @@ public class NoteCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("personToNoteDescriptor", noteDescriptor)
+                .add("noteDescriptor", noteDescriptor)
                 .toString();
     }
 
