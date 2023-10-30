@@ -35,6 +35,7 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a note for the person identified by the index number used in the displayed person list. \n"
             + "Existing note will be overwritten by the new note.\n"
+            + "Character limit of NOTE is 1000.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NOTE + "[NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "

@@ -182,7 +182,9 @@ public class ParserUtil {
         String trimmedNote = note.trim();
         if (!Note.isValidNote(trimmedNote)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        } else if (!Note.hasValidLength(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
         }
-        return new Note(note);
+        return new Note(trimmedNote);
     }
 }

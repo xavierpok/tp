@@ -5,14 +5,20 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's note in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)} and has valid length as declared in
+ * {@link #hasValidLength(String)}.
  */
 public class Note implements PersonDetailField<String> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Notes should only contain alphanumeric characters, punctuation and spaces, can be blank";
+            "Note should only contain alphanumeric characters, punctuation and spaces. Can be blank";
+
+    public static final String MESSAGE_CONSTRAINTS_CHARACTER_LIMIT =
+            "Character limit of note is 1000\n";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\p{Punct} ]*";
+
+    public static final int CHARACTER_LIMIT = 1000;
 
     private final String note;
 
@@ -24,6 +30,7 @@ public class Note implements PersonDetailField<String> {
     public Note(String note) {
         requireNonNull(note);
         checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
+        checkArgument(hasValidLength(note), MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
         this.note = note;
     }
 
@@ -57,6 +64,13 @@ public class Note implements PersonDetailField<String> {
      */
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string has a valid length.
+     */
+    public static boolean hasValidLength(String test) {
+        return test.length() <= CHARACTER_LIMIT;
     }
 
     @Override

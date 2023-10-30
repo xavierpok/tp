@@ -199,6 +199,8 @@ class JsonAdaptedPerson {
 
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        } else if (!Note.hasValidLength(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
         }
         final Note modelNote = new Note(note);
 
