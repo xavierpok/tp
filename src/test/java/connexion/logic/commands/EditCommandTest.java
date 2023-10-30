@@ -9,6 +9,7 @@ import static connexion.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static connexion.logic.commands.CommandTestUtil.assertCommandFailure;
 import static connexion.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static connexion.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static connexion.testutil.PersonBuilder.DEFAULT_LAST_MODIFIED;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE;
 import static connexion.testutil.PersonBuilder.DEFAULT_SCHEDULE_NAME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -43,7 +44,8 @@ public class EditCommandTest {
         // create a person object with a default schedule and default schedule name
         Person editedPerson = new PersonBuilder()
                 .withSchedule(DEFAULT_SCHEDULE)
-                .withScheduleName(DEFAULT_SCHEDULE_NAME).build();
+                .withScheduleName(DEFAULT_SCHEDULE_NAME)
+                .withLastModifiedDateTime(DEFAULT_LAST_MODIFIED).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

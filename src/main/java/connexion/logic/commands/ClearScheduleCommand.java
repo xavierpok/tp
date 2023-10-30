@@ -148,7 +148,7 @@ public class ClearScheduleCommand extends Command {
         Optional<Schedule> updatedSchedule = Optional.empty();
         Optional<ScheduleName> updatedScheduleName = Optional.empty();
 
-        return new Person(name, phone, email, company, job, tags, markStatus,
+        return new Person(name, phone, email, company, job, markStatus, tags,
                 updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
     }
 
