@@ -31,8 +31,6 @@
       <Label fx:id="company" styleClass="cell_small_label"/>
       <Label fx:id="job" styleClass="cell_small_label" />
       <Label fx:id="schedule" styleClass="cell_small_label" text="\$schedule" />
-      <Label fx:id="scheduleName" styleClass="cell_small_label" text="\$scheduleName" />
-      <Label fx:id="schedule" styleClass="cell_small_label"/>
     </VBox>
     <VBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="200.0">
       <children>
