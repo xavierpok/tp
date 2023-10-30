@@ -144,6 +144,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    /**
+     * Returns an unmodifiable view of the {@code Person}
+     * {@code versionedAddressBook}
+     */
+
 
     //=========== Filtered Person List Accessors =============================================================
 

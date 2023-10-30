@@ -15,6 +15,8 @@ title: User Guide
     * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
     * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
+    * [Schedule a meeting with a specific person: `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
+    * [View details of a specific contact: `detail`](#view-details-of-a-specific-contact--detail)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -174,7 +176,7 @@ Examples:
 
 ### Schedule a meeting with a specific person: `schedule`
 
-Schedules a meeting with an existing person contact via index
+Schedules a meeting with an existing person contact via index.
 
 Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 
@@ -186,6 +188,21 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
+
+### View details of a specific contact: `detail`
+
+Displays all details of a specific contact via index.
+
+Format: `detail INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** starting from 1.
+* UI displaying person details can only be updated by this command.
+
+Examples:
+* `detail 1` displays the details for the person in the first index.
+* `find Betsy` followed by `detail 2` details the 2nd person in the results of the `find` command.
 
 ### Deleting a contact : `delete`
 
@@ -223,18 +240,20 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`  |
-| **Clear**  | `clear`                                                                                                                                                                                         |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                             |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                              |
-| **Filter** | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                             |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                      |
-| **List**   | `list`                                                                                                                                                                                          |
-| **Help**   | `help`                                                                                                                                                                                          |
-| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                                |
-| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                            |
+| Action       | Format, Examples                                                                                                                                                                               |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon` |
+| **Clear**    | `clear`                                                                                                                                                                                        |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                            |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                             |
+| **Detail**   | `detail INDEX`<br> e.g., `detail 3`                                                                                                                                                            |
+| **Filter**   | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                            |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                     |
+| **Help**     | `help`                                                                                                                                                                                         |
+| **List**     | `list`                                                                                                                                                                                         |
+| **Mark**     | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                               |
+| **Unmark**   | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                           |
+| **Schedule** | `schedule 1 i/2023-12-07-13-45`                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -242,10 +261,13 @@ Format: `exit`
 
 | Prefix | Description  | Notes                                                |
 |--------|--------------|------------------------------------------------------|
+| a/     | EVENT_NAME   | -                                                    |
 | c/     | COMPANY      | -                                                    |
 | e/     | EMAIL        | -                                                    |
+| i/     | SCHEDULE     | -                                                    |
 | j/     | JOB          | -                                                    |
 | n/     | NAME         | -                                                    |
+| o/     | NOTE         | -                                                    |
 | p/     | PHONE_NUMBER | -                                                    |
 | t/     | TAG          | Multiple instances of this argument can be accepted. |
 | m/     | MARKED       | Marked contacts, only usable in `filter`             |
