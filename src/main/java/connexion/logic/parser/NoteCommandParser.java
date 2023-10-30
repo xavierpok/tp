@@ -41,6 +41,8 @@ public class NoteCommandParser implements ClockDependentParser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
+
         NoteDescriptor noteDescriptor = new NoteDescriptor(
                 ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()),
                 new LastModifiedDateTime(LocalDateTime.now(clock)));
