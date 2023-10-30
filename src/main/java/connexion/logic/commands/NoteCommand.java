@@ -42,7 +42,8 @@ public class NoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Will be promoted to Senior Developer next month.";
 
-    public static final String MESSAGE_SUCCESS = "Index: %1$s; Note: %2$s";
+    // A temporary workaround before implementing immediate change for the UI.
+    public static final String MESSAGE_SUCCESS = "Index: %1$s; Note: %2$s. Enter 'detail %1$s' to view your changes";
 
     private final Index index;
     private final NoteDescriptor noteDescriptor;
