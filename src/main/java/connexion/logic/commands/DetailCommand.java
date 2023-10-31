@@ -10,7 +10,6 @@ import connexion.logic.Messages;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.model.Model;
 import connexion.model.person.Person;
-import connexion.ui.UiManager;
 
 /**
  * Details a person identified using it's displayed index from the address book.
@@ -40,7 +39,7 @@ public class DetailCommand extends Command {
         }
 
         Person personToDetail = lastShownList.get(targetIndex.getZeroBased());
-        UiManager.updatePersonView(personToDetail);
+        model.setDetailedPerson(personToDetail);
         return new CommandResult(String.format(MESSAGE_DETAIL_SUCCESS, Messages.format(personToDetail)));
     }
 

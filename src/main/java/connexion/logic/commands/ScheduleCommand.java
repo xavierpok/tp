@@ -74,6 +74,7 @@ public class ScheduleCommand extends Command {
 
         model.setPerson(personToEditSchedule, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDetailedPerson(editedPerson);
         return new CommandResult(String.format(SCHEDULE_ADD_SUCCESS, Messages.format(editedPerson)));
     }
 

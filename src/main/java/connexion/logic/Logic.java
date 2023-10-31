@@ -58,4 +58,6 @@ public interface Logic {
      * Get the clock the app is running on
      */
     Clock getClock();
+
+    Person getDetailedPerson();
 }
