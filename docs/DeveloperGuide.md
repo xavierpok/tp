@@ -256,6 +256,16 @@ If a contact has been un-marked, the UI will display "☆" as the string represe
 The following sequence diagram shows how the un-mark operation works:
 ![UnMarkSequenceDiagram](images/UnMarkSequenceDiagram.png)
 
+### Detail Feature (implemented by Angel & Kwok Yong)
+The user can view more details of their contact by updating the PersonViewPanel().
+
+Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved and set via the `setDetailedPerson(Person p)` in `Model`.
+
+This person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "Welcome to Connexion!" if `Person` object is null.
+
+The following sequence diagram shows how the detail operation works:
+![DetailSequenceDiagram](images/DetailSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
