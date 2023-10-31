@@ -45,7 +45,7 @@ public class ClearScheduleDescriptorTest {
     public void toStringMethod() {
 
         String expected = ClearScheduleCommand.ClearedScheduleDescriptor.class.getCanonicalName()
-                + "{lastmodified=" + new LastModifiedDateTime(DEFAULT_TEST_TIME) + "}";
+                + "{lastModified=" + new LastModifiedDateTime(DEFAULT_TEST_TIME) + "}";
         assertEquals(expected, TEST_DESCRIPTOR.toString());
     }
 }

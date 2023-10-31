@@ -5,7 +5,10 @@ import static connexion.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_LAST_MODIFIED_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static connexion.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static connexion.logic.commands.CommandTestUtil.VALID_SCHEDULE_BOB;
+import static connexion.logic.commands.CommandTestUtil.VALID_SCHEDULE_NAME_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.TypicalPersons.ALICE;
@@ -103,6 +106,21 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withLastModifiedDateTime(LocalDateTime.MIN).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different markStatus -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMark(true).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different schedule -> returns false
+        editedAlice = new PersonBuilder(ALICE).withSchedule(VALID_SCHEDULE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different scheduleName -> returns false
+        editedAlice = new PersonBuilder(ALICE).withScheduleName(VALID_SCHEDULE_NAME_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different note -> returns false
+        editedAlice = new PersonBuilder(ALICE).withNote(VALID_NOTE_AMY).build();
+        assertFalse(ALICE.equals(editedAlice));
 
     }
 
@@ -112,7 +130,8 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", company=" + ALICE.getCompany() + ", job=" + ALICE.getJob()
                 + ", tags=" + ALICE.getTags() + ", last-modified=" + ALICE.getLastModifiedDateTime()
                 + ", schedule=" + ALICE.getSchedule()
-                + ", scheduleName=" + ALICE.getScheduleName() + "}";
+                + ", scheduleName=" + ALICE.getScheduleName()
+                + ", note=" + ALICE.getNote() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

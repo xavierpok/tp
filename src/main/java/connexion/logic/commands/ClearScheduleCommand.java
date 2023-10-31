@@ -18,6 +18,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
@@ -141,6 +142,7 @@ public class ClearScheduleCommand extends Command {
         Set<Tag> tags = personToClearSchedule.getTags();
         LastModifiedDateTime updatedLastModifiedDateTime =
                 clearedScheduleDescriptor.getLastModifiedDateTime();
+        Note note = personToClearSchedule.getNote();
         // While semantically, it would make sense that this would always be changed,
         // We do it like this for consistency with other fields
         // And to move responsibility for updating this field to the parser,
@@ -149,7 +151,7 @@ public class ClearScheduleCommand extends Command {
         Optional<ScheduleName> updatedScheduleName = Optional.empty();
 
         return new Person(name, phone, email, company, job, markStatus, tags,
-                updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+                updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime, note);
     }
 
     /**
@@ -182,7 +184,7 @@ public class ClearScheduleCommand extends Command {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).add("lastmodified", lastModifiedDateTime).toString();
+            return new ToStringBuilder(this).add("lastModified", lastModifiedDateTime).toString();
         }
     }
 

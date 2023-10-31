@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * marks {@code key} from this {@code AddressBook}.
+     * Marks {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void markPerson(Person key) {
@@ -103,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * unMarks {@code key} from this {@code AddressBook}.
+     * Un-marks {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void unMarkPerson(Person key) {

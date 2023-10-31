@@ -21,6 +21,7 @@ import connexion.logic.commands.FilterCommand;
 import connexion.logic.commands.HelpCommand;
 import connexion.logic.commands.ListCommand;
 import connexion.logic.commands.MarkCommand;
+import connexion.logic.commands.NoteCommand;
 import connexion.logic.commands.ScheduleCommand;
 import connexion.logic.commands.UnMarkCommand;
 import connexion.logic.parser.exceptions.ParseException;
@@ -81,6 +82,9 @@ public class AddressBookParser implements ClockDependentParser<Command> {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case NoteCommand.COMMAND_WORD:
+            return new NoteCommandParser().withClock(clock).parse(arguments);
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);

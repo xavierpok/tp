@@ -4,6 +4,7 @@ import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
+import static connexion.logic.parser.CliSyntax.PREFIX_NOTE;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import connexion.logic.commands.AddCommand;
 import connexion.logic.commands.EditCommand.EditPersonDescriptor;
+import connexion.logic.commands.NoteCommand.NoteDescriptor;
 import connexion.model.person.Person;
 import connexion.model.tag.Tag;
 
@@ -69,6 +71,15 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getValue()).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code NoteDescriptor}'s details.
+     */
+    public static String getNoteDescriptorDetails(NoteDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NOTE).append(descriptor.getNote());
         return sb.toString();
     }
 }

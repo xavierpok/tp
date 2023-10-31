@@ -9,6 +9,7 @@
     "mark": "\u2606",
     "schedule": "",
     "scheduleName": "",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:00"
   }, {
     "name": "Alice Pauline",
@@ -19,6 +20,7 @@
     "mark": "\u2606",
     "schedule": "",
     "scheduleName": "",
+    "note" : "",
     "last_modified" : "10 Oct 2000, 10:10:00"
   } ]
 }

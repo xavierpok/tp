@@ -22,6 +22,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
@@ -91,6 +92,7 @@ public class ScheduleCommand extends Command {
         Job job = personToEditSchedule.getJob();
         Mark markStatus = personToEditSchedule.getMarkStatus();
         Set<Tag> tags = personToEditSchedule.getTags();
+        Note note = personToEditSchedule.getNote();
         LastModifiedDateTime updatedLastModifiedDateTime =
                 scheduleDescriptor.getLastModifiedDateTime();
         // While semantically, it would make sense that this would always be changed,
@@ -100,7 +102,7 @@ public class ScheduleCommand extends Command {
         Optional<Schedule> updatedSchedule = Optional.ofNullable(scheduleDescriptor.getSchedule());
         Optional<ScheduleName> updatedScheduleName = Optional.ofNullable(scheduleDescriptor.getScheduleName());
         Person toReturn = new Person(name, phone, email, company, job, markStatus, tags,
-                updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime);
+                updatedSchedule, updatedScheduleName, updatedLastModifiedDateTime, note);
         if (personToEditSchedule.getMarkStatus().getValue()) { // if the person was marked
             toReturn.mark();
         } else { // if the person was unmarked
