@@ -240,32 +240,35 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                               |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
-| **Clear**  | `clear`                                                                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
-| **Filter** | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
-| **List**   | `list`                                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                         |
-| **Mark**   | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
-| **Unmark** | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
-| **Note**   | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
+| Action       | Format, Examples                                                                                                                                                               |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
+| **Clear**    | `clear`                                                                                                                                                                        |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
+| **Filter**   | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
+| **List**     | `list`                                                                                                                                                                         |
+| **Help**     | `help`                                                                                                                                                                         |
+| **Mark**     | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
+| **Unmark**   | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
+| **Schedule** | `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]` <br> e.g., `schedule 3 i/2024-05-06-18-00 a/Evening seminar`                                                                |
+| **Note**     | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command FIELD Summary
 
-| Prefix | Description  | Notes                                                |
-|--------|--------------|------------------------------------------------------|
-| c/     | COMPANY      | -                                                    |
-| e/     | EMAIL        | -                                                    |
-| j/     | JOB          | -                                                    |
-| n/     | NAME         | -                                                    |
-| p/     | PHONE_NUMBER | -                                                    |
-| t/     | TAG          | Multiple instances of this argument can be accepted. |
-| m/     | MARKED       | Marked contacts, only usable in `filter` command     |
-| u/     | UNMARKED     | Un-marked contacts, only usable in `filter` command  |
-| o/     | NOTE         | Only usable in `note` command                        |                 
+| Prefix | Description   | Notes                                                |
+|--------|---------------|------------------------------------------------------|
+| c/     | COMPANY       | -                                                    |
+| e/     | EMAIL         | -                                                    |
+| j/     | JOB           | -                                                    |
+| n/     | NAME          | -                                                    |
+| p/     | PHONE_NUMBER  | -                                                    |
+| t/     | TAG           | Multiple instances of this argument can be accepted. |
+| m/     | MARKED        | Marked contacts, only usable in `filter` command     |
+| u/     | UNMARKED      | Un-marked contacts, only usable in `filter` command  |
+| i/     | SCHEDULE_TIME | Only usable in `schedule` command                    |
+| a/     | SCHEDULE_NAME | Only usable in `schedule` command                    |
+| o/     | NOTE          | Only usable in `note` command                        |                 
 
