@@ -16,6 +16,7 @@ title: User Guide
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
     * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
     * [Schedule a meeting with a specific person : `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
+    * [Clearing a scheduled meeting with a specific person : `clearschedule`](#clearing-a-scheduled-meeting-with-a-specific-person--clearschedule)
     * [Adds a note to a specific person : `note`](#adds-a-note-to-a-specific-person--note)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
@@ -185,6 +186,18 @@ Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
+### Clearing a scheduled meeting with a specific person : `clearschedule`
+
+Clears the scheduled meeting with an existing person contact via index
+
+Format : `clearschedule INDEX`
+
+* Clears a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
+* Clears both the scheduled date & time, and the schedule name.
+
+Example : 
+* `clearschedule 1` removes both the name and time of schedule associated with the 1st person.
+
 ### Adds a note to a specific person : `note`
 
 Adds a note with an existing person contact via index.
@@ -193,12 +206,12 @@ Format: `note INDEX o/[NOTE]`
 
 * Adds a note to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
 * If there are existing notes, it will be updated to the input note.
-  * Note is an optional field. If left blank, it will clear any existing note that the person has.
+    * Note is an optional field. If left blank, it will clear any existing note that the person has.
 * By default, note is empty when a person is added to the address book.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
-* Any changes to a person's note is not immediately seen in the UI. 
-  * Do `detail INDEX`, where INDEX refers to the index of the person noted, to view the changes.
+* Any changes to a person's note is not immediately seen in the UI.
+    * Do `detail INDEX`, where INDEX refers to the index of the person noted, to view the changes.
 
 Examples:
 * `note 1 o/CS2103 is pain!` edits or adds the 1st person's note to be `CS2103 is pain!`.
@@ -240,19 +253,20 @@ Format: `exit`
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                               |
-|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
-| **Clear**    | `clear`                                                                                                                                                                        |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
-| **Filter**   | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
-| **List**     | `list`                                                                                                                                                                         |
-| **Help**     | `help`                                                                                                                                                                         |
-| **Mark**     | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
-| **Unmark**   | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
-| **Schedule** | `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]` <br> e.g., `schedule 3 i/2024-05-06-18-00 a/Evening seminar`                                                                |
-| **Note**     | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
+| Action             | Format, Examples                                                                                                                                                               |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
+| **Clear**          | `clear`                                                                                                                                                                        |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
+| **Filter**         | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
+| **List**           | `list`                                                                                                                                                                         |
+| **Help**           | `help`                                                                                                                                                                         |
+| **Mark**           | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
+| **Unmark**         | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
+| **Schedule**       | `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]` <br> e.g., `schedule 3 i/2024-05-06-18-00 a/Evening seminar`                                                                |
+| **Clear Schedule** | `clearschedule INDEX` <br> e.g., `clearschedule 1`                                                                                                                             |
+| **Note**           | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
