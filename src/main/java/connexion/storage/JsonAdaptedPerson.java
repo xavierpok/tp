@@ -18,6 +18,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
@@ -42,6 +43,8 @@ class JsonAdaptedPerson {
     private final String schedule;
     private final String scheduleName;
 
+    private final String note;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -51,7 +54,7 @@ class JsonAdaptedPerson {
             @JsonProperty("job") String job, @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("mark") String mark, @JsonProperty("schedule") String schedule,
             @JsonProperty("scheduleName") String scheduleName,
-            @JsonProperty("last_modified") String lastModifiedDateTime) {
+            @JsonProperty("last_modified") String lastModifiedDateTime, @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,6 +67,7 @@ class JsonAdaptedPerson {
         this.schedule = schedule;
         this.mark = mark;
         this.lastModifiedDateTime = lastModifiedDateTime;
+        this.note = note;
     }
 
     /**
@@ -82,6 +86,7 @@ class JsonAdaptedPerson {
         schedule = source.getSchedule().map(Objects::toString).orElse("");
         scheduleName = source.getScheduleName().map(Objects::toString).orElse("");
         lastModifiedDateTime = source.getLastModifiedDateTime().toString();
+        note = source.getNote().getValue();
     }
 
     /**
@@ -187,10 +192,21 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Note.class.getSimpleName()));
+        }
+
+        if (!Note.isValidNote(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        } else if (!Note.hasValidLength(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
+        }
+        final Note modelNote = new Note(note);
+
         Person newPerson = new Person(
                 modelName, modelPhone, modelEmail, modelCompany, modelJob, markStatus,
-                modelTags, modelSchedule, modelScheduleName, lastModified);
-
+                modelTags, modelSchedule, modelScheduleName, lastModified, modelNote);
         return newPerson;
     }
 

@@ -13,6 +13,7 @@ import connexion.model.person.Company;
 import connexion.model.person.Email;
 import connexion.model.person.Job;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
 import connexion.model.person.ScheduleName;
@@ -168,5 +169,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        } else if (!Note.hasValidLength(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
+        }
+        return new Note(trimmedNote);
     }
 }

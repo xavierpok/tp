@@ -15,6 +15,9 @@ title: User Guide
     * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
     * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
+    * [Schedule a meeting with a specific person : `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
+    * [Clearing a scheduled meeting with a specific person : `clearschedule`](#clearing-a-scheduled-meeting-with-a-specific-person--clearschedule)
+    * [Adds a note to a specific person : `note`](#adds-a-note-to-a-specific-person--note)
     * [Schedule a meeting with a specific person: `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
     * [View details of a specific contact: `detail`](#view-details-of-a-specific-contact--detail)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
@@ -57,8 +60,8 @@ title: User Guide
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-* Commands that modify or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
-
+* Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
+  * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -77,16 +80,24 @@ Creates a new contact and adds it to the app.
 Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Tags cannot include spaces or non-alphanumeric characters. 
+We suggest using **PascalCase** or **camelCase** if you want multiple words in a single tag.
+</div>
+
+* Does not allow contacts with duplicate full names to be added. (case-sensitive)
+  * Eg. Persons with name "A" and "a" can co-exist in the address book, but not "A" and "A"
+
 Examples:
-* `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon`
+* `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon`
 * `add n/Aiken Duit p/88888888 e/aikenduit@hotmail.com c/Meta j/Data Engineer`
 
 ### Listing all contacts : `list`
 
-Gives the list of all contacts in alphabetical order (by name).
+Gives the list of all contacts.
 
 Format: `list`
 
@@ -126,10 +137,10 @@ Marks a contact of interest.
 
 Format: `mark INDEX`
 
-* Marks the person at the specified `INDEX`.
+* Marks the person at the specified `INDEX`, which is shown by a yellow filled star.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
-* When a new contact is created, the contact is unmarked by default.
+* When a new contact is created, the contact is un-marked by default.
 
 Examples:
 * `list` followed by `mark 2` marks the 2nd person in the address book as contact of interest.
@@ -140,10 +151,10 @@ Un-marks a contact of interest.
 
 Format: `unmark INDEX`
 
-* Marks the person at the specified `INDEX`.
+* Marks the person at the specified `INDEX`, which is shown by a yellow hollow star.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
-* When a new contact is created, the contact is unmarked by default.
+* When a new contact is created, the contact is un-marked by default.
 
 Examples:
 * `unmark 1` un-marks the 1st person in the current displayed list.
@@ -174,7 +185,7 @@ Examples:
 * `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
 * `filter t/friends` returns all entries with the tag “friends”.
 
-### Schedule a meeting with a specific person: `schedule`
+### Schedule a meeting with a specific person : `schedule`
 
 Schedules a meeting with an existing person contact via index.
 
@@ -203,6 +214,37 @@ Format: `detail INDEX`
 Examples:
 * `detail 1` displays the details for the person in the first index.
 * `find Betsy` followed by `detail 2` details the 2nd person in the results of the `find` command.
+
+### Clearing a scheduled meeting with a specific person : `clearschedule`
+
+Clears the scheduled meeting with an existing person contact via index
+
+Format : `clearschedule INDEX`
+
+* Clears a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
+* Clears both the scheduled date & time, and the schedule name.
+
+Example : 
+* `clearschedule 1` removes both the name and time of schedule associated with the 1st person.
+
+### Adds a note to a specific person : `note`
+
+Adds a note with an existing person contact via index.
+
+Format: `note INDEX o/[NOTE]`
+
+* Adds a note to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
+* If there are existing notes, it will be updated to the input note.
+    * Note is an optional field. If left blank, it will clear any existing note that the person has.
+* By default, note is empty when a person is added to the address book.
+* Note has a character limit of **1000**.
+* Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
+* Any changes to a person's note is not immediately seen in the UI.
+    * Do `detail INDEX`, where INDEX refers to the index of the person noted, to view the changes.
+
+Examples:
+* `note 1 o/CS2103 is pain!` edits or adds the 1st person's note to be `CS2103 is pain!`.
+* `note 2 o/` clears 2nd person's note.
 
 ### Deleting a contact : `delete`
 
@@ -240,36 +282,36 @@ Format: `exit`
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                                               |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS Alumni t/Met in Google Hackathon` |
-| **Clear**    | `clear`                                                                                                                                                                                        |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                            |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                                             |
-| **Detail**   | `detail INDEX`<br> e.g., `detail 3`                                                                                                                                                            |
-| **Filter**   | `filter FIELD KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google`                                                                                                                            |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex Young`                                                                                                                                     |
-| **Help**     | `help`                                                                                                                                                                                         |
-| **List**     | `list`                                                                                                                                                                                         |
-| **Mark**     | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                                               |
-| **Unmark**   | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                                           |
-| **Schedule** | `schedule 1 i/2023-12-07-13-45`                                                                                                                                                                |
+| Action             | Format, Examples                                                                                                                                                               |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
+| **Clear**          | `clear`                                                                                                                                                                        |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
+| **Filter**         | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
+| **List**           | `list`                                                                                                                                                                         |
+| **Help**           | `help`                                                                                                                                                                         |
+| **Mark**           | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
+| **Unmark**         | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
+| **Schedule**       | `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]` <br> e.g., `schedule 3 i/2024-05-06-18-00 a/Evening seminar`                                                                |
+| **Clear Schedule** | `clearschedule INDEX` <br> e.g., `clearschedule 1`                                                                                                                             |
+| **Note**           | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command FIELD Summary
 
-| Prefix | Description  | Notes                                                |
-|--------|--------------|------------------------------------------------------|
-| a/     | EVENT_NAME   | -                                                    |
-| c/     | COMPANY      | -                                                    |
-| e/     | EMAIL        | -                                                    |
-| i/     | SCHEDULE     | -                                                    |
-| j/     | JOB          | -                                                    |
-| n/     | NAME         | -                                                    |
-| o/     | NOTE         | -                                                    |
-| p/     | PHONE_NUMBER | -                                                    |
-| t/     | TAG          | Multiple instances of this argument can be accepted. |
-| m/     | MARKED       | Marked contacts, only usable in `filter`             |
-| u/     | UNMARKED     | Un-marked contacts, only usable in `filter`          |
+| Prefix | Description   | Notes                                                |
+|--------|---------------|------------------------------------------------------|
+| c/     | COMPANY       | -                                                    |
+| e/     | EMAIL         | -                                                    |
+| j/     | JOB           | -                                                    |
+| n/     | NAME          | -                                                    |
+| p/     | PHONE_NUMBER  | -                                                    |
+| t/     | TAG           | Multiple instances of this argument can be accepted. |
+| m/     | MARKED        | Marked contacts, only usable in `filter` command     |
+| u/     | UNMARKED      | Un-marked contacts, only usable in `filter` command  |
+| i/     | SCHEDULE_TIME | Only usable in `schedule` command                    |
+| a/     | SCHEDULE_NAME | Only usable in `schedule` command                    |
+| o/     | NOTE          | Only usable in `note` command                        |                 
 

@@ -5,6 +5,7 @@ import static connexion.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
+import static connexion.testutil.PersonBuilder.DEFAULT_NOTE;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,6 +27,8 @@ import connexion.logic.commands.FilterCommand;
 import connexion.logic.commands.HelpCommand;
 import connexion.logic.commands.ListCommand;
 import connexion.logic.commands.MarkCommand;
+import connexion.logic.commands.NoteCommand;
+import connexion.logic.commands.NoteCommand.NoteDescriptor;
 import connexion.logic.commands.UnMarkCommand;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.CompanyContainsKeywordsPredicate;
@@ -36,6 +39,7 @@ import connexion.model.person.Person;
 import connexion.model.person.PhoneContainsKeywordsPredicate;
 import connexion.model.tag.TagContainsKeywordsPredicate;
 import connexion.testutil.EditPersonDescriptorBuilder;
+import connexion.testutil.NoteDescriptorBuilder;
 import connexion.testutil.PersonBuilder;
 import connexion.testutil.PersonUtil;
 
@@ -136,6 +140,17 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_note() throws Exception {
+        NoteDescriptor descriptor = new NoteDescriptorBuilder()
+                .withNote(DEFAULT_NOTE)
+                .withLastModifiedDateTime(DEFAULT_TEST_TIME)
+                .build();
+        NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getNoteDescriptorDetails(descriptor));
+        assertEquals(new NoteCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
