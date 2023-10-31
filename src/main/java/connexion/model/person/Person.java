@@ -32,7 +32,7 @@ public class Person {
     private final Optional<Schedule> schedule;
     private final Optional<ScheduleName> scheduleName;
     /**
-     * Every field must be present and not null, except Note.
+     * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Company company, Job job, Mark markStatus, Set<Tag> tags,
                   LastModifiedDateTime lastModifiedDateTime, Note note) {
@@ -57,7 +57,7 @@ public class Person {
                   Job job, Mark markStatus, Set<Tag> tags, Optional<Schedule> schedule,
                   Optional<ScheduleName> scheduleName,
                   LastModifiedDateTime lastModifiedDateTime, Note note) {
-        requireAllNonNull(name, phone, email, company, job, schedule, scheduleName, tags);
+        requireAllNonNull(name, phone, email, company, job, schedule, scheduleName, tags, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
