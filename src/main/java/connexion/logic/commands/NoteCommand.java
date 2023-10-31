@@ -118,6 +118,11 @@ public class NoteCommand extends Command {
         private Note note;
         private LastModifiedDateTime lastModifiedDateTime;
 
+        /**
+         * Constructs a NoteDescriptor.
+         * @param note to be added.
+         * @param lastModifiedDateTime the current time of modification.
+         */
         public NoteDescriptor(Note note, LastModifiedDateTime lastModifiedDateTime) {
             this.note = note;
             this.lastModifiedDateTime = lastModifiedDateTime;
