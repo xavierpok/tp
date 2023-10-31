@@ -47,7 +47,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.clock = Clock.systemDefaultZone();
-
     }
 
     //=========== UserPrefs ==================================================================================
@@ -179,4 +178,11 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    public Person getDetailedPerson() {
+        return addressBook.getDetailedPerson();
+    }
+
+    public void setDetailedPerson(Person p) {
+        addressBook.setDetailedPerson(p);
+    }
 }
