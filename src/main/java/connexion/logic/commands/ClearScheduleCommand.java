@@ -34,7 +34,7 @@ public class ClearScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the schedule of the person identified by the index number used in the displayed person list\n"
             + "Parameters: INDEX (must be a positive integer) ";
-    public static final String MESSAGE_CLEAR_SCHEDULE_SUCCESS = "Cleared : %1$s";
+    public static final String MESSAGE_CLEAR_SCHEDULE_SUCCESS = "Cleared Schedule : %1$s";
 
     public static final String MESSAGE_NO_SCHEDULE = "No schedule was found for this person.";
 
