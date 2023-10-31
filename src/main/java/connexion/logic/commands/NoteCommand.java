@@ -118,7 +118,10 @@ public class NoteCommand extends Command {
         private Note note;
         private LastModifiedDateTime lastModifiedDateTime;
 
-        public NoteDescriptor(Note note, LastModifiedDateTime lastModifiedDateTime) {}
+        public NoteDescriptor(Note note, LastModifiedDateTime lastModifiedDateTime) {
+            this.note = note;
+            this.lastModifiedDateTime = lastModifiedDateTime;
+        }
 
         /**
          * Copy constructor.

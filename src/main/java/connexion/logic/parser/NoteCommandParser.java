@@ -46,10 +46,6 @@ public class NoteCommandParser implements ClockDependentParser<NoteCommand> {
         NoteDescriptor noteDescriptor = new NoteDescriptor(
                 ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()),
                 new LastModifiedDateTime(LocalDateTime.now(clock)));
-        noteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
-
-        // Need to set LastModifiedDateTime
-        noteDescriptor.setLastModifiedDateTime(new LastModifiedDateTime(LocalDateTime.now(clock)));
 
         return new NoteCommand(index, noteDescriptor);
     }
