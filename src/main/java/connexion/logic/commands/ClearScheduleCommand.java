@@ -86,6 +86,7 @@ public class ClearScheduleCommand extends Command {
 
         model.setPerson(personToClear, clearedSchedulePerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDetailedPerson(clearedSchedulePerson);
 
 
         if (personToClear.getScheduleName().isPresent() && personToClear.getSchedule().isEmpty()) {

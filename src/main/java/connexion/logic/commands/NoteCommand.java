@@ -42,8 +42,7 @@ public class NoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Will be promoted to Senior Developer next month.";
 
-    // A temporary workaround before implementing immediate change for the UI.
-    public static final String MESSAGE_SUCCESS = "Index: %1$s; Note: %2$s. Enter 'detail %1$s' to view your changes";
+    public static final String MESSAGE_SUCCESS = "Index: %1$s; Note: %2$s";
 
     private final Index index;
     private final NoteDescriptor noteDescriptor;
@@ -74,6 +73,7 @@ public class NoteCommand extends Command {
 
         model.setPerson(personToNote, notedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setDetailedPerson(notedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(),
                 noteDescriptor.getNote()));
     }

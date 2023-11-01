@@ -39,7 +39,7 @@ public class UnMarkCommand extends Command {
         }
 
         Person personToUnMark = lastShownList.get(targetIndex.getZeroBased());
-        model.unMarkPerson(personToUnMark);
+        model.unMarkPerson(personToUnMark); // pending immutable implementation
         model.setDetailedPerson(personToUnMark);
         return new CommandResult(String.format(MESSAGE_UNMARK_SUCCESS, Messages.format(personToUnMark)));
     }
