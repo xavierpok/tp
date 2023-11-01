@@ -261,7 +261,7 @@ The user can view the details of their contact by updating the PersonViewPanel()
 
 Details include name, tags, phone number, email, company, job, lastModified, scheduled meetings, and notes.
 
-Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved and set via the `setDetailedPerson(Person p)` in `Model`.
+Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved.  The `detailedPerson` in `AddressBook` is set via the `setDetailedPerson(Person p)` in `Model`.
 
 This person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "Welcome to Connexion!" if `Person` object is null.
 

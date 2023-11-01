@@ -193,14 +193,14 @@ Displays all details of a specific contact via index.
 
 Format: `detail INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Shows the details of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
 * UI displaying person details can only be updated by this command.
 
 Examples:
 * `detail 1` displays the details for the person in the first index.
-* `find Betsy` followed by `detail 2` details the 2nd person in the results of the `find` command.
+* `filter c/Google` followed by `detail 2` details the 2nd person in the results of the `filter` command.
 
 ### Clearing a scheduled meeting with a specific person : `clearschedule`
 
