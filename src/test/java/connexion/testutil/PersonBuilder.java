@@ -13,6 +13,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
@@ -31,10 +32,11 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Mandai Wildlife Group";
     public static final boolean DEFAULT_MARK = false;
     public static final String DEFAULT_JOB = "Machine Learning Analyst";
+    public static final boolean DEFAULT_MARK_STATUS = false;
+    public static final String DEFAULT_NOTE = "";
     public static final String DEFAULT_SCHEDULE = "2023-12-10-10-08";
     public static final String DEFAULT_SCHEDULE_NAME = "Seminar";
     public static final LocalDateTime DEFAULT_LAST_MODIFIED = DEFAULT_TEST_TIME;
-    public static final boolean DEFAULT_MARK_STATUS = false;
 
     private Name name;
     private Phone phone;
@@ -45,6 +47,7 @@ public class PersonBuilder {
     private Optional<Schedule> schedule;
     private Optional<ScheduleName> scheduleName;
     private Mark markStatus;
+    private Note note;
     private LastModifiedDateTime lastModifiedDateTime;
 
     /**
@@ -62,6 +65,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         lastModifiedDateTime = new LastModifiedDateTime(DEFAULT_LAST_MODIFIED);
         markStatus = new Mark(DEFAULT_MARK_STATUS);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -80,6 +84,7 @@ public class PersonBuilder {
         markStatus = personToCopy.getMarkStatus();
         lastModifiedDateTime = personToCopy.getLastModifiedDateTime();
         markStatus = personToCopy.getMarkStatus();
+        note = personToCopy.getNote();
     }
 
     /**
@@ -161,6 +166,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+    /**
      * Sets the {@code LastModifiedDateTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
@@ -174,6 +187,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, company, job, markStatus,
-                tags, schedule, scheduleName, lastModifiedDateTime);
+                tags, schedule, scheduleName, lastModifiedDateTime, note);
     }
 }

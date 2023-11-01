@@ -28,6 +28,7 @@ import connexion.model.person.Job;
 import connexion.model.person.LastModifiedDateTime;
 import connexion.model.person.Mark;
 import connexion.model.person.Name;
+import connexion.model.person.Note;
 import connexion.model.person.Person;
 import connexion.model.person.Phone;
 import connexion.model.person.Schedule;
@@ -108,11 +109,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
-        Mark updatedMark = editPersonDescriptor.getMarkStatus().orElse(personToEdit.getMarkStatus());;
+        Mark updatedMark = editPersonDescriptor.getMarkStatus().orElse(personToEdit.getMarkStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         LastModifiedDateTime updatedLastModifiedDateTime =
                 editPersonDescriptor.getLastModifiedDateTime()
                         .orElse(personToEdit.getLastModifiedDateTime());
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         // While semantically, it would make sense that this would always be changed,
         // We do it like this for consistency with other fields
         // And to move responsibility for updating this field to the parser,
@@ -121,7 +123,7 @@ public class EditCommand extends Command {
         Optional<ScheduleName> scheduleName = personToEdit.getScheduleName();
         return new Person(updatedName, updatedPhone,
                 updatedEmail, updatedCompany, updatedJob, updatedMark,
-                updatedTags, schedule, scheduleName, updatedLastModifiedDateTime);
+                updatedTags, schedule, scheduleName, updatedLastModifiedDateTime, updatedNote);
     }
 
     @Override
@@ -163,6 +165,8 @@ public class EditCommand extends Command {
 
         private LastModifiedDateTime lastModifiedDateTime;
 
+        private Note note;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -178,6 +182,7 @@ public class EditCommand extends Command {
             setMarkStatus(toCopy.markStatus);
             setTags(toCopy.tags);
             setLastModifiedDateTime(toCopy.lastModifiedDateTime);
+            setNote(toCopy.note);
         }
 
         /**
@@ -233,6 +238,14 @@ public class EditCommand extends Command {
 
         public Optional<Mark> getMarkStatus() {
             return Optional.ofNullable(markStatus);
+        }
+
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         /**

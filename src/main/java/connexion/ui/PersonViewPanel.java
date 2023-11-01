@@ -79,19 +79,7 @@ public class PersonViewPanel extends UiPart<Region> {
                     .map(Schedule::getDetailString).orElse(""));
             scheduleName.setText(person.getScheduleName()
                     .map(Object::toString).orElse("No scheduled meetings with this person yet"));
-            //note.setText(person.getNote.getDetailString());
-            note.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat, quam ac vehicula.");
+            note.setText(person.getNote().getDetailString());
         }
     }
-
-    /**
-     * Constructor for PersonViewPanel
-     * */
-    public PersonViewPanel() {
-        super(FXML);
-        this.person = null;
-        this.noteHeader.setText("");
-        this.name.setText("Welcome to Connexion!");
-    }
-
 }

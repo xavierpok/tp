@@ -13,7 +13,7 @@ import connexion.model.person.Person;
 
 
 /**
- * Marks a person identified using it's displayed index from the address book.
+ * Marks a person identified using its displayed index from the address book.
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
@@ -26,7 +26,11 @@ public class MarkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex of person in the filtered person list to mark
+     */
     public MarkCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

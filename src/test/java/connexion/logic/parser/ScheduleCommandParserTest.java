@@ -5,12 +5,11 @@ import static connexion.logic.commands.CommandTestUtil.AUTO_GIVEN_SCHEDULE_NAME;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DATE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DESC;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_NAME_DESC;
-import static connexion.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_DESC_BOB;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_NAME_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_NAME_DESC_BOB;
-import static connexion.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static connexion.logic.commands.CommandTestUtil.VALID_SCHEDULE_AMY;
 import static connexion.logic.commands.CommandTestUtil.VALID_SCHEDULE_BOB;
 import static connexion.logic.commands.CommandTestUtil.VALID_SCHEDULE_NAME_AMY;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
@@ -44,7 +43,7 @@ public class ScheduleCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_SCHEDULE_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
@@ -56,10 +55,10 @@ public class ScheduleCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + SCHEDULE_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + SCHEDULE_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
