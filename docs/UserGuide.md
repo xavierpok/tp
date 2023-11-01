@@ -18,6 +18,7 @@ title: User Guide
     * [Schedule a meeting with a specific person : `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
     * [Clearing a scheduled meeting with a specific person : `clearschedule`](#clearing-a-scheduled-meeting-with-a-specific-person--clearschedule)
     * [Adds a note to a specific person : `note`](#adds-a-note-to-a-specific-person--note)
+    * [View details of a specific contact: `detail`](#view-details-of-a-specific-contact--detail)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -149,10 +150,10 @@ Examples:
 
 Displays all entries filtered via a specified field.
 
-Supports 2 formats:
-1. Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]`
-2. Format 2: `filter FIELD_PREFIX_2`
-<br>
+Supports 2 formats: <br>
+Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br>
+Format 2: `filter FIELD_PREFIX_2` <br>
+
 * FIELD_PREFIX: represents the field to filter by.
     * Example: if filter by company, FIELD_PREFIX = “c/”.
     * FIELD_PREFIX_1: one of "n/", "p/", "e/", "c/", "j/", "t/"
@@ -179,16 +180,31 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 
 * Adds a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
 * Schedule name is an optional field. If no schedule name is given, the default is `Meeting`.
-* Input schedule time must be in the format `YYYY-DD-MM-HH-MM`.
+* Input schedule time must be in the format `YYYY-MM-DD-HH-mm`, and must be valid.
 * If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
 
 Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
+### View details of a specific contact: `detail`
+
+Displays all details of a specific contact via index.
+
+Format: `detail INDEX`
+
+* Shows the details of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** starting from 1.
+* UI displaying person details can only be updated by this command.
+
+Examples:
+* `detail 1` displays the details for the person in the first index.
+* `filter c/Google` followed by `detail 2` details the 2nd person in the results of the `filter` command.
+
 ### Clearing a scheduled meeting with a specific person : `clearschedule`
 
-Clears the scheduled meeting with an existing person contact via index
+Clears the scheduled meeting with an existing person contact via index.
 
 Format : `clearschedule INDEX`
 

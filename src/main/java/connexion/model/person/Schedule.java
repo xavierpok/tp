@@ -16,8 +16,8 @@ import java.util.Locale;
  */
 public class Schedule implements PersonListDetailField<LocalDateTime> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Schedule time should be in YYYY-MM-DD-HH-MM, and be valid."
-            + " E.g. 2020-09-30-23-59. Please check to make sure the date & time exist.";
+    public static final String MESSAGE_CONSTRAINTS = "Schedule time should be in YYYY-MM-DD-HH-mm, and be valid."
+            + " E.g. 2020-09-30-23-59. \nPlease check to make sure the date & time exist.";
 
     public static final DateTimeFormatter SCHEDULE_FORMATTER =
             DateTimeFormatter.ofPattern("uuuu-MM-dd-HH-mm").withResolverStyle(ResolverStyle.STRICT);
