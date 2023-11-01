@@ -210,8 +210,6 @@ Format: `note INDEX o/[NOTE]`
 * By default, note is empty when a person is added to the address book.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
-* Any changes to a person's note is not immediately seen in the UI.
-    * Do `detail INDEX`, where INDEX refers to the index of the person noted, to view the changes.
 
 Examples:
 * `note 1 o/CS2103 is pain!` edits or adds the 1st person's note to be `CS2103 is pain!`.
