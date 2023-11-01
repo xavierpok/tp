@@ -149,10 +149,10 @@ Examples:
 
 Displays all entries filtered via a specified field.
 
-Supports 2 formats:
-1. Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]`
-2. Format 2: `filter FIELD_PREFIX_2`
-<br>
+Supports 2 formats: <br>
+Format 1: `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br>
+Format 2: `filter FIELD_PREFIX_2` <br>
+
 * FIELD_PREFIX: represents the field to filter by.
     * Example: if filter by company, FIELD_PREFIX = “c/”.
     * FIELD_PREFIX_1: one of "n/", "p/", "e/", "c/", "j/", "t/"
@@ -179,7 +179,7 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 
 * Adds a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
 * Schedule name is an optional field. If no schedule name is given, the default is `Meeting`.
-* Input schedule time must be in the format `YYYY-DD-MM-HH-MM`.
+* Input schedule time must be in the format `YYYY-MM-DD-HH-mm`.
 * If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
 
 Examples:
@@ -188,7 +188,7 @@ Examples:
 
 ### Clearing a scheduled meeting with a specific person : `clearschedule`
 
-Clears the scheduled meeting with an existing person contact via index
+Clears the scheduled meeting with an existing person contact via index.
 
 Format : `clearschedule INDEX`
 
