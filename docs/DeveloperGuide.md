@@ -257,7 +257,9 @@ The following sequence diagram shows how the un-mark operation works:
 ![UnMarkSequenceDiagram](images/UnMarkSequenceDiagram.png)
 
 ### Detail Feature (implemented by Angel & Kwok Yong)
-The user can view more details of their contact by updating the PersonViewPanel().
+The user can view the details of their contact by updating the PersonViewPanel().
+
+Details include name, tags, phone number, email, company, job, lastModified, scheduled meetings, and notes.
 
 Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved and set via the `setDetailedPerson(Person p)` in `Model`.
 

@@ -18,7 +18,6 @@ title: User Guide
     * [Schedule a meeting with a specific person : `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
     * [Clearing a scheduled meeting with a specific person : `clearschedule`](#clearing-a-scheduled-meeting-with-a-specific-person--clearschedule)
     * [Adds a note to a specific person : `note`](#adds-a-note-to-a-specific-person--note)
-    * [Schedule a meeting with a specific person: `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
     * [View details of a specific contact: `detail`](#view-details-of-a-specific-contact--detail)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
@@ -113,23 +112,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/T
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* Same as `add`, no duplicate names (case-sensitive) are allowed.
 
 Examples:
 *  `edit 1 n/John Sick p/87654321 t/` edits the 1st person’s name, phone number and clears the tags in the current displayed list.
 *  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-Expected output:
-
-`edit 1 n/John Sick p/87654321 t/` would display:
-```
-Contact edited: John Sick, a Software Engineer from Google 
-Changes : 
-Name : John Wick >>> John Sick
-Phone Number : 12345678 >>>  87654321
-Tags : #NUS Alumni #Met in Google Hackathon >>> 
-```
-Note that as the command cleared the tags, the changes displayed reflect that the tags are now empty. 
-I.e., the empty end-result of Tags is expected.
 
 ### Marking contacts of interest : `mark`
 
