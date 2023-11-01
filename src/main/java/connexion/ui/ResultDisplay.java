@@ -18,6 +18,7 @@ public class ResultDisplay extends UiPart<Region> {
 
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setText("Welcome to Connexion! Type 'help' to access the User Guide"); // welcome message
     }
 
     public void setFeedbackToUser(String feedbackToUser) {

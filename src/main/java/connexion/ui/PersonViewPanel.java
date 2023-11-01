@@ -61,7 +61,7 @@ public class PersonViewPanel extends UiPart<Region> {
         if (person == null) {
             this.person = null;
             this.noteHeader.setText("");
-            this.name.setText("Nobody is here :(");
+            this.name.setText("No one's here :(");
         } else {
             this.person = person;
             name.setText(person.getName().getDetailString());
