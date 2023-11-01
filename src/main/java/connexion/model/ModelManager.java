@@ -144,7 +144,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
