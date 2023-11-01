@@ -108,4 +108,10 @@ public interface Model {
      * The person must exist in the address book.
      */
     void unMarkPerson(Person target);
+
+    /**
+     * Sets the given person as the person to display in detail-view.
+     * The person must exist in the addresss book.
+     */
+    void setDetailedPerson(Person toDetail);
 }

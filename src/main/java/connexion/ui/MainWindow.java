@@ -115,19 +115,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         //empty contact list
-        if (logic.getFilteredPersonList().size() == 0) {
-            personViewPanel = new PersonViewPanel();
-            fillInfo();
+        personViewPanel = new PersonViewPanel(logic.getAddressBook().getDetailedPerson());
+        fillInfo();
+/*        if (logic.getFilteredPersonList().size() == 0) {
+
         } else {
             //default view - the first person
             Person defaultPerson = logic.getFilteredPersonList().get(0);
             fillContactInfo(defaultPerson);
-        }
+        }*/
     }
 
-    /**
+/*    *//**
      * Fills up information for the personViewPanel
-     */
+     *//*
     public void fillContactInfo(Person p) {
         if (logic.getFilteredPersonList().size() == 0) {
             personViewPanel = new PersonViewPanel();
@@ -136,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
 
         }
         fillInfo();
-    }
+    }*/
 
     /**
      * Fills in information for the UI

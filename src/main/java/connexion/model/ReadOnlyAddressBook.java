@@ -1,6 +1,8 @@
 package connexion.model;
 
 import connexion.model.person.Person;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,4 +16,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    ReadOnlyProperty<Person> getDetailedPerson();
 }

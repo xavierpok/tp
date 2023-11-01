@@ -7,6 +7,9 @@ import java.util.List;
 import connexion.commons.util.ToStringBuilder;
 import connexion.model.person.Person;
 import connexion.model.person.UniquePersonList;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 
 /**
@@ -16,6 +19,8 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+
+    private final SimpleObjectProperty<Person> detailedPerson = new SimpleObjectProperty<>();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -83,6 +88,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         persons.setPerson(target, editedPerson);
+        if (detailedPerson.getValue() != null && detailedPerson.get().isSamePerson(target)) {
+            this.setDetailedPerson(editedPerson);
+        }
     }
 
     /**
@@ -125,6 +133,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public void setDetailedPerson(Person toDetail) {
+        this.detailedPerson.setValue(toDetail);
+    }
+
+    public ReadOnlyProperty<Person> getDetailedPerson() {
+        return this.detailedPerson;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -144,5 +160,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+
+
 
 }

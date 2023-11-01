@@ -64,8 +64,8 @@ public class UiManager implements Ui {
      * @param p the new person to be displayed.
      */
     public static void updatePersonView(Person p) {
-        mainWindow.fillContactInfo(p);
-        personToDisplay = p;
+/*        mainWindow.fillContactInfo(p);
+        personToDisplay = p;*/
     }
     public static void updatePersonView() {
         mainWindow.fillInnerParts();
