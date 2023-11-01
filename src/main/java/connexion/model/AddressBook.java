@@ -95,10 +95,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sets {@code detailedPerson} with {@code key}.
+     * @param key person that is detailed
+     */
     public void setDetailedPerson(Person key) {
         detailedPerson = key;
     }
 
+    /**
+     * Gets {@code detailedPerson}.
+     * @return {@code detailedPerson}
+     */
     public Person getDetailedPerson() {
         return detailedPerson;
     }

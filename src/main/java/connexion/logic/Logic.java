@@ -45,19 +45,22 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Set the clock the app is to run on
+     * Sets the clock the app is to run on
      */
     void setClock(Clock clock);
 
     /**
-     * Get the clock the app is running on
+     * Gets the clock the app is running on
      */
     Clock getClock();
 
+    /**
+     * Gets the detailed person.
+     */
     Person getDetailedPerson();
 }

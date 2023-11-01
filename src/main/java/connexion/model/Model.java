@@ -109,7 +109,13 @@ public interface Model {
      */
     void unMarkPerson(Person target);
 
+    /**
+     * Gets the detailed person.
+     */
     Person getDetailedPerson();
 
+    /**
+     * Sets the detailed person.
+     */
     void setDetailedPerson(Person p);
 }
