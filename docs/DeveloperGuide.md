@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -187,7 +187,7 @@ The reason behind implementing the feature this way is that this feature is part
 by the prior implementation of the find feature in AB3. This is just an enhancement of the feature, in which the target
 user is more likely to find filtering contacts via a specified field, especially company and job, useful.
 
-An ongoing discussion is to merge the separate predicates into one but it takes low precedence.
+An ongoing discussion is to merge the separate predicates into one, but it takes low precedence.
 
 ### LastModified (implemented by Xavier)
 Each `Person` has a last modified detailing when it was last modified.
@@ -263,7 +263,7 @@ Details include name, tags, phone number, email, company, job, lastModified, sch
 
 Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved.  The `detailedPerson` in `AddressBook` is set via the `setDetailedPerson(Person p)` in `Model`.
 
-This person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "Welcome to Connexion!" if `Person` object is null.
+This person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "To view a person's detail, type 'detail INDEX'" if `Person` object is null.
 
 The following sequence diagram shows how the detail operation works:
 ![DetailSequenceDiagram](images/DetailSequenceDiagram.png)
@@ -573,13 +573,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

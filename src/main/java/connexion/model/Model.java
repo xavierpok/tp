@@ -108,4 +108,14 @@ public interface Model {
      * The person must exist in the address book.
      */
     void unMarkPerson(Person target);
+
+    /**
+     * Gets the detailed person.
+     */
+    Person getDetailedPerson();
+
+    /**
+     * Sets the detailed person.
+     */
+    void setDetailedPerson(Person p);
 }

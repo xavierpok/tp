@@ -8,7 +8,6 @@ import connexion.logic.Logic;
 import connexion.logic.commands.CommandResult;
 import connexion.logic.commands.exceptions.CommandException;
 import connexion.logic.parser.exceptions.ParseException;
-import connexion.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -114,36 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //empty contact list
-        if (logic.getFilteredPersonList().size() == 0) {
-            personViewPanel = new PersonViewPanel();
-            fillInfo();
-        } else {
-            //default view - the first person
-            Person defaultPerson = logic.getFilteredPersonList().get(0);
-            fillContactInfo(defaultPerson);
-        }
-    }
-
-    /**
-     * Fills up information for the personViewPanel
-     */
-    public void fillContactInfo(Person p) {
-        if (logic.getFilteredPersonList().size() == 0) {
-            personViewPanel = new PersonViewPanel();
-        } else {
-            personViewPanel = new PersonViewPanel(p);
-
-        }
-        fillInfo();
-    }
-
-    /**
-     * Fills in information for the UI
-     */
-    public void fillInfo() {
-
-        this.personViewPanelPlaceholder.getChildren().clear(); //clear current object in panel
+        personViewPanel = new PersonViewPanel(logic.getDetailedPerson()); // default should be null
         this.personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -206,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see connexion.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
@@ -227,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } finally {
+            this.personViewPanelPlaceholder.getChildren().clear(); // clear the personViewPanel after every command
+            personViewPanel = new PersonViewPanel(logic.getDetailedPerson()); // check if detailedPerson is modified
+            this.personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot()); // update personViewPanel
         }
     }
 }

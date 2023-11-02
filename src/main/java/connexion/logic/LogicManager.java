@@ -97,4 +97,9 @@ public class LogicManager implements Logic {
     public Clock getClock() {
         return model.getClock();
     }
+
+    @Override
+    public Person getDetailedPerson() {
+        return model.getDetailedPerson();
+    }
 }

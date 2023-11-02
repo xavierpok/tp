@@ -15,10 +15,10 @@ title: User Guide
     * [Marking contacts of interest : `mark`](#marking-contacts-of-interest--mark)
     * [Un-marking contacts of interest : `unmark`](#un-marking-contacts-of-interest--unmark)
     * [Filtering a contact via a specified field : `filter`](#filtering-a-contact-via-a-specified-field--filter)
-    * [Schedule a meeting with a specific person : `schedule`](#schedule-a-meeting-with-a-specific-person--schedule)
+    * [Scheduling a meeting with a specific person : `schedule`](#scheduling-a-meeting-with-a-specific-person--schedule)
+    * [Viewing details of a specific contact : `detail`](#viewing-details-of-a-specific-contact--detail)
     * [Clearing a scheduled meeting with a specific person : `clearschedule`](#clearing-a-scheduled-meeting-with-a-specific-person--clearschedule)
-    * [Adds a note to a specific person : `note`](#adds-a-note-to-a-specific-person--note)
-    * [View details of a specific contact: `detail`](#view-details-of-a-specific-contact--detail)
+    * [Adding a note to a specific person : `note`](#adding-a-note-to-a-specific-person--note)
     * [Deleting a contact : `delete`](#deleting-a-contact--delete)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -172,7 +172,7 @@ Examples:
 * `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
 * `filter t/friends` returns all entries with the tag “friends”.
 
-### Schedule a meeting with a specific person : `schedule`
+### Scheduling a meeting with a specific person : `schedule`
 
 Schedules a meeting with an existing person contact via index.
 
@@ -187,7 +187,7 @@ Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
-### View details of a specific contact: `detail`
+### Viewing details of a specific contact : `detail`
 
 Displays all details of a specific contact via index.
 
@@ -196,7 +196,6 @@ Format: `detail INDEX`
 * Shows the details of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
-* UI displaying person details can only be updated by this command.
 
 Examples:
 * `detail 1` displays the details for the person in the first index.
@@ -214,7 +213,7 @@ Format : `clearschedule INDEX`
 Example : 
 * `clearschedule 1` removes both the name and time of schedule associated with the 1st person.
 
-### Adds a note to a specific person : `note`
+### Adding a note to a specific person : `note`
 
 Adds a note with an existing person contact via index.
 
@@ -226,8 +225,6 @@ Format: `note INDEX o/[NOTE]`
 * By default, note is empty when a person is added to the address book.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
-* Any changes to a person's note is not immediately seen in the UI.
-    * Do `detail INDEX`, where INDEX refers to the index of the person noted, to view the changes.
 
 Examples:
 * `note 1 o/CS2103 is pain!` edits or adds the 1st person's note to be `CS2103 is pain!`.
@@ -281,6 +278,7 @@ Format: `exit`
 | **Mark**           | `mark INDEX` <br> e.g., `mark 2`                                                                                                                                               |
 | **Unmark**         | `unmark INDEX` <br> e.g., `unmark 1`                                                                                                                                           |
 | **Schedule**       | `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]` <br> e.g., `schedule 3 i/2024-05-06-18-00 a/Evening seminar`                                                                |
+| **Detail**         | `detail INDEX` <br> e.g., `detail 1`                                                                                                                                           |
 | **Clear Schedule** | `clearschedule INDEX` <br> e.g., `clearschedule 1`                                                                                                                             |
 | **Note**           | `note INDEX o/[NOTE]` <br> e.g., `note 1 o/CS2103 is pain`                                                                                                                     |
 

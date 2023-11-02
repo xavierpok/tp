@@ -58,33 +58,28 @@ public class PersonViewPanel extends UiPart<Region> {
      */
     public PersonViewPanel(Person person) {
         super(FXML);
-        this.person = person;
-        name.setText(person.getName().getDetailString());
-        phone.setText(person.getPhone().getDetailString());
-        company.setText(person.getCompany().getDetailString());
-        job.setText(person.getJob().getDetailString());
-        email.setText(person.getEmail().getDetailString());
-        markStatus.setText(person.getMarkStatus().toString());
-        person.getTags().stream()
-                .sorted(Comparator.comparing(Tag::getValue))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
-        lastModifiedDateTime.setText(
-                String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
-        schedule.setText(person.getSchedule()
-                .map(Schedule::getDetailString).orElse(""));
-        scheduleName.setText(person.getScheduleName()
-                .map(Object::toString).orElse("No scheduled meetings with this person yet"));
-        note.setText(person.getNote().getDetailString());
+        if (person == null) {
+            this.person = null;
+            this.noteHeader.setText("");
+            this.name.setText("To view a person's detail, type 'detail INDEX'");
+        } else {
+            this.person = person;
+            name.setText(person.getName().getDetailString());
+            phone.setText(person.getPhone().getDetailString());
+            company.setText(person.getCompany().getDetailString());
+            job.setText(person.getJob().getDetailString());
+            email.setText(person.getEmail().getDetailString());
+            markStatus.setText(person.getMarkStatus().toString());
+            person.getTags().stream()
+                    .sorted(Comparator.comparing(Tag::getValue))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.getListString())));
+            lastModifiedDateTime.setText(
+                    String.format("Last modified : %s", person.getLastModifiedDateTime().toString()));
+            schedule.setText(person.getSchedule()
+                    .map(Schedule::getDetailString).orElse(""));
+            scheduleName.setText(person.getScheduleName()
+                    .map(Object::toString).orElse("No scheduled meetings with this person yet"));
+            note.setText(person.getNote().getDetailString());
+        }
     }
-
-    /**
-     * Constructor for PersonViewPanel
-     * */
-    public PersonViewPanel() {
-        super(FXML);
-        this.person = null;
-        this.noteHeader.setText("");
-        this.name.setText("Welcome to Connexion!");
-    }
-
 }

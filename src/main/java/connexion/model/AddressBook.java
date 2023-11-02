@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private Person detailedPerson;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        detailedPerson = null;
     }
 
     public AddressBook() {}
@@ -94,6 +96,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sets {@code detailedPerson} with {@code key}.
+     * @param key person that is detailed
+     */
+    public void setDetailedPerson(Person key) {
+        detailedPerson = key;
+    }
+
+    /**
+     * Gets {@code detailedPerson}.
+     * @return {@code detailedPerson}
+     */
+    public Person getDetailedPerson() {
+        return detailedPerson;
+    }
+
+    /**
      * Marks {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -137,7 +155,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons); // does not consider detailedPerson because it's mutable
     }
 
     @Override

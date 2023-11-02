@@ -42,7 +42,6 @@ class JsonAdaptedPerson {
     private final String lastModifiedDateTime;
     private final String schedule;
     private final String scheduleName;
-
     private final String note;
 
     /**

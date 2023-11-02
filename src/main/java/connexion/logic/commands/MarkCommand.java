@@ -44,8 +44,8 @@ public class MarkCommand extends Command {
         }
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
-        model.markPerson(personToMark);
-        //UiManager.updatePersonView(personToMark);
+        model.markPerson(personToMark); // pending immutable implementation
+        model.setDetailedPerson(personToMark);
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS, Messages.format(personToMark)));
     }
 
