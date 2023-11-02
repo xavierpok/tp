@@ -300,3 +300,4 @@ Format: `exit`
 | a/     | SCHEDULE_NAME | Only usable in `schedule` command                    |
 | o/     | NOTE          | Only usable in `note` command                        |                 
 
+
