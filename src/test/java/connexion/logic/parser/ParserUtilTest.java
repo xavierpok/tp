@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.parser.exceptions.ParseException;
@@ -29,6 +31,8 @@ public class ParserUtilTest {
     private static final String INVALID_JOB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SCHEDULE = "2023-00-12-12-12";
+    private static final String INVALID_SCHEDULE_NAME = "Semin@r";
     private static final String INVALID_NOTE = "\u2063";
     private static final String NOTE_WITH_INVALID_LENGTH = "One morning, when Gregor Samsa woke from troubled dreams, "
             + "he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, "
@@ -52,6 +56,8 @@ public class ParserUtilTest {
     private static final String VALID_NOTE = "CS2103 is pAin!!!!";
 
     private static final String WHITESPACE = " \t\r\n";
+    private static final String VALID_SCHEDULE = "2023-12-27-12-45";
+    private static final String VALID_SCHEDULE_NAME = "Seminar";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -260,5 +266,44 @@ public class ParserUtilTest {
         String noteWithWhitespace = WHITESPACE + VALID_NOTE + WHITESPACE;
         Note expectedNote = new Note(VALID_NOTE);
         assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
+    }
+
+    @Test
+    public void parseSchedule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSchedule((String) null));
+    }
+
+    @Test
+    public void parseSchedule_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchedule(INVALID_SCHEDULE));
+    }
+
+    @Test
+    public void parseSchedule_validValue_returnsSchedule() throws Exception {
+        Schedule expectedSchedule = new Schedule(VALID_SCHEDULE);
+        assertEquals(expectedSchedule, ParserUtil.parseSchedule(VALID_SCHEDULE));
+    }
+
+    @Test
+    public void parseScheduleName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseScheduleName((String) null));
+    }
+
+    @Test
+    public void parseScheduleName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseScheduleName(INVALID_SCHEDULE_NAME));
+    }
+
+    @Test
+    public void parseScheduleName_validValueWithoutWhitespace_returnsScheduleName() throws Exception {
+        ScheduleName expectedScheduleName = new ScheduleName(VALID_SCHEDULE_NAME);
+        assertEquals(expectedScheduleName, ParserUtil.parseScheduleName(VALID_SCHEDULE_NAME));
+    }
+
+    @Test
+    public void parseScheduleName_validValueWithWhitespace_returnsTrimmedScheduleName() throws Exception {
+        String scheduleNameWithWhitespace = WHITESPACE + VALID_SCHEDULE_NAME + WHITESPACE;
+        ScheduleName expectedScheduleName = new ScheduleName(VALID_SCHEDULE_NAME);
+        assertEquals(expectedScheduleName, ParserUtil.parseScheduleName(scheduleNameWithWhitespace));
     }
 }
