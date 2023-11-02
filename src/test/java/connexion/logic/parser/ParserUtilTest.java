@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import connexion.model.person.Schedule;
-import connexion.model.person.ScheduleName;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.parser.exceptions.ParseException;
@@ -22,6 +20,8 @@ import connexion.model.person.Job;
 import connexion.model.person.Name;
 import connexion.model.person.Note;
 import connexion.model.person.Phone;
+import connexion.model.person.Schedule;
+import connexion.model.person.ScheduleName;
 import connexion.model.tag.Tag;
 
 public class ParserUtilTest {
