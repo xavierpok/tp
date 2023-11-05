@@ -7,9 +7,8 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 
 
 /**
@@ -35,9 +34,7 @@ public class LastModifiedDateTime implements PersonDetailField<LocalDateTime> {
      *
      */
     public static final DateTimeFormatter LASTMODIFIED_FORMATTER =
-            DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-                    .withLocale(Locale.UK);
-
+            DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm:ss").withResolverStyle(ResolverStyle.STRICT);
     private LocalDateTime lastModified;
 
 

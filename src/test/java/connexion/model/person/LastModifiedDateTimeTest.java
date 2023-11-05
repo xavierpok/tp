@@ -40,23 +40,44 @@ class LastModifiedDateTimeTest {
 
         // invalid LastModifiedDateTimes
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("")); // empty string
+        // Nonsensical input
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 abc 1999, 10:09:00"));
-        // nonsensical field
+        // Nonsensical input using other characters like -
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("-1 Jan 1999, 10:61:00"));
+        // Invalid field (Day)
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("40 Jan 1999, 10:09:00"));
-        // invalid field
+        // invalid field (Hour)
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan 1999, 24:09:00"));
+        // invalid field (Minute)
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan 1999, 10:61:00"));
+        // invalid field (Apr 2020 had 30 days)
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("31 Apr 2020, 10:09:00"));
+        // invalid field (Feb 1999 had 28 days)
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("29 Feb 1999, 10:09:00"));
+        // invalid field (Feb 2000 had 29 days)
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("30 Feb 2000, 10:09:00"));
+
         // another invalid field
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime(
                 DEFAULT_TEST_TIME.format(
                         DateTimeFormatter.ISO_LOCAL_DATE_TIME)));
-        // Valid input, but in wrong format
+        // Valid input, but in wrong format (comma misplaced)
         assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan, 1999 10:09:00"));
+        // Valid input, but in wrong format (Jan not capitalised)
+        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("1 jan 1999, 10:09:00"));
 
         // valid LastModifiedDateTimes
         assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime("1 Jan 1999, 10:09:00"));
         assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime(
                 DEFAULT_TEST_TIME.format(
                         LastModifiedDateTime.LASTMODIFIED_FORMATTER)));
+        // valid field (Apr 2020 had 30 days)
+        assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime("30 Apr 2020, 10:09:00"));
+        // valid field (Feb 1999 had 28 days)
+        assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime("28 Feb 1999, 10:09:00"));
+        // valid field (Feb 2000 had 29 days)
+        assertTrue(LastModifiedDateTime.isValidLastModifiedDateTime("29 Feb 2000, 10:09:00"));
+
     }
 
     @Test

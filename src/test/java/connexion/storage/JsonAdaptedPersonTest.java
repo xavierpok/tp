@@ -229,6 +229,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidLastModifiedDateTime_throwsIllegalValueException() {
+        // More exhaustive testing of variations that are invalid carried out in LastModifiedDateTimeTest
+        // Testing there includes finer details of format checking & validation.
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE,
                         VALID_EMAIL, VALID_COMPANY, VALID_JOB, VALID_TAGS, VALID_MARK_STATUS,
