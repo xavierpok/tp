@@ -242,7 +242,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `filter n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `filter` command.
 
 ### Clearing all entries : `clear`
 
@@ -271,7 +271,7 @@ Format: `exit`
 | **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY j/JOB [t/TAG]...​`<br>e.g., `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon` |
 | **Clear**          | `clear`                                                                                                                                                                        |
 | **Delete**         | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                            |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                             |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/TAG]…​`<br> e.g.,`edit 1 n/John Sick p/87654321 t/`                                                     |
 | **Filter**         | `filter FIELD_PREFIX_1 KEYWORD [MORE_KEYWORDS]` <br> e.g., `filter c/Google` <br> OR <br> `filter FIELD_PREFIX_2` <br> e.g., `filter m/`                                       |
 | **List**           | `list`                                                                                                                                                                         |
 | **Help**           | `help`                                                                                                                                                                         |
