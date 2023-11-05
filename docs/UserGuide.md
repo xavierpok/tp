@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**C**onnexion is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
+**Connexion** is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
 
 <!-- TOC -->
   * [Quick start](#quick-start)
