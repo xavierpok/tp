@@ -48,19 +48,33 @@ title: User Guide
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
 
 * Items with `...​` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]...​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+
+
+* Parameters not supported by a command **that accepts parameters** will be interpreted as part of the input _**including the prefix**_ 
+  e.g. `add n/Aiken Duit p/88888888 e/aikenduit@hotmail.com c/Meta j/Data Engineer a/ testScheduleName`will create a person with job `Data Engineer a/ testScheduleName`
+* This also applies for index  
+  e.g. `edit 1 a/scheduleName` will attempt to interpret the index as `1 a/scheduleName`, which is obviously invalid.
+* The above two can and often will result in invalid inputs.
+
+
+
+* Extraneous parameters for commands that **do not take in parameters** (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
   * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
