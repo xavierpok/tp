@@ -34,7 +34,8 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException("Invalid index given: " + trimmedIndex + "\n"
+                    + MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -49,7 +50,8 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid name given: " + trimmedName + "\n"
+                    + Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -64,7 +66,8 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid phone number given: " + trimmedPhone + "\n"
+                    + Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
@@ -79,7 +82,8 @@ public class ParserUtil {
         requireNonNull(company);
         String trimmedCompany = company.trim();
         if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid company name given: " + company + "\n"
+                    + Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
     }
@@ -94,7 +98,8 @@ public class ParserUtil {
         requireNonNull(job);
         String trimmedJob = job.trim();
         if (!Job.isValidJob(trimmedJob)) {
-            throw new ParseException(Job.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid job given: " + job + "\n"
+                    + Job.MESSAGE_CONSTRAINTS);
         }
         return new Job(trimmedJob);
     }
@@ -109,7 +114,8 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid email given: " + email + "\n"
+                    + Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
     }
@@ -124,7 +130,8 @@ public class ParserUtil {
         requireNonNull(schedule);
         String trimmedSchedule = schedule.trim();
         if (!Schedule.isValidScheduleTime(trimmedSchedule)) {
-            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid schedule given: " + schedule + "\n"
+                    + Schedule.MESSAGE_CONSTRAINTS);
         }
         return new Schedule(trimmedSchedule);
     }
@@ -139,7 +146,8 @@ public class ParserUtil {
         requireNonNull(scheduleName);
         String trimmedScheduleName = scheduleName.trim();
         if (!ScheduleName.isValidScheduleName(trimmedScheduleName)) {
-            throw new ParseException(ScheduleName.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid schedule name given: " + trimmedScheduleName + "\n"
+                    + ScheduleName.MESSAGE_CONSTRAINTS);
         }
         return new ScheduleName(trimmedScheduleName);
     }
@@ -154,7 +162,8 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid tag given: " + trimmedTag + "\n"
+                    + Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
     }
@@ -181,7 +190,8 @@ public class ParserUtil {
         requireNonNull(note);
         String trimmedNote = note.trim();
         if (!Note.isValidNote(trimmedNote)) {
-            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+            throw new ParseException("Invalid note given: " + trimmedNote + "\n"
+                    + Note.MESSAGE_CONSTRAINTS);
         } else if (!Note.hasValidLength(trimmedNote)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
         }
