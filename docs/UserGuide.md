@@ -88,8 +88,8 @@ We suggest using **PascalCase** or **camelCase** if you want multiple words in a
 </div>
 
 * Does not allow contacts with duplicate full names to be added. (case-sensitive)
-  * E.g. Persons with name "A" and "a" can co-exist in the address book, but not "A" and "A"
-* Sets the last modified time of the given person to the current time when executed
+  * E.g. Persons with name "A" and "a" can co-exist in the address book, but not "A" and "A".
+* Sets the last modified time of the given person to the current time when executed.
 
 Examples:
 * `add n/John Wick p/12345678 e/johnwick@gmail.com c/Google j/Software Engineer t/NUS t/metInHackathon`
@@ -114,7 +114,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/T
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 * Same as `add`, no duplicate names (case-sensitive) are allowed.
-* Updates the last modified time of the given person to the current time when executed
+* Updates the last modified time of the given person to the current time when executed.
 
 Examples:
 *  `edit 1 n/John Sick p/87654321 t/` edits the 1st person’s name, phone number and clears the tags in the current displayed list.
@@ -130,7 +130,7 @@ Format: `mark INDEX`
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
 * When a new contact is created, the contact is un-marked by default.
-* Does NOT update the last modified time of the given person to the current time when executed
+* Does NOT update the last modified time of the given person to the current time when executed.
 
 Examples:
 * `list` followed by `mark 2` marks the 2nd person in the address book as contact of interest.
@@ -145,7 +145,7 @@ Format: `unmark INDEX`
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
 * When a new contact is created, the contact is un-marked by default.
-* Does NOT update the last modified time of the given person to the current time when executed
+* Does NOT update the last modified time of the given person to the current time when executed.
 
 Examples:
 * `unmark 1` un-marks the 1st person in the current displayed list.
@@ -186,7 +186,8 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 * Schedule name is an optional field. If no schedule name is given, the default is `Meeting`.
 * Input schedule time must be in the format `YYYY-MM-DD-HH-mm`, and must be valid.
 * If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
-* Updates the last modified time of the given person to the current time when executed
+* Updates the last modified time of the given person to the current time when executed.
+
 Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st person's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd person's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
@@ -213,7 +214,7 @@ Format : `clearschedule INDEX`
 
 * Clears a schedule to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** starting from 1.
 * Clears both the scheduled date & time, and the schedule name.
-* Updates the last modified time of the given person to the current time when executed
+* Updates the last modified time of the given person to the current time when executed.
 
 Example : 
 * `clearschedule 1` removes both the name and time of schedule associated with the 1st person.
@@ -230,7 +231,7 @@ Format: `note INDEX o/[NOTE]`
 * By default, note is empty when a person is added to the address book.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
-* Updates the last modified time of the given person to the current time when executed
+* Updates the last modified time of the given person to the current time when executed.
 
 Examples:
 * `note 1 o/CS2103 is pain!` edits or adds the 1st person's note to be `CS2103 is pain!`.
