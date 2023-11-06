@@ -23,8 +23,8 @@ title: User Guide
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
   * [Known issues](#known-issues)
-  * [Command summary](#command-summary)
-  * [Command FIELD Summary](#command-field-summary)
+  * [Command Summary](#command-summary)
+  * [Command Field Prefix Summary](#command-field-prefix-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ Format 2: `filter FIELD_PREFIX_2` <br>
     * Example: if filter by company, FIELD_PREFIX = “c/”.
     * FIELD_PREFIX_1: one of "n/", "p/", "e/", "c/", "j/", "t/"
     * FIELD_PREFIX_2: one of "m/", "u/"
-    * Refer to [Command FIELD Summary](#command-field-summary) for more information about the prefixes.
+    * Refer to [Command Field Prefix Summary](#command-field-prefix-summary) for more information about the prefixes.
 * Only supports filtering via ONE field.
     * Everything after FIELD_PREFIX_1 will be recognized as keywords, including field prefixes!
     * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid.
@@ -271,7 +271,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action             | Format, Examples                                                                                                                                                               |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -291,9 +291,9 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command FIELD Summary
+## Command Field Prefix Summary
 
-| Prefix | Description   | Notes                                                |
+| Prefix | Description   | Remark                                               |
 |--------|---------------|------------------------------------------------------|
 | c/     | COMPANY       | -                                                    |
 | e/     | EMAIL         | -                                                    |
