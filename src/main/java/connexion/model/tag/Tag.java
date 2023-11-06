@@ -11,7 +11,8 @@ import connexion.model.person.PersonListDetailField;
  */
 public class Tag implements PersonListDetailField<String> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tag name(s) should be alphanumeric"
+            + " & consist of only one word not separated by whitespace";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String tagName;
