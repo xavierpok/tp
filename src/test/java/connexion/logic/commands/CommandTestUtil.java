@@ -60,6 +60,32 @@ public class CommandTestUtil {
     // Empty String is valid too
     public static final String VALID_NOTE_BOB = "";
 
+    public static final String INVALID_NAME = "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE = "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL ="bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_COMPANY = ""; // empty string not allowed for companies
+    public static final String INVALID_JOB = ""; // empty string not allowed for jobs
+    public static final String INVALID_TAG = "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_SCHEDULE = "2023/07/10/06/59"; // '/' not allowed for schedule
+    public static final String INVALID_SCHEDULE_DATE = "2023-40-10-06-59"; // correct format but wrong date (month field is wrong)
+    public static final String INVALID_SCHEDULE_NAME = "Meeting*"; // '*' not allowed in schedule names
+
+    public static final String INVALID_NOTE = "\u2063"; // invisible characters not allowed for note
+
+    public static final String NOTE_WITH_INVALID_LENGTH =
+            "One morning, when Gregor Samsa woke from troubled dreams, "
+            + "he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, "
+            + "and if he lifted his head a little he could see his brown belly, slightly domed and divided by "
+            + "arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off "
+            + "any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about "
+            + "helplessly as he looked. \"What's happened to me?\" he thought. It wasn't a dream. His room, "
+            + "a proper human room although a little too small, lay peacefully between its four familiar walls. "
+            + "A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and "
+            + "above it there hung a picture that he had recently cut out of an illustrated magazine and housed in "
+            + "a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, "
+            + "raising a heavy fur muff that covered the whole of her lower arm towards ta"; // exceeds character limit
+
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -80,34 +106,19 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY; // empty string not allowed for companies
-    public static final String INVALID_JOB_DESC = " " + PREFIX_JOB; // empty string not allowed for jobs
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SCHEDULE
-            + "2023/07/10/06/59"; // '/' not allowed for schedule
-    public static final String INVALID_SCHEDULE_DATE = " " + PREFIX_SCHEDULE
-            + "2023-40-10-06-59"; // correct format but wrong date (month field is wrong)
-    public static final String INVALID_SCHEDULE_NAME_DESC = " "
-            + PREFIX_SCHEDULE_NAME + "Meeting*"; // '*' not allowed in schedule names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_NAME;
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + INVALID_PHONE;
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + INVALID_EMAIL;
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + INVALID_COMPANY;
+    public static final String INVALID_JOB_DESC = " " + PREFIX_JOB + INVALID_JOB;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + INVALID_TAG;
+    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SCHEDULE + INVALID_SCHEDULE;
+    public static final String INVALID_SCHEDULE_DATE_DESC = " " + PREFIX_SCHEDULE + INVALID_SCHEDULE_DATE;
+    public static final String INVALID_SCHEDULE_NAME_DESC = " " + PREFIX_SCHEDULE_NAME + INVALID_SCHEDULE_NAME;
 
-    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE
-            + "\u2063"; // invisible characters not allowed for note
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + INVALID_NOTE;
 
-    public static final String NOTE_WITH_INVALID_LENGTH_DESC = " " + PREFIX_NOTE
-            + "One morning, when Gregor Samsa woke from troubled dreams, "
-            + "he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, "
-            + "and if he lifted his head a little he could see his brown belly, slightly domed and divided by "
-            + "arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off "
-            + "any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about "
-            + "helplessly as he looked. \"What's happened to me?\" he thought. It wasn't a dream. His room, "
-            + "a proper human room although a little too small, lay peacefully between its four familiar walls. "
-            + "A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and "
-            + "above it there hung a picture that he had recently cut out of an illustrated magazine and housed in "
-            + "a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, "
-            + "raising a heavy fur muff that covered the whole of her lower arm towards ta"; // exceeds character limit
+    public static final String NOTE_WITH_INVALID_LENGTH_DESC = " " + PREFIX_NOTE + NOTE_WITH_INVALID_LENGTH;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
