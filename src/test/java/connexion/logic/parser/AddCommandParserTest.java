@@ -5,11 +5,17 @@ import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static connexion.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static connexion.logic.commands.CommandTestUtil.INVALID_COMPANY;
 import static connexion.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_EMAIL;
 import static connexion.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_JOB;
 import static connexion.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_NAME;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_PHONE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_TAG;
 import static connexion.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static connexion.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.JOB_DESC_BOB;
@@ -33,6 +39,7 @@ import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
+import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
@@ -187,32 +194,39 @@ public class AddCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + COMPANY_DESC_BOB + JOB_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC
                 + EMAIL_DESC_BOB + COMPANY_DESC_BOB + JOB_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                "Invalid phone number given: " + INVALID_PHONE + "\n" + Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + COMPANY_DESC_BOB + JOB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + COMPANY_DESC_BOB + JOB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                "Invalid email given: " + INVALID_EMAIL + "\n" + Email.MESSAGE_CONSTRAINTS);
 
         // invalid company
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_COMPANY_DESC
-                + JOB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Company.MESSAGE_CONSTRAINTS);
+                + JOB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                "Invalid company name given: " + INVALID_COMPANY + "\n" + Company.MESSAGE_CONSTRAINTS);
 
         // invalid job
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + COMPANY_DESC_BOB + INVALID_JOB_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Job.MESSAGE_CONSTRAINTS);
+                + COMPANY_DESC_BOB + INVALID_JOB_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                "Invalid job given: " + INVALID_JOB + "\n" + Job.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + COMPANY_DESC_BOB + JOB_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + COMPANY_DESC_BOB + JOB_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND,
+                "Invalid tag given: " + INVALID_TAG  + "\n" + Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_COMPANY_DESC + JOB_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                        + INVALID_COMPANY_DESC + JOB_DESC_BOB,
+                "Invalid name given: " + INVALID_NAME + "\n" +  Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
