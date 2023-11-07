@@ -407,22 +407,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Connexion` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - List persons**
+**Use case: UC01 - List contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Connexion shows a list of persons
+1.  User requests to list contacts.
+2.  Connexion shows a list of contacts.
 
     Use case ends.
 
-**Use case: UC02 - Delete a person**
+**Use case: UC02 - Delete a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to delete a specific person
-3.  Connexion deletes the person
+1.  User lists contacts (UC01).
+2.  User requests to delete a specific contact.
+3.  Connexion deletes the contact.
 
     Use case ends.
 
@@ -438,40 +438,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Add a person**
+**Use case: UC03 - Add a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to add a person
-3.  Connexion adds the person
+1.  User lists contacts (UC01).
+2.  User requests to add a contact.
+3.  Connexion adds the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Connexion detects an error in the entered details
+* 2a. Connexion detects an error in the entered details.
 
     * 2a1. Connexion shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Filter for person via a specified field**
+**Use case: UC04 - Filter for contacts via a specified field**
 
 **MSS**
 
-1.  User enters field name and keywords
-2.  Connexion shows all persons whose field containing the keywords
+1.  User enters field name and keywords.
+2.  Connexion shows all contacts that contains the keywords in the specified field.
 
     Use case ends.
 
-**Use case: UC05 - Update a person**
+**Use case: UC05 - Update a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to update a person
-3.  Connexion updates person's information
+1.  User lists contacts (UC01).
+2.  User requests to update a contact.
+3.  Connexion updates contact's information.
 
     Use case ends.
 
@@ -487,19 +487,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. Connexion detects an error in the entered details
+* 2b. Connexion detects an error in the entered details.
 
     * 2b1. Connexion shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC06 - Mark a person**
+**Use case: UC06 - Mark a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to mark a person
-3.  Connexion marks the person
+1.  User lists contacts (UC01).
+2.  User requests to mark a contact.
+3.  Connexion marks the contact.
 
     Use case ends.
 
@@ -515,10 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. The person is already marked.
-    * 2b1. Connexion tells the user the person is already marked.
 
-      Use case ends.
 
 ### Non-Functional Requirements
 
