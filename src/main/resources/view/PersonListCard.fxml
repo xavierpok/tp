@@ -29,7 +29,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="company" styleClass="cell_small_label" wrapText="true"/>
-      <Label fx:id="job" styleClass="cell_small_label" />
+      <Label fx:id="job" styleClass="cell_small_label" wrapText="true"/>
       <Label fx:id="schedule" styleClass="cell_small_label"/>
     </VBox>
     <VBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="200.0">
