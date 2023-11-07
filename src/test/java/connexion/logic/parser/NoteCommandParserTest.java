@@ -5,7 +5,6 @@ import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
 import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
-import static connexion.logic.commands.CommandTestUtil.NOTE_WITH_INVALID_LENGTH;
 import static connexion.logic.commands.CommandTestUtil.NOTE_WITH_INVALID_LENGTH_DESC;
 import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_BOB;

@@ -76,8 +76,8 @@ public class ScheduleCommandParserTest {
                 "Invalid schedule given: " + INVALID_SCHEDULE + "\n" + Schedule.MESSAGE_CONSTRAINTS);
         // invalid schedule
         assertParseFailure(parser, "1" + SCHEDULE_DESC_AMY + INVALID_SCHEDULE_NAME_DESC,
-                "Invalid schedule name given: " + INVALID_SCHEDULE_NAME + "\n" +
-                        ScheduleName.MESSAGE_CONSTRAINTS); // invalid schedule name
+                "Invalid schedule name given: " + INVALID_SCHEDULE_NAME + "\n"
+                        + ScheduleName.MESSAGE_CONSTRAINTS); // invalid schedule name
 
         // valid schedule name but invalid schedule
         assertParseFailure(parser, "1" + INVALID_SCHEDULE_DESC + SCHEDULE_NAME_DESC_AMY,

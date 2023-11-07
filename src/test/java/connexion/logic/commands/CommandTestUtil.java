@@ -62,12 +62,13 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME = "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE = "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL ="bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_EMAIL = "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_COMPANY = ""; // empty string not allowed for companies
     public static final String INVALID_JOB = ""; // empty string not allowed for jobs
     public static final String INVALID_TAG = "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SCHEDULE = "2023/07/10/06/59"; // '/' not allowed for schedule
-    public static final String INVALID_SCHEDULE_DATE = "2023-40-10-06-59"; // correct format but wrong date (month field is wrong)
+    public static final String INVALID_SCHEDULE_DATE = "2023-40-10-06-59";
+    // correct format but wrong date (month field is wrong)
     public static final String INVALID_SCHEDULE_NAME = "Meeting*"; // '*' not allowed in schedule names
 
     public static final String INVALID_NOTE = "\u2063"; // invisible characters not allowed for note

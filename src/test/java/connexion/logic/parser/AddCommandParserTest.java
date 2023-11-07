@@ -39,7 +39,6 @@ import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static connexion.logic.parser.CliSyntax.PREFIX_JOB;
 import static connexion.logic.parser.CliSyntax.PREFIX_NAME;
 import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
-import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
@@ -221,12 +220,12 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + COMPANY_DESC_BOB + JOB_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND,
-                "Invalid tag given: " + INVALID_TAG  + "\n" + Tag.MESSAGE_CONSTRAINTS);
+                "Invalid tag given: " + INVALID_TAG + "\n" + Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + INVALID_COMPANY_DESC + JOB_DESC_BOB,
-                "Invalid name given: " + INVALID_NAME + "\n" +  Name.MESSAGE_CONSTRAINTS);
+                "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
