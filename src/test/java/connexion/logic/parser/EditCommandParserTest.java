@@ -5,11 +5,17 @@ import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static connexion.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static connexion.logic.commands.CommandTestUtil.INVALID_COMPANY;
 import static connexion.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_EMAIL;
 import static connexion.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_JOB;
 import static connexion.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_NAME;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_PHONE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_TAG;
 import static connexion.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static connexion.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -90,26 +96,41 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid company
-        assertParseFailure(parser, "1" + INVALID_JOB_DESC, Job.MESSAGE_CONSTRAINTS); // invalid job
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC,
+                "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
+        // invalid name
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC,
+                "Invalid phone number given: " + INVALID_PHONE + "\n" + Phone.MESSAGE_CONSTRAINTS);
+        // invalid phone
+        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC,
+                "Invalid email given: " + INVALID_EMAIL + "\n" + Email.MESSAGE_CONSTRAINTS);
+        // invalid email
+        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC,
+                "Invalid company name given: " + INVALID_COMPANY + "\n" + Company.MESSAGE_CONSTRAINTS);
+        // invalid company
+        assertParseFailure(parser, "1" + INVALID_JOB_DESC,
+                "Invalid job given: " + INVALID_JOB + "\n" + Job.MESSAGE_CONSTRAINTS);
+        // invalid job
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC,
+                "Invalid tag given: " + INVALID_TAG + "\n" + Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+                "Invalid phone number given: " + INVALID_PHONE + "\n" + Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                         + VALID_COMPANY_AMY + VALID_JOB_AMY + VALID_PHONE_AMY,
-                        Name.MESSAGE_CONSTRAINTS);
+                        "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

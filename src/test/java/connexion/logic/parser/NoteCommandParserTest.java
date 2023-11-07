@@ -1,9 +1,11 @@
 package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
 import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
+import static connexion.logic.commands.CommandTestUtil.NOTE_WITH_INVALID_LENGTH;
 import static connexion.logic.commands.CommandTestUtil.NOTE_WITH_INVALID_LENGTH_DESC;
 import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
@@ -57,9 +59,10 @@ public class NoteCommandParserTest {
 
     @Test
     public void parse_invalidValueOrInvalidLength_failure() {
-        assertParseFailure(parser, "1" + INVALID_NOTE_DESC, Note.MESSAGE_CONSTRAINTS); // invalid note
+        assertParseFailure(parser, "1" + INVALID_NOTE_DESC,
+                "Invalid note given: " + INVALID_NOTE + "\n" + Note.MESSAGE_CONSTRAINTS); // invalid note
         assertParseFailure(parser, "1" + NOTE_WITH_INVALID_LENGTH_DESC,
-                Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT); // note with invalid length
+                 Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT); // note with invalid length
     }
 
     @Test

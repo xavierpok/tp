@@ -2,8 +2,11 @@ package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.commands.CommandTestUtil.AUTO_GIVEN_SCHEDULE_NAME;
+import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DATE;
+import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DATE_DESC;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_DESC;
+import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_NAME;
 import static connexion.logic.commands.CommandTestUtil.INVALID_SCHEDULE_NAME_DESC;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.SCHEDULE_DESC_BOB;
@@ -69,15 +72,19 @@ public class ScheduleCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_SCHEDULE_DESC, Schedule.MESSAGE_CONSTRAINTS); // invalid schedule
+        assertParseFailure(parser, "1" + INVALID_SCHEDULE_DESC,
+                "Invalid schedule given: " + INVALID_SCHEDULE + "\n" + Schedule.MESSAGE_CONSTRAINTS);
+        // invalid schedule
         assertParseFailure(parser, "1" + SCHEDULE_DESC_AMY + INVALID_SCHEDULE_NAME_DESC,
-                ScheduleName.MESSAGE_CONSTRAINTS); // invalid schedule name
+                "Invalid schedule name given: " + INVALID_SCHEDULE_NAME + "\n" +
+                        ScheduleName.MESSAGE_CONSTRAINTS); // invalid schedule name
 
         // valid schedule name but invalid schedule
         assertParseFailure(parser, "1" + INVALID_SCHEDULE_DESC + SCHEDULE_NAME_DESC_AMY,
-                Schedule.MESSAGE_CONSTRAINTS); // invalid schedule
-        assertParseFailure(parser, "1" + INVALID_SCHEDULE_DATE + SCHEDULE_NAME_DESC_AMY,
-                Schedule.MESSAGE_CONSTRAINTS);
+                "Invalid schedule given: " + INVALID_SCHEDULE + "\n" + Schedule.MESSAGE_CONSTRAINTS);
+        // invalid schedule
+        assertParseFailure(parser, "1" + INVALID_SCHEDULE_DATE_DESC + SCHEDULE_NAME_DESC_AMY,
+                "Invalid schedule given: " + INVALID_SCHEDULE_DATE + "\n" + Schedule.MESSAGE_CONSTRAINTS);
     }
 
     @Test
