@@ -72,12 +72,20 @@ public class MarkTest {
         assertThrows(NullPointerException.class, () ->
                 Mark.isValidMark(null));
 
-        // invalid Mark
-        assertFalse(Mark.isValidMark("")); // empty string
-        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("a star!"));
+        //Invalid inputs
+        //EP: empty strings
+        assertFalse(Mark.isValidMark(""));
+        assertFalse(Mark.isValidMark("  "));
 
-        // valid Mark
+        //EP: alphanumeric characters
+        assertFalse(Mark.isValidMark("a star!"));
+        assertFalse(Mark.isValidMark(String.valueOf(1234)));
+
+        //Valid inputs
+        //EP: string character for true (aka marked contacts)
         assertTrue(Mark.isValidMark("★"));
+
+        //EP: string character for false (aka un-marked contacts)
         assertTrue(Mark.isValidMark("☆"));
     }
 
