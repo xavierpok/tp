@@ -105,6 +105,9 @@ Gives the list of all contacts.
 
 Format: `list`
 
+* Allows the user to clear existing filters on the contact list
+  * E.g. `filter m/` followed by `list` clears the filter for marked contacts and displays all contacts instead.
+
 ### Editing existing contact details : `edit`
 
 Edits an existing contact details via index.
