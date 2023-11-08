@@ -27,17 +27,17 @@ public class NameTest {
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
         // Invalid name
-        //EP: Empty strings
+        // EP: Empty strings
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
 
-        //EP: non-alphanumeric characters
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+        // EP: non-alphanumeric characters
+        assertFalse(Name.isValidName("*")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
         assertFalse(Name.isValidName("peterp/")); // contains non-alphanumeric characters
 
         // Valid name
-        //EP: alphanumeric characters
+        // EP: alphanumeric characters
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters

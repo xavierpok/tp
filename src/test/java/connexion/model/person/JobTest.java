@@ -23,7 +23,7 @@ public class JobTest {
 
     @Test
     public void isValidJob() {
-        // null job
+        // EP: null job
         assertThrows(NullPointerException.class, () -> Job.isValidJob(null));
 
         // invalid jobs
@@ -33,9 +33,9 @@ public class JobTest {
 
         // valid jobs
         //EP: Alphanumeric characters
-        assertTrue(Job.isValidJob("Software Engineer"));
         assertTrue(Job.isValidJob("a")); // one character (alphanumeric)
         assertTrue(Job.isValidJob("12345")); // numbers only
+        assertTrue(Job.isValidJob("Software Engineer")); //alphanumeric
         assertTrue(Job.isValidJob("Optimizing Machine Learning Workflow for Internet Economy Executive")); // long job
 
         //EP: Non-alphanumeric characters
