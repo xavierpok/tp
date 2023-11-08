@@ -51,6 +51,8 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example-.com")); // domain label ends with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example.-com")); // domain end label starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
 
@@ -69,6 +71,7 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter..jack@example.com")); // local part has two consecutive periods is ok
         assertTrue(Email.isValidEmail("peter..jack--michael@example.com")); // alphanumeric separating consecutive
         assertTrue(Email.isValidEmail("peter+_.-jack@example.com")); // all special characters in a row
+        assertTrue(Email.isValidEmail("peterjack@a-1.a-a")); // mix of hyphens across two dots with min size strings
         assertTrue(Email.isValidEmail("peterjack@aa-1.a-a")); // mix of hyphens across two dots with min size strings
 
     }
