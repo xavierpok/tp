@@ -409,32 +409,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Connexion` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Connexion` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - List persons**
-
-**MSS**
-
-1.  User requests to list persons
-2.  Connexion shows a list of persons
-
-    Use case ends.
-
-**Use case: UC02 - Delete a person**
+**Use case: UC01 - List contacts**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to delete a specific person
-3.  Connexion deletes the person
+1.  User requests to list contacts.
+2.  Connexion shows a list of contacts.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The contact list is empty.
 
-  Use case ends.
+  * 1a1. Connexion shows an empty contact list. 
+
+    Use case ends.
+
+**Use case: UC02 - Delete a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to delete a specific contact.
+3.  Connexion deletes the contact.
+4.  Connexion displays the deleted contact.
+
+    Use case ends.
+
+**Extensions**
 
 * 2a. The given index is invalid.
 
@@ -442,48 +447,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Add a person**
+**Use case: UC03 - Add a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to add a person
-3.  Connexion adds the person
+1.  User requests to add a contact.
+2.  Connexion adds the contact.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Connexion detects an error in the entered details
+* 2a. Connexion detects an error in the entered details.
 
     * 2a1. Connexion shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Filter for person via a specified field**
+**Use case: UC04 - Filter for contacts via a specified field**
 
 **MSS**
 
-1.  User enters field name and keywords
-2.  Connexion shows all persons whose field containing the keywords
-
-    Use case ends.
-
-**Use case: UC05 - Update a person**
-
-**MSS**
-
-1.  User lists the person (UC01)
-2.  User requests to update a person
-3.  Connexion updates person's information
+1.  User enters field name and keywords.
+2.  Connexion shows all contacts that contains the keywords in the specified field.
+3.  Connexion displays the number of contacts filtered.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The specified field does not exist.
 
-  Use case ends.
+    * 1a1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The specified field requires keywords but none is provided.
+
+    * 1b1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC05 - Update a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to update a contact.
+3.  Connexion updates contact's information.
+4.  Connexion displays the updated contact's information.
+
+    Use case ends.
+
+**Extensions**
 
 * 2a.  The given index is invalid.
 
@@ -491,27 +507,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. Connexion detects an error in the entered details
+* 2b. Connexion detects an error in the entered details.
 
     * 2b1. Connexion shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC06 - Mark a person**
+**Use case: UC06 - Mark a contact**
 
 **MSS**
 
-1.  User lists the person (UC01)
-2.  User requests to mark a person
-3.  Connexion marks the person
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to mark a contact.
+3.  Connexion marks the contact.
+4.  Connexion displays the marked contact.
 
     Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
 
 * 2a. The given index is invalid.
 
@@ -519,11 +532,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. The person is already marked.
-    * 2b1. Connexion tells the user the person is already marked.
+**Use case: UC07 - List details of a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to list the details of a contact.
+3.  Connexion shows the contact's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC08 - Schedule a meeting with a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to schedule a meeting with a contact.
+3.  Connexion schedules the meeting with the specified contact.
+4.  Connexion displays the contact with the added schedule.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1.  Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. Meeting time provided is invalid.
+
+    * 2b1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC09 - Clear schedule with a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to clear schedule with a contact.
+3.  Connexion clears the contact's schedule.
+4.  Connexion displays the contact with the schedule cleared.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. No schedule is found for the contact.
+
+    * 2b1. Connexion shows an error message.
 
       Use case ends.
 
+**Use case: UC10 - Adds a note to a contact**
+
+**MSS**
+
+1.  User <ins>lists contacts (UC01)</ins>.
+2.  User requests to add a note to a contact.
+3.  Connexion adds the note to the specified contact.
+4.  Connexion displays the contact with the added note.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The note provided contains invalid characters.
+
+    * 2a1. Connexion shows an error message.
+
+      Use case resumes at step 1.
+
+    
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
