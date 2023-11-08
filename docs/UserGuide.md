@@ -168,8 +168,10 @@ Format 2: `filter FIELD_PREFIX_2` <br>
     * FIELD_PREFIX_2: one of "m/", "u/"
     * Refer to [Command Field Prefix Summary](#command-field-prefix-summary) for more information about the prefixes.
 * Only supports filtering via ONE field.
-    * Everything after FIELD_PREFIX_1 will be recognized as keywords, including field prefixes!
-    * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid.
+    * Everything after FIELD_PREFIX_1 will be recognized as keywords, **including field prefixes**!
+    * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid, **including field prefixes**!
+    * E.g. `filter u/ n/John` will be interpreted the same as `filter u/`.
+    * E.g. `filter n/ John u/` will be interpreted as a command to filter in the `NAME` field with argument `John u/`
 * The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
 * Only returns results with FULL matching keywords to the field.
