@@ -25,12 +25,10 @@ public class Email implements PersonDetailField<String> {
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "("
             //start with alphanumeric, all remaining is optional.
-            + "(" +  SPECIAL_CHARACTERS  + "|" + ALPHANUMERIC_NO_UNDERSCORE +")*"
+            + "(" + SPECIAL_CHARACTERS + "|" + ALPHANUMERIC_NO_UNDERSCORE + ")*"
             //middle can be any number of special chars or alphanumeric, repeated zero or more times
-            + ALPHANUMERIC_NO_UNDERSCORE + ")?";
-            //end with alphanumeric (still optional)
+            + ALPHANUMERIC_NO_UNDERSCORE + ")?"; //end with alphanumeric (still optional)
 
-    //^ALPHANUM((SPECIAL|ALPHANUM)*)ALPHANUM)*
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
