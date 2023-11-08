@@ -35,9 +35,14 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!((trimmedIndex).matches("\\d+"))) { //if it's not just digits, clearly wrong
+        if (!((trimmedIndex).matches("\\d+"))) {
+            //if it's not just digits, clearly wrong
+            //notably, this catches -ve numbers (as the "-" causes it to fail the check)
             throw new ParseException((MESSAGE_INVALID_INDEX));
-        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) { // else, it's likely an out-of-bounds error
+        } else if (trimmedIndex.equals("0")) { //if it's zero, also wrong.
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            // else, it's likely an out-of-bounds error
             throw new ParseException(MESSAGE_INDEX_EXCEEDS_INT_LIMIT);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));

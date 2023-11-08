@@ -76,6 +76,17 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
                 -> ParserUtil.parseIndex("-1"));
     }
+    @Test
+    public void parseIndex_fractionalInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("1.1"));
+    }
+    @Test
+    public void parseIndex_zeroInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("0"));
+    }
+
 
 
     @Test
