@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import connexion.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.parser.exceptions.ParseException;
@@ -84,7 +85,9 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_zeroInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseIndex("0"));
+                -> ParserUtil.parseIndex("0")); //just the one zero
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("00")); //more zeros
     }
 
 
@@ -96,6 +99,10 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+
+        // all possible digits
+        assertEquals(Index.fromOneBased(1234567890),
+                ParserUtil.parseIndex("1234567890"));
     }
 
     @Test

@@ -39,7 +39,8 @@ public class ParserUtil {
             //if it's not just digits, clearly wrong
             //notably, this catches -ve numbers (as the "-" causes it to fail the check)
             throw new ParseException((MESSAGE_INVALID_INDEX));
-        } else if (trimmedIndex.equals("0")) { //if it's zero, also wrong.
+        } else if (trimmedIndex.matches("0+")) {
+            //if it's some amount of just zeros, also wrong
             throw new ParseException(MESSAGE_INVALID_INDEX);
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             // else, it's likely an out-of-bounds error
