@@ -64,6 +64,10 @@ title: User Guide
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Before you begin:**
+If there is no data file, either because this is the first time you've started **Connexion** or because you deleted the file, the app will fill with example dataset. You may enter `clear` to clear them. These are present just as an example, and can otherwise be disregarded.
+</div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
