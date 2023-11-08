@@ -591,3 +591,14 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## *Planned Feature Enhancments*
+
+### Expansion of `tag` feature
+* Currently, the only way to modify tags is via the `edit` command which overwrites the entire tag list when executed
+* This can result in notable user inconvenience in at least one of two ways :
+    1. If the user wants to append a tag, they need to overwrite the existing tag list with a new tag list that has all the old tags plus a new tag.
+    2. If the user wants to edit one specific tag, they need to overwrite the existing tag list with a new tag list that has all the non-edited tags plus an edited tag
