@@ -27,13 +27,22 @@ public class JobTest {
         assertThrows(NullPointerException.class, () -> Job.isValidJob(null));
 
         // invalid jobs
+        //EP: Empty strings
         assertFalse(Job.isValidJob("")); // empty string
         assertFalse(Job.isValidJob(" ")); // spaces only
 
         // valid jobs
+        //EP: Alphanumeric characters
         assertTrue(Job.isValidJob("Software Engineer"));
-        assertTrue(Job.isValidJob("-")); // one character
+        assertTrue(Job.isValidJob("a")); // one character (alphanumeric)
+        assertTrue(Job.isValidJob("12345")); // numbers only
         assertTrue(Job.isValidJob("Optimizing Machine Learning Workflow for Internet Economy Executive")); // long job
+
+        //EP: Non-alphanumeric characters
+        assertTrue(Job.isValidJob("-")); // one character (non-alphanumeric)
+        assertTrue(Job.isValidJob("---")); // non-alphanumeric only
+        assertTrue(Job.isValidJob("Motion Graphics Designer, Video Editor")); //with non-alphanumeric characters
+
     }
 
     @Test
