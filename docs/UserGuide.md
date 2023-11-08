@@ -240,6 +240,7 @@ Format: `note INDEX o/[NOTE]`
 * By default, note is empty when a contact is added to the contact list.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
+  * The only exception to this rule are command prefixes as previously mentioned.
 * Updates the last modified time of the given contact to the current time when executed.
 
 Examples:
