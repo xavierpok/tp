@@ -12,9 +12,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import connexion.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
+import connexion.commons.core.index.Index;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.Company;
 import connexion.model.person.Email;
