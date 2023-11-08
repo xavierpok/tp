@@ -69,6 +69,7 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter..jack@example.com")); // local part has two consecutive periods is ok
         assertTrue(Email.isValidEmail("peter..jack--michael@example.com")); // alphanumeric separating consecutive
         assertTrue(Email.isValidEmail("peter+_.-jack@example.com")); // all special characters in a row
+        assertTrue(Email.isValidEmail("peterjack@aa-1.a-a")); // mix of hyphens across two dots with min size strings
 
     }
 

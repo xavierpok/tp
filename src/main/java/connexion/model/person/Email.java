@@ -29,9 +29,15 @@ public class Email implements PersonDetailField<String> {
             //middle can be any number of special chars or alphanumeric, repeated zero or more times
             + ALPHANUMERIC_NO_UNDERSCORE + ")?"; //end with alphanumeric (still optional)
 
+
+
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
+            + "(-?" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
+    // you may have any number (including 0) of hyphens, but at least one alphanumeric needs to follow
+    private static final String DOMAIN_LAST_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
+            + "(-?" + ALPHANUMERIC_NO_UNDERSCORE + ")+";
+    // You must have one or more alphanumerics after the first,
+    // and you may split them up with hyphens as you wish.
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
