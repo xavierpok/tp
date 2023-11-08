@@ -1,5 +1,6 @@
 package connexion.logic.parser;
 
+import static connexion.logic.parser.ParserUtil.MESSAGE_INDEX_EXCEEDS_INT_LIMIT;
 import static connexion.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -61,14 +62,21 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INDEX_EXCEEDS_INT_LIMIT, ()
+            -> ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
     }
+    @Test
+    public void parseIndex_negativeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("-1"));
+    }
+
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
