@@ -38,6 +38,8 @@ public class Email implements PersonDetailField<String> {
             + "(-?" + ALPHANUMERIC_NO_UNDERSCORE + ")+";
     // You must have one or more alphanumerics after the first,
     // and you may split them up with hyphens as you wish.
+    // This guarantees our at-least-two characters condition.
+
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
