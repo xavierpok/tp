@@ -779,7 +779,7 @@ Expected: CookBuddy will shut down.
     2. Test case: `filter p/` <br>
        Expected: No filtering takes place. Error message is displayed.
 4. Filtering a contact by company
-   1. Test case: `filter /google` <br>
+   1. Test case: `filter c/google` <br>
       Expected: Displays all contacts with Google as their company in the list view.
    2. Test case: `filter c/` <br>
       Expected: No filtering takes place. Error message is displayed.
@@ -840,8 +840,8 @@ Expected: CookBuddy will shut down.
    2. Test case: `note 1` <br>
       Expected: No changes are made. Error message is displayed.
    3. Other incorrect detail commands to try: note, note x, ... (where x is smaller/larger than the list size)
+   4. 
 ### Saving data
-
 1. Dealing with missing/corrupted data files
    1. Test case: Delete the file named `addressbook.json` in the data folder, relative to the path of the jar file. Launch the jar file. <br>
       Expected: Shows the GUI with the default start page.
