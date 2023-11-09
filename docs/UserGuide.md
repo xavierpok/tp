@@ -153,7 +153,7 @@ Un-marks a contact of interest.
 
 Format: `unmark INDEX`
 
-* Marks the contact at the specified `INDEX`, which is shown by a yellow hollow star.
+* Un-marks the contact at the specified `INDEX`, which is shown by a yellow hollow star.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
 * When a new contact is created, the contact is un-marked by default.
