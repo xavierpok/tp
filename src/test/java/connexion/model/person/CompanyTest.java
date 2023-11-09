@@ -23,16 +23,24 @@ public class CompanyTest {
 
     @Test
     public void isValidCompany() {
-        // null company
+        // EP: null value
         assertThrows(NullPointerException.class, () -> Company.isValidCompany(null));
 
         // invalid companies
+        // EP: Empty strings
         assertFalse(Company.isValidCompany("")); // empty string
         assertFalse(Company.isValidCompany(" ")); // spaces only
 
-        // valid companies
-        assertTrue(Company.isValidCompany("Jane's Street"));
+        // Valid companies
+        // EP: alphanumeric characters
+        assertTrue(Company.isValidCompany("OCBC")); //alphabet only
+        assertTrue(Company.isValidCompany("OCBC Pte Ltd")); //long company (alphabet only)
+        assertTrue(Company.isValidCompany("123456")); //numbers only
+        assertTrue(Company.isValidCompany("OCBC123")); //alphabet and numbers
+
+        // EP: Non-alphanumeric characters
         assertTrue(Company.isValidCompany("-")); // one character
+        assertTrue(Company.isValidCompany("Jane's Street")); //non-alphanumeric within company name
         assertTrue(Company.isValidCompany("Edward Hopper House & Study Center")); // long company
     }
 

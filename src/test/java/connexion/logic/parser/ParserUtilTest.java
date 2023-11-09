@@ -1,5 +1,6 @@
 package connexion.logic.parser;
 
+import static connexion.logic.parser.ParserUtil.MESSAGE_INDEX_EXCEEDS_INT_LIMIT;
 import static connexion.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static connexion.testutil.Assert.assertThrows;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import connexion.commons.core.index.Index;
 import connexion.logic.parser.exceptions.ParseException;
 import connexion.model.person.Company;
 import connexion.model.person.Email;
@@ -61,14 +63,34 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INDEX_EXCEEDS_INT_LIMIT, ()
+            -> ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
     }
+    @Test
+    public void parseIndex_negativeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("-1"));
+    }
+    @Test
+    public void parseIndex_fractionalInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("1.1"));
+    }
+    @Test
+    public void parseIndex_zeroInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("0")); //just the one zero
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("00")); //more zeros
+    }
+
+
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
@@ -77,6 +99,10 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+
+        // all possible digits
+        assertEquals(Index.fromOneBased(1234567890),
+                ParserUtil.parseIndex("1234567890"));
     }
 
     @Test
