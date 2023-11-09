@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 public class Email implements PersonDetailField<String> {
 
     private static final String SPECIAL_CHARACTERS = "+_.-"; // one or more special characters as defined
-    private static final String SPECIAL_CHAR_REGEX = String.format("[%s]+",SPECIAL_CHARACTERS);
+    private static final String SPECIAL_CHAR_REGEX = String.format("[%s]+", SPECIAL_CHARACTERS);
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
