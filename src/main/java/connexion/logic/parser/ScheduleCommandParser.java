@@ -11,7 +11,6 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
-import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.ScheduleCommand;
 import connexion.logic.commands.ScheduleCommand.ScheduleDescriptor;
 import connexion.logic.parser.exceptions.ParseException;

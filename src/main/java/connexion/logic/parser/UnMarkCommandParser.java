@@ -1,10 +1,8 @@
 package connexion.logic.parser;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 
 import connexion.commons.core.index.Index;
-import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.UnMarkCommand;
 import connexion.logic.parser.exceptions.ParseException;
 

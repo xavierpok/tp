@@ -1,6 +1,5 @@
 package connexion.logic.parser;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static connexion.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -18,7 +17,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import connexion.commons.core.index.Index;
-import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.EditCommand;
 import connexion.logic.commands.EditCommand.EditPersonDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
