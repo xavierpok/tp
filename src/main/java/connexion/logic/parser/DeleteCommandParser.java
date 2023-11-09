@@ -1,6 +1,7 @@
 package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 
 import connexion.commons.core.index.Index;
 import connexion.logic.commands.DeleteCommand;
@@ -22,7 +23,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage() + "\n" + DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_FIELD_FORMAT, pe.getMessage(), DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 

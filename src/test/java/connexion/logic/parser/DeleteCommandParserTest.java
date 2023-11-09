@@ -1,10 +1,12 @@
 package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import connexion.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.commands.DeleteCommand;
@@ -27,6 +29,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(
+                MESSAGE_INVALID_FIELD_FORMAT,
+                ParserUtilTest.makeExceptionMessage("index", "a", ParserUtil.MESSAGE_INVALID_INDEX),
+                DeleteCommand.MESSAGE_USAGE));
     }
 }

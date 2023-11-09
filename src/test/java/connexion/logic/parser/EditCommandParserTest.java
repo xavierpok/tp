@@ -1,6 +1,7 @@
 package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static connexion.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -44,6 +45,7 @@ import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
+import connexion.logic.commands.DeleteCommand;
 import org.junit.jupiter.api.Test;
 
 import connexion.commons.core.index.Index;
@@ -70,28 +72,48 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                ParserUtilTest.makeExceptionMessage("index",VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX),
+                EditCommand.MESSAGE_USAGE));
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                ParserUtilTest.makeExceptionMessage("index","", ParserUtil.MESSAGE_INVALID_INDEX),
+                EditCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                        ParserUtilTest.makeExceptionMessage("index",
+                                "-5" , ParserUtil.MESSAGE_INVALID_INDEX),
+                        EditCommand.MESSAGE_USAGE));
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                        ParserUtilTest.makeExceptionMessage("index",
+                                "0" , ParserUtil.MESSAGE_INVALID_INDEX),
+                        EditCommand.MESSAGE_USAGE));
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                        ParserUtilTest.makeExceptionMessage("index",
+                                "1 some random string" , ParserUtil.MESSAGE_INVALID_INDEX),
+                        EditCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                        ParserUtilTest.makeExceptionMessage("index",
+                                "1 i/ string" , ParserUtil.MESSAGE_INVALID_INDEX),
+                        EditCommand.MESSAGE_USAGE));
     }
 
     @Test

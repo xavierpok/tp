@@ -1,8 +1,10 @@
 package connexion.logic.parser;
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 
 import connexion.commons.core.index.Index;
+import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.MarkCommand;
 import connexion.logic.parser.exceptions.ParseException;
 
@@ -21,7 +23,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             return new MarkCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_FIELD_FORMAT, pe.getMessage(), MarkCommand.MESSAGE_USAGE), pe);
         }
     }
 }

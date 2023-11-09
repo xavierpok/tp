@@ -2,6 +2,7 @@ package connexion.logic.parser;
 
 
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static connexion.logic.parser.CliSyntax.PREFIX_SCHEDULE_NAME;
 import static java.util.Objects.requireNonNull;
@@ -10,6 +11,7 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 import connexion.commons.core.index.Index;
+import connexion.logic.commands.DeleteCommand;
 import connexion.logic.commands.ScheduleCommand;
 import connexion.logic.commands.ScheduleCommand.ScheduleDescriptor;
 import connexion.logic.parser.exceptions.ParseException;
@@ -40,7 +42,8 @@ public class ScheduleCommandParser implements ClockDependentParser<ScheduleComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_FIELD_FORMAT,
+                    pe.getMessage(), ScheduleCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCHEDULE, PREFIX_SCHEDULE_NAME);
