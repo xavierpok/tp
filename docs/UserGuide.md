@@ -56,7 +56,8 @@ title: User Guide
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+* As seen above, the app uses prefixes to indicate the type of parameter, like `n/` for `NAME`.
+* Prefixes are defined by having a space before the prefix proper. E.g. `n/ Johnp/123456789` will be interpreted as supplying `Johnp/123456789` to the `NAME` parameter.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
