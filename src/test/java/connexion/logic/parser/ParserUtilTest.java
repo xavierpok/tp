@@ -74,8 +74,8 @@ public class ParserUtilTest {
     public void parseIndex_invalidInput_throwsParseException() {
         // PE : non-number value
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", "10 a", MESSAGE_INVALID_INDEX),
-                () -> ParserUtil.parseIndex("10 a"));
+                makeExceptionMessage("index", "10 a", MESSAGE_INVALID_INDEX), ()
+                        -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
@@ -83,32 +83,32 @@ public class ParserUtilTest {
         // PE : overflowing value
         String tooBig = Long.toString((long) Integer.MAX_VALUE + 1);
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", tooBig, MESSAGE_INDEX_EXCEEDS_INT_LIMIT),
-                () -> ParserUtil.parseIndex(tooBig));
+                makeExceptionMessage("index", tooBig, MESSAGE_INDEX_EXCEEDS_INT_LIMIT), ()
+                        -> ParserUtil.parseIndex(tooBig));
     }
     @Test
     public void parseIndex_negativeInput_throwsParseException() {
         //PE : negative input
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", "-1", MESSAGE_INVALID_INDEX),
-                () -> ParserUtil.parseIndex("-1"));
+                makeExceptionMessage("index", "-1", MESSAGE_INVALID_INDEX), ()
+                        -> ParserUtil.parseIndex("-1"));
     }
     @Test
     public void parseIndex_fractionalInput_throwsParseException() {
         //PE : fractional input
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", "1.1", MESSAGE_INVALID_INDEX),
-                () -> ParserUtil.parseIndex("1.1"));
+                makeExceptionMessage("index", "1.1", MESSAGE_INVALID_INDEX), ()
+                        -> ParserUtil.parseIndex("1.1"));
     }
     @Test
     public void parseIndex_zeroInput_throwsParseException() {
         //PE : 0s
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", "0", MESSAGE_INVALID_INDEX),
-                () -> ParserUtil.parseIndex("0")); //just the one zero
+                makeExceptionMessage("index", "0", MESSAGE_INVALID_INDEX), ()
+                        -> ParserUtil.parseIndex("0")); //just the one zero
         assertThrows(ParseException.class,
-                makeExceptionMessage("index", "00", MESSAGE_INVALID_INDEX),
-                () -> ParserUtil.parseIndex("00")); //more zeros
+                makeExceptionMessage("index", "00", MESSAGE_INVALID_INDEX), ()
+                        -> ParserUtil.parseIndex("00")); //more zeros
     }
 
 
@@ -134,8 +134,8 @@ public class ParserUtilTest {
     @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("name", INVALID_NAME, Name.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseName(INVALID_NAME));
+                makeExceptionMessage("name", INVALID_NAME, Name.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseName(INVALID_NAME));
     }
 
     @Test
@@ -159,8 +159,8 @@ public class ParserUtilTest {
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("phone number", INVALID_PHONE, Phone.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parsePhone(INVALID_PHONE));
+                makeExceptionMessage("phone number", INVALID_PHONE, Phone.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parsePhone(INVALID_PHONE));
     }
 
     @Test
@@ -184,8 +184,8 @@ public class ParserUtilTest {
     @Test
     public void parseCompany_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("company name", INVALID_COMPANY.trim(), Company.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseCompany(INVALID_COMPANY));
+                makeExceptionMessage("company name", INVALID_COMPANY.trim(), Company.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseCompany(INVALID_COMPANY));
         // need to trim as user is to see trimmed version of input
     }
 
@@ -210,8 +210,8 @@ public class ParserUtilTest {
     @Test
     public void parseJob_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("job", INVALID_JOB.trim(), Job.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseJob(INVALID_JOB));
+                makeExceptionMessage("job", INVALID_JOB.trim(), Job.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseJob(INVALID_JOB));
         // need to trim as user is to see trimmed version of input
     }
 
@@ -236,8 +236,8 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("email", INVALID_EMAIL, Email.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseEmail(INVALID_EMAIL));
+                makeExceptionMessage("email", INVALID_EMAIL, Email.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseEmail(INVALID_EMAIL));
     }
 
     @Test
@@ -261,8 +261,8 @@ public class ParserUtilTest {
     @Test
     public void parseTag_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("tag", INVALID_TAG, Tag.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseTag(INVALID_TAG));
+                makeExceptionMessage("tag", INVALID_TAG, Tag.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseTag(INVALID_TAG));
     }
 
     @Test
@@ -309,15 +309,15 @@ public class ParserUtilTest {
     @Test
     public void parseNote_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("note", INVALID_NOTE, Note.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseNote(INVALID_NOTE));
+                makeExceptionMessage("note", INVALID_NOTE, Note.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseNote(INVALID_NOTE));
     }
 
     @Test
     public void parseNote_invalidLength_throwsParseException() {
         assertThrows(ParseException.class,
-                Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT,
-                () -> ParserUtil.parseNote(NOTE_WITH_INVALID_LENGTH));
+                Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT, ()
+                        -> ParserUtil.parseNote(NOTE_WITH_INVALID_LENGTH));
     }
 
     @Test
@@ -341,8 +341,8 @@ public class ParserUtilTest {
     @Test
     public void parseSchedule_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("schedule", INVALID_SCHEDULE, Schedule.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseSchedule(INVALID_SCHEDULE));
+                makeExceptionMessage("schedule", INVALID_SCHEDULE, Schedule.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseSchedule(INVALID_SCHEDULE));
     }
 
     @Test
@@ -359,8 +359,8 @@ public class ParserUtilTest {
     @Test
     public void parseScheduleName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                makeExceptionMessage("schedule name", INVALID_SCHEDULE_NAME, ScheduleName.MESSAGE_CONSTRAINTS),
-                () -> ParserUtil.parseScheduleName(INVALID_SCHEDULE_NAME));
+                makeExceptionMessage("schedule name", INVALID_SCHEDULE_NAME, ScheduleName.MESSAGE_CONSTRAINTS), ()
+                        -> ParserUtil.parseScheduleName(INVALID_SCHEDULE_NAME));
     }
 
     @Test

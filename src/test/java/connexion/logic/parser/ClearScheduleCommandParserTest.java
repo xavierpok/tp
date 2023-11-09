@@ -1,8 +1,6 @@
 package connexion.logic.parser;
 
 
-
-
 import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;

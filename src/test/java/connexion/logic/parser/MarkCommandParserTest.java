@@ -1,13 +1,10 @@
 package connexion.logic.parser;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
-import static connexion.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import connexion.logic.commands.EditCommand;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.commands.MarkCommand;

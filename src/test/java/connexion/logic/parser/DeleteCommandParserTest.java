@@ -1,12 +1,10 @@
 package connexion.logic.parser;
 
-import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import connexion.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import connexion.logic.commands.DeleteCommand;

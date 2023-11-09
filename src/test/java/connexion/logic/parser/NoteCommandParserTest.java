@@ -4,8 +4,6 @@ import static connexion.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static connexion.logic.Messages.MESSAGE_INVALID_FIELD_FORMAT;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE;
 import static connexion.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
-import static connexion.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static connexion.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
 import static connexion.logic.commands.CommandTestUtil.NOTE_WITH_INVALID_LENGTH_DESC;
 import static connexion.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
@@ -16,7 +14,6 @@ import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import connexion.logic.commands.MarkCommand;
 import org.junit.jupiter.api.Test;
 
 import connexion.commons.core.index.Index;

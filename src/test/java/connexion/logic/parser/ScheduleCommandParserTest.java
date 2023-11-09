@@ -26,7 +26,6 @@ import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import connexion.logic.commands.NoteCommand;
 import org.junit.jupiter.api.Test;
 
 import connexion.commons.core.index.Index;

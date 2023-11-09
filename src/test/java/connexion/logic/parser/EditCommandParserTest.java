@@ -45,7 +45,6 @@ import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static connexion.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
-import connexion.logic.commands.DeleteCommand;
 import org.junit.jupiter.api.Test;
 
 import connexion.commons.core.index.Index;
@@ -73,7 +72,7 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                ParserUtilTest.makeExceptionMessage("index",VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX),
+                ParserUtilTest.makeExceptionMessage("index", VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX),
                 EditCommand.MESSAGE_USAGE));
 
         // no field specified
@@ -81,7 +80,7 @@ public class EditCommandParserTest {
 
         // no index and no field specified
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                ParserUtilTest.makeExceptionMessage("index","", ParserUtil.MESSAGE_INVALID_INDEX),
+                ParserUtilTest.makeExceptionMessage("index", "", ParserUtil.MESSAGE_INVALID_INDEX),
                 EditCommand.MESSAGE_USAGE));
     }
 
