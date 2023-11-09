@@ -674,18 +674,19 @@ testers are expected to do more *exploratory* testing.
 1. Exiting Connexion
    1. Click the Close Window button X on Connexion’s GUI.
    2. Type `exit` command in Connexion's Command box.
+   3. Click `file` on the top left of the GUI, and click exit.
 
-Expected: CookBuddy will shut down.
+Expected: Connexion will shut down.
 
 ### Adding a contact
 1. Adding a contact in Connexion.
-   1. Prerequisites: Contact to be added does not currently exist in Connexion.
-   2. Test case: `add n/Joseph Wong p/96790543 e/Josephwg@gmail.com c/DSTA j/Senior Developer t/supervisor`<br>
+   1. Prerequisites: Contact to be added does not currently exist in Connexion, in which duplicate contacts are detected by having the same name.
+   2. Test case with all fields: `add n/Joseph Wong p/96790543 e/Josephwg@gmail.com c/DSTA j/Senior Developer t/supervisor`<br>
       Expected: The details of the newly added contact is added onto the list view. Success message of adding the contact is displayed.
-   3. Test case: `add n/Joseph Wong p/96790543 e/Josephwg@gmail.com c/DSTA j/Senior Developer`<br>
+   3. Test case with all fields: `add n/Mary Leong p/87650245 e/Maryle0ng@gmail.com c/NUS j/Professor`<br>
       Expected: The details of the newly added contact is added onto the list view without any tags. Success message of adding the contact is displayed.
-   4. Test case: `add n/Joseph Wong e/Josephwg@gmail.com c/DSTA j/Senior Developer t/supervisor` <br>
-      Expected: No new contact is added. Error message for invalid command format is displayed.
+   4. Test case: `add n/Bruce Wayne e/Imnotbatman@gmail.com c/ j/CEO t/millionaire` <br>
+      Expected: No new contact is added as a compulsory field is missing. Error message for invalid command format is displayed.
    
 ### Deleting a contact
 
@@ -770,7 +771,7 @@ Expected: CookBuddy will shut down.
 1. Prerequisites: Contacts must already exist in Connexion and be displayed on the list view.
 2. Filtering a contact by name
    1. Test case: `filter n/marcus` <br>
-      Expected: Displays all contacts with marcus in their name in the list view.
+      Expected: Displays all contacts with marcus (case-insensitive) in their name in the list view.
    2. Test case: `filter n/` <br>
       Expected: No filtering takes place. Error message is displayed.
 3. Filtering a contact by phone
@@ -780,17 +781,17 @@ Expected: CookBuddy will shut down.
        Expected: No filtering takes place. Error message is displayed.
 4. Filtering a contact by company
    1. Test case: `filter c/google` <br>
-      Expected: Displays all contacts with Google as their company in the list view.
+      Expected: Displays all contacts with Google (case-insensitive) as their company in the list view.
    2. Test case: `filter c/` <br>
       Expected: No filtering takes place. Error message is displayed.
 5. Filtering a contact by job
     1. Test case: `filter j/ceo` <br>
-       Expected: Displays all contacts with CEO as their job in the list view.
+       Expected: Displays all contacts with CEO (case-insensitive) as their job in the list view.
     2. Test case: `filter j/` <br>
        Expected: No filtering takes place. Error message is displayed.
 6. Filtering a contact by tags
     1. Test case: `filter t/important` <br>
-       Expected: Displays all contacts with important as their tag in the list view.
+       Expected: Displays all contacts with important (case-insensitive) as their tag in the list view.
     2. Test case: `filter t/` <br>
        Expected: No filtering takes place. Error message is displayed.
 7. Filtering a contact by marked status
@@ -821,7 +822,9 @@ Expected: CookBuddy will shut down.
    2. Test case: `schedule 1 i/2023-12-07-13-45 a/CS2103 Finals` <br>
       Expected: Contact at index 1 has a new scheduled meeting displayed on the person view panel, with the schedule name of `CS2103 Finals` and time at `7 Dec 2023, 13:45:00`
    3. Test case: `schedule 1 i/` <br>
-      Expected: No schedule is added. Error message is displayed.
+      Expected: No schedule is added due to missing index. Error message is displayed.
+   4. Test case: `schedule 1 i/2023-13-01-13-45` <br>
+      Expected: No schedule is added due to invalid datetime. Error message is displayed.
 
 ### Clearing a scheduled meeting
 1. Prerequisites: Contact to clear schedule must already have and existing schedule and be displayed on the list view.
@@ -842,8 +845,14 @@ Expected: CookBuddy will shut down.
    3. Other incorrect detail commands to try: note, note x, ... (where x is smaller/larger than the list size)
    
 ### Saving data
+<div markdown="span" class="alert alert-primary">:bulb: **Note about corrupted file:**
+If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexion, subsequent future commands (e.g. `add`) wipes out the corrupted JSON file and updates the file with new data from commands.
+</div>
+
 1. Dealing with missing/corrupted data files
    1. Test case: Delete the file named `addressbook.json` in the data folder, relative to the path of the jar file. Launch the jar file. <br>
-      Expected: Shows the GUI with the default start page.
+      Expected: Shows the GUI with the default start page with a sample dataset.
    2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file <br>
       Expected: Shows the GUI with the default start page.
+   3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
+      Expected: Shows the GUI with the default start page with the default start page. 
