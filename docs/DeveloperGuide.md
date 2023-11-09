@@ -376,9 +376,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* undergraduate student interested in managing networking connections in Tech
+* undergraduate student interested in managing networking connections
 
-**Value proposition**: Lightweight, fast interface for experienced users that want to manage their networking connections in the Tech industry quickly.
+**Value proposition**: Lightweight, fast interface for experienced users that want to manage their networking connections quickly.
 
 
 ### User stories
@@ -671,9 +671,24 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exiting Connexion
+   1. Click the Close Window button X on Connexion’s GUI.
+   2. Type `exit` command in Connexion's Command box.
+   3. Click `File` on the top left of the GUI, and click Exit.
 
-### Deleting a person
+Expected: Connexion will shut down.
+
+### Adding a contact
+1. Adding a contact in Connexion.
+   1. Prerequisites: Contact to be added does not currently exist in Connexion, in which duplicate contacts are detected by having the same name.
+   2. Test case with all fields: `add n/Joseph Wong p/96790543 e/Josephwg@gmail.com c/DSTA j/Senior Developer t/supervisor`<br>
+      Expected: The details of the newly added contact is added onto the list view. Success message of adding the contact is displayed.
+   3. Test case with all fields: `add n/Mary Leong p/87650245 e/Maryle0ng@gmail.com c/NUS j/Professor`<br>
+      Expected: The details of the newly added contact is added onto the list view without any tags. Success message of adding the contact is displayed.
+   4. Test case: `add n/Bruce Wayne e/Imnotbatman@gmail.com c/ j/CEO t/millionaire` <br>
+      Expected: No new contact is added as a compulsory field is missing. Error message for invalid command format is displayed.
+   
+### Deleting a contact
 
 1. Deleting a person while all persons are being shown
 
@@ -688,12 +703,156 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a contact
+1. Prerequisites: Contact to edited must already exist in Connexion and be displayed on the list view.
+2. Editing the name of a contact 
+   1. Test case: `edit 1 n/Gordon Tan`<br>
+      Expected: The name of the contact at index 1 is changed to _Gordan Tan_.
+   2. Test case: `edit 1 n/` <br>
+      Expected: name does not change. Error message is displayed.
+   3. Test case: `edit 1 n/John!!` <br>
+      Expected: name does not change. Error message is displayed.
+3. Editing the phone number of a contact
+   1. Test case: `edit 1 p/98331245`<br>
+      Expected: The phone number of the contact at index 1 is changed to _98331245_.
+   2. Test case: `edit 1 p/`<br>
+      Expected: phone number does not change. Error message is displayed.
+   3. Test case: `edit 1 p/9833 1245`<br>
+      Expected: phone number does not change. Error message is displayed.
+   4. Test case: `edit 1 p/98`<br>
+      Expected: phone number does not change. Error message is displayed.
+4. Editing the email of a contact
+   1. Test case: `edit 1 e/dianaprinceww123@example.com`<br>
+      Expected: The email of the contact at index 1 is changed to _dianaprinceww123@example.com_.
+   2. Test case: `edit 1 e/`<br>
+      Expected: email does not change. Error message is displayed.
+   3. Test case: `edit 1 e/dianaprinceww123example.com`<br>
+      Expected: email does not change. Error message is displayed.
+5. Editing the company of a contact
+   1. Test case: `edit 1 c/Deloitte`<br>
+      Expected: The company of the contact at index 1 is changed to _Deloitte_.
+   2. Test case: `edit 1 c/` <br>
+      Expected: company does not change. Error message is displayed.
+   3. Test case: `edit 1 c/Deloitte!`<br>
+      Expected: The company of the contact at index 1 is changed to _Deloitte!_.
+6. Editing the job of a contact
+   1. Test case: `edit 1 j/Senior Developer`<br>
+   Expected: The job of the contact at index 1 is changed to _Senior Developer_.
+   2. Test case: `edit 1 j/` <br>
+      Expected: job does not change. Error message is displayed.
+   3. Test case: `edit 1 j/Senior-Developer`<br>
+      Expected: The job of the contact at index 1 is changed to _Senior-Developer_.
+7. Editing the tags of a contact
+    1. Test case: `edit 1 t/Valedictorian`<br>
+       Expected: Contact at index 1 only has the tag _Valedictorian_.
+    2. Test case: `edit 1 t/` <br>
+       Expected: Contact at index 1 has no tags.
+    3. Test case: `edit 1 t/Valedictorian t/CEO`<br>
+       Expected: Contact at index 1 has both the tags _Valedictorian_ and _CEO_.
+   
+### Marking a contact
+1. Prerequisites: Contact to edited must already exist in Connexion and be displayed on the list view.
+2. Marking a contact
+   1. Test case: `mark 1` <br>
+      Expected: Contact at index 1 is marked. Indicated by the ★ symbol.
+   2. Test case: `mark 0` <br>
+      Expected: No contact is marked. Error message is displayed.
+   3. Other incorrect mark commands to try: mark, mark x, ... (where x is larger than the list size)
+### Un-marking a contact
+1. Prerequisites: Contact to edit must already exist in Connexion and be displayed on the list view.
+2. Un-marking a contact
+    1. Test case: `unmark 1` <br>
+       Expected: Contact at index 1 is un-marked. Indicated by the ☆ symbol.
+    2. Test case: `unmark 0` <br>
+       Expected: No contact is un-marked. Error message is displayed.
+    3. Other incorrect mark commands to try: unmark, unmark x, ... (where x is larger than the list size)
+   
+### Filtering a contact
+1. Prerequisites: Contacts must already exist in Connexion and be displayed on the list view.
+2. Filtering a contact by name
+   1. Test case: `filter n/marcus` <br>
+      Expected: Displays all contacts with marcus (case-insensitive) in their name in the list view.
+   2. Test case: `filter n/` <br>
+      Expected: No filtering takes place. Error message is displayed.
+3. Filtering a contact by phone
+    1. Test case: `filter p/92345678` <br>
+       Expected: Displays all contacts with 92345678 as their phone number in the list view.
+    2. Test case: `filter p/` <br>
+       Expected: No filtering takes place. Error message is displayed.
+4. Filtering a contact by company
+   1. Test case: `filter c/google` <br>
+      Expected: Displays all contacts with Google (case-insensitive) as their company in the list view.
+   2. Test case: `filter c/` <br>
+      Expected: No filtering takes place. Error message is displayed.
+5. Filtering a contact by job
+    1. Test case: `filter j/ceo` <br>
+       Expected: Displays all contacts with CEO (case-insensitive) as their job in the list view.
+    2. Test case: `filter j/` <br>
+       Expected: No filtering takes place. Error message is displayed.
+6. Filtering a contact by tags
+    1. Test case: `filter t/important` <br>
+       Expected: Displays all contacts with important (case-insensitive) as their tag in the list view.
+    2. Test case: `filter t/` <br>
+       Expected: No filtering takes place. Error message is displayed.
+7. Filtering a contact by marked status
+    1. Test case: `filter m/` <br>
+       Expected: Displays all marked contacts (denoted by ★) in the list view.
+    2. Test case: `filter m/important` <br>
+       Expected: Displays all marked contacts (denoted by ★) in the list view.
+8. Filtering a contact by un-marked status
+    1. Test case: `filter u/` <br>
+       Expected: Displays all um-marked contacts (denoted by ☆) in the list view.
+    2. Test case: `filter u/important` <br>
+       Expected: Displays all un-marked contacts (denoted by ☆) in the list view.
 
+### Viewing the details of a contact
+1. Prerequisites: Contact to view details of must already exist in Connexion and be displayed on the list view.
+2. Marking a contact
+    1. Test case: `detail 1` <br>
+       Expected: Details of contact at index 1 is displayed on the person view panel. 
+    2. Test case: `detail 0` <br>
+       Expected: No contact displayed. Error message is displayed.
+    3. Other incorrect detail commands to try: detail, detail x, ... (where x is larger than the list size)
+   
+### Scheduling a meeting
+1. Prerequisites: Contact to schedule meeting with must already exist in Connexion and be displayed on the list view.
+2. Scheduling a meeting
+   1. Test case: `schedule 1 i/2023-12-07-13-45` <br>
+      Expected: Contact at index 1 has a new scheduled meeting displayed on the person view panel, with the schedule name of `Meeting` and time at `7 Dec 2023, 13:45:00`
+   2. Test case: `schedule 1 i/2023-12-07-13-45 a/CS2103 Finals` <br>
+      Expected: Contact at index 1 has a new scheduled meeting displayed on the person view panel, with the schedule name of `CS2103 Finals` and time at `7 Dec 2023, 13:45:00`
+   3. Test case: `schedule 1 i/` <br>
+      Expected: No schedule is added due to missing index. Error message is displayed.
+   4. Test case: `schedule 1 i/2023-13-01-13-45` <br>
+      Expected: No schedule is added due to invalid datetime. Error message is displayed.
+
+### Clearing a scheduled meeting
+1. Prerequisites: Contact to clear schedule must already have and existing schedule and be displayed on the list view.
+2. Clearing a schedule
+   1. Test case: `clearschedule 1` <br>
+      Expected: Contact at index 1 no longer has a schedule.
+   2. Test case: `clearschedule 0` <br>
+      Expected: No changes are made. Error message is displayed.
+   3. Other incorrect detail commands to try: clearschedule, clearschedule x, ... (where x is larger than the list size)
+   
+### Adding a note to a specific contact
+1. Prerequisites: Contact to add note to with must exist and be displayed on the list view.
+2. Adding a note to a contact
+   1. Test case: `note 1 o/This guy is really important!` <br>
+      Expected: Contact at index 1 has the note _This guy is really important!_.
+   2. Test case: `note 1` <br>
+      Expected: No changes are made. Error message is displayed.
+   3. Other incorrect detail commands to try: note, note x, ... (where x is smaller/larger than the list size)
+   
 ### Saving data
+<div markdown="span" class="alert alert-primary">:bulb: **Note about corrupted file:**
+If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexion, subsequent future commands (e.g. `add`) wipes out the corrupted JSON file and updates the file with new data from commands.
+</div>
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Test case: Delete the file named `addressbook.json` in the data folder, relative to the path of the jar file. Launch the jar file. <br>
+      Expected: Shows the GUI with the default start page with a sample dataset.
+   2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file <br>
+      Expected: Shows the GUI with the default start page.
+   3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
+      Expected: Shows the GUI with the default start page. 
