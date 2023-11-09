@@ -134,6 +134,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/T
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` without
   specifying any tags after it.
+  * This is the only time `t/` allows an empty parameter supplied.
+  * In the case that **more than one** `t/` is present, typing `t/` without any tags after be interpreted as attempting to add an empty tag (not allowed!)
 * Same as `add`, no duplicate names (case-sensitive) are allowed.
 * Updates the last modified time of the given contact to the current time when executed.
 
