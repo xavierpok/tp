@@ -9,7 +9,10 @@ import static java.util.Objects.requireNonNull;
  */
 public class Email implements PersonDetailField<String> {
 
-    private static final String SPECIAL_CHARACTERS = "[+_.-]+"; // one or more special characters as defined
+
+
+    private static final String SPECIAL_CHARACTERS = "+_.-"; // one or more special characters as defined
+    private static final String SPECIAL_CHAR_REGEX = String.format("[%s]+",SPECIAL_CHARACTERS);
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
@@ -25,7 +28,7 @@ public class Email implements PersonDetailField<String> {
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "("
             //start with alphanumeric, all remaining is optional.
-            + "(" + SPECIAL_CHARACTERS + "|" + ALPHANUMERIC_NO_UNDERSCORE + ")*"
+            + "(" + SPECIAL_CHAR_REGEX + "|" + ALPHANUMERIC_NO_UNDERSCORE + ")*"
             //middle can be any number of special chars or alphanumeric, repeated zero or more times
             + ALPHANUMERIC_NO_UNDERSCORE + ")?"; //end with alphanumeric (still optional)
 
