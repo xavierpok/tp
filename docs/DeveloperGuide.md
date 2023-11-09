@@ -865,4 +865,4 @@ Given below are the fixes proposed to add in the near future.
    2. We plan to trim the values of leading and trailing whitespaces.
 2. Deal with phone numbers having more than 15 digits long.
    1. The current implementation will accept any phone number length more than 2. However, the maximum length of phone number is 15.
-   2. We plan to limit the phone number length from 3 to 15 digits long.
+   2. We plan to limit the phone number length so that it is 3 to 15 digits long.
