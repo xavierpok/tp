@@ -28,6 +28,7 @@ public class ParserUtil {
     public static final String MESSAGE_INDEX_EXCEEDS_INT_LIMIT =
             "Index exceeds the allowed integer limit in Java of 2147483647";
 
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -45,9 +46,7 @@ public class ParserUtil {
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             // else, it's likely an out-of-bounds error
             throw new ParseException(MESSAGE_INDEX_EXCEEDS_INT_LIMIT);
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException("Invalid index given: " + trimmedIndex + "\n"
-                    + MESSAGE_INVALID_INDEX);
+
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
