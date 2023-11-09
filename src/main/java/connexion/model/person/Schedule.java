@@ -40,6 +40,7 @@ public class Schedule implements PersonListDetailField<LocalDateTime> {
         this.scheduleTime = LocalDateTime.parse(scheduleTime, SCHEDULE_FORMATTER);
     }
 
+    //@@author xavierpok
     /**
      * Tests if the given string is a valid Schedule in the correct format.
      */
