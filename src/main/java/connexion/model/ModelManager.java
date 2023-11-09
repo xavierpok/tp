@@ -82,6 +82,8 @@ public class ModelManager implements Model {
     public Clock getClock() {
         return this.clock;
     }
+    // Note that this is safe as, as per the Java API doc :
+    // All implementations that can be instantiated must be final, immutable and thread-safe.
 
     @Override
     public Path getAddressBookFilePath() {

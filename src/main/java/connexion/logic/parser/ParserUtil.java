@@ -25,6 +25,8 @@ import connexion.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INDEX_EXCEEDS_INT_LIMIT =
+            "Index exceeds the allowed integer limit in Java of 2147483647";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,8 +35,16 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (!((trimmedIndex).matches("\\d+"))) {
+            //if it's not just digits, clearly wrong
+            //notably, this catches -ve numbers (as the "-" causes it to fail the check)
+            throw new ParseException((MESSAGE_INVALID_INDEX));
+        } else if (trimmedIndex.matches("0+")) {
+            //if it's some amount of just zeros, also wrong
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            // else, it's likely an out-of-bounds error
+            throw new ParseException(MESSAGE_INDEX_EXCEEDS_INT_LIMIT);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
