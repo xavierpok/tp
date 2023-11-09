@@ -674,7 +674,7 @@ testers are expected to do more *exploratory* testing.
 1. Exiting Connexion
    1. Click the Close Window button X on Connexion’s GUI.
    2. Type `exit` command in Connexion's Command box.
-   3. Click `file` on the top left of the GUI, and click exit.
+   3. Click `File` on the top left of the GUI, and click Exit.
 
 Expected: Connexion will shut down.
 
@@ -855,4 +855,4 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
    2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file <br>
       Expected: Shows the GUI with the default start page.
    3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
-      Expected: Shows the GUI with the default start page with the default start page. 
+      Expected: Shows the GUI with the default start page. 
