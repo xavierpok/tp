@@ -197,8 +197,8 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 * Input schedule time must be in the format `YYYY-MM-DD-HH-mm`, and must be valid.
 * If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
 * Updates the last modified time of the given contact to the current time when executed.
-
-Examples:
+* This command allows the entering of dates before the current date & time, e.g. in the event that you are backdating a meeting that has occurred for your own usage in documentation.
+* Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st contact's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd contact's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
