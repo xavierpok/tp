@@ -62,6 +62,8 @@ title: User Guide
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
   * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
+* Commands that accept indices as parameters can only accept positive integers less than 2147483647, and a valid index
+  i.e. the valid index must be between 1 and the lower of (list size, 2147483647) (inclusive)
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
