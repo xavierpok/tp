@@ -39,6 +39,7 @@ import static connexion.logic.parser.CliSyntax.PREFIX_PHONE;
 import static connexion.logic.parser.CliSyntax.PREFIX_TAG;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static connexion.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static connexion.logic.parser.ParserUtilTest.makeExceptionMessage;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_CLOCK;
 import static connexion.testutil.ClockUtil.DEFAULT_TEST_TIME;
 import static connexion.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -72,7 +73,7 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                ParserUtilTest.makeExceptionMessage("index", VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX),
+                makeExceptionMessage("index", VALID_NAME_AMY, ParserUtil.MESSAGE_INVALID_INDEX),
                 EditCommand.MESSAGE_USAGE));
 
         // no field specified
@@ -80,7 +81,7 @@ public class EditCommandParserTest {
 
         // no index and no field specified
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                ParserUtilTest.makeExceptionMessage("index", "", ParserUtil.MESSAGE_INVALID_INDEX),
+                makeExceptionMessage("index", "", ParserUtil.MESSAGE_INVALID_INDEX),
                 EditCommand.MESSAGE_USAGE));
     }
 
@@ -89,28 +90,28 @@ public class EditCommandParserTest {
         // negative index
         assertParseFailure(parser, "-5" + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                        ParserUtilTest.makeExceptionMessage("index",
+                        makeExceptionMessage("index",
                                 "-5" , ParserUtil.MESSAGE_INVALID_INDEX),
                         EditCommand.MESSAGE_USAGE));
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                        ParserUtilTest.makeExceptionMessage("index",
+                        makeExceptionMessage("index",
                                 "0" , ParserUtil.MESSAGE_INVALID_INDEX),
                         EditCommand.MESSAGE_USAGE));
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string" + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                        ParserUtilTest.makeExceptionMessage("index",
+                        makeExceptionMessage("index",
                                 "1 some random string" , ParserUtil.MESSAGE_INVALID_INDEX),
                         EditCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string" + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_FIELD_FORMAT,
-                        ParserUtilTest.makeExceptionMessage("index",
+                        makeExceptionMessage("index",
                                 "1 i/ string" , ParserUtil.MESSAGE_INVALID_INDEX),
                         EditCommand.MESSAGE_USAGE));
     }
@@ -118,40 +119,41 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC,
-                "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("name", INVALID_NAME, Name.MESSAGE_CONSTRAINTS));
         // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC,
-                "Invalid phone number given: " + INVALID_PHONE + "\n" + Phone.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("phone number", INVALID_PHONE, Phone.MESSAGE_CONSTRAINTS));
         // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC,
-                "Invalid email given: " + INVALID_EMAIL + "\n" + Email.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("email", INVALID_EMAIL, Email.MESSAGE_CONSTRAINTS));
         // invalid email
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC,
-                "Invalid company name given: " + INVALID_COMPANY + "\n" + Company.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("company name", INVALID_COMPANY, Company.MESSAGE_CONSTRAINTS));
         // invalid company
         assertParseFailure(parser, "1" + INVALID_JOB_DESC,
-                "Invalid job given: " + INVALID_JOB + "\n" + Job.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("job", INVALID_JOB, Job.MESSAGE_CONSTRAINTS));
         // invalid job
         assertParseFailure(parser, "1" + INVALID_TAG_DESC,
-                "Invalid tag given: " + INVALID_TAG + "\n" + Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                makeExceptionMessage("tag", INVALID_TAG, Tag.MESSAGE_CONSTRAINTS));
+        // invalid tag
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
-                "Invalid phone number given: " + INVALID_PHONE + "\n" + Phone.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("phone number", INVALID_PHONE, Phone.MESSAGE_CONSTRAINTS));
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
-                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("tag", "", Tag.MESSAGE_CONSTRAINTS));
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
-                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("tag", "", Tag.MESSAGE_CONSTRAINTS));
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-                "Invalid tag given: " + "" + "\n" + Tag.MESSAGE_CONSTRAINTS);
+                makeExceptionMessage("tag", "", Tag.MESSAGE_CONSTRAINTS));
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                         + VALID_COMPANY_AMY + VALID_JOB_AMY + VALID_PHONE_AMY,
-                        "Invalid name given: " + INVALID_NAME + "\n" + Name.MESSAGE_CONSTRAINTS);
+                        makeExceptionMessage("name", INVALID_NAME, Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test
