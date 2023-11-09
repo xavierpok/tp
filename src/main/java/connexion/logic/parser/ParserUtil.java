@@ -28,7 +28,14 @@ public class ParserUtil {
     public static final String MESSAGE_INDEX_EXCEEDS_INT_LIMIT =
             "Index exceeds the allowed integer limit in Java of 2147483647";
 
-
+    /**
+     * Constructs an exception message given the type, the (invalid) value, & the final feedback message to give user
+     *
+     * @return A string of format "Invalid {fieldType} given: {invalidValue}\n {feedbackMessage}
+     */
+    private static String makeExceptionMessage(String fieldType, String invalidValue, String feedbackMessage) {
+        return String.format("Invalid %s given: %s\n%s", fieldType, invalidValue, feedbackMessage);
+    }
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -39,13 +46,16 @@ public class ParserUtil {
         if (!((trimmedIndex).matches("\\d+"))) {
             //if it's not just digits, clearly wrong
             //notably, this catches -ve numbers (as the "-" causes it to fail the check)
-            throw new ParseException((MESSAGE_INVALID_INDEX));
+            throw new ParseException(makeExceptionMessage("index", trimmedIndex,
+                    MESSAGE_INVALID_INDEX));
         } else if (trimmedIndex.matches("0+")) {
             //if it's some amount of just zeros, also wrong
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(makeExceptionMessage("index", trimmedIndex,
+                    MESSAGE_INVALID_INDEX));
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             // else, it's likely an out-of-bounds error
-            throw new ParseException(MESSAGE_INDEX_EXCEEDS_INT_LIMIT);
+            throw new ParseException(makeExceptionMessage("index", trimmedIndex,
+                    MESSAGE_INDEX_EXCEEDS_INT_LIMIT));
 
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -61,8 +71,8 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException("Invalid name given: " + trimmedName + "\n"
-                    + Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("name", trimmedName,
+                    Name.MESSAGE_CONSTRAINTS));
         }
         return new Name(trimmedName);
     }
@@ -77,8 +87,8 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException("Invalid phone number given: " + trimmedPhone + "\n"
-                    + Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("phone number", trimmedPhone,
+                    Phone.MESSAGE_CONSTRAINTS));
         }
         return new Phone(trimmedPhone);
     }
@@ -93,8 +103,8 @@ public class ParserUtil {
         requireNonNull(company);
         String trimmedCompany = company.trim();
         if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException("Invalid company name given: " + company + "\n"
-                    + Company.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("company name", trimmedCompany,
+                    Company.MESSAGE_CONSTRAINTS));
         }
         return new Company(trimmedCompany);
     }
@@ -109,8 +119,8 @@ public class ParserUtil {
         requireNonNull(job);
         String trimmedJob = job.trim();
         if (!Job.isValidJob(trimmedJob)) {
-            throw new ParseException("Invalid job given: " + job + "\n"
-                    + Job.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("job", trimmedJob,
+                    Job.MESSAGE_CONSTRAINTS));
         }
         return new Job(trimmedJob);
     }
@@ -125,8 +135,8 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException("Invalid email given: " + email + "\n"
-                    + Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("email", trimmedEmail,
+                    Email.MESSAGE_CONSTRAINTS));
         }
         return new Email(trimmedEmail);
     }
@@ -141,8 +151,8 @@ public class ParserUtil {
         requireNonNull(schedule);
         String trimmedSchedule = schedule.trim();
         if (!Schedule.isValidScheduleTime(trimmedSchedule)) {
-            throw new ParseException("Invalid schedule given: " + schedule + "\n"
-                    + Schedule.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("schedule", schedule,
+                    Schedule.MESSAGE_CONSTRAINTS));
         }
         return new Schedule(trimmedSchedule);
     }
@@ -157,8 +167,8 @@ public class ParserUtil {
         requireNonNull(scheduleName);
         String trimmedScheduleName = scheduleName.trim();
         if (!ScheduleName.isValidScheduleName(trimmedScheduleName)) {
-            throw new ParseException("Invalid schedule name given: " + trimmedScheduleName + "\n"
-                    + ScheduleName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("schedule name", trimmedScheduleName,
+                    ScheduleName.MESSAGE_CONSTRAINTS));
         }
         return new ScheduleName(trimmedScheduleName);
     }
@@ -173,8 +183,8 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException("Invalid tag given: " + trimmedTag + "\n"
-                    + Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("tag", trimmedTag,
+                    Tag.MESSAGE_CONSTRAINTS));
         }
         return new Tag(trimmedTag);
     }
@@ -201,8 +211,8 @@ public class ParserUtil {
         requireNonNull(note);
         String trimmedNote = note.trim();
         if (!Note.isValidNote(trimmedNote)) {
-            throw new ParseException("Invalid note given: " + trimmedNote + "\n"
-                    + Note.MESSAGE_CONSTRAINTS);
+            throw new ParseException(makeExceptionMessage("note", trimmedNote,
+                    Note.MESSAGE_CONSTRAINTS));
         } else if (!Note.hasValidLength(trimmedNote)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS_CHARACTER_LIMIT);
         }
