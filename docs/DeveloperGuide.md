@@ -871,4 +871,14 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
    2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file <br>
       Expected: Shows the GUI with the default start page.
    3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
-      Expected: Shows the GUI with the default start page. 
+      Expected: Shows the GUI with the default start page.
+
+## **Planned Enhancements**
+Given below are the fixes proposed to add in the near future.
+
+1. Deal with values having leading whitespaces in data files.
+   1. The current implementation will not load the `addressbook.json` file in the data folder when there are leading whitespaces.
+   2. We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read.
+2. Deal with phone numbers having more than 15 digits long.
+   1. The current implementation will accept any phone number length more than 2, including numbers that are more than 15 digits long. However, the maximum phone number length in the world is 15.
+   2. We plan to limit the phone number length so that it is 3 to 15 digits long, since all phone number with length more than 15 are technically invalid.
