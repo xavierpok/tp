@@ -46,11 +46,13 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peter@jack@example.com")); // '@' symbol in local part
         assertFalse(Email.isValidEmail("-peterjack@example.com")); // local part starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack-@example.com")); // local part ends with a hyphen
-        assertFalse(Email.isValidEmail("peter..jack@example.com")); // local part has two consecutive periods
+        assertFalse(Email.isValidEmail("-p-peterjack@example.com")); // starts with hyphen, with hyphen in the middle
         assertFalse(Email.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
         assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example-.com")); // domain label ends with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example.-com")); // domain end label starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
 
@@ -66,6 +68,12 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+        assertTrue(Email.isValidEmail("peter..jack@example.com")); // local part has two consecutive periods is ok
+        assertTrue(Email.isValidEmail("peter..jack--michael@example.com")); // alphanumeric separating consecutive
+        assertTrue(Email.isValidEmail("peter+_.-jack@example.com")); // all special characters in a row
+        assertTrue(Email.isValidEmail("peterjack@a-a")); // shortest possible with hyphen
+        assertTrue(Email.isValidEmail("peterjack@a-1.a-a")); // mix of hyphens across two dots with min size strings
+
     }
 
     @Test
