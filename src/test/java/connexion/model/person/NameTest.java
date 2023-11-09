@@ -23,20 +23,26 @@ public class NameTest {
 
     @Test
     public void isValidName() {
-        // null name
+        // EP: null value
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
-        // invalid name
+        // Invalid name
+        // EP: Empty strings
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
 
-        // valid name
+        // EP: non-alphanumeric characters
+        assertFalse(Name.isValidName("*")); // only non-alphanumeric characters
+        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("peterp/")); // contains non-alphanumeric characters
+
+        // Valid name
+        // EP: alphanumeric characters
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(Name.isValidName("CAPITAL ONLY")); // only capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 

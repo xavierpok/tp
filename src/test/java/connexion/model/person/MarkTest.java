@@ -72,12 +72,37 @@ public class MarkTest {
         assertThrows(NullPointerException.class, () ->
                 Mark.isValidMark(null));
 
-        // invalid Mark
-        assertFalse(Mark.isValidMark("")); // empty string
-        assertFalse(LastModifiedDateTime.isValidLastModifiedDateTime("a star!"));
+        //Invalid inputs
+        //EP: empty strings
+        assertFalse(Mark.isValidMark("")); //empty string
+        assertFalse(Mark.isValidMark("  ")); //spaces
+        assertFalse(Mark.isValidMark(" ★ ")); //spaces with ★
+        assertFalse(Mark.isValidMark(" ☆ ")); //spaces with ☆
 
-        // valid Mark
+        //EP: alphanumeric characters
+        assertFalse(Mark.isValidMark("mark")); //alphabets only
+        assertFalse(Mark.isValidMark("mark ★")); //alphabets with ★
+        assertFalse(Mark.isValidMark("mark ☆")); //alphabets with ☆
+        assertFalse(Mark.isValidMark("1234")); //numbers only
+        assertFalse(Mark.isValidMark("1234 ★")); //numbers with ★
+        assertFalse(Mark.isValidMark("1234 ☆")); //numbers with ☆
+        assertFalse(Mark.isValidMark("mark 1")); //alphanumeric
+        assertFalse(Mark.isValidMark("mark 1 ★")); //alphanumeric with ★
+        assertFalse(Mark.isValidMark("mark 1 ☆")); //alphanumeric with ☆
+
+        //EP: invalid non-alphanumeric characters
+        assertFalse(Mark.isValidMark("-")); //one character only
+        assertFalse(Mark.isValidMark("-★")); //a character with ★
+        assertFalse(Mark.isValidMark("-☆")); //a character with ☆
+        assertFalse(Mark.isValidMark("mark 1!")); //non-alphanumeric characters present
+        assertFalse(Mark.isValidMark("mark 1!★")); //non-alphanumeric characters with ★
+        assertFalse(Mark.isValidMark("mark 1!☆")); //non-alphanumeric characters with ☆
+
+        //Valid inputs
+        //EP: string character for true "★" (aka marked contacts)
         assertTrue(Mark.isValidMark("★"));
+
+        //EP: string character for false "☆" (aka un-marked contacts)
         assertTrue(Mark.isValidMark("☆"));
     }
 
