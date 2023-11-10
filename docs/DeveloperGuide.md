@@ -880,10 +880,10 @@ Given below are the fixes proposed to add in the near future.
 
 1. #### Deal with values having leading whitespaces in data files
    1. The current implementation will not load the `addressbook.json` file in the data folder when there are leading whitespaces.
-   2. We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read. 
+   2. Proposed solution: We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read. 
 2. #### Deal with phone numbers having more than 15 digits long
    1. The current implementation will accept any phone number length more than 2, including numbers that are more than 15 digits long. However, the maximum phone number length in the world is 15.
-   2. We plan to limit the phone number length so that it is 3 to 15 digits long, since all phone number with length more than 15 are technically invalid.
+   2. Proposed solution: We plan to limit the phone number length so that it is 3 to 15 digits long, since all phone number with length more than 15 are technically invalid.
 3. #### Expansion of `tag` feature
     1. Currently, the only way to modify tags is via the `edit` command which overwrites the entire tag list when executed.
     2. This can result in notable user inconvenience in at least one of two ways :
@@ -894,7 +894,19 @@ Given below are the fixes proposed to add in the near future.
         2. E.g. `et/` to mark a tag for editing, with whitespace-delimited before-after.
             1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`.
         3. `dt/` could delete a tag.
-4. #### Deal with text-wrapping and truncation in UI
+4. #### Substring enhancement for all fields
+    1. Currently, for all features, any duplicate prefixes are not allowed. However, the user may want to enter prefixes as values such as `e/`, `n/` etc, through the app.
+    2. This can result in user inconvenience in at least one of two ways :
+       1. If the user wants to add a company name like "at and t/bellsouth", this will cause a tag to be added.
+       2. If the user wants to add a job name like "Software Engineer e/brains", this will cause an error as either `e/` is a duplicate prefix, or "brain" is not a valid email address.
+       3. Proposed solution : Add an escape character. One possible escape character can be `\`.
+          1. E.g. If the user wants to add a company name "at and t/bellsouth", the user can enter "at and \t/bellsouth".
+          2. E.g. If the user wants to add a job name like "Software Engineer e/brains", the user can enter "Software Engineer \e/brains".
+5. #### Enhance checking of schedule and scheduleName
+   1. Currently, upon editing the `addressbook.json` file in the data folder, `schedule` can exist in the app without `ScheduleName`, and vice-versa. However, this is an unintended behaviour as `schedule` should have a `scheduleName` and vice-versa.
+   2. Proposed solution: After reading from the `addressbook.json` file in the data folder, we can check `schedule` field and `scheduleName` field to make sure if one is empty and the other is not, it throws an error.
+   
+6. #### Deal with text-wrapping and truncation in UI
    1. The current implementation of the personViewPanel truncates text subjective to the window size, making users unable to view extremely long text even with text wrapping enabled in the UI.
    2. Current implementation also restricts note field to 1000 characters.
    3. Proposed solution: To enable the personViewPanel to be scrollable, so when text is wrapped, the panel expands vertically so text is no longer truncated.
