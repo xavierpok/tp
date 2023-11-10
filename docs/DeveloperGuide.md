@@ -774,6 +774,7 @@ Expected: Connexion will shut down.
    2. Test case: `mark 0` <br>
       Expected: No contact is marked. Error message is displayed.
    3. Other incorrect mark commands to try: mark, mark x, ... (where x is larger than the list size)
+   
 ### Un-marking a contact
 1. Prerequisites: Contact to edit must already exist in Connexion and be displayed on the list view.
 2. Un-marking a contact
