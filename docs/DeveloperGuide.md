@@ -894,4 +894,7 @@ Given below are the fixes proposed to add in the near future.
         2. E.g. `et/` to mark a tag for editing, with whitespace-delimited before-after.
             1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`.
         3. `dt/` could delete a tag.
-
+4. #### Deal with text-wrapping and truncation in UI
+   1. The current implementation of the personViewPanel truncates text subjective to the window size, making users unable to view extremely long text even with text wrapping enabled in the UI.
+   2. Current implementation also restricts note field to 1000 characters.
+   3. Proposed solution: To enable the personViewPanel to be scrollable, so when text is wrapped, the panel expands vertically so text is no longer truncated.
