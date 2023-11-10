@@ -573,22 +573,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed
 2. Setup should be possible without configuration (should just be running binaries)
 3. Should respond to all inputs within approx. 2 seconds maximum
 4. Final size of application should be under 50MB
-5. Should retain all core functionality without access to internet
-6. Should NOT crash under recoverable circumstances, excepting irrecoverable errors like a `OutOfMemoryError`, application being killed, etc.
-7. Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
+5. Should not run out of memory with 64MB RAM
+6. Only supports one user at a time
+7. Should retain all core functionality without access to internet (except `help` which links to the User Guide online)
+8. Should NOT crash under recoverable circumstances, excluding irrecoverable errors like a `OutOfMemoryError`, application being killed, etc.
+9. Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
 
-*{More to be added}*
 
 ### Glossary
 
+* **Clock**: A Java class, implemented by the app to keep track of current datetime
+* **CLI**: Command Line Interface
+* **Contact**: A person who is added to the list, containing details like name, phone number etc 
+* **Extensions**: Possible flow of events in use cases
+* **Field**: An attribute to a contact, used to input contact details or filter contacts
+* **GUI**: Graphical User Interface
+* **Index**: A number that references the position of contact in the contact list
+* **LastModifiedDateTime**: The latest datetime when a contact's detail was modified
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**:  A contact detail that is not meant to be shared with others
-* **Tag**: A fixed label that is meant for easier searching and organisation
-*  **Index**: A number that references the position of person in the list
+* **MSS**: Main Success Scenario, assumes that nothing goes wrong in use cases
+* **Note**: A brief record attributed to a contact
+* **Schedule**: A plan for carrying out a process. Each contact can only have maximum one schedule
 
 --------------------------------------------------------------------------------------------------------------------
 
