@@ -873,12 +873,25 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
    3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
       Expected: Shows the GUI with the default start page.
 
+------
 ## **Planned Enhancements**
 Given below are the fixes proposed to add in the near future.
 
-1. Deal with values having leading whitespaces in data files.
+
+1. #### Deal with values having leading whitespaces in data files
    1. The current implementation will not load the `addressbook.json` file in the data folder when there are leading whitespaces.
-   2. We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read.
-2. Deal with phone numbers having more than 15 digits long.
+   2. We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read. 
+2. #### Deal with phone numbers having more than 15 digits long
    1. The current implementation will accept any phone number length more than 2, including numbers that are more than 15 digits long. However, the maximum phone number length in the world is 15.
    2. We plan to limit the phone number length so that it is 3 to 15 digits long, since all phone number with length more than 15 are technically invalid.
+3. #### Expansion of `tag` feature
+    1. Currently, the only way to modify tags is via the `edit` command which overwrites the entire tag list when executed.
+    2. This can result in notable user inconvenience in at least one of two ways :
+        1. If the user wants to append a tag, they need to overwrite the existing tag list with a new tag list that has all the old tags plus a new tag.
+        2. If the user wants to edit one specific tag, they need to overwrite the existing tag list with a new tag list that has all the non-edited tags plus an edited tag.
+    3. Proposed solution : Expand `edit` with new prefixes for tag editing.
+        1. E.g. `at/` to add a tag.
+        2. E.g. `et/` to mark a tag for editing, with whitespace-delimited before-after.
+            1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`.
+        3. `dt/` could delete a tag.
+
