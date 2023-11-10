@@ -291,8 +291,12 @@ object, where it is used construct a `NoteCommand` object.
 Through `NoteCommand#execute()`, the `NoteDescriptor` is then used to create a `Person` object with the new note.
 Through `model#setPerson()`, the `Person` object created then replaces the original `Person` object in the list.
 
-The sequence diagram below shows the interaction between Logic and Model components after the API call
+The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("note 1 o/This is a note!")`
 
+![Interactions Inside the Logic and Model Components for the `note 1 o/This is a note!` Command](images/NoteSequenceDiagram.png)
+
+Similar to the edit feature in AB3, by using NoteDescriptor object, we are able to keep the same level of abstraction. Moreover,
+it ensures the immutability of `Person`.
 
 --------------------------------------------------------------------------------------------------------------------
 
