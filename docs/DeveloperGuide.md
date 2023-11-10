@@ -873,6 +873,7 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
    3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
       Expected: Shows the GUI with the default start page.
 
+------
 ## **Planned Enhancements**
 Given below are the fixes proposed to add in the near future.
 
