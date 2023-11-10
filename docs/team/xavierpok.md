@@ -31,6 +31,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX.
   * Set up Github repo for project
   * Ensured PRs properly closed their issues
   * Maintaining & organising issues as needed
+  * Troubleshooting of gradle bugs as needed
 * **Documentation**:
     * User Guide: 
       * Updated for features above
