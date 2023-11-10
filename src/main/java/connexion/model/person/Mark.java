@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Mark implements PersonListDetailField<Boolean> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Mark Status can only be ★ or ☆";
+            "Mark Status can only be \\u2606 or \\u2605";
     private static final String UNMARKED_STAR = "☆";
     private static final String MARKED_STAR = "★";
     private static final String VALIDATION_REGEX = "[★|☆]";
