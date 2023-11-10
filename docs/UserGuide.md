@@ -56,11 +56,16 @@ title: User Guide
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+* Leading & trailing whitespaces are ignored from the input for parameters.
+  e.g. `n/               NAME`, `n/NAME                  ` and `n/NAME` are interpreted in the same way. 
+* As seen above, the app uses prefixes to indicate the type of parameter, like `n/` for `NAME`.
+* Prefixes are defined by having a space before the prefix proper. E.g. `n/ Johnp/123456789` will be interpreted as supplying `Johnp/123456789` to the `NAME` parameter.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
   * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
+* Commands that accept indices as parameters can only accept positive integers less than 2147483647, and a valid index
+  i.e. the valid index must be between 1 and the lower of (list size, 2147483647) (inclusive)
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -105,6 +110,9 @@ Gives the list of all contacts.
 
 Format: `list`
 
+* Allows the user to clear existing filters on the contact list.
+  * E.g. `filter m/` followed by `list` clears the filter for marked contacts and displays all contacts instead.
+
 ### Editing existing contact details : `edit`
 
 Edits an existing contact details via index.
@@ -145,7 +153,7 @@ Un-marks a contact of interest.
 
 Format: `unmark INDEX`
 
-* Marks the contact at the specified `INDEX`, which is shown by a yellow hollow star.
+* Un-marks the contact at the specified `INDEX`, which is shown by a yellow hollow star.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** starting from 1.
 * When a new contact is created, the contact is un-marked by default.
@@ -193,8 +201,8 @@ Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 * Input schedule time must be in the format `YYYY-MM-DD-HH-mm`, and must be valid.
 * If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
 * Updates the last modified time of the given contact to the current time when executed.
-
-Examples:
+* This command allows the entering of dates before the current date & time, e.g. in the event that you are backdating a meeting that has occurred for your own usage in documentation.
+* Examples:
 *  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st contact's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
 *  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd contact's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
@@ -237,6 +245,7 @@ Format: `note INDEX o/[NOTE]`
 * By default, note is empty when a contact is added to the contact list.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
+  * The only exception to this rule are command prefixes as previously mentioned.
 * Updates the last modified time of the given contact to the current time when executed.
 
 Examples:
@@ -299,19 +308,23 @@ Format: `exit`
 
 ## Command Field Prefix Summary
 
-| Prefix | Description   | Remark                                               |
-|--------|---------------|------------------------------------------------------|
-| c/     | COMPANY       | -                                                    |
-| e/     | EMAIL         | -                                                    |
-| j/     | JOB           | -                                                    |
-| n/     | NAME          | -                                                    |
-| p/     | PHONE_NUMBER  | -                                                    |
-| t/     | TAG           | Multiple instances of this argument can be accepted. |
-| m/     | MARKED        | Marked contacts, only usable in `filter` command     |
-| u/     | UNMARKED      | Un-marked contacts, only usable in `filter` command  |
-| i/     | SCHEDULE_TIME | Only usable in `schedule` command                    |
-| a/     | SCHEDULE_NAME | Only usable in `schedule` command                    |
-| o/     | NOTE          | Only usable in `note` command                        |                 
+<div markdown="span" class="alert alert-primary">:bulb: **Reminder:**
+Leading & trailing whitespaces are ignored from the input.
+</div>
+
+| Prefix | Description   | Restrictions                                                                                                                                                                                                                                                                                         | Notes                                                                                                                                                                  |
+|--------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| c/     | COMPANY       | Non-empty.                                                                                                                                                                                                                                                                                           | -                                                                                                                                                                      |
+| e/     | EMAIL         | Non-empty, and of format local-part@domain, local-part is alphanumeric and can contain `+`,`_`,`.`,`-`, but cannot start or end with these characters. Domain must be made up of one or more domain labels seperated by dots, consisting of at least 2 alphanumeric characters separated by hyphens. | "dotless" domains like `example@example` are allowed as they are technically [possible](https://www.icann.org/en/system/files/files/sac-053-en.pdf), just discouraged. |
+| j/     | JOB           | Non-empty.                                                                                                                                                                                                                                                                                           | -                                                                                                                                                                      |
+| n/     | NAME          | Non-empty, alphanumeric characters and whitespace.                                                                                                                                                                                                                                                   | -                                                                                                                                                                      |
+| p/     | PHONE_NUMBER  | Non-empty, more than 2 numeric characters                                                                                                                                                                                                                                                            | -                                                                                                                                                                      |
+| t/     | TAG           | Non-empty, alphanumeric, one word not separated by whitespace (` `)                                                                                                                                                                                                                                  | Multiple instances of this argument can be accepted.                                                                                                                   |
+| m/     | MARKED        | None (Does not interpret any parameters)                                                                                                                                                                                                                                                             | Marked contacts, only usable in `filter` command                                                                                                                       |
+| u/     | UNMARKED      | None (Does not interpret any parameters)                                                                                                                                                                                                                                                             | Un-marked contacts, only usable in `filter` command                                                                                                                    |
+| i/     | SCHEDULE_TIME | Non-empty, must be of format `YYYY-MM-DD-HH-mm` & be a valid date & time                                                                                                                                                                                                                             | Only usable in `schedule` command                                                                                                                                      |
+| a/     | SCHEDULE_NAME | Non-empty, alphanumeric characters and whitespace.                                                                                                                                                                                                                                                   | Only usable in `schedule` command                                                                                                                                      |
+| o/     | NOTE          | Can be empty, alphanumeric characters, punctuation(any of ``!"#%&'()*+,-./:;<=>?@[\]^`{\| }~``)  and whitespace. Maximum of 1000 characters.                                                                                                                                                         | Only usable in `note` command                                                                                                                                          |                 
 
 
 

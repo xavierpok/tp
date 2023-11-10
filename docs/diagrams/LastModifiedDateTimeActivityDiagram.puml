@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+start
+:User inputs a command that modifies an entry;
+
+:Logic component passes clock to parser;
+
+:Parser parses command;
+
+If () then ([Command is valid ])
+
+:Parser extracts parameters from command;
+:Parser extracts current time from clock;
+:Person data updated in AddressBook;
+
+else ([else])
+    :Command handles invalid failure
+    (dependent on implementation);
+
+endif
+
+:Results are displayed to user
+(Including modified Person data);
+
+stop
+@enduml
