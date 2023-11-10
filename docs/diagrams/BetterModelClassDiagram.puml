@@ -21,4 +21,7 @@ Person *--> Company
 Person *--> Job
 Person *--> Mark
 Person *--> LastModifiedDateTime
+Person *-> Note
+Person *-> Schedule
+Person *-> ScheduleName
 @enduml
