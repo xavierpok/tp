@@ -878,7 +878,7 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
 Given below are the fixes proposed to add in the near future.
 
 
-1. #### Deal with values having leading whitespaces in data files.
+1. #### Deal with values having leading whitespaces in data files
    1. The current implementation will not load the `addressbook.json` file in the data folder when there are leading whitespaces.
    2. We plan to trim the values of leading and trailing whitespaces before reading into `jsonAdaptedPerson.java`, so that even if there is leading whitespaces, the values can still be read. 
 2. #### Deal with phone numbers having more than 15 digits long.
