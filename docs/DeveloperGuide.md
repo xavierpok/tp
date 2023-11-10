@@ -286,7 +286,7 @@ The following sequence diagram shows how the detail operation works:
 ### Note Feature (implemented by Kwok Yong)
 The user can add a note to a specific contact based on an index.
 
-Through `NoteCommandParser`, the index of the contact in the list and the field prefix `o/` is read. Keywords after the prefix are parsed and read into a `NoteDescripter`
+Through `NoteCommandParser`, the index of the contact in the list and the field prefix `o/` is read. Keywords after the prefix are parsed and read into a `NoteDescriptor`
 object, where it is used construct a `NoteCommand` object.
 
 Through `NoteCommand#execute()`, the `NoteDescriptor` is then used to create a `Person` object with the new note.
