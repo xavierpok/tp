@@ -885,13 +885,13 @@ Given below are the fixes proposed to add in the near future.
    1. The current implementation will accept any phone number length more than 2, including numbers that are more than 15 digits long. However, the maximum phone number length in the world is 15.
    2. We plan to limit the phone number length so that it is 3 to 15 digits long, since all phone number with length more than 15 are technically invalid.
 3. #### Expansion of `tag` feature
-    1. Currently, the only way to modify tags is via the `edit` command which overwrites the entire tag list when executed
+    1. Currently, the only way to modify tags is via the `edit` command which overwrites the entire tag list when executed.
     2. This can result in notable user inconvenience in at least one of two ways :
         1. If the user wants to append a tag, they need to overwrite the existing tag list with a new tag list that has all the old tags plus a new tag.
-        2. If the user wants to edit one specific tag, they need to overwrite the existing tag list with a new tag list that has all the non-edited tags plus an edited tag
-    3. Proposed solution : Expand `edit` with new prefixes for tag editing
-        1. E.g. `at/` to add a tag
-        2. E.g. `et/` to mark a tag for editing, with whitespace-delimited before-after
-            1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`
+        2. If the user wants to edit one specific tag, they need to overwrite the existing tag list with a new tag list that has all the non-edited tags plus an edited tag.
+    3. Proposed solution : Expand `edit` with new prefixes for tag editing.
+        1. E.g. `at/` to add a tag.
+        2. E.g. `et/` to mark a tag for editing, with whitespace-delimited before-after.
+            1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`.
         3. `dt/` could delete a tag.
 
