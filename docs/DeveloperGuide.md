@@ -895,14 +895,18 @@ Given below are the fixes proposed to add in the near future.
             1. I.e. `edit et/ before after` could change the tag `before` to the tag `after`.
         3. `dt/` could delete a tag.
 4. #### Substring enhancement for all fields
-   1. Currently, for all features, any duplicate prefixes are not allowed. However, the user may want to enter prefixes as values such as `e/`, `n/` etc, through the app.
-   2. This can result in user inconvenience in at least one of two ways :
-      1. If the user wants to add a company name like "at and t/bellsouth", this will cause a tag to be added.
-      2. If the user wants to add a job name like "Software Engineer e/brains", this will cause an error as either `e/` is a duplicate prefix, or "brain" is not a valid email address.
-   3. Proposed solution : Add an escape character. One possible escape character can be `\`.
-      1. E.g. If the user wants to add a company name "at and t/bellsouth", the user can enter "at and \t/bellsouth".
-      2. E.g. If the user wants to add a job name like "Software Engineer e/brains", the user can enter "Software Engineer \e/brains".
-5. #### Schedule can exist without ScheduleName, and vice-versa
+    1. Currently, for all features, any duplicate prefixes are not allowed. However, the user may want to enter prefixes as values such as `e/`, `n/` etc, through the app.
+    2. This can result in user inconvenience in at least one of two ways :
+       1. If the user wants to add a company name like "at and t/bellsouth", this will cause a tag to be added.
+       2. If the user wants to add a job name like "Software Engineer e/brains", this will cause an error as either `e/` is a duplicate prefix, or "brain" is not a valid email address.
+       3. Proposed solution : Add an escape character. One possible escape character can be `\`.
+          1. E.g. If the user wants to add a company name "at and t/bellsouth", the user can enter "at and \t/bellsouth".
+          2. E.g. If the user wants to add a job name like "Software Engineer e/brains", the user can enter "Software Engineer \e/brains".
+5. #### Enhance checking of schedule and scheduleName
    1. Currently, upon editing the `addressbook.json` file in the data folder, `schedule` can exist in the app without `ScheduleName`, and vice-versa. However, this is an unintended behaviour as `schedule` should have a `scheduleName` and vice-versa.
    2. Proposed solution: After reading from the `addressbook.json` file in the data folder, we can check `schedule` field and `scheduleName` field to make sure if one is empty and the other is not, it throws an error.
-
+   
+6. #### Deal with text-wrapping and truncation in UI
+   1. The current implementation of the personViewPanel truncates text subjective to the window size, making users unable to view extremely long text even with text wrapping enabled in the UI.
+   2. Current implementation also restricts note field to 1000 characters.
+   3. Proposed solution: To enable the personViewPanel to be scrollable, so when text is wrapped, the panel expands vertically so text is no longer truncated.
