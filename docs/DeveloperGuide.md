@@ -277,7 +277,7 @@ Details include name, tags, phone number, email, company, job, lastModified, sch
 
 Based on the index input from the user in the `DetailCommand`, the `Person` object at that index is retrieved.  The `detailedPerson` in `AddressBook` is set via the `setDetailedPerson(Person p)` in `Model`.
 
-This person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "To view a person's detail, type 'detail INDEX'" if `Person` object is null.
+This Person object is updated and fed to the PersonViewPanel after `executeCommand(String commandText)` is executed. Displays "To view a person's detail, type 'detail INDEX'" if `Person` object is null.
 
 The following sequence diagram shows how the detail operation works:
 ![DetailSequenceDiagram](images/DetailSequenceDiagram.png)
@@ -285,7 +285,7 @@ The following sequence diagram shows how the detail operation works:
 ### Note Feature (implemented by Kwok Yong)
 The user can add a note to a specific contact based on an index.
 
-Through `NoteCommandParser`, the index of the person in the list and the field prefix `o/` is read. Keywords after the prefix are parsed and read into a `NoteDescripter`
+Through `NoteCommandParser`, the index of the contact in the list and the field prefix `o/` is read. Keywords after the prefix are parsed and read into a `NoteDescripter`
 object, where it is used construct a `NoteCommand` object.
 
 Through `NoteCommand#execute()`, the `NoteDescriptor` is then used to create a `Person` object with the new note.
@@ -597,6 +597,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main Success Scenario, assumes that nothing goes wrong in use cases
 * **Note**: A brief record attributed to a contact
+* **Person View Panel**: The right half of the GUI, used to view details of a contact 
 * **Schedule**: A plan for carrying out a process. Each contact can only have maximum one schedule
 
 --------------------------------------------------------------------------------------------------------------------
@@ -644,15 +645,15 @@ Expected: Connexion will shut down.
    
 ### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
