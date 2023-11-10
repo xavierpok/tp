@@ -602,3 +602,7 @@ testers are expected to do more *exploratory* testing.
 * This can result in notable user inconvenience in at least one of two ways :
     1. If the user wants to append a tag, they need to overwrite the existing tag list with a new tag list that has all the old tags plus a new tag.
     2. If the user wants to edit one specific tag, they need to overwrite the existing tag list with a new tag list that has all the non-edited tags plus an edited tag
+* Proposed solution: Add tag specific commands
+   * `AddTag INDEX t/TAG` for appending tags to a specific contact via their index.
+   * `EditTag INDEX t/OLD_TAG t/NEW_TAG` for editing a tag of a specific contact via their index.
+   * `DeleteTag INDEX t/TAG_TO_DELETE` for deleting a tag of a specific contact via their index.
