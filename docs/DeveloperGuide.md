@@ -192,6 +192,7 @@ Currently, the only `ClockDependentParser`s are `AddCommandParser`,`EditCommandP
 Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to extract the correct `LocalDateTime` object as needed.
 
 The above is summarised in the activity diagram below :
+
 ![LastModifiedDateTimeActivityDiagram.png](images%2FLastModifiedDateTimeActivityDiagram.png)
 
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
