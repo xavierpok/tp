@@ -8,15 +8,14 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
-participant ":ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
 
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "scheduleDescriptor: ScheduleDescriptor" as Person LOGIC_COLOR
+participant "sd: ScheduleDescriptor" as Person LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
 
 [-> LogicManager : execute("schedule 1 i/2023-12-27-07-00 a/Seminar")
@@ -45,7 +44,7 @@ Person --> ScheduleCommandParser
 deactivate Person
 
 create ScheduleCommand
-ScheduleCommandParser -> ScheduleCommand : Index, scheduleDescriptor
+ScheduleCommandParser -> ScheduleCommand : index, sd
 activate ScheduleCommand
 
 ScheduleCommand --> ScheduleCommandParser : s
@@ -57,7 +56,7 @@ deactivate ScheduleCommandParser
 ScheduleCommandParser -[hidden]-> AddressBookParser
 destroy ScheduleCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : s
 deactivate AddressBookParser
 
 LogicManager -> ScheduleCommand : execute()
@@ -65,11 +64,8 @@ activate ScheduleCommand
 
 ScheduleCommand -> Model : setPerson(person)
 activate Model
-Model -> AddressBook : setPerson(person)
 
-activate AddressBook
-AddressBook --> Model
-deactivate AddressBook
+
 
 Model --> ScheduleCommand
 deactivate Model
