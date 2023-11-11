@@ -18,7 +18,7 @@ public class DetailCommand extends Command {
     public static final String COMMAND_WORD = "detail";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows details of the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer and less than 2^31 - 1)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DETAIL_SUCCESS = "Display Details of Person: %1$s";
