@@ -37,7 +37,7 @@ public class NoteCommand extends Command {
             + ": Adds a note for the person identified by the index number used in the displayed person list. \n"
             + "Existing note will be overwritten by the new note.\n"
             + "Character limit of NOTE is 1000.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer and less than 2^31 - 1) "
             + PREFIX_NOTE + "[NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Will be promoted to Senior Developer next month.";

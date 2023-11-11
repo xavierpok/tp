@@ -851,3 +851,21 @@ Given below are the fixes proposed to add in the near future.
    1. The current implementation of the personViewPanel truncates text subjective to the window size, making users unable to view extremely long text even with text wrapping enabled in the UI.
    2. Current implementation also restricts note field to 1000 characters.
    3. Proposed solution: To enable the personViewPanel to be scrollable, so when text is wrapped, the panel expands vertically so text is no longer truncated.
+
+7. #### Add "bubbling up" of error messages for index errors (and possibly other errors)
+   1. Currently, error messages for indices related to parsing failure do not display the underlying reason.
+   2. The reason for this is a try-catch block in all `Parser` classes that catch invalid-format-index-related `ParseException`s and throw new `ParseException`s.
+   3. The message contained within the `ParseException` thrown during index parsing is not used or displayed in any way.
+      1. E.g. `edit 0` would display a message informing the user of the wrong format instead of that their index was wrong.
+      2. Other field errors, like `edit 1 n/inv@lid name`, which is invalid due to the `@` would inform the user of the fact that the name field was wrong.\
+      3. This could lead to potentially confusing error messages that are still accurate given the app's parsing rules.
+        * E.g. `schedule 1 i/2023-10-10-10-10 n/test` would display a message relating to a wrong schedule time error, as `n/` is an invalid field and interpreted as part of the input to the `i/` parameter.
+   4. Proposed solution 1 : Display the index error's message instead of the `Parser`'s error message.
+   5. Proposed solution 2 : Display a compound error message consisting of the field-specific error message and the `Parser`-specific error message.
+        * As noted in the title, this behaviour might be extended to all field errors.
+        * E.g. `edit 1 n/inv@lid name` might display a combination of both the `Name`-specific error message and the `edit` command's error message.
+   6. In terms of UX, solution 2 might be better.
+        * Counter-factors against solution 2 to consider : 
+            1. Possible user information overload.
+            2. Implementation & testing overhead due to more complex behaviour.
+   

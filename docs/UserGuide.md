@@ -62,6 +62,9 @@ title: User Guide
 * Prefixes are defined by having a space before the prefix proper. E.g. `n/ Johnp/123456789` will be interpreted as supplying `Johnp/123456789` to the `NAME` parameter.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do take in parameters, but do not take in those specific parameters will be interpreted as part of the input.
+  e.g. `edit 1 n/John Doe m/` will be interpreted as supplying `John Doe m/` to the  `NAME` field, and be invalid.
+  This is as `edit` does not make use of the `m/` prefix.
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
   * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
 * Commands that accept indices as parameters can only accept positive integers less than 2147483647, and a valid index
