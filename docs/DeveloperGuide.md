@@ -868,4 +868,8 @@ Given below are the fixes proposed to add in the near future.
         * Counter-factors against solution 2 to consider : 
             1. Possible user information overload.
             2. Implementation & testing overhead due to more complex behaviour.
-   
+
+8. #### Renaming of `clearschedule`
+    1. This is mostly regarding `clearschedule`, as `clearschedule` could easily be mis-entered as `clear schedule`, which would `clear` the addressbook.
+    2. Proposed solution : Rename `clearschedule`.
+    3. Proposed solution 2 : Make `clear` not allow any input after `clear`.
