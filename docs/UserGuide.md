@@ -40,11 +40,15 @@ Then **Connexion** is for you!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `.jar` and run as shown from [here](https://docs.oracle.com/javase/tutorial/deployment/jar/run.html).
 
 3. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Before you begin:**
+If there is no data file, either because this is the first time you've started **Connexion** or because you deleted the file, the app will fill with example dataset. You may enter `clear` to clear them. These are present just as an example, and can otherwise be disregarded.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,24 +69,26 @@ Then **Connexion** is for you!
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* Leading & trailing whitespaces are ignored from the input for parameters.
-  e.g. `n/               NAME`, `n/NAME                  ` and `n/NAME` are interpreted in the same way. 
-* As seen above, the app uses prefixes to indicate the type of parameter, like `n/` for `NAME`.
-* Prefixes are defined by having a space before the prefix proper. E.g. `n/ Johnp/123456789` will be interpreted as supplying `Johnp/123456789` to the `NAME` parameter.
+
+* Leading & trailing whitespaces are ignored from the input for parameters. <br>
+  e.g. `n/​ ​ NAME`, `n/NAME ​ ​` and `n/NAME` are interpreted in the same way.
+
+* As seen above, the app uses prefixes to indicate the type of parameter, like `n/` for `NAME`. 
+  * Prefixes are defined by having a space before the prefix proper. <br>
+    e.g. `n/ Johnp/123456789` will be interpreted as supplying `Johnp/123456789` to the `NAME` parameter.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-* Extraneous parameters for commands that do take in parameters, but do not take in those specific parameters will be interpreted as part of the input.
+* Extraneous parameters for commands that do take in parameters, but do not take in those specific parameters will be interpreted as part of the input. <br>
   e.g. `edit 1 n/John Doe m/` will be interpreted as supplying `John Doe m/` to the  `NAME` field, and be invalid.
   This is as `edit` does not make use of the `m/` prefix.
+
 * Commands that modify contacts' detail or create contacts, i.e. `add` and `edit`, time-stamp the contact with a last modified field.
   * `mark` is not considered as modifying contact's detail and hence does not change the last modified date.
-* Commands that accept indices as parameters can only accept positive integers less than 2147483647, and a valid index
-  i.e. the valid index must be between 1 and the lower of (list size, 2147483647) (inclusive)
+* Commands that accept indices as parameters can only accept positive integers less or equal than 2147483647, and a valid index <br>
+  * A valid index must be a positive integer between 1 and the minimum of {list size, 2147483647} (inclusive)
+  * The index refers to the index number shown in the **displayed contact list**.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Before you begin:**
-If there is no data file, either because this is the first time you've started **Connexion** or because you deleted the file, the app will fill with example dataset. You may enter `clear` to clear them. These are present just as an example, and can otherwise be disregarded.
 </div>
 
 ### Viewing help : `help`
@@ -129,14 +135,14 @@ Format: `list`
 
 Edits an existing contact details via index.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/TAG]...​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [j/JOB] [t/TAG]...​`<br>
+(At least one of the optional fields must be provided.)
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** starting from 1.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Edits the contact at the specified `INDEX`.
+* Existing values will be updated to the input values. Appending is not supported.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without
-  specifying any tags after it.
+  * You can remove all the contact’s tags by typing `t/` without
+    specifying any tags after it.
 * Same as `add`, no duplicate names (case-sensitive) are allowed.
 * Updates the last modified time of the given contact to the current time when executed.
 
@@ -146,13 +152,11 @@ Examples:
 
 ### Marking contacts of interest : `mark`
 
-Marks a contact of interest.
+Marks a contact of interest, which is shown by a yellow filled star ★.
 
 Format: `mark INDEX`
 
-* Marks the contact at the specified `INDEX`, which is shown by a yellow filled star.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** starting from 1.
+* Marks the contact at the specified `INDEX`.
 * When a new contact is created, the contact is un-marked by default.
 * Does NOT update the last modified time of the given contact to the current time when executed.
 
@@ -161,13 +165,11 @@ Examples:
 
 ### Un-marking contacts of interest : `unmark`
 
-Un-marks a contact of interest.
+Un-marks a contact of interest, which is shown by a yellow hollow star ☆.
 
 Format: `unmark INDEX`
 
-* Un-marks the contact at the specified `INDEX`, which is shown by a yellow hollow star.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** starting from 1.
+* Un-marks the contact at the specified `INDEX`.
 * When a new contact is created, the contact is un-marked by default.
 * Does NOT update the last modified time of the given contact to the current time when executed.
 
@@ -189,44 +191,51 @@ Format 2: `filter FIELD_PREFIX_2` <br>
     * Refer to [Command Field Prefix Summary](#command-field-prefix-summary) for more information about the prefixes.
 * Only supports filtering via ONE field.
     * Everything after FIELD_PREFIX_1 will be recognized as keywords, **including field prefixes**!
+      * E.g. `filter n/ John u/` will be interpreted as a command to filter in the `NAME` field with argument `John u/`
     * Any keywords behind FIELD_PREFIX_2 will be ignored but the command is still valid, **including field prefixes**!
-    * E.g. `filter u/ n/John` will be interpreted the same as `filter u/`.
-    * E.g. `filter n/ John u/` will be interpreted as a command to filter in the `NAME` field with argument `John u/`
+      * E.g. `filter u/ n/John` will be interpreted the same as `filter u/`.
 * The search is case-insensitive. e.g. `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Google Meta` will match `Meta Google`.
-* Only returns results with FULL matching keywords to the field.
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Only returns results with at least one FULL matching keyword to the field (i.e. `OR` search). <br>
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `filter c/Google` returns all entries with company fields “Google”, “google” “Google Inc.”.
 * `filter t/friends` returns all entries with the tag “friends”.
 
+Before `filter j/data`:
+
+![Before filter](images/BeforeFilter.png)
+
+After `filter j/data`:
+
+![After filter](images/AfterFilter.png)
+
 ### Scheduling a meeting with a specific contact : `schedule`
 
-Schedules a meeting with an existing contact via index.
+Schedules a meeting with an existing contact.
 
 Format: `schedule INDEX i/SCHEDULE_TIME [a/SCHEDULE_NAME]`
 
-* Adds a schedule to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** starting from 1.
+* Adds a schedule to the contact at the specified `INDEX`.
 * Schedule name is an optional field. If no schedule name is given, the default is `Meeting`.
 * Input schedule time must be in the format `YYYY-MM-DD-HH-mm`, and must be valid.
-* If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. If schedule name is not given, it will still be set to `Meeting`.
+* If there are existing schedules or schedule names, it will be updated to the input schedule and schedule name. 
+  * Only supports one schedule per person at a time.
 * Updates the last modified time of the given contact to the current time when executed.
 * This command allows the entering of dates before the current date & time, e.g. in the event that you are backdating a meeting that has occurred for your own usage in documentation.
-* Examples:
-*  `schedule 1 i/2023-12-07-13-45` edits or adds the 1st contact's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
-*  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the 3rd contact's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
+
+Examples:
+*  `schedule 1 i/2023-12-07-13-45` edits or adds the displayed 1st contact's schedule time and name, where the schedule time is `7 Dec 2023, 13:45:00`, and the schedule name is the default name, `Meeting`.
+*  `schedule 3 i/2024-05-06-18-00 a/Evening seminar` edits or adds the displayed 3rd contact's schedule time and name, where the schedule time is `6 May 2024, 18:00:00`, and the schedule name is `Evening seminar`.
 
 ### Viewing details of a specific contact : `detail`
 
-Displays all details of a specific contact via index.
+Displays all details of a specific contact.
 
 Format: `detail INDEX`
 
 * Shows the details of the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** starting from 1.
 
 Examples:
 * `detail 1` displays the details for the contact in the first index.
@@ -238,7 +247,7 @@ Clears the scheduled meeting with an existing contact via index.
 
 Format : `clearschedule INDEX`
 
-* Clears a schedule to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** starting from 1.
+* Clears a schedule to the contact at the specified `INDEX`.
 * Clears both the scheduled date & time, and the schedule name.
 * Updates the last modified time of the given contact to the current time when executed.
 
@@ -251,13 +260,14 @@ Adds a note with an existing contact via index.
 
 Format: `note INDEX o/[NOTE]`
 
-* Adds a note to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** starting from 1.
+* Adds a note to the contact at the specified `INDEX`. 
 * If there are existing notes, it will be updated to the input note.
     * Note is an optional field. If left blank, it will clear any existing note that the contact has.
 * By default, note is empty when a contact is added to the contact list.
 * Note has a character limit of **1000**.
 * Note can contain any alphanumeric character, punctuation marks and whitespaces in between.
-  * The only exception to this rule are command prefixes as previously mentioned.
+  * The only exception to this rule is the note command prefix `o/` as previously mentioned.
+  * This restriction is planned to be removed in future enhancements.
 * Updates the last modified time of the given contact to the current time when executed.
 
 Examples:
@@ -271,8 +281,6 @@ Deletes a contact via index.
 Format: `delete INDEX`
 
 * Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** starting from 1.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the contact list.
