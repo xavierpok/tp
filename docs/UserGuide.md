@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 
-**Connexion** is a desktop application for undergraduate students to manage their networking connections in the Tech industry.
+**Connexion** is a desktop application for you to manage your networking connections.
 * It is optimized for text UI usage via a Command Line Interface (CLI).
 * You can view their connections on a neat Graphical User Interface (GUI).
 
