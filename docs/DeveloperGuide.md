@@ -15,7 +15,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and gettingso lik started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,7 +218,8 @@ object, where it is used construct a `ScheduleCommand` object.
 Through `ScheduleCommand#execute()`, the `scheduleDescriptor` is then used to create a `Person` object with the added or edited schedule and schedule name.
 Through `model#setPerson()`, the `Person` object created then replaces the original `Person` object in the list.
 
-The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("schedule 1 i/2023-12-27-07-00 a/Seminar")`.
+The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("schedule 1 {params}")`,
+where {params} refers to `i/2023-12-27-07-00 a/Seminar`.
 <img src="images/ScheduleSequenceDiagram.png" width="1800"/>
 The reason behind implementing this feature this way is partly inspired by the prior implementation of edit feature in AB3.
 By using ScheduleDescriptor object, we are able to keep the same level of abstraction.

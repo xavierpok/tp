@@ -18,11 +18,11 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("schedule 1 i/2023-12-27-07-00 a/Seminar")
+[-> LogicManager : execute("schedule 1 {params}")
 activate LogicManager
 
 
-LogicManager -> AddressBookParser : parseCommand("schedule 1 i/2023-12-27-07-00 a/Seminar")
+LogicManager -> AddressBookParser : parseCommand("schedule 1 {params}")
 activate AddressBookParser
 
 create ScheduleCommandParser
@@ -32,13 +32,13 @@ activate ScheduleCommandParser
 ScheduleCommandParser --> AddressBookParser
 deactivate ScheduleCommandParser
 
-AddressBookParser -> ScheduleCommandParser : parse("1 i/2023-12-27-07-00 a/Seminar")
+AddressBookParser -> ScheduleCommandParser : parse("1 {params}")
 activate ScheduleCommandParser
 
 
 
 create Person
-ScheduleCommandParser -> Person : ScheduleAsField, ScheduleNameAsField, LastModifiedDateTimeAsField
+ScheduleCommandParser -> Person : {params}, LastModifiedDateTime
 activate Person
 Person --> ScheduleCommandParser
 deactivate Person
