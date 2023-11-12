@@ -385,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC03 - Add a contact**
 
@@ -402,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC04 - Filter for contacts via a specified field**
 
@@ -420,13 +420,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 1b. The specified field requires keywords but none is provided.
 
     * 1b1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC05 - Update a contact**
 
@@ -445,13 +445,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1.  Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2b. Connexion detects an error in the entered details.
 
     * 2b1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC06 - Mark a contact**
 
@@ -470,7 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC07 - List details of a contact**
 
@@ -488,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC08 - Schedule a meeting with a contact**
 
@@ -507,13 +507,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1.  Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2b. Meeting time provided is invalid.
 
     * 2b1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC09 - Clear schedule with a contact**
 
@@ -532,7 +532,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2b. No schedule is found for the contact.
 
@@ -557,13 +557,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2b. The note provided contains invalid characters.
 
     * 2a1. Connexion shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
     
 ### Non-Functional Requirements
