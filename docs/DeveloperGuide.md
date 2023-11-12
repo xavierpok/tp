@@ -596,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **MSS**: Main Success Scenario, assumes that nothing goes wrong in use cases.
 * **Note**: A brief record attributed to a contact.
-* **Person View Panel**: The right half of the GUI, used to view details of a contact.
+* **PersonViewPanel**: The right half of the GUI, used to view details of a contact.
 * **Schedule**: A date & time for an event to occur with a contact. Each contact can only have maximum one schedule.
 
 --------------------------------------------------------------------------------------------------------------------
