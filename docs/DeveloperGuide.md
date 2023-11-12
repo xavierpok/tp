@@ -514,13 +514,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Connexion shows an error message.
 
       Use case ends.
+* 2c. Meeting name provided is invalid.
 
-**Use case: UC09 - Clear schedule with a contact**
+    * 2c1. Connexion shows an error message.
+      
+    * Use case ends.
+
+**Use case: UC09 - Clear schedule of a contact**
 
 **MSS**
 
 1.  User <ins>lists contacts (UC01)</ins>.
-2.  User requests to clear schedule with a contact.
+2.  User requests to clear schedule of a contact.
 3.  Connexion clears the contact's schedule.
 4.  Connexion displays the contact with the schedule cleared.
 
@@ -536,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. No schedule is found for the contact.
 
-    * 2b1. Connexion shows an error message.
+    * 2b1. Connexion shows an error messagre.
 
       Use case ends.
 
