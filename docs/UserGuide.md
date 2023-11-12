@@ -5,7 +5,7 @@ title: User Guide
 
 
 **Connexion** is a desktop application for you to manage your networking connections.
-* It is optimized for text UI usage via a Command Line Interface (CLI).
+* All interface is through a text UI in-app that operates similarly to a Command Line Interface (CLI).
 * You can view their connections on a neat Graphical User Interface (GUI).
 
 If you:
