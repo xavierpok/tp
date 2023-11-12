@@ -51,16 +51,17 @@ Person *--> Company
 Person *--> Job
 Person *--> "*" Tag
 Person *--> Mark
-Person *-> LastModifiedDateTime
+Person *-left> LastModifiedDateTime
 Person *--> Note
-Person *--> "0..1" Schedule
-Person *--> "0..1" ScheduleName
+Person *-right> "0..1" Schedule
+Person *-right> "0..1" ScheduleName
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
 Email -[hidden]right-> Company
+
 
 ModelManager -[hidden]-> "~* filtered" Person
 ModelManager -->  Person
