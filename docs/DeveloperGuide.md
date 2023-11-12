@@ -843,7 +843,7 @@ Given below are the fixes proposed to add in the near future.
           1. E.g. If the user wants to add a company name "at and t/bellsouth", the user can enter "at and \t/bellsouth".
           2. E.g. If the user wants to add a job name like "Software Engineer e/brains", the user can enter "Software Engineer \e/brains".
 5. #### Enhance checking of schedule and scheduleName
-   1. Currently, upon editing the `addressbook.json` file in the data folder, `Schedule` can exist in the app without `ScheduleName`, and vice-versa. However, this is an unintended behaviour as `schedule` should have a `scheduleName` and vice-versa.
+   1. Currently, upon editing the `addressbook.json` file in the data folder, `Schedule` can exist in the app without `ScheduleName`, and vice-versa. However, this is an unintended behaviour as `Schedule` should have a `ScheduleName` and vice-versa.
    2. Proposed solution: After reading from the `addressbook.json` file in the data folder, we can check `Schedule` field and `scheduleName` field to make sure if one is empty and the other is not, it is treated as an invalid field during JSON deserialization.
    
 6. #### Deal with text-wrapping and truncation in UI
