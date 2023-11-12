@@ -564,12 +564,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2b. The note provided contains invalid characters.
+* 2b. The note provided is invalid.
 
     * 2a1. Connexion shows an error message.
 
       Use case ends.
-
     
 ### Non-Functional Requirements
 
