@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-**Connexion** is a desktop application for experienced users to manage their networking connections.
+**Connexion** is a desktop application for undergraduate students to manage their networking connections.
 * It is optimized for text UI usage via a Command Line Interface (CLI).
 * Users can view their connections on a neat Graphical User Interface (GUI).
 

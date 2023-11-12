@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/Main.java) and [`MainApp`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,13 +68,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,7 +85,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -117,7 +117,7 @@ How the parsing works:
 * Any command that needs to be aware of the current time takes the current time during parsing. (I.e. `add` & `edit`)
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -138,7 +138,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -193,7 +193,7 @@ Finally, the relevant parsers read the clock via `LocalDateTime.now(clock)` to e
 
 The above is summarised in the activity diagram below :
 
-![LastModifiedDateTimeActivityDiagram.png](images%2FLastModifiedDateTimeActivityDiagram.png)
+![LastModifiedDateTimeActivityDiagram.png](images/LastModifiedDateTimeActivityDiagram.png)
 
 This `LocalDateTime` is passed into the `LastModifiedDateTime` constructor for further use as a field in relevant objects.
 Furthermore, `LastModifiedDateTime` truncates the `LocalDateTime` to precision of seconds.
@@ -239,7 +239,7 @@ Through `ClearScheduleCommand#execute()`, the `ClearScheduleDescriptor` is then 
 Through `model#setPerson()`, the `Person` object created then replaces the original `Person` object in the list.
 
 The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("clearschedule 1")`
-![Interactions Between Logic and Model Components for the `clearschedule 1` Command](images%2FClearScheduleSequenceDiagram.png)![Interactions Between Logic and Model Components for the `schedule 1 i/2023-12-27-07-00 a/Seminar` Command](images/ScheduleSequenceDiagram.png)
+![Interactions Between Logic and Model Components for the `clearschedule 1` Command](images/ClearScheduleSequenceDiagram.png)![Interactions Between Logic and Model Components for the `schedule 1 i/2023-12-27-07-00 a/Seminar` Command](images/ScheduleSequenceDiagram.png)
 
 The reasoning behind this implementation mirrors the reasoning for the above schedule implementation, in wanting to continue the precedent set by the edit feature, and maintaining abstraction.
 
@@ -351,7 +351,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | enthusiastic user  | schedule a meeting with a contact                           | learn from the contact's experience in his/her work             |
 | `*`      | user               | view the date and time of when a contact was added/modified | know when I added/edited the contact to the list                |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -580,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Final size of application should be under 50MB
 5. Should not run out of memory with 64MB RAM
 6. Only supports one user at a time
-7. Should retain all core functionality without access to internet (except `help` which links to the User Guide online)
+7. Should be able to run with or without internet
 8. Should NOT crash under recoverable circumstances, excluding irrecoverable errors like a `OutOfMemoryError`, application being killed, etc.
 9. Should be similar to other shell-like / terminal-like CLI for familiarity for tech field users
 
@@ -616,23 +615,24 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
-1. Exiting Connexion
+3. Exiting Connexion
    1. Click the Close Window button X on Connexion’s GUI.
    2. Type `exit` command in Connexion's Command box.
-   3. Click `File` on the top left of the GUI, and click Exit.
-
-Expected: Connexion will shut down.
+   3. Click `File` on the top left of the GUI, and click Exit. 
+   
+   Expected: Connexion will shut down.
 
 ### Adding a contact
 1. Adding a contact in Connexion.
@@ -656,7 +656,7 @@ Expected: Connexion will shut down.
    3. Test case: `delete 0`<br>
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Editing a contact
@@ -713,7 +713,7 @@ Expected: Connexion will shut down.
       Expected: Contact at index 1 is marked. Indicated by the ★ symbol.
    2. Test case: `mark 0` <br>
       Expected: No contact is marked. Error message is displayed.
-   3. Other incorrect mark commands to try: mark, mark x, ... (where x is larger than the list size)
+   3. Other incorrect mark commands to try: `mark`, `mark x` (where x is larger than the list size)
    
 ### Un-marking a contact
 1. Prerequisites: Contact to edit must already exist in Connexion and be displayed on the list view.
@@ -722,7 +722,7 @@ Expected: Connexion will shut down.
        Expected: Contact at index 1 is un-marked. Indicated by the ☆ symbol.
     2. Test case: `unmark 0` <br>
        Expected: No contact is un-marked. Error message is displayed.
-    3. Other incorrect mark commands to try: unmark, unmark x, ... (where x is larger than the list size)
+    3. Other incorrect mark commands to try: `unmark`, `unmark x` (where x is larger than the list size)
    
 ### Filtering a contact
 1. Prerequisites: Contacts must already exist in Connexion and be displayed on the list view.
@@ -769,7 +769,7 @@ Expected: Connexion will shut down.
        Expected: Details of contact at index 1 is displayed on the person view panel. 
     2. Test case: `detail 0` <br>
        Expected: No contact displayed. Error message is displayed.
-    3. Other incorrect detail commands to try: detail, detail x, ... (where x is larger than the list size)
+    3. Other incorrect detail commands to try: `detail`, `detail x` (where x is larger than the list size)
    
 ### Scheduling a meeting
 1. Prerequisites: Contact to schedule meeting with must already exist in Connexion and be displayed on the list view.
@@ -790,7 +790,7 @@ Expected: Connexion will shut down.
       Expected: Contact at index 1 no longer has a schedule.
    2. Test case: `clearschedule 0` <br>
       Expected: No changes are made. Error message is displayed.
-   3. Other incorrect detail commands to try: clearschedule, clearschedule x, ... (where x is larger than the list size)
+   3. Other incorrect detail commands to try: `clearschedule`, `clearschedule x` (where x is larger than the list size)
    
 ### Adding a note to a specific contact
 1. Prerequisites: Contact to add note to with must exist and be displayed on the list view.
@@ -799,7 +799,7 @@ Expected: Connexion will shut down.
       Expected: Contact at index 1 has the note _This guy is really important!_.
    2. Test case: `note 1` <br>
       Expected: No changes are made. Error message is displayed.
-   3. Other incorrect detail commands to try: note, note x, ... (where x is smaller/larger than the list size)
+   3. Other incorrect detail commands to try: `note`, `note x` (where x is smaller/larger than the list size)
    
 ### Saving data
 <div markdown="span" class="alert alert-primary">:bulb: **Note about corrupted file:**
@@ -809,15 +809,14 @@ If a JSON file is corrupted (see test case 2 and 3 below) upon launching Connexi
 1. Dealing with missing/corrupted data files
    1. Test case: Delete the file named `addressbook.json` in the data folder, relative to the path of the jar file. Launch the jar file. <br>
       Expected: Shows the GUI with the default start page with a sample dataset.
-   2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file <br>
-      Expected: Shows the GUI with the default start page.
-   3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file <br>
-      Expected: Shows the GUI with the default start page.
+   2. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that it does not have a valid JSON format. Launch the jar file. <br>
+      Expected: Shows the GUI with the default start page. Contact list will be empty.
+   3. Test case: Edit the file named `addressbook.json` in the data folder, relative to the path of the jar file such that a field does not have a valid input (e.g. name field has special characters). Launch the jar file. <br>
+      Expected: Shows the GUI with the default start page. Contact list will be empty.
 
 ------
-## **Planned Enhancements**
+## **Appendix: Planned Enhancements**
 Given below are the fixes proposed to add in the near future.
-
 
 1. #### Deal with values having leading whitespaces in data files
    1. The current implementation will not load the `addressbook.json` file in the data folder when there are leading whitespaces.

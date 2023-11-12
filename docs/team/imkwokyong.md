@@ -43,8 +43,9 @@ Given below are my contributions to the project.
     * Added the details of features implemented by self (Included in the same PR that implemented said features)
   * Developer Guide:
     * Added the details and diagrams of features implemented by self (PR [\#149](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/149))
-    * Added important user stories (PR [\#236](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/236))
-    * Added use cases (PR [\#240](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/240))
+    * Updated important user stories (PR [\#236](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/236))
+    * Updated use cases (PR [\#240](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/240))
+    * Updated glossary and NFR (PR [\#283](https://github.com/AY2324S1-CS2103-F13-1/tp/pull/283))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments)
