@@ -119,7 +119,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103-F13-1/tp/blob/master/src/main/java/connexion/model/Model.java)
 
-<img src="images/ModelClassDiagram.svg" width="900" />
+<img src="images/ModelClassDiagram.png" width="900" />
 
 
 The `Model` component,
