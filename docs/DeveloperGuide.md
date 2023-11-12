@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. No schedule is found for the contact.
 
-    * 2b1. Connexion shows an error messagre.
+    * 2b1. Connexion shows an error message.
 
       Use case ends.
 
