@@ -289,7 +289,7 @@ Through `model#setPerson()`, the `Person` object created then replaces the origi
 
 The sequence diagram below shows the interaction between Logic and Model components after the API call `execute("note 1 o/This is a note!")`
 
-<img src="images/NoteSequenceDiagram.png" width="1324" />
+<img src="images/NoteSequenceDiagram.svg" width="1324" />
 
 Similar to the edit feature in AB3, by using NoteDescriptor object, we are able to keep the same level of abstraction. Moreover,
 it ensures the immutability of `Person`.
