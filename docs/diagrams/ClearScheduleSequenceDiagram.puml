@@ -38,7 +38,7 @@ activate ClearScheduleCommandParser
 
 
 create Person
-ClearScheduleCommandParser -> Person : LastModifiedDateTimeAsField
+ClearScheduleCommandParser -> Person : LastModifiedDateTime
 activate Person
 Person --> ClearScheduleCommandParser
 deactivate Person
