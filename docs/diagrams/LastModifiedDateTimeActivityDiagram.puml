@@ -12,15 +12,17 @@ start
 
 If () then ([Clock-Dependent])
 
-:Clock passed to command-specific parser;
+:Command-specific parser instantiated
+with passed clock;
 
 :Parser extracts current time from clock;
 
 
 else ([else])
+    :Command-specific parser instantiated;
 endif
 
-:Parser extracts parameters from command;
+:Parser extracts parameters from input;
 :Command executed (including data updates);
 :Results are displayed to user
 (Including modified Person data, if applicable);
