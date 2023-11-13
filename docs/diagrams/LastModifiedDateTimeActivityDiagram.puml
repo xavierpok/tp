@@ -2,26 +2,28 @@
 !include style.puml
 
 start
-:User inputs a command that modifies an entry;
+:User inputs a command;
 
-:Logic component passes clock to parser;
+:Logic component passes clock to AddressBookParser;
 
-:Parser parses command;
+:Type of command determined;
 
-If () then ([Command is valid ])
+:Parser instantiated;
 
-:Parser extracts parameters from command;
+If () then ([Clock-Dependent])
+
+:Clock passed to command-specific parser;
+
 :Parser extracts current time from clock;
-:Person data updated in AddressBook;
+
 
 else ([else])
-    :Command handles invalid failure
-    (dependent on implementation);
-
 endif
 
+:Parser extracts parameters from command;
+:Command executed (including data updates);
 :Results are displayed to user
-(Including modified Person data);
+(Including modified Person data, if applicable);
 
 stop
 @enduml
